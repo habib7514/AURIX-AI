@@ -56,9 +56,13 @@ input{
     margin:auto;
 }
 
+/* =========================
+   AURIX AI LOGO
+========================= */
+
 .logo{
-    width:150px;
-    height:150px;
+    width:165px;
+    height:165px;
     margin:0 auto 25px;
 }
 
@@ -68,13 +72,17 @@ input{
     display:block;
 }
 
+/* =========================
+   BRAND
+========================= */
+
 .brand{
     text-align:center;
     font-size:38px;
     font-weight:800;
     letter-spacing:5px;
     color:#F0D36A;
-    margin-bottom:10px;
+    margin-bottom:14px;
 }
 
 .subtitle{
@@ -82,8 +90,30 @@ input{
     color:#aaa;
     font-size:16px;
     line-height:1.6;
-    margin-bottom:30px;
+    margin-bottom:10px;
 }
+
+.welcome-title{
+    text-align:center;
+    font-size:26px;
+    font-weight:700;
+    color:#fff;
+    letter-spacing:1px;
+    margin-top:12px;
+}
+
+.welcome-text{
+    text-align:center;
+    color:#999;
+    font-size:15px;
+    line-height:1.7;
+    margin:14px auto 0;
+    max-width:500px;
+}
+
+/* =========================
+   CARDS
+========================= */
 
 .card{
     background:linear-gradient(145deg,#111,#080808);
@@ -114,18 +144,16 @@ input{
     color:#F0D36A;
 }
 
-.big-title{
-    font-size:32px;
-    font-weight:800;
-    margin-bottom:8px;
-}
-
 .page-title{
     text-align:center;
     color:#F0D36A;
     font-size:30px;
     margin-bottom:25px;
 }
+
+/* =========================
+   INPUTS
+========================= */
 
 .input-group{
     margin-bottom:16px;
@@ -153,6 +181,10 @@ input{
 input:focus{
     border-color:#D4AF37;
 }
+
+/* =========================
+   BUTTONS
+========================= */
 
 .btn{
     width:100%;
@@ -184,19 +216,9 @@ input:focus{
     border:1px solid #552222;
 }
 
-.welcome{
-    text-align:center;
-    max-width:650px;
-    margin:auto;
-}
-
-.welcome-text{
-    color:#aaa;
-    font-size:16px;
-    line-height:1.7;
-    margin:15px auto 30px;
-    max-width:520px;
-}
+/* =========================
+   HERO
+========================= */
 
 .hero{
     padding:25px 0;
@@ -225,6 +247,10 @@ input:focus{
     line-height:1.6;
 }
 
+/* =========================
+   STATS
+========================= */
+
 .stats{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -249,6 +275,10 @@ input:focus{
     font-size:21px;
     color:#F0D36A;
 }
+
+/* =========================
+   SIGNAL
+========================= */
 
 .signal{
     border:1px solid #403515;
@@ -281,6 +311,10 @@ input:focus{
 .signal-row:last-child{
     border-bottom:0;
 }
+
+/* =========================
+   PLANS
+========================= */
 
 .plan{
     position:relative;
@@ -317,6 +351,10 @@ input:focus{
     margin-right:9px;
 }
 
+/* =========================
+   WALLET
+========================= */
+
 .wallet-box{
     background:#0c0c0c;
     border:1px solid #3d3218;
@@ -351,16 +389,18 @@ input:focus{
     margin-bottom:18px;
 }
 
-.empty{
-    text-align:center;
-    padding:35px 15px;
-    color:#777;
-}
+/* =========================
+   SUPPORT
+========================= */
 
 .support-email{
     color:#F0D36A;
     word-break:break-all;
 }
+
+/* =========================
+   SETTINGS
+========================= */
 
 .settings-row{
     display:flex;
@@ -382,6 +422,10 @@ input:focus{
     color:#F0D36A;
     font-size:14px;
 }
+
+/* =========================
+   BOTTOM NAV
+========================= */
 
 .bottom-nav{
     position:fixed;
@@ -428,26 +472,14 @@ input:focus{
     background:#17140b;
 }
 
-.small-note{
-    color:#666;
-    font-size:12px;
-    line-height:1.5;
-    margin-top:12px;
-}
-
-.divider{
-    height:1px;
-    background:#222;
-    margin:20px 0;
-}
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:420px){
+
     .brand{
         font-size:32px;
-    }
-
-    .hero h1{
-        font-size:29px;
     }
 
     .page-title{
@@ -455,8 +487,8 @@ input:focus{
     }
 
     .logo{
-        width:135px;
-        height:135px;
+        width:145px;
+        height:145px;
     }
 
     .bottom-nav{
@@ -474,14 +506,28 @@ input:focus{
 
 <body>
 
-<!-- WELCOME -->
+
+<!-- ==================================================
+     SPLASH / WELCOME SCREEN
+     AUTOMATICALLY GOES TO REGISTER AFTER 5 SECONDS
+================================================== -->
+
 <section id="welcome" class="center-screen active">
+
     <div class="welcome">
 
-        <!-- NEW AURIX AI LOGO -->
-        <div class="logo">
-            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+        <!-- PROFESSIONAL AURIX AI SYMBOL
+             NO LETTER A -->
 
+        <div class="logo">
+
+            <svg
+                viewBox="0 0 512 512"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-label="AURIX AI"
+            >
+
+                <!-- Premium black background -->
                 <rect
                     width="512"
                     height="512"
@@ -489,6 +535,7 @@ input:focus{
                     fill="#030303"
                 />
 
+                <!-- Outer ring -->
                 <circle
                     cx="256"
                     cy="256"
@@ -496,9 +543,10 @@ input:focus{
                     fill="none"
                     stroke="#D4AF37"
                     stroke-width="8"
-                    opacity="0.55"
+                    opacity=".55"
                 />
 
+                <!-- Inner ring -->
                 <circle
                     cx="256"
                     cy="256"
@@ -506,10 +554,10 @@ input:focus{
                     fill="none"
                     stroke="#8F7420"
                     stroke-width="2"
-                    opacity="0.8"
+                    opacity=".8"
                 />
 
-                <!-- Candlesticks -->
+                <!-- Market candle 1 -->
                 <line
                     x1="145"
                     y1="300"
@@ -529,6 +577,7 @@ input:focus{
                     fill="#D4AF37"
                 />
 
+                <!-- Market candle 2 -->
                 <line
                     x1="205"
                     y1="330"
@@ -548,6 +597,7 @@ input:focus{
                     fill="#F0D36A"
                 />
 
+                <!-- Market candle 3 -->
                 <line
                     x1="275"
                     y1="300"
@@ -567,6 +617,7 @@ input:focus{
                     fill="#FFE58A"
                 />
 
+                <!-- Market candle 4 -->
                 <line
                     x1="345"
                     y1="275"
@@ -586,7 +637,7 @@ input:focus{
                     fill="#D4AF37"
                 />
 
-                <!-- AI / Market line -->
+                <!-- AI market signal -->
                 <path
                     d="M125 350
                        C165 330 185 345 220 315
@@ -598,6 +649,7 @@ input:focus{
                     stroke-linecap="round"
                 />
 
+                <!-- Signal nodes -->
                 <circle
                     cx="125"
                     cy="350"
@@ -626,12 +678,13 @@ input:focus{
                     fill="#FFE58A"
                 />
 
+                <!-- Central AI glow -->
                 <circle
                     cx="256"
                     cy="256"
                     r="48"
                     fill="#D4AF37"
-                    opacity="0.08"
+                    opacity=".08"
                 />
 
                 <circle
@@ -641,140 +694,218 @@ input:focus{
                     fill="#FFE58A"
                 />
 
-                <circle cx="170" cy="150" r="4" fill="#D4AF37"/>
-                <circle cx="330" cy="350" r="4" fill="#D4AF37"/>
-                <circle cx="370" cy="315" r="4" fill="#D4AF37"/>
-                <circle cx="145" cy="375" r="4" fill="#D4AF37"/>
+                <!-- Premium points -->
+                <circle
+                    cx="170"
+                    cy="150"
+                    r="4"
+                    fill="#D4AF37"
+                />
+
+                <circle
+                    cx="330"
+                    cy="350"
+                    r="4"
+                    fill="#D4AF37"
+                />
+
+                <circle
+                    cx="370"
+                    cy="315"
+                    r="4"
+                    fill="#D4AF37"
+                />
+
+                <circle
+                    cx="145"
+                    cy="375"
+                    r="4"
+                    fill="#D4AF37"
+                />
 
             </svg>
+
         </div>
 
-        <div class="brand">AURIX AI</div>
 
-        <div class="subtitle">
-            GOLD MARKET INTELLIGENCE
+        <!-- APPLICATION NAME -->
+
+        <div class="brand">
+            AURIX AI
         </div>
 
-        <h1 style="font-size:28px;margin-bottom:12px;">
+
+        <!-- WELCOME MESSAGE -->
+
+        <div class="welcome-title">
             WELCOME TO AURIX AI
-        </h1>
+        </div>
 
-        <p class="welcome-text">
-            Advanced gold market intelligence and signal alerts
-            designed for a premium trading experience.
-        </p>
 
-        <button class="btn" onclick="showScreen('register')">
-            GET STARTED
-        </button>
-
-        <button class="btn secondary" onclick="showScreen('login')">
-            LOGIN
-        </button>
+        <div class="welcome-text">
+            Gold market intelligence and premium AI signal alerts.
+        </div>
 
     </div>
+
 </section>
 
 
-<!-- REGISTER -->
+<!-- ==================================================
+     REGISTER
+================================================== -->
+
 <section id="register" class="screen">
+
     <div class="container">
 
-        <h1 class="page-title">CREATE ACCOUNT</h1>
+        <h1 class="page-title">
+            CREATE ACCOUNT
+        </h1>
+
 
         <div class="card">
 
             <div class="input-group">
-                <label>Email</label>
+
+                <label>
+                    Email
+                </label>
+
                 <input
                     type="email"
                     id="registerEmail"
                     placeholder="Enter your email"
                 >
+
             </div>
 
+
             <div class="input-group">
-                <label>Password</label>
+
+                <label>
+                    Password
+                </label>
+
                 <input
                     type="password"
                     id="registerPassword"
                     placeholder="Create password"
                 >
+
             </div>
 
+
             <div class="input-group">
-                <label>Confirm Password</label>
+
+                <label>
+                    Confirm Password
+                </label>
+
                 <input
                     type="password"
                     id="registerConfirm"
                     placeholder="Confirm password"
                 >
+
             </div>
 
-            <button class="btn" onclick="registerUser()">
+
+            <button
+                class="btn"
+                onclick="registerUser()"
+            >
                 CREATE ACCOUNT
             </button>
 
-            <button class="btn secondary" onclick="showScreen('login')">
-                ALREADY HAVE AN ACCOUNT
-            </button>
 
-            <button class="btn secondary" onclick="showScreen('welcome')">
-                BACK
+            <button
+                class="btn secondary"
+                onclick="showScreen('login')"
+            >
+                ALREADY HAVE AN ACCOUNT
             </button>
 
         </div>
 
     </div>
+
 </section>
 
 
-<!-- LOGIN -->
+<!-- ==================================================
+     LOGIN
+================================================== -->
+
 <section id="login" class="screen">
+
     <div class="container">
 
-        <h1 class="page-title">LOGIN</h1>
+        <h1 class="page-title">
+            LOGIN
+        </h1>
+
 
         <div class="card">
 
             <div class="input-group">
-                <label>Email</label>
+
+                <label>
+                    Email
+                </label>
+
                 <input
                     type="email"
                     id="loginEmail"
                     placeholder="Enter your email"
                 >
+
             </div>
 
+
             <div class="input-group">
-                <label>Password</label>
+
+                <label>
+                    Password
+                </label>
+
                 <input
                     type="password"
                     id="loginPassword"
                     placeholder="Enter your password"
                 >
+
             </div>
 
-            <button class="btn" onclick="loginUser()">
+
+            <button
+                class="btn"
+                onclick="loginUser()"
+            >
                 LOGIN
             </button>
 
-            <button class="btn secondary" onclick="showScreen('register')">
-                CREATE ACCOUNT
-            </button>
 
-            <button class="btn secondary" onclick="showScreen('welcome')">
-                BACK
+            <button
+                class="btn secondary"
+                onclick="showScreen('register')"
+            >
+                CREATE ACCOUNT
             </button>
 
         </div>
 
     </div>
+
 </section>
 
 
-<!-- HOME -->
+<!-- ==================================================
+     HOME
+================================================== -->
+
 <section id="home" class="screen">
+
     <div class="container">
 
         <div class="hero">
@@ -794,93 +925,180 @@ input:focus{
 
         </div>
 
+
         <div class="stats">
 
             <div class="stat">
-                <small>MARKET</small>
-                <strong>GOLD</strong>
+
+                <small>
+                    MARKET
+                </small>
+
+                <strong>
+                    GOLD
+                </strong>
+
             </div>
 
+
             <div class="stat">
-                <small>STATUS</small>
-                <strong>ACTIVE</strong>
+
+                <small>
+                    STATUS
+                </small>
+
+                <strong>
+                    ACTIVE
+                </strong>
+
             </div>
 
         </div>
+
 
         <div class="card signal">
 
             <div class="signal-header">
-                <h2>Latest Signal</h2>
+
+                <h2>
+                    Latest Signal
+                </h2>
 
                 <div class="signal-status">
                     AI MONITORING
                 </div>
+
             </div>
 
-            <div class="signal-row">
-                <span>Asset</span>
-                <strong class="gold">XAU/USD</strong>
-            </div>
 
             <div class="signal-row">
-                <span>Timeframe</span>
-                <strong>1H</strong>
+
+                <span>
+                    Asset
+                </span>
+
+                <strong class="gold">
+                    XAU/USD
+                </strong>
+
             </div>
 
-            <div class="signal-row">
-                <span>Signal</span>
-                <strong class="gold">WAITING</strong>
-            </div>
 
             <div class="signal-row">
-                <span>Access</span>
-                <strong>SUBSCRIPTION</strong>
+
+                <span>
+                    Timeframe
+                </span>
+
+                <strong>
+                    1H
+                </strong>
+
+            </div>
+
+
+            <div class="signal-row">
+
+                <span>
+                    Signal
+                </span>
+
+                <strong class="gold">
+                    WAITING
+                </strong>
+
+            </div>
+
+
+            <div class="signal-row">
+
+                <span>
+                    Access
+                </span>
+
+                <strong>
+                    SUBSCRIPTION
+                </strong>
+
             </div>
 
         </div>
 
+
         <div class="card">
 
-            <h2>Premium Signals</h2>
+            <h2>
+                Premium Signals
+            </h2>
 
             <p>
                 Subscribe to activate access to AURIX AI
                 gold market signals and alerts.
             </p>
 
-            <button class="btn" onclick="showScreen('plans')">
+
+            <button
+                class="btn"
+                onclick="showScreen('plans')"
+            >
                 VIEW PLANS
             </button>
 
         </div>
 
     </div>
+
 </section>
 
 
-<!-- PLANS -->
+<!-- ==================================================
+     PLANS
+================================================== -->
+
 <section id="plans" class="screen">
+
     <div class="container">
 
-        <h1 class="page-title">SUBSCRIPTION PLANS</h1>
+        <h1 class="page-title">
+            SUBSCRIPTION PLANS
+        </h1>
+
 
         <div class="card plan">
 
-            <h2>1 MONTH</h2>
+            <h2>
+                1 MONTH
+            </h2>
 
-            <div class="plan-price">$49</div>
+            <div class="plan-price">
+                $49
+            </div>
 
             <div class="plan-period">
                 One month access
             </div>
 
+
             <ul>
-                <li>Gold AI Signals</li>
-                <li>Signal Notifications</li>
-                <li>Multiple Timeframes</li>
-                <li>Premium Market Intelligence</li>
+
+                <li>
+                    Gold AI Signals
+                </li>
+
+                <li>
+                    Signal Notifications
+                </li>
+
+                <li>
+                    Multiple Timeframes
+                </li>
+
+                <li>
+                    Premium Market Intelligence
+                </li>
+
             </ul>
+
 
             <button
                 class="btn"
@@ -894,20 +1112,39 @@ input:focus{
 
         <div class="card plan">
 
-            <h2>3 MONTHS</h2>
+            <h2>
+                3 MONTHS
+            </h2>
 
-            <div class="plan-price">$119</div>
+            <div class="plan-price">
+                $119
+            </div>
 
             <div class="plan-period">
                 Three months access
             </div>
 
+
             <ul>
-                <li>Gold AI Signals</li>
-                <li>Signal Notifications</li>
-                <li>Multiple Timeframes</li>
-                <li>Premium Market Intelligence</li>
+
+                <li>
+                    Gold AI Signals
+                </li>
+
+                <li>
+                    Signal Notifications
+                </li>
+
+                <li>
+                    Multiple Timeframes
+                </li>
+
+                <li>
+                    Premium Market Intelligence
+                </li>
+
             </ul>
+
 
             <button
                 class="btn"
@@ -919,32 +1156,49 @@ input:focus{
         </div>
 
     </div>
+
 </section>
 
 
-<!-- WALLET -->
+<!-- ==================================================
+     WALLET
+================================================== -->
+
 <section id="wallet" class="screen">
+
     <div class="container">
 
-        <h1 class="page-title">DEPOSIT</h1>
+        <h1 class="page-title">
+            DEPOSIT
+        </h1>
+
 
         <div class="notice">
+
             Send your payment using the supported network.
             Your subscription will be activated after
             deposit verification.
+
         </div>
+
 
         <div class="card">
 
-            <h2>Network</h2>
+            <h2>
+                Network
+            </h2>
 
             <p>
                 BNB Smart Chain (BEP20)
             </p>
 
+
             <div class="divider"></div>
 
-            <h2>Supported Assets</h2>
+
+            <h2>
+                Supported Assets
+            </h2>
 
             <p>
                 USDT (BEP20)<br>
@@ -953,42 +1207,70 @@ input:focus{
 
         </div>
 
+
         <div class="card">
 
-            <h2>Deposit Wallet</h2>
+            <h2>
+                Deposit Wallet
+            </h2>
 
-            <div class="wallet-box" id="walletAddress">
+
+            <div
+                class="wallet-box"
+                id="walletAddress"
+            >
                 0x4E11E978119cAAB300b5439B909D06341C24a2A7
             </div>
 
-            <button class="btn copy-btn" onclick="copyWallet()">
+
+            <button
+                class="btn copy-btn"
+                onclick="copyWallet()"
+            >
                 COPY WALLET ADDRESS
             </button>
 
+
             <div class="status-box">
+
                 After sending your payment, submit the
                 transaction information for verification.
+
             </div>
 
-            <button class="btn" onclick="depositSubmitted()">
+
+            <button
+                class="btn"
+                onclick="depositSubmitted()"
+            >
                 I HAVE MADE THE DEPOSIT
             </button>
 
         </div>
 
     </div>
+
 </section>
 
 
-<!-- NOTIFICATIONS -->
+<!-- ==================================================
+     NOTIFICATIONS
+================================================== -->
+
 <section id="notifications" class="screen">
+
     <div class="container">
 
-        <h1 class="page-title">NOTIFICATIONS</h1>
+        <h1 class="page-title">
+            NOTIFICATIONS
+        </h1>
+
 
         <div class="card">
 
-            <h2>Welcome to AURIX AI</h2>
+            <h2>
+                Welcome to AURIX AI
+            </h2>
 
             <p>
                 Your account has been created successfully.
@@ -996,9 +1278,12 @@ input:focus{
 
         </div>
 
+
         <div class="card">
 
-            <h2>Subscription</h2>
+            <h2>
+                Subscription
+            </h2>
 
             <p>
                 Deposit verification is required before
@@ -1008,47 +1293,71 @@ input:focus{
         </div>
 
     </div>
+
 </section>
 
 
-<!-- SUPPORT -->
+<!-- ==================================================
+     SUPPORT
+================================================== -->
+
 <section id="support" class="screen">
+
     <div class="container">
 
-        <h1 class="page-title">SUPPORT</h1>
+        <h1 class="page-title">
+            SUPPORT
+        </h1>
+
 
         <div class="card">
 
-            <h2>Need Help?</h2>
+            <h2>
+                Need Help?
+            </h2>
 
             <p>
                 Contact AURIX AI support for subscription,
                 deposit verification or account assistance.
             </p>
 
+
             <div class="wallet-box support-email">
                 mmatrix081@gmail.com
             </div>
 
-            <button class="btn" onclick="contactSupport()">
+
+            <button
+                class="btn"
+                onclick="contactSupport()"
+            >
                 CONTACT SUPPORT
             </button>
 
         </div>
 
     </div>
+
 </section>
 
 
-<!-- SETTINGS -->
+<!-- ==================================================
+     SETTINGS
+================================================== -->
+
 <section id="settings" class="screen">
+
     <div class="container">
 
-        <h1 class="page-title">SETTINGS</h1>
+        <h1 class="page-title">
+            SETTINGS
+        </h1>
+
 
         <div class="card">
 
             <div class="settings-row">
+
                 <div class="settings-label">
                     Application
                 </div>
@@ -1056,9 +1365,12 @@ input:focus{
                 <div class="settings-value">
                     AURIX AI
                 </div>
+
             </div>
 
+
             <div class="settings-row">
+
                 <div class="settings-label">
                     Market
                 </div>
@@ -1066,9 +1378,12 @@ input:focus{
                 <div class="settings-value">
                     GOLD
                 </div>
+
             </div>
 
+
             <div class="settings-row">
+
                 <div class="settings-label">
                     Network
                 </div>
@@ -1076,26 +1391,41 @@ input:focus{
                 <div class="settings-value">
                     BEP20
                 </div>
+
             </div>
 
         </div>
 
+
         <div class="card">
 
-            <h2>Account</h2>
+            <h2>
+                Account
+            </h2>
 
-            <button class="btn danger" onclick="logoutUser()">
+
+            <button
+                class="btn danger"
+                onclick="logoutUser()"
+            >
                 LOG OUT
             </button>
 
         </div>
 
     </div>
+
 </section>
 
 
-<!-- BOTTOM NAV -->
-<nav id="bottomNav" class="bottom-nav hidden">
+<!-- ==================================================
+     BOTTOM NAVIGATION
+================================================== -->
+
+<nav
+    id="bottomNav"
+    class="bottom-nav hidden"
+>
 
     <button
         class="nav-btn active"
@@ -1105,6 +1435,7 @@ input:focus{
         Home
     </button>
 
+
     <button
         class="nav-btn"
         onclick="showScreen('plans')"
@@ -1112,6 +1443,7 @@ input:focus{
         <span>◆</span>
         Plans
     </button>
+
 
     <button
         class="nav-btn"
@@ -1121,6 +1453,7 @@ input:focus{
         Wallet
     </button>
 
+
     <button
         class="nav-btn"
         onclick="showScreen('notifications')"
@@ -1129,6 +1462,7 @@ input:focus{
         Alerts
     </button>
 
+
     <button
         class="nav-btn"
         onclick="showScreen('support')"
@@ -1136,6 +1470,7 @@ input:focus{
         <span>?</span>
         Support
     </button>
+
 
     <button
         class="nav-btn"
@@ -1150,7 +1485,9 @@ input:focus{
 
 <script>
 
-let selectedPlan = "";
+/* ==================================================
+   SCREEN MANAGEMENT
+================================================== */
 
 const appScreens = [
     "home",
@@ -1161,110 +1498,224 @@ const appScreens = [
     "settings"
 ];
 
+
 function showScreen(screenId){
 
-    document.querySelectorAll(".screen, .center-screen")
+    document
+        .querySelectorAll(".screen, .center-screen")
         .forEach(screen => {
+
             screen.classList.remove("active");
+
         });
 
-    const target = document.getElementById(screenId);
+
+    const target =
+        document.getElementById(screenId);
+
 
     if(target){
+
         target.classList.add("active");
+
     }
 
-    const bottomNav = document.getElementById("bottomNav");
+
+    const bottomNav =
+        document.getElementById("bottomNav");
+
 
     if(appScreens.includes(screenId)){
+
         bottomNav.classList.remove("hidden");
+
     }else{
+
         bottomNav.classList.add("hidden");
+
     }
 
-    document.querySelectorAll(".nav-btn")
+
+    document
+        .querySelectorAll(".nav-btn")
         .forEach(btn => {
+
             btn.classList.remove("active");
+
         });
 
-    document.querySelectorAll(".nav-btn")
+
+    document
+        .querySelectorAll(".nav-btn")
         .forEach(btn => {
 
-            const onclick = btn.getAttribute("onclick") || "";
+            const onclick =
+                btn.getAttribute("onclick") || "";
 
-            if(onclick.includes("'" + screenId + "'")){
+
+            if(
+                onclick.includes(
+                    "'" + screenId + "'"
+                )
+            ){
+
                 btn.classList.add("active");
+
             }
 
         });
+
 
     window.scrollTo({
         top:0,
         behavior:"smooth"
     });
+
 }
 
+
+/* ==================================================
+   REGISTER
+================================================== */
 
 function registerUser(){
 
     const email =
-        document.getElementById("registerEmail").value.trim();
+        document
+        .getElementById("registerEmail")
+        .value
+        .trim();
+
 
     const password =
-        document.getElementById("registerPassword").value;
+        document
+        .getElementById("registerPassword")
+        .value;
+
 
     const confirm =
-        document.getElementById("registerConfirm").value;
+        document
+        .getElementById("registerConfirm")
+        .value;
 
-    if(!email || !password || !confirm){
-        alert("Please complete all fields.");
+
+    if(
+        !email ||
+        !password ||
+        !confirm
+    ){
+
+        alert(
+            "Please complete all fields."
+        );
+
         return;
+
     }
+
 
     if(password !== confirm){
-        alert("Passwords do not match.");
+
+        alert(
+            "Passwords do not match."
+        );
+
         return;
+
     }
 
-    localStorage.setItem("aurixEmail",email);
-    localStorage.setItem("aurixLoggedIn","true");
 
-    alert("Account created successfully.");
+    localStorage.setItem(
+        "aurixEmail",
+        email
+    );
+
+
+    localStorage.setItem(
+        "aurixLoggedIn",
+        "true"
+    );
+
+
+    alert(
+        "Account created successfully."
+    );
+
 
     showScreen("home");
+
 }
 
+
+/* ==================================================
+   LOGIN
+================================================== */
 
 function loginUser(){
 
     const email =
-        document.getElementById("loginEmail").value.trim();
+        document
+        .getElementById("loginEmail")
+        .value
+        .trim();
+
 
     const password =
-        document.getElementById("loginPassword").value;
+        document
+        .getElementById("loginPassword")
+        .value;
+
 
     if(!email || !password){
-        alert("Please enter your email and password.");
+
+        alert(
+            "Please enter your email and password."
+        );
+
         return;
+
     }
 
-    localStorage.setItem("aurixEmail",email);
-    localStorage.setItem("aurixLoggedIn","true");
 
-    alert("Login successful.");
+    localStorage.setItem(
+        "aurixEmail",
+        email
+    );
+
+
+    localStorage.setItem(
+        "aurixLoggedIn",
+        "true"
+    );
+
+
+    alert(
+        "Login successful."
+    );
+
 
     showScreen("home");
+
 }
+
+
+/* ==================================================
+   PLAN
+================================================== */
+
+let selectedPlan = "";
 
 
 function selectPlan(plan){
 
     selectedPlan = plan;
 
+
     localStorage.setItem(
         "aurixSelectedPlan",
         plan
     );
+
 
     alert(
         "Selected plan: " +
@@ -1272,24 +1723,45 @@ function selectPlan(plan){
         "\n\nPlease proceed to deposit."
     );
 
+
     showScreen("wallet");
+
 }
 
+
+/* ==================================================
+   WALLET
+================================================== */
 
 function copyWallet(){
 
     const address =
         "0x4E11E978119cAAB300b5439B909D06341C24a2A7";
 
-    navigator.clipboard.writeText(address)
+
+    navigator.clipboard
+        .writeText(address)
         .then(() => {
-            alert("Wallet address copied.");
+
+            alert(
+                "Wallet address copied."
+            );
+
         })
         .catch(() => {
-            alert("Copy failed. Please copy the address manually.");
+
+            alert(
+                "Copy failed. Please copy the address manually."
+            );
+
         });
+
 }
 
+
+/* ==================================================
+   DEPOSIT
+================================================== */
 
 function depositSubmitted(){
 
@@ -1298,38 +1770,72 @@ function depositSubmitted(){
         "true"
     );
 
+
     alert(
         "Deposit submitted for verification.\n\n" +
         "Your access will be activated after verification."
     );
 
+
     showScreen("notifications");
+
 }
 
+
+/* ==================================================
+   SUPPORT
+================================================== */
 
 function contactSupport(){
 
     window.location.href =
         "mailto:mmatrix081@gmail.com" +
         "?subject=AURIX AI Support Request";
+
 }
 
+
+/* ==================================================
+   LOGOUT
+================================================== */
 
 function logoutUser(){
 
-    localStorage.removeItem("aurixLoggedIn");
+    localStorage.removeItem(
+        "aurixLoggedIn"
+    );
 
-    alert("You have been logged out.");
+
+    alert(
+        "You have been logged out."
+    );
+
 
     showScreen("welcome");
+
 }
 
+
+/* ==================================================
+   AUTOMATIC SPLASH
+   5 SECONDS THEN REGISTER
+================================================== */
 
 document.addEventListener(
     "DOMContentLoaded",
     function(){
 
         showScreen("welcome");
+
+
+        setTimeout(
+            function(){
+
+                showScreen("register");
+
+            },
+            5000
+        );
 
     }
 );
