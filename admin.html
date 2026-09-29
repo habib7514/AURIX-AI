@@ -444,46 +444,32 @@ textarea{
   <label>Timeframe</label>
 
   <select id="timeframe">
-
    <option value="1m">1 Minute</option>
    <option value="5m">5 Minutes</option>
    <option value="30m">30 Minutes</option>
    <option value="1h">1 Hour</option>
    <option value="1d">1 Day</option>
-
   </select>
-
 
   <label>Signal</label>
 
   <select id="signal">
-
    <option value="BUY">BUY</option>
    <option value="SELL">SELL</option>
    <option value="WAIT">WAIT</option>
-
   </select>
 
-
   <label>Entry</label>
-
   <input id="entry" placeholder="Example: 2650.50">
 
-
   <label>Stop Loss</label>
-
   <input id="stopLoss" placeholder="Example: 2642.00">
 
-
   <label>Take Profit</label>
-
   <input id="takeProfit" placeholder="Example: 2670.00">
 
-
   <label>Message</label>
-
   <textarea id="signalMessage" placeholder="Gold signal details..."></textarea>
-
 
   <button class="gold-btn" onclick="publishSignal()">
    PUBLISH SIGNAL
@@ -541,24 +527,20 @@ async function login(){
 
  msg.textContent="Logging in...";
 
-
  const {data,error} =
  await supabaseClient.auth.signInWithPassword({
   email,
   password
  });
 
-
  if(error){
   msg.textContent=error.message;
   return;
  }
 
-
  currentUser=data.user;
 
  await checkAdmin();
-
 }
 
 
@@ -573,7 +555,6 @@ async function checkAdmin(){
  .eq("id",currentUser.id)
  .single();
 
-
  if(error || !data){
 
   await supabaseClient.auth.signOut();
@@ -583,7 +564,6 @@ async function checkAdmin(){
 
   return;
  }
-
 
  if(data.role!=="admin"){
 
@@ -595,15 +575,12 @@ async function checkAdmin(){
   return;
  }
 
-
  document.getElementById("login").style.display="none";
  document.getElementById("app").style.display="block";
-
 
  await expireSubscriptions();
  await loadDashboard();
  await subscribeToAdminNotifications();
-
 }
 
 
@@ -618,13 +595,11 @@ async function logout(){
   );
 
   adminNotificationChannel=null;
-
  }
 
  await supabaseClient.auth.signOut();
 
  location.reload();
-
 }
 
 
@@ -637,12 +612,10 @@ function showTab(id,button){
 
  document.getElementById(id).classList.add("active");
 
-
  document.querySelectorAll(".tab")
  .forEach(x=>x.classList.remove("active"));
 
  button.classList.add("active");
-
 
  if(id==="registrations")
   loadMembers();
@@ -661,9 +634,7 @@ function showTab(id,button){
    markAdminNotificationsRead,
    500
   );
-
  }
-
 }
 
 
@@ -672,7 +643,6 @@ function showTab(id,button){
 async function expireSubscriptions(){
 
  const now=new Date().toISOString();
-
 
  const {data,error} =
  await supabaseClient
@@ -683,16 +653,13 @@ async function expireSubscriptions(){
  .not("subscription_expires_at","is",null)
  .lt("subscription_expires_at",now);
 
-
  if(error){
   console.log(error.message);
   return;
  }
 
-
  if(!data || !data.length)
   return;
-
 
  for(const user of data){
 
@@ -702,9 +669,7 @@ async function expireSubscriptions(){
     subscription_active:false
    })
    .eq("id",user.id);
-
  }
-
 }
 
 
@@ -714,20 +679,17 @@ async function loadDashboard(){
 
  await expireSubscriptions();
 
-
  const {data:members} =
  await supabaseClient
  .from("profiles")
  .select("*")
  .eq("role","member");
 
-
  const {data:deposits} =
  await supabaseClient
  .from("deposits")
  .select("*")
  .eq("status","pending");
-
 
  const {data:notifs} =
  await supabaseClient
@@ -736,10 +698,8 @@ async function loadDashboard(){
  .eq("user_id",currentUser.id)
  .eq("is_read",false);
 
-
  document.getElementById("totalMembers").textContent =
  members?.length || 0;
-
 
  document.getElementById("activeSubscribers").textContent =
  members?.filter(x =>
@@ -750,17 +710,13 @@ async function loadDashboard(){
   )
  ).length || 0;
 
-
  document.getElementById("pendingDeposits").textContent =
  deposits?.length || 0;
-
 
  document.getElementById("notificationCount").textContent =
  notifs?.length || 0;
 
-
  loadMembers();
-
 }
 
 
@@ -775,9 +731,7 @@ async function loadMembers(){
  .eq("role","member")
  .order("created_at",{ascending:false});
 
-
  const table=document.getElementById("membersTable");
-
 
  if(error){
 
@@ -787,9 +741,7 @@ async function loadMembers(){
   return;
  }
 
-
  table.innerHTML="";
-
 
  if(!data || !data.length){
 
@@ -799,17 +751,14 @@ async function loadMembers(){
   return;
  }
 
-
  data.forEach(user=>{
 
   const expired =
    user.subscription_expires_at &&
    new Date(user.subscription_expires_at)<=new Date();
 
-
   let status="INACTIVE";
   let badge="inactive";
-
 
   if(user.subscription_active===true && !expired){
 
@@ -821,12 +770,9 @@ async function loadMembers(){
 
    status="EXPIRED";
    badge="expired";
-
   }
 
-
   let action="-";
-
 
   if(status!=="ACTIVE"){
 
@@ -842,9 +788,7 @@ async function loadMembers(){
     </button>
 
    `;
-
   }
-
 
   table.innerHTML+=`
 
@@ -871,91 +815,160 @@ async function loadMembers(){
     </td>
 
    </tr>
-
   `;
-
  });
-
 }
 
 
-/* REMOVE MEMBER */
+/* REMOVE MEMBER — UPDATED */
 
 async function removeMember(userId,email){
 
+ if(!userId){
+
+  alert("Member ID is missing.");
+  return;
+
+ }
+
  if(!confirm(
-  "Remove this non-active member?\n\nMember: "+email
+  "Remove this non-active member?\n\nMember: " + email
  ))
   return;
 
 
- const {data:user,error:checkError} =
- await supabaseClient
- .from("profiles")
- .select(
-  "id,email,role,subscription_active,subscription_expires_at"
- )
- .eq("id",userId)
- .single();
+ try{
+
+  /* Check member */
+
+  const {data:user,error:checkError} =
+   await supabaseClient
+   .from("profiles")
+   .select(
+    "id,email,role,subscription_active,subscription_expires_at"
+   )
+   .eq("id",userId)
+   .single();
 
 
- if(checkError || !user){
+  if(checkError){
 
-  alert("Member not found.");
-  await loadMembers();
-  return;
+   alert(
+    "Could not find member:\n\n" +
+    checkError.message
+   );
 
- }
+   console.log("CHECK MEMBER ERROR:",checkError);
 
-
- const expired =
-  user.subscription_expires_at &&
-  new Date(user.subscription_expires_at)<=new Date();
-
-
- const isActive =
-  user.subscription_active===true &&
-  !expired;
+   return;
+  }
 
 
- if(isActive){
+  if(!user){
+
+   alert("Member not found.");
+   return;
+
+  }
+
+
+  /* Check active status */
+
+  const expired =
+   user.subscription_expires_at &&
+   new Date(user.subscription_expires_at)<=new Date();
+
+
+  const isActive =
+   user.subscription_active===true &&
+   !expired;
+
+
+  if(isActive){
+
+   alert(
+    "This member is ACTIVE and cannot be removed."
+   );
+
+   return;
+
+  }
+
+
+  /* DELETE PROFILE */
+
+  const {data:deletedRows,error:deleteError} =
+   await supabaseClient
+   .from("profiles")
+   .delete()
+   .eq("id",userId)
+   .eq("role","member")
+   .select("id,email");
+
+
+  if(deleteError){
+
+   alert(
+    "REMOVE MEMBER FAILED:\n\n" +
+    deleteError.message +
+    "\n\nCode: " +
+    (deleteError.code || "unknown")
+   );
+
+   console.log(
+    "REMOVE MEMBER ERROR:",
+    deleteError
+   );
+
+   return;
+
+  }
+
+
+  /* VERIFY */
+
+  if(!deletedRows || deletedRows.length===0){
+
+   alert(
+    "The member was NOT removed.\n\n" +
+    "Supabase did not delete the profile. " +
+    "The DELETE policy or database permissions may be blocking the operation."
+   );
+
+   console.log(
+    "DELETE RETURNED NO ROWS:",
+    deletedRows
+   );
+
+   return;
+
+  }
+
 
   alert(
-   "This member is ACTIVE and cannot be removed."
+   "Member removed successfully:\n\n" +
+   email
   );
 
+
+  await loadDashboard();
   await loadMembers();
-  return;
+  await loadSubscribers();
 
  }
-
-
- const {error} =
- await supabaseClient
- .from("profiles")
- .delete()
- .eq("id",userId)
- .eq("role","member");
-
-
- if(error){
+ catch(error){
 
   alert(
-   "Could not remove member:\n\n"+
+   "Unexpected error while removing member:\n\n" +
    error.message
   );
 
-  return;
+  console.log(
+   "REMOVE MEMBER EXCEPTION:",
+   error
+  );
 
  }
-
-
- alert("Member removed successfully.");
-
- await loadDashboard();
- await loadMembers();
- await loadSubscribers();
-
 }
 
 
@@ -969,9 +982,7 @@ async function loadDeposits(){
  .select("*")
  .order("created_at",{ascending:false});
 
-
  const table=document.getElementById("depositsTable");
-
 
  if(error){
 
@@ -981,14 +992,11 @@ async function loadDeposits(){
   return;
  }
 
-
  table.innerHTML="";
-
 
  for(const d of data){
 
   let email="-";
-
 
   const {data:user} =
   await supabaseClient
@@ -997,10 +1005,8 @@ async function loadDeposits(){
   .eq("id",d.user_id)
   .single();
 
-
   if(user)
    email=user.email;
-
 
   table.innerHTML+=`
 
@@ -1066,11 +1072,8 @@ async function loadDeposits(){
     </td>
 
    </tr>
-
   `;
-
  }
-
 }
 
 
@@ -1088,19 +1091,14 @@ async function approveDeposit(
  ))
   return;
 
-
- /* DETERMINE PLAN */
-
  const numericAmount=
  Number(
   String(amount||"")
   .replace(/[^0-9.]/g,"")
  );
 
-
  let months=1;
  let finalPlan="1 Month - $49";
-
 
  if(
   numericAmount>=119 ||
@@ -1116,9 +1114,6 @@ async function approveDeposit(
 
  }
 
-
- /* EXPIRY */
-
  const expires=new Date();
 
  expires.setMonth(
@@ -1126,30 +1121,7 @@ async function approveDeposit(
  );
 
 
- /* APPROVE DEPOSIT */
-
- const {error:depositError} =
- await supabaseClient
- .from("deposits")
- .update({
-  status:"approved"
- })
- .eq("id",depositId);
-
-
- if(depositError){
-
-  alert(
-   "Deposit approval failed:\n\n"+
-   depositError.message
-  );
-
-  return;
-
- }
-
-
- /* ACTIVATE PROFILE */
+ /* FIRST ACTIVATE PROFILE */
 
  const {data:updatedProfile,error:profileError} =
  await supabaseClient
@@ -1175,7 +1147,7 @@ async function approveDeposit(
  if(profileError){
 
   alert(
-   "Deposit was approved, BUT the member subscription was NOT activated.\n\n"+
+   "MEMBER WAS NOT ACTIVATED.\n\n" +
    profileError.message
   );
 
@@ -1189,8 +1161,6 @@ async function approveDeposit(
  }
 
 
- /* VERIFY */
-
  if(
   !updatedProfile ||
   updatedProfile.subscription_active!==true
@@ -1198,6 +1168,29 @@ async function approveDeposit(
 
   alert(
    "Profile update did not activate the subscription."
+  );
+
+  return;
+
+ }
+
+
+ /* THEN APPROVE DEPOSIT */
+
+ const {error:depositError} =
+ await supabaseClient
+ .from("deposits")
+ .update({
+  status:"approved"
+ })
+ .eq("id",depositId);
+
+
+ if(depositError){
+
+  alert(
+   "Member is ACTIVE, but deposit status could not be updated:\n\n" +
+   depositError.message
   );
 
   return;
@@ -1237,10 +1230,10 @@ async function approveDeposit(
 
 
  alert(
-  "SUCCESS!\n\n"+
-  "Plan: "+finalPlan+
-  "\nStatus: ACTIVE"+
-  "\nExpires: "+
+  "SUCCESS!\n\n" +
+  "Plan: " + finalPlan +
+  "\nStatus: ACTIVE" +
+  "\nExpires: " +
   expires.toLocaleString()
  );
 
@@ -1263,7 +1256,6 @@ async function rejectDeposit(
  if(!confirm("Reject this deposit?"))
   return;
 
-
  const {error} =
  await supabaseClient
  .from("deposits")
@@ -1272,14 +1264,12 @@ async function rejectDeposit(
  })
  .eq("id",depositId);
 
-
  if(error){
 
   alert(error.message);
   return;
 
  }
-
 
  const {error:notifError} =
  await supabaseClient
@@ -1299,16 +1289,13 @@ async function rejectDeposit(
 
  });
 
-
  if(notifError)
   console.log(notifError.message);
-
 
  alert("Deposit rejected.");
 
  await loadDashboard();
  await loadDeposits();
-
 }
 
 
@@ -1317,7 +1304,6 @@ async function rejectDeposit(
 async function loadSubscribers(){
 
  await expireSubscriptions();
-
 
  const {data,error} =
  await supabaseClient
@@ -1332,10 +1318,8 @@ async function loadSubscribers(){
   }
  );
 
-
  const table=
  document.getElementById("subscribersTable");
-
 
  if(error){
 
@@ -1343,12 +1327,9 @@ async function loadSubscribers(){
   `<tr><td colspan="5">${escapeHtml(error.message)}</td></tr>`;
 
   return;
-
  }
 
-
  table.innerHTML="";
-
 
  if(!data || !data.length){
 
@@ -1356,24 +1337,19 @@ async function loadSubscribers(){
   `<tr><td colspan="5">No members found.</td></tr>`;
 
   return;
-
  }
-
 
  data.forEach(user=>{
 
   const active=
    user.subscription_active===true;
 
-
   const expired=
    user.subscription_expires_at &&
    new Date(user.subscription_expires_at)<=new Date();
 
-
   let status="INACTIVE";
   let badge="inactive";
-
 
   if(active && !expired){
 
@@ -1388,9 +1364,7 @@ async function loadSubscribers(){
 
   }
 
-
   let controls="";
-
 
   if(active && !expired){
 
@@ -1432,7 +1406,6 @@ async function loadSubscribers(){
 
   }
 
-
   table.innerHTML+=`
 
    <tr>
@@ -1458,11 +1431,8 @@ async function loadSubscribers(){
     </td>
 
    </tr>
-
   `;
-
  });
-
 }
 
 
@@ -1475,7 +1445,6 @@ async function disableSubscription(userId){
  ))
   return;
 
-
  const {error} =
  await supabaseClient
  .from("profiles")
@@ -1484,14 +1453,12 @@ async function disableSubscription(userId){
  })
  .eq("id",userId);
 
-
  if(error){
 
   alert(error.message);
   return;
 
  }
-
 
  const {error:notifError} =
  await supabaseClient
@@ -1511,16 +1478,13 @@ async function disableSubscription(userId){
 
  });
 
-
  if(notifError)
   console.log(notifError.message);
-
 
  alert("Subscription disabled.");
 
  await loadDashboard();
  await loadSubscribers();
-
 }
 
 
@@ -1534,14 +1498,11 @@ async function activateSubscription(userId){
   "1"
  );
 
-
  if(months===null)
   return;
 
-
  const duration=
  parseInt(months,10);
-
 
  if(!duration || duration<1){
 
@@ -1550,13 +1511,16 @@ async function activateSubscription(userId){
 
  }
 
-
  const expires=new Date();
 
  expires.setMonth(
   expires.getMonth()+duration
  );
 
+ const finalPlan=
+  duration>=3
+  ? "3 Months - $119"
+  : "1 Month - $49";
 
  const {error} =
  await supabaseClient
@@ -1565,12 +1529,13 @@ async function activateSubscription(userId){
 
   subscription_active:true,
 
+  subscription_plan:finalPlan,
+
   subscription_expires_at:
    expires.toISOString()
 
  })
  .eq("id",userId);
-
 
  if(error){
 
@@ -1578,7 +1543,6 @@ async function activateSubscription(userId){
   return;
 
  }
-
 
  const {error:notifError} =
  await supabaseClient
@@ -1598,16 +1562,13 @@ async function activateSubscription(userId){
 
  });
 
-
  if(notifError)
   console.log(notifError.message);
-
 
  alert("Subscription activated.");
 
  await loadDashboard();
  await loadSubscribers();
-
 }
 
 
@@ -1638,7 +1599,6 @@ async function publishSignal(){
 
  msg.textContent="Publishing...";
 
-
  const {error} =
  await supabaseClient
  .from("gold_signals")
@@ -1656,14 +1616,12 @@ async function publishSignal(){
  .select()
  .single();
 
-
  if(error){
 
   msg.textContent=error.message;
   return;
 
  }
-
 
  const {data:members,error:membersError} =
  await supabaseClient
@@ -1676,7 +1634,6 @@ async function publishSignal(){
   new Date().toISOString()
  );
 
-
  if(membersError){
 
   msg.textContent=
@@ -1687,7 +1644,6 @@ async function publishSignal(){
   return;
 
  }
-
 
  if(members && members.length){
 
@@ -1707,12 +1663,10 @@ async function publishSignal(){
 
    }));
 
-
   const {error:notificationError} =
    await supabaseClient
    .from("notifications")
    .insert(notifications);
-
 
   if(notificationError){
 
@@ -1727,7 +1681,6 @@ async function publishSignal(){
 
  }
 
-
  msg.textContent=
  `Signal published successfully. ${members?.length||0} active subscriber(s) notified.`;
 
@@ -1735,7 +1688,6 @@ async function publishSignal(){
  document.getElementById("stopLoss").value="";
  document.getElementById("takeProfit").value="";
  document.getElementById("signalMessage").value="";
-
 }
 
 
@@ -1746,7 +1698,6 @@ async function loadNotifications(){
  if(!currentUser)
   return;
 
-
  const {data,error} =
  await supabaseClient
  .from("notifications")
@@ -1754,10 +1705,8 @@ async function loadNotifications(){
  .eq("user_id",currentUser.id)
  .order("created_at",{ascending:false});
 
-
  const box=
  document.getElementById("notificationsList");
-
 
  if(error){
 
@@ -1768,9 +1717,7 @@ async function loadNotifications(){
 
  }
 
-
  box.innerHTML="";
-
 
  if(!data || !data.length){
 
@@ -1780,7 +1727,6 @@ async function loadNotifications(){
   return;
 
  }
-
 
  data.forEach(n=>{
 
@@ -1803,9 +1749,7 @@ async function loadNotifications(){
    </div>
 
   `;
-
  });
-
 }
 
 
@@ -1816,7 +1760,6 @@ async function markAdminNotificationsRead(){
  if(!currentUser)
   return;
 
-
  const {error} =
  await supabaseClient
  .from("notifications")
@@ -1826,13 +1769,10 @@ async function markAdminNotificationsRead(){
  .eq("user_id",currentUser.id)
  .eq("is_read",false);
 
-
  if(error)
   console.log(error.message);
 
-
  await loadDashboard();
-
 }
 
 
@@ -1843,7 +1783,6 @@ async function subscribeToAdminNotifications(){
  if(!currentUser)
   return;
 
-
  if(adminNotificationChannel){
 
   await supabaseClient.removeChannel(
@@ -1851,7 +1790,6 @@ async function subscribeToAdminNotifications(){
   );
 
  }
-
 
  adminNotificationChannel=
  supabaseClient
@@ -1874,7 +1812,6 @@ async function subscribeToAdminNotifications(){
   }
  )
  .subscribe();
-
 }
 
 
@@ -1917,7 +1854,6 @@ function escapeAttr(value){
 
  const {data} =
  await supabaseClient.auth.getSession();
-
 
  if(data.session){
 
