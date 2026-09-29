@@ -191,7 +191,7 @@ header strong{
 table{
  width:100%;
  border-collapse:collapse;
- min-width:900px;
+ min-width:1000px;
 }
 
 th,td{
@@ -476,6 +476,7 @@ textarea{
      <th>Subscription</th>
      <th>Plan</th>
      <th>Created</th>
+     <th>Action</th>
     </tr>
 
    </thead>
@@ -981,7 +982,12 @@ async function loadDashboard(){
   "activeSubscribers"
  ).textContent =
  members?.filter(
-  x => x.subscription_active === true
+  x =>
+   x.subscription_active === true &&
+   (
+    !x.subscription_expires_at ||
+    new Date(x.subscription_expires_at) > new Date()
+   )
  ).length || 0;
 
 
@@ -1026,7 +1032,7 @@ async function loadMembers(){
 
   table.innerHTML =
   `<tr>
-   <td colspan="5">
+   <td colspan="6">
     ${escapeHtml(error.message)}
    </td>
   </tr>`;
@@ -1038,30 +1044,64 @@ async function loadMembers(){
  table.innerHTML="";
 
 
+ if(!data || !data.length){
+
+  table.innerHTML =
+  `<tr>
+   <td colspan="6">
+    No members found.
+   </td>
+  </tr>`;
+
+  return;
+ }
+
+
  data.forEach(user=>{
 
   let status="INACTIVE";
   let badge="inactive";
 
 
-  if(user.subscription_active){
+  const expired =
+   user.subscription_expires_at &&
+   new Date(user.subscription_expires_at) <= new Date();
 
-   if(
-    user.subscription_expires_at &&
-    new Date(
-     user.subscription_expires_at
-    ) <= new Date()
-   ){
 
-    status="EXPIRED";
-    badge="expired";
+  if(
+   user.subscription_active === true &&
+   !expired
+  ){
 
-   }else{
+   status="ACTIVE";
+   badge="approved";
 
-    status="ACTIVE";
-    badge="approved";
+  }
+  else if(expired){
 
-   }
+   status="EXPIRED";
+   badge="expired";
+
+  }
+
+
+  let action="-";
+
+
+  if(status !== "ACTIVE"){
+
+   action = `
+
+    <button
+     class="danger"
+     onclick="removeMember(
+      '${escapeAttr(user.id)}',
+      '${escapeAttr(user.email || "")}'
+     )">
+     REMOVE MEMBER
+    </button>
+
+   `;
 
   }
 
@@ -1094,11 +1134,118 @@ async function loadMembers(){
      ${formatDate(user.created_at)}
     </td>
 
+    <td>
+
+     <div class="actions">
+      ${action}
+     </div>
+
+    </td>
+
    </tr>
 
   `;
 
  });
+
+}
+
+
+/* REMOVE NON-ACTIVE MEMBER */
+
+async function removeMember(
+ userId,
+ email
+){
+
+ const confirmed =
+  confirm(
+   "Remove this non-active member?\n\n" +
+   "Member: " + email +
+   "\n\n" +
+   "The member profile will be removed from AURIX AI."
+  );
+
+
+ if(!confirmed)
+  return;
+
+
+ /* Verify status again */
+
+ const {data:user,error:checkError} =
+ await supabaseClient
+ .from("profiles")
+ .select(
+  "id,email,role,subscription_active,subscription_expires_at"
+ )
+ .eq("id",userId)
+ .single();
+
+
+ if(checkError || !user){
+
+  alert(
+   "Member not found."
+  );
+
+  await loadDashboard();
+
+  return;
+ }
+
+
+ const expired =
+  user.subscription_expires_at &&
+  new Date(user.subscription_expires_at) <= new Date();
+
+
+ const isActive =
+  user.subscription_active === true &&
+  !expired;
+
+
+ if(isActive){
+
+  alert(
+   "This member is ACTIVE and cannot be removed."
+  );
+
+  await loadMembers();
+
+  return;
+ }
+
+
+ const {error} =
+ await supabaseClient
+ .from("profiles")
+ .delete()
+ .eq("id",userId)
+ .eq("role","member");
+
+
+ if(error){
+
+  alert(
+   "Could not remove member:\n\n" +
+   error.message
+  );
+
+  return;
+ }
+
+
+ alert(
+  "Member removed successfully."
+ );
+
+
+ await loadDashboard();
+
+ await loadMembers();
+
+ await loadSubscribers();
 
 }
 
@@ -1463,6 +1610,19 @@ async function loadSubscribers(){
  table.innerHTML="";
 
 
+ if(!data || !data.length){
+
+  table.innerHTML =
+  `<tr>
+   <td colspan="5">
+    No members found.
+   </td>
+  </tr>`;
+
+  return;
+ }
+
+
  data.forEach(user=>{
 
   const active =
@@ -1490,6 +1650,51 @@ async function loadSubscribers(){
 
    status="EXPIRED";
    badge="expired";
+
+  }
+
+
+  let controls="";
+
+
+  if(active && !expired){
+
+   controls = `
+
+    <button
+     class="danger"
+     onclick="disableSubscription(
+      '${escapeAttr(user.id)}'
+     )">
+     Disable
+    </button>
+
+   `;
+
+  }
+  else{
+
+   controls = `
+
+    <button
+     class="activate"
+     onclick="activateSubscription(
+      '${escapeAttr(user.id)}'
+     )">
+     Activate
+    </button>
+
+
+    <button
+     class="danger"
+     onclick="removeMember(
+      '${escapeAttr(user.id)}',
+      '${escapeAttr(user.email || "")}'
+     )">
+     REMOVE MEMBER
+    </button>
+
+   `;
 
   }
 
@@ -1527,31 +1732,7 @@ async function loadSubscribers(){
     <td>
 
      <div class="actions">
-
-      ${
-       active && !expired
-
-       ?
-
-       `<button
-        class="danger"
-        onclick="disableSubscription(
-         '${escapeAttr(user.id)}'
-        )">
-        Disable
-       </button>`
-
-       :
-
-       `<button
-        class="activate"
-        onclick="activateSubscription(
-         '${escapeAttr(user.id)}'
-        )">
-        Activate
-       </button>`
-      }
-
+      ${controls}
      </div>
 
     </td>
