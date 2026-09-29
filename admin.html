@@ -485,8 +485,6 @@ hr{
 
 <body>
 
-<!-- LOGIN -->
-
 <div id="login">
 
  <div class="login-box">
@@ -529,8 +527,6 @@ hr{
 
 </div>
 
-
-<!-- ADMIN APP -->
 
 <div id="app">
 
@@ -585,8 +581,6 @@ hr{
 </div>
 
 
-<!-- OVERVIEW -->
-
 <section id="overview" class="section active">
 
  <h2>Dashboard</h2>
@@ -618,8 +612,6 @@ hr{
 </section>
 
 
-<!-- REGISTRATIONS -->
-
 <section id="registrations" class="section">
 
  <h2>Registrations</h2>
@@ -647,8 +639,6 @@ hr{
 
 </section>
 
-
-<!-- DEPOSITS -->
 
 <section id="deposits" class="section">
 
@@ -679,8 +669,6 @@ hr{
 </section>
 
 
-<!-- SUBSCRIBERS -->
-
 <section id="subscribers" class="section">
 
  <h2>Subscribers</h2>
@@ -708,8 +696,6 @@ hr{
 </section>
 
 
-<!-- GOLD AI -->
-
 <section id="signals" class="section">
 
  <h2>Gold AI / Signal</h2>
@@ -729,11 +715,23 @@ hr{
   <label>Analysis Timeframe</label>
 
   <select id="aiTimeframe">
-   <option value="1m">1 Minute</option>
-   <option value="5m">5 Minutes</option>
-   <option value="30m" selected>30 Minutes</option>
-   <option value="1h">1 Hour</option>
-   <option value="1d">1 Day</option>
+
+   <option value="5m">
+    5 Minutes
+   </option>
+
+   <option value="30m" selected>
+    30 Minutes
+   </option>
+
+   <option value="1h">
+    1 Hour
+   </option>
+
+   <option value="1d">
+    1 Day
+   </option>
+
   </select>
 
   <button
@@ -747,12 +745,13 @@ hr{
   <div id="aiStatus" class="signal-status" style="display:none"></div>
 
   <div id="aiList" class="ai-list">
-   <div class="ai-list-title">AVAILABLE AI RESULTS</div>
+   <div class="ai-list-title">
+    AVAILABLE AI RESULTS
+   </div>
+
    <div id="aiListItems"></div>
   </div>
 
-
-  <!-- AI PREVIEW -->
 
   <div id="aiPreview" class="ai-preview">
 
@@ -771,43 +770,106 @@ hr{
    <div class="ai-grid">
 
     <div class="ai-field">
-     <div class="ai-field-label">RECOMMENDATION</div>
-     <div id="aiRecommendation" class="ai-field-value gold">WAIT</div>
+     <div class="ai-field-label">
+      RECOMMENDATION
+     </div>
+
+     <div
+      id="aiRecommendation"
+      class="ai-field-value gold">
+      WAIT
+     </div>
     </div>
 
-    <div class="ai-field">
-     <div class="ai-field-label">TIMEFRAME</div>
-     <div id="aiPreviewTimeframe" class="ai-field-value">-</div>
-    </div>
 
     <div class="ai-field">
-     <div class="ai-field-label">ENTRY</div>
-     <div id="aiPreviewEntry" class="ai-field-value">-</div>
+     <div class="ai-field-label">
+      TIMEFRAME
+     </div>
+
+     <div
+      id="aiPreviewTimeframe"
+      class="ai-field-value">
+      -
+     </div>
     </div>
 
-    <div class="ai-field">
-     <div class="ai-field-label">STOP LOSS</div>
-     <div id="aiPreviewSL" class="ai-field-value">-</div>
-    </div>
 
     <div class="ai-field">
-     <div class="ai-field-label">TAKE PROFIT</div>
-     <div id="aiPreviewTP" class="ai-field-value">-</div>
+     <div class="ai-field-label">
+      ENTRY
+     </div>
+
+     <div
+      id="aiPreviewEntry"
+      class="ai-field-value">
+      -
+     </div>
     </div>
 
-    <div class="ai-field">
-     <div class="ai-field-label">XAU/USD PRICE</div>
-     <div id="aiPreviewPrice" class="ai-field-value">-</div>
-    </div>
 
     <div class="ai-field">
-     <div class="ai-field-label">TREND</div>
-     <div id="aiPreviewTrend" class="ai-field-value">-</div>
+     <div class="ai-field-label">
+      STOP LOSS
+     </div>
+
+     <div
+      id="aiPreviewSL"
+      class="ai-field-value">
+      -
+     </div>
     </div>
 
+
     <div class="ai-field">
-     <div class="ai-field-label">MOMENTUM</div>
-     <div id="aiPreviewMomentum" class="ai-field-value">-</div>
+     <div class="ai-field-label">
+      TAKE PROFIT
+     </div>
+
+     <div
+      id="aiPreviewTP"
+      class="ai-field-value">
+      -
+     </div>
+    </div>
+
+
+    <div class="ai-field">
+     <div class="ai-field-label">
+      XAU/USD PRICE
+     </div>
+
+     <div
+      id="aiPreviewPrice"
+      class="ai-field-value">
+      -
+     </div>
+    </div>
+
+
+    <div class="ai-field">
+     <div class="ai-field-label">
+      TREND
+     </div>
+
+     <div
+      id="aiPreviewTrend"
+      class="ai-field-value">
+      -
+     </div>
+    </div>
+
+
+    <div class="ai-field">
+     <div class="ai-field-label">
+      MOMENTUM
+     </div>
+
+     <div
+      id="aiPreviewMomentum"
+      class="ai-field-value">
+      -
+     </div>
     </div>
 
    </div>
@@ -816,33 +878,80 @@ hr{
    <div class="analysis-stats">
 
     <div class="analysis-stat">
-     <div class="analysis-stat-label">RSI 14</div>
-     <div id="aiRSI" class="analysis-stat-value">-</div>
+     <div class="analysis-stat-label">
+      RSI 14
+     </div>
+
+     <div
+      id="aiRSI"
+      class="analysis-stat-value">
+      -
+     </div>
     </div>
 
-    <div class="analysis-stat">
-     <div class="analysis-stat-label">EMA 20</div>
-     <div id="aiEMA20" class="analysis-stat-value">-</div>
-    </div>
 
     <div class="analysis-stat">
-     <div class="analysis-stat-label">EMA 50</div>
-     <div id="aiEMA50" class="analysis-stat-value">-</div>
+     <div class="analysis-stat-label">
+      EMA 20
+     </div>
+
+     <div
+      id="aiEMA20"
+      class="analysis-stat-value">
+      -
+     </div>
     </div>
 
-    <div class="analysis-stat">
-     <div class="analysis-stat-label">ATR 14</div>
-     <div id="aiATR" class="analysis-stat-value">-</div>
-    </div>
 
     <div class="analysis-stat">
-     <div class="analysis-stat-label">SUPPORT</div>
-     <div id="aiSupport" class="analysis-stat-value">-</div>
+     <div class="analysis-stat-label">
+      EMA 50
+     </div>
+
+     <div
+      id="aiEMA50"
+      class="analysis-stat-value">
+      -
+     </div>
     </div>
 
+
     <div class="analysis-stat">
-     <div class="analysis-stat-label">RESISTANCE</div>
-     <div id="aiResistance" class="analysis-stat-value">-</div>
+     <div class="analysis-stat-label">
+      ATR 14
+     </div>
+
+     <div
+      id="aiATR"
+      class="analysis-stat-value">
+      -
+     </div>
+    </div>
+
+
+    <div class="analysis-stat">
+     <div class="analysis-stat-label">
+      SUPPORT
+     </div>
+
+     <div
+      id="aiSupport"
+      class="analysis-stat-value">
+      -
+     </div>
+    </div>
+
+
+    <div class="analysis-stat">
+     <div class="analysis-stat-label">
+      RESISTANCE
+     </div>
+
+     <div
+      id="aiResistance"
+      class="analysis-stat-value">
+      -
+     </div>
     </div>
 
    </div>
@@ -850,9 +959,13 @@ hr{
 
    <div class="ai-reason">
 
-    <strong class="gold">AI REASON</strong>
+    <strong class="gold">
+     AI REASON
+    </strong>
 
-    <div id="aiReason" style="margin-top:7px">
+    <div
+     id="aiReason"
+     style="margin-top:7px">
      -
     </div>
 
@@ -874,11 +987,23 @@ hr{
     <label>Final Timeframe</label>
 
     <select id="timeframe">
-     <option value="1m">1 Minute</option>
-     <option value="5m">5 Minutes</option>
-     <option value="30m">30 Minutes</option>
-     <option value="1h">1 Hour</option>
-     <option value="1d">1 Day</option>
+
+     <option value="5m">
+      5 Minutes
+     </option>
+
+     <option value="30m">
+      30 Minutes
+     </option>
+
+     <option value="1h">
+      1 Hour
+     </option>
+
+     <option value="1d">
+      1 Day
+     </option>
+
     </select>
 
 
@@ -893,17 +1018,23 @@ hr{
 
     <label>Final Entry</label>
 
-    <input id="entry" placeholder="Example: 2650.50">
+    <input
+     id="entry"
+     placeholder="Example: 2650.50">
 
 
     <label>Final Stop Loss</label>
 
-    <input id="stopLoss" placeholder="Example: 2642.00">
+    <input
+     id="stopLoss"
+     placeholder="Example: 2642.00">
 
 
     <label>Final Take Profit</label>
 
-    <input id="takeProfit" placeholder="Example: 2670.00">
+    <input
+     id="takeProfit"
+     placeholder="Example: 2670.00">
 
 
     <label>Final Message</label>
@@ -938,8 +1069,6 @@ hr{
  </div>
 
 
- <!-- MANUAL SIGNAL -->
-
  <div class="card" style="margin-top:15px">
 
   <h3 style="margin-top:0">
@@ -950,15 +1079,29 @@ hr{
    Create a signal manually if needed.
   </div>
 
+
   <label>Timeframe</label>
 
   <select id="manualTimeframe">
-   <option value="1m">1 Minute</option>
-   <option value="5m">5 Minutes</option>
-   <option value="30m">30 Minutes</option>
-   <option value="1h">1 Hour</option>
-   <option value="1d">1 Day</option>
+
+   <option value="5m">
+    5 Minutes
+   </option>
+
+   <option value="30m">
+    30 Minutes
+   </option>
+
+   <option value="1h">
+    1 Hour
+   </option>
+
+   <option value="1d">
+    1 Day
+   </option>
+
   </select>
+
 
   <label>Signal</label>
 
@@ -968,20 +1111,34 @@ hr{
    <option value="WAIT">WAIT</option>
   </select>
 
+
   <label>Entry</label>
-  <input id="manualEntry" placeholder="Example: 2650.50">
+
+  <input
+   id="manualEntry"
+   placeholder="Example: 2650.50">
+
 
   <label>Stop Loss</label>
-  <input id="manualStopLoss" placeholder="Example: 2642.00">
+
+  <input
+   id="manualStopLoss"
+   placeholder="Example: 2642.00">
+
 
   <label>Take Profit</label>
-  <input id="manualTakeProfit" placeholder="Example: 2670.00">
+
+  <input
+   id="manualTakeProfit"
+   placeholder="Example: 2670.00">
+
 
   <label>Message</label>
 
   <textarea
    id="manualMessage"
    placeholder="Gold signal details..."></textarea>
+
 
   <button
    class="secondary"
@@ -992,8 +1149,6 @@ hr{
 
  </div>
 
-
- <!-- SIGNAL CONTROLS -->
 
  <div class="card" style="margin-top:15px">
 
@@ -1038,8 +1193,6 @@ hr{
 </section>
 
 
-<!-- NOTIFICATIONS -->
-
 <section id="notifications" class="section">
 
  <h2>Admin Notifications</h2>
@@ -1054,10 +1207,6 @@ hr{
 
 <script>
 
-/* =====================================================
-   SUPABASE CONFIG
-   ===================================================== */
-
 const SUPABASE_URL =
  "https://mcjbcnadnwzmbubmvttk.supabase.co";
 
@@ -1067,10 +1216,6 @@ const SUPABASE_KEY =
 const SMART_PROCESSOR_URL =
  "https://mcjbcnadnwzmbubmvttk.supabase.co/functions/v1/smart-processor";
 
-
-/* =====================================================
-   SUPABASE CLIENT
-   ===================================================== */
 
 let supabaseClient=null;
 
@@ -1104,10 +1249,6 @@ catch(error){
 }
 
 
-/* =====================================================
-   GLOBAL STATE
-   ===================================================== */
-
 let currentUser=null;
 let adminNotificationChannel=null;
 let aiResults=[];
@@ -1115,9 +1256,20 @@ let selectedAIIndex=0;
 let lastAIProcessorData={};
 
 
-/* =====================================================
-   GLOBAL JAVASCRIPT ERROR DISPLAY
-   ===================================================== */
+/*
+=====================================================
+ALLOWED GOLD TIMEFRAMES
+ONLY THESE ARE PERMITTED
+=====================================================
+*/
+
+const ALLOWED_GOLD_TIMEFRAMES=[
+ "5m",
+ "30m",
+ "1h",
+ "1d"
+];
+
 
 window.addEventListener(
  "error",
@@ -1147,9 +1299,33 @@ window.addEventListener(
 );
 
 
-/* =====================================================
-   LOGIN MESSAGE HELPERS
-   ===================================================== */
+window.addEventListener(
+ "unhandledrejection",
+ function(event){
+
+  console.error(
+   "AURIX UNHANDLED PROMISE:",
+   event.reason
+  );
+
+  const msg=
+   document.getElementById("loginMsg");
+
+  if(msg && !currentUser){
+
+   msg.textContent=
+    "Page error: "+
+    (
+     event.reason?.message ||
+     String(event.reason) ||
+     "Unexpected error"
+    );
+
+  }
+
+ }
+);
+
 
 function showLoginMessage(
  message,
@@ -1171,13 +1347,18 @@ function showLoginMessage(
 
 
  if(errorBox){
+
   errorBox.style.display="none";
   errorBox.textContent="";
+
  }
 
+
  if(successBox){
+
   successBox.style.display="none";
   successBox.textContent="";
+
  }
 
 
@@ -1225,10 +1406,6 @@ function showLoginMessage(
 
 }
 
-
-/* =====================================================
-   LOGIN
-   ===================================================== */
 
 async function login(){
 
@@ -1364,7 +1541,7 @@ async function login(){
    ){
 
     showLoginMessage(
-     "Invalid email or password.\n\nThe email must be the same email registered in Supabase Authentication.",
+     "Invalid email or password.",
      "error"
     );
 
@@ -1397,7 +1574,7 @@ async function login(){
   if(!data?.session){
 
    showLoginMessage(
-    "Login succeeded but no session was created. Check Supabase Authentication settings.",
+    "Login succeeded but no session was created.",
     "error"
    );
 
@@ -1415,15 +1592,7 @@ async function login(){
   );
 
 
-  const adminOK=
-   await checkAdmin();
-
-
-  if(!adminOK){
-
-   return;
-  }
-
+  await checkAdmin();
 
  }
  catch(error){
@@ -1456,27 +1625,12 @@ async function login(){
 }
 
 
-/* =====================================================
-   CHECK ADMIN
-   ===================================================== */
-
 async function checkAdmin(){
 
  if(!currentUser){
 
   showLoginMessage(
    "No authenticated user was found.",
-   "error"
-  );
-
-  return false;
- }
-
-
- if(!supabaseClient){
-
-  showLoginMessage(
-   "Supabase client is unavailable.",
    "error"
   );
 
@@ -1492,33 +1646,16 @@ async function checkAdmin(){
   }=
   await supabaseClient
   .from("profiles")
-  .select(
-   "id,email,role"
-  )
-  .eq(
-   "id",
-   currentUser.id
-  )
+  .select("id,email,role")
+  .eq("id",currentUser.id)
   .maybeSingle();
-
-
-  console.log(
-   "ADMIN PROFILE CHECK:",
-   {
-    userId:currentUser.id,
-    profile:data,
-    error:error?.message || null
-   }
-  );
 
 
   if(error){
 
    showLoginMessage(
     "ADMIN PROFILE ERROR:\n\n"+
-    error.message+
-    "\n\n"+
-    "The account exists, but Supabase did not allow the profile to be read.",
+    error.message,
     "error"
    );
 
@@ -1529,9 +1666,7 @@ async function checkAdmin(){
   if(!data){
 
    showLoginMessage(
-    "Administrator profile not found for this Auth account.\n\n"+
-    "Auth user ID:\n"+
-    currentUser.id,
+    "Administrator profile not found.",
     "error"
    );
 
@@ -1545,10 +1680,8 @@ async function checkAdmin(){
   ){
 
    showLoginMessage(
-    "Access denied.\n\n"+
-    "This account role is: "+
-    (data.role||"NULL")+
-    "\nRequired role: admin",
+    "Access denied.\n\nRequired role: admin\nCurrent role: "+
+    (data.role||"NULL"),
     "error"
    );
 
@@ -1560,12 +1693,6 @@ async function checkAdmin(){
   }
 
 
-  /*
-   ==========================================
-   ADMIN VERIFIED
-   ==========================================
-  */
-
   document.getElementById(
    "login"
   ).style.display="none";
@@ -1576,54 +1703,27 @@ async function checkAdmin(){
   ).style.display="block";
 
 
-  console.log(
-   "AURIX ADMIN VERIFIED:",
-   currentUser.email
-  );
-
-
   try{
-
    await expireSubscriptions();
-
   }
   catch(error){
-
-   console.warn(
-    "EXPIRY ERROR:",
-    error
-   );
-
+   console.warn(error);
   }
 
 
   try{
-
    await loadDashboard();
-
   }
   catch(error){
-
-   console.warn(
-    "DASHBOARD ERROR:",
-    error
-   );
-
+   console.warn(error);
   }
 
 
   try{
-
    await subscribeToAdminNotifications();
-
   }
   catch(error){
-
-   console.warn(
-    "REALTIME ERROR:",
-    error
-   );
-
+   console.warn(error);
   }
 
 
@@ -1654,10 +1754,6 @@ async function checkAdmin(){
 
 }
 
-
-/* =====================================================
-   LOGOUT
-   ===================================================== */
 
 async function logout(){
 
@@ -1695,10 +1791,6 @@ async function logout(){
 
 }
 
-
-/* =====================================================
-   TABS
-   ===================================================== */
 
 function showTab(id,button){
 
@@ -1756,10 +1848,6 @@ function showTab(id,button){
 }
 
 
-/* =====================================================
-   EXPIRY
-   ===================================================== */
-
 async function expireSubscriptions(){
 
  if(!supabaseClient)
@@ -1798,15 +1886,8 @@ async function expireSubscriptions(){
  );
 
 
- if(error){
-
-  console.warn(
-   "EXPIRE ERROR:",
-   error.message
-  );
-
+ if(error)
   return;
- }
 
 
  if(!data?.length)
@@ -1829,10 +1910,6 @@ async function expireSubscriptions(){
 
 }
 
-
-/* =====================================================
-   DASHBOARD
-   ===================================================== */
 
 async function loadDashboard(){
 
@@ -1909,10 +1986,6 @@ async function loadDashboard(){
 
 }
 
-
-/* =====================================================
-   MEMBERS
-   ===================================================== */
 
 async function loadMembers(){
 
@@ -2014,13 +2087,9 @@ async function loadMembers(){
 
     <tr>
 
-     <td>
-      ${escapeHtml(user.email||"-")}
-     </td>
+     <td>${escapeHtml(user.email||"-")}</td>
 
-     <td>
-      ${escapeHtml(user.role||"-")}
-     </td>
+     <td>${escapeHtml(user.role||"-")}</td>
 
      <td>
       <span class="badge ${badge}">
@@ -2028,13 +2097,9 @@ async function loadMembers(){
       </span>
      </td>
 
-     <td>
-      ${escapeHtml(user.subscription_plan||"-")}
-     </td>
+     <td>${escapeHtml(user.subscription_plan||"-")}</td>
 
-     <td>
-      ${formatDate(user.created_at)}
-     </td>
+     <td>${formatDate(user.created_at)}</td>
 
      <td>
       <div class="actions">
@@ -2052,22 +2117,10 @@ async function loadMembers(){
 }
 
 
-/* =====================================================
-   REMOVE MEMBER
-   ===================================================== */
-
 async function removeMember(
  userId,
  email
 ){
-
- if(!userId){
-
-  alert("Member ID is missing.");
-
-  return;
- }
-
 
  if(!confirm(
   "Remove this INACTIVE member?\n\nMember: "+
@@ -2094,10 +2147,7 @@ async function removeMember(
 
  if(checkError){
 
-  alert(
-   "Could not find member:\n\n"+
-   checkError.message
-  );
+  alert(checkError.message);
 
   return;
  }
@@ -2114,8 +2164,7 @@ async function removeMember(
  if(user.subscription_active===true){
 
   alert(
-   "This member is ACTIVE and cannot be removed.\n\n"+
-   "Disable the subscription first."
+   "This member is ACTIVE and cannot be removed."
   );
 
   return;
@@ -2148,8 +2197,7 @@ async function removeMember(
  if(!deletedRows?.length){
 
   alert(
-   "The member was NOT removed.\n\n"+
-   "Supabase did not delete the profile."
+   "The member was NOT removed."
   );
 
   return;
@@ -2168,10 +2216,6 @@ async function removeMember(
 
 }
 
-
-/* =====================================================
-   DEPOSITS
-   ===================================================== */
 
 async function loadDeposits(){
 
@@ -2321,10 +2365,6 @@ async function loadDeposits(){
 
 }
 
-
-/* =====================================================
-   APPROVE DEPOSIT
-   ===================================================== */
 
 async function approveDeposit(
  depositId,
@@ -2488,10 +2528,6 @@ async function approveDeposit(
 }
 
 
-/* =====================================================
-   REJECT DEPOSIT
-   ===================================================== */
-
 async function rejectDeposit(
  depositId,
  userId
@@ -2550,10 +2586,6 @@ async function rejectDeposit(
 
 }
 
-
-/* =====================================================
-   SUBSCRIBERS
-   ===================================================== */
 
 async function loadSubscribers(){
 
@@ -2719,10 +2751,6 @@ async function loadSubscribers(){
 }
 
 
-/* =====================================================
-   DISABLE SUBSCRIPTION
-   ===================================================== */
-
 async function disableSubscription(
  userId
 ){
@@ -2780,10 +2808,6 @@ async function disableSubscription(
 
 }
 
-
-/* =====================================================
-   ACTIVATE SUBSCRIPTION
-   ===================================================== */
 
 async function activateSubscription(
  userId
@@ -2890,9 +2914,13 @@ async function activateSubscription(
 }
 
 
-/* =====================================================
-   AI GOLD ANALYZER
-   ===================================================== */
+/*
+=====================================================
+GOLD AI ANALYZER
+TIMEFRAMES:
+5m / 30m / 1h / 1d
+=====================================================
+*/
 
 async function analyzeGold(){
 
@@ -2926,10 +2954,30 @@ async function analyzeGold(){
   );
 
 
- const timeframe=
+ let requestedTimeframe=
   document.getElementById(
    "aiTimeframe"
   ).value;
+
+
+ /*
+  SECURITY:
+  NEVER SEND AN UNAUTHORIZED TIMEFRAME.
+ */
+
+ if(
+  !ALLOWED_GOLD_TIMEFRAMES.includes(
+   requestedTimeframe
+  )
+ ){
+
+  requestedTimeframe="30m";
+
+  document.getElementById(
+   "aiTimeframe"
+  ).value="30m";
+
+ }
 
 
  button.disabled=true;
@@ -2947,7 +2995,7 @@ async function analyzeGold(){
 
 
  status.textContent=
-  "Connecting to AURIX Smart Processor...";
+  `Analyzing XAU/USD on ${requestedTimeframe}...`;
 
 
  preview.style.display=
@@ -2986,8 +3034,12 @@ async function analyzeGold(){
 
      body:JSON.stringify({
 
+      /*
+       ONLY THE SELECTED ALLOWED TIMEFRAME
+      */
+
       timeframes:[
-       timeframe
+       requestedTimeframe
       ],
 
       max_signals:2
@@ -3050,10 +3102,39 @@ async function analyzeGold(){
    data;
 
 
-  aiResults=
+  /*
+   IMPORTANT:
+   DO NOT TRUST THE TIMEFRAME
+   RETURNED BY THE PROCESSOR.
+
+   We force every returned result
+   to the timeframe requested by admin.
+
+   Therefore 15m can NEVER appear
+   in the admin preview.
+  */
+
+  const rawSignals=
    Array.isArray(data.signals)
    ? data.signals
    : [];
+
+
+  aiResults=
+   rawSignals
+   .slice(0,2)
+   .map(
+    item=>({
+
+     ...item,
+
+     timeframe:
+      normalizeTimeframe(
+       requestedTimeframe
+      )
+
+    })
+   );
 
 
   if(!aiResults.length){
@@ -3070,7 +3151,7 @@ async function analyzeGold(){
     take_profit:"",
 
     timeframe:
-     timeframe,
+     requestedTimeframe,
 
     reason:
      "No trade signal was returned by the analyzer."
@@ -3079,6 +3160,10 @@ async function analyzeGold(){
 
   }
 
+
+  /*
+   FORCE MAXIMUM 2 RESULTS
+  */
 
   aiResults=
    aiResults.slice(0,2);
@@ -3092,7 +3177,8 @@ async function analyzeGold(){
 
   applyAIResult(
    0,
-   lastAIProcessorData
+   lastAIProcessorData,
+   requestedTimeframe
   );
 
 
@@ -3107,7 +3193,7 @@ async function analyzeGold(){
 
 
   status.textContent=
-   "AI analysis completed. Review the PREVIEW before publishing.";
+   `AI analysis completed for ${requestedTimeframe}. Review the PREVIEW before publishing.`;
 
 
   msg.textContent=
@@ -3156,9 +3242,11 @@ async function analyzeGold(){
 }
 
 
-/* =====================================================
-   RENDER AI RESULTS
-   ===================================================== */
+/*
+=====================================================
+RENDER AI RESULTS
+=====================================================
+*/
 
 function renderAIResultList(){
 
@@ -3181,9 +3269,15 @@ function renderAIResultList(){
     ).toUpperCase();
 
 
+   /*
+    IMPORTANT:
+    NEVER SHOW RAW 15m
+   */
+
    const timeframe=
-    item.timeframe||
-    "-";
+    normalizeTimeframe(
+     item.timeframe
+    );
 
 
    const entry=
@@ -3250,13 +3344,16 @@ function renderAIResultList(){
 }
 
 
-/* =====================================================
-   APPLY AI RESULT
-   ===================================================== */
+/*
+=====================================================
+APPLY AI RESULT
+=====================================================
+*/
 
 function applyAIResult(
  index,
- processorData
+ processorData,
+ forcedTimeframe=null
 ){
 
  const item=
@@ -3278,12 +3375,21 @@ function applyAIResult(
   ).toUpperCase();
 
 
+ /*
+  USE REQUESTED TIMEFRAME.
+  NEVER ALLOW 15m.
+ */
+
+ const selectedTimeframe=
+  forcedTimeframe ||
+  document.getElementById(
+   "aiTimeframe"
+  ).value;
+
+
  const timeframe=
   normalizeTimeframe(
-   item.timeframe||
-   document.getElementById(
-    "aiTimeframe"
-   ).value
+   selectedTimeframe
   );
 
 
@@ -3466,10 +3572,6 @@ function applyAIResult(
 }
 
 
-/* =====================================================
-   NUMBER FORMAT
-   ===================================================== */
-
 function formatNumber(value){
 
  if(
@@ -3493,20 +3595,22 @@ function formatNumber(value){
 }
 
 
-/* =====================================================
-   TIMEFRAME
-   ===================================================== */
+/*
+=====================================================
+TIMEFRAME NORMALIZATION
+
+ONLY:
+5m
+30m
+1h
+1d
+
+15m / 1m / anything else
+WILL NEVER BE SHOWN.
+=====================================================
+*/
 
 function normalizeTimeframe(value){
-
- const allowed=[
-  "1m",
-  "5m",
-  "30m",
-  "1h",
-  "1d"
- ];
-
 
  const v=
   String(value||"")
@@ -3514,16 +3618,36 @@ function normalizeTimeframe(value){
   .trim();
 
 
- return allowed.includes(v)
-  ? v
-  : "30m";
+ if(
+  ALLOWED_GOLD_TIMEFRAMES.includes(v)
+ )
+  return v;
+
+
+ /*
+  If processor returns something
+  invalid such as 15m, use the
+  currently selected admin timeframe.
+ */
+
+ const selected=
+  document.getElementById(
+   "aiTimeframe"
+  )?.value;
+
+
+ if(
+  ALLOWED_GOLD_TIMEFRAMES.includes(
+   selected
+  )
+ )
+  return selected;
+
+
+ return "30m";
 
 }
 
-
-/* =====================================================
-   DISCARD AI
-   ===================================================== */
 
 function discardAIAnalysis(){
 
@@ -3580,18 +3704,20 @@ function discardAIAnalysis(){
 }
 
 
-/* =====================================================
-   MANUAL SIGNAL
-   ===================================================== */
-
 function useManualSignal(){
+
+ const manualTimeframe=
+  document.getElementById(
+   "manualTimeframe"
+  ).value;
+
 
  document.getElementById(
   "timeframe"
  ).value=
-  document.getElementById(
-   "manualTimeframe"
-  ).value;
+  normalizeTimeframe(
+   manualTimeframe
+  );
 
 
  document.getElementById(
@@ -3654,10 +3780,6 @@ function useManualSignal(){
 }
 
 
-/* =====================================================
-   PUBLISH SIGNAL
-   ===================================================== */
-
 async function publishSignal(){
 
  const timeframe=
@@ -3706,10 +3828,18 @@ async function publishSignal(){
   );
 
 
- /*
-  IMPORTANT:
-  WAIT does not require SL/TP.
- */
+ if(
+  !ALLOWED_GOLD_TIMEFRAMES.includes(
+   timeframe
+  )
+ ){
+
+  msg.textContent=
+   "Invalid timeframe.";
+
+  return;
+ }
+
 
  if(
   signal!=="WAIT" &&
@@ -3828,11 +3958,6 @@ async function publishSignal(){
   msg.textContent=
    "A previous active signal still exists.";
 
-  alert(
-   "A previous active signal still exists.\n\n"+
-   "The new signal was not published."
-  );
-
   return;
  }
 
@@ -3871,12 +3996,6 @@ async function publishSignal(){
 
  if(createError){
 
-  console.error(
-   "PUBLISH ERROR:",
-   createError
-  );
-
-
   if(oldSignals?.length){
 
    for(
@@ -3899,14 +4018,12 @@ async function publishSignal(){
 
 
   msg.textContent=
-   "Could not publish signal.\n"+
-   "Previous active signal was restored.";
+   "Could not publish signal. Previous active signal was restored.";
 
 
   alert(
    "PUBLISH FAILED.\n\n"+
-   createError.message+
-   "\n\nPrevious active signal was restored."
+   createError.message
   );
 
 
@@ -3974,15 +4091,6 @@ async function publishSignal(){
   msg.textContent=
    "Signal could not be verified. Previous signal was restored.";
 
-
-  alert(
-   "Signal was created but could not be verified.\n\n"+
-   "Previous active signal was restored."
-  );
-
-
-  await showActiveSignal();
-
   return;
  }
 
@@ -4022,7 +4130,6 @@ async function publishSignal(){
 
   alert(
    "SIGNAL PUBLISHED.\n\n"+
-   "However, subscribers could not be loaded:\n\n"+
    membersError.message
   );
 
@@ -4068,22 +4175,13 @@ async function publishSignal(){
 
   if(notificationError){
 
-   console.error(
-    "NOTIFICATION ERROR:",
-    notificationError
-   );
-
-
    msg.textContent=
     "Signal published, but notifications could not be created.";
 
-
    alert(
     "SIGNAL PUBLISHED.\n\n"+
-    "But subscriber notifications failed:\n\n"+
     notificationError.message
    );
-
 
    await showActiveSignal();
 
@@ -4157,20 +4255,12 @@ async function publishSignal(){
 }
 
 
-/* =====================================================
-   COPY ACTIVE SIGNAL
-   ===================================================== */
-
 async function copyActiveSignal(){
 
  const msg=
   document.getElementById(
    "signalMsg"
   );
-
-
- msg.textContent=
-  "Loading active signal...";
 
 
  const {
@@ -4193,11 +4283,6 @@ async function copyActiveSignal(){
   msg.textContent=
    "Could not load active signal.";
 
-  alert(
-   "Could not load active signal:\n\n"+
-   error.message
-  );
-
   return;
  }
 
@@ -4206,10 +4291,6 @@ async function copyActiveSignal(){
 
   msg.textContent=
    "No active gold signal.";
-
-  alert(
-   "There is no active signal to copy."
-  );
 
   return;
  }
@@ -4221,7 +4302,7 @@ async function copyActiveSignal(){
  const copyText=
  `XAU/USD
 SIGNAL: ${s.signal}
-TIMEFRAME: ${s.timeframe}
+TIMEFRAME: ${normalizeTimeframe(s.timeframe)}
 ENTRY: ${s.entry||"-"}
 STOP LOSS: ${s.stop_loss||"-"}
 TAKE PROFIT: ${s.take_profit||"-"}${
@@ -4241,7 +4322,6 @@ TAKE PROFIT: ${s.take_profit||"-"}${
   msg.textContent=
    "Signal copied successfully.";
 
-
   alert(
    "SIGNAL COPIED\n\n"+
    copyText
@@ -4250,72 +4330,12 @@ TAKE PROFIT: ${s.take_profit||"-"}${
  }
  catch(error){
 
-  const textArea=
-   document.createElement(
-    "textarea"
-   );
-
-
-  textArea.value=
-   copyText;
-
-
-  textArea.style.position=
-   "fixed";
-
-  textArea.style.left=
-   "-9999px";
-
-
-  document.body.appendChild(
-   textArea
-  );
-
-
-  textArea.select();
-
-
-  try{
-
-   document.execCommand(
-    "copy"
-   );
-
-
-   msg.textContent=
-    "Signal copied successfully.";
-
-
-   alert(
-    "Signal copied successfully."
-   );
-
-  }
-  catch(copyError){
-
-   msg.textContent=
-    "Could not copy automatically.";
-
-   alert(
-    "Copy failed.\n\n"+
-    copyText
-   );
-
-  }
-
-
-  document.body.removeChild(
-   textArea
-  );
+  alert(copyText);
 
  }
 
 }
 
-
-/* =====================================================
-   REMOVE CURRENT SIGNAL
-   ===================================================== */
 
 async function removeCurrentSignal(){
 
@@ -4329,10 +4349,6 @@ async function removeCurrentSignal(){
   document.getElementById(
    "activeSignalDisplay"
   );
-
-
- msg.textContent=
-  "Finding current active signal...";
 
 
  const {
@@ -4355,11 +4371,6 @@ async function removeCurrentSignal(){
   msg.textContent=
    "Could not find current signal.";
 
-  alert(
-   "Could not find current signal:\n\n"+
-   error.message
-  );
-
   return;
  }
 
@@ -4370,10 +4381,6 @@ async function removeCurrentSignal(){
    "There is no active signal.";
 
   display.innerHTML="";
-
-  alert(
-   "There is no current active signal."
-  );
 
   return;
  }
@@ -4386,18 +4393,12 @@ async function removeCurrentSignal(){
   "REMOVE CURRENT SIGNAL?\n\n"+
   "XAU/USD\n"+
   "Signal: "+s.signal+
-  "\nTimeframe: "+s.timeframe+
+  "\nTimeframe: "+normalizeTimeframe(s.timeframe)+
   "\nEntry: "+(s.entry||"-")+
   "\nStop Loss: "+(s.stop_loss||"-")+
-  "\nTake Profit: "+(s.take_profit||"-")+
-  "\n\n"+
-  "The signal will disappear from active investors."
+  "\nTake Profit: "+(s.take_profit||"-")
  ))
   return;
-
-
- msg.textContent=
-  "Removing current signal...";
 
 
  const {
@@ -4420,7 +4421,6 @@ async function removeCurrentSignal(){
    "REMOVE FAILED.";
 
   alert(
-   "REMOVE CURRENT SIGNAL FAILED:\n\n"+
    deleteError.message
   );
 
@@ -4433,10 +4433,6 @@ async function removeCurrentSignal(){
   msg.textContent=
    "Signal was NOT removed.";
 
-  alert(
-   "Supabase returned 0 deleted rows."
-  );
-
   return;
  }
 
@@ -4446,20 +4442,10 @@ async function removeCurrentSignal(){
 
  display.innerHTML="";
 
-
- alert(
-  "CURRENT SIGNAL REMOVED SUCCESSFULLY."
- );
-
-
  await showActiveSignal();
 
 }
 
-
-/* =====================================================
-   DELETE EXPIRED SIGNALS
-   ===================================================== */
 
 async function deleteExpiredSignals(){
 
@@ -4474,10 +4460,6 @@ async function deleteExpiredSignals(){
   "Only signals with active=false will be permanently deleted."
  ))
   return;
-
-
- msg.textContent=
-  "Finding expired signals...";
 
 
  const {
@@ -4495,11 +4477,7 @@ async function deleteExpiredSignals(){
 
  if(findError){
 
-  msg.textContent=
-   "Could not find expired signals.";
-
   alert(
-   "Could not find expired signals:\n\n"+
    findError.message
   );
 
@@ -4508,9 +4486,6 @@ async function deleteExpiredSignals(){
 
 
  if(!expiredSignals?.length){
-
-  msg.textContent=
-   "No expired signals found.";
 
   alert(
    "There are no expired signals to delete."
@@ -4536,11 +4511,7 @@ async function deleteExpiredSignals(){
 
  if(deleteError){
 
-  msg.textContent=
-   "Could not delete expired signals.";
-
   alert(
-   "DELETE EXPIRED SIGNALS FAILED:\n\n"+
    deleteError.message
   );
 
@@ -4550,19 +4521,6 @@ async function deleteExpiredSignals(){
 
  const count=
   deletedRows?.length||0;
-
-
- if(count===0){
-
-  msg.textContent=
-   "No rows were deleted.";
-
-  alert(
-   "Supabase did not delete any expired signals."
-  );
-
-  return;
- }
 
 
  msg.textContent=
@@ -4580,10 +4538,6 @@ async function deleteExpiredSignals(){
 
 }
 
-
-/* =====================================================
-   SHOW ACTIVE SIGNAL
-   ===================================================== */
 
 async function showActiveSignal(){
 
@@ -4665,7 +4619,9 @@ async function showActiveSignal(){
 
    <div>
     <strong>Timeframe:</strong>
-    ${escapeHtml(s.timeframe)}
+    ${escapeHtml(
+     normalizeTimeframe(s.timeframe)
+    )}
    </div>
 
    <div>
@@ -4705,10 +4661,6 @@ async function showActiveSignal(){
 
 }
 
-
-/* =====================================================
-   NOTIFICATIONS
-   ===================================================== */
 
 async function loadNotifications(){
 
@@ -4799,19 +4751,12 @@ async function loadNotifications(){
 }
 
 
-/* =====================================================
-   MARK ADMIN NOTIFICATIONS READ
-   ===================================================== */
-
 async function markAdminNotificationsRead(){
 
  if(!currentUser)
   return;
 
 
- const {
-  error
- }=
  await supabaseClient
  .from("notifications")
  .update({
@@ -4827,21 +4772,10 @@ async function markAdminNotificationsRead(){
  );
 
 
- if(error)
-  console.log(
-   "MARK NOTIFICATIONS ERROR:",
-   error.message
-  );
-
-
  await loadDashboard();
 
 }
 
-
-/* =====================================================
-   REALTIME ADMIN NOTIFICATIONS
-   ===================================================== */
 
 async function subscribeToAdminNotifications(){
 
@@ -4890,10 +4824,6 @@ async function subscribeToAdminNotifications(){
 
 }
 
-
-/* =====================================================
-   HELPERS
-   ===================================================== */
 
 function formatDate(date){
 
@@ -4974,10 +4904,6 @@ function escapeAttr(value){
 }
 
 
-/* =====================================================
-   SESSION
-   ===================================================== */
-
 async function restoreSession(){
 
  if(!supabaseClient){
@@ -5004,11 +4930,6 @@ async function restoreSession(){
 
   if(error){
 
-   console.error(
-    "GET SESSION ERROR:",
-    error
-   );
-
    showLoginMessage(
     "Session error:\n\n"+
     error.message,
@@ -5029,18 +4950,8 @@ async function restoreSession(){
     await checkAdmin();
 
 
-   if(!ok){
-
+   if(!ok)
     currentUser=null;
-
-   }
-
-  }
-  else{
-
-   console.log(
-    "No active admin session."
-   );
 
   }
 
@@ -5066,10 +4977,6 @@ async function restoreSession(){
 
 }
 
-
-/* =====================================================
-   ENTER KEY LOGIN
-   ===================================================== */
 
 document.addEventListener(
  "keydown",
@@ -5099,9 +5006,56 @@ document.addEventListener(
  });
 
 
-/* =====================================================
-   START
-   ===================================================== */
+/*
+=====================================================
+MAKE FUNCTIONS AVAILABLE TO HTML BUTTONS
+=====================================================
+*/
+
+window.login=login;
+window.logout=logout;
+window.showTab=showTab;
+
+window.removeMember=removeMember;
+
+window.approveDeposit=approveDeposit;
+window.rejectDeposit=rejectDeposit;
+
+window.disableSubscription=
+ disableSubscription;
+
+window.activateSubscription=
+ activateSubscription;
+
+window.analyzeGold=analyzeGold;
+
+window.publishSignal=
+ publishSignal;
+
+window.discardAIAnalysis=
+ discardAIAnalysis;
+
+window.useManualSignal=
+ useManualSignal;
+
+window.copyActiveSignal=
+ copyActiveSignal;
+
+window.removeCurrentSignal=
+ removeCurrentSignal;
+
+window.deleteExpiredSignals=
+ deleteExpiredSignals;
+
+window.showActiveSignal=
+ showActiveSignal;
+
+
+/*
+=====================================================
+START
+=====================================================
+*/
 
 if(
  typeof window.supabase!=="undefined"
