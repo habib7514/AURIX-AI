@@ -17,27 +17,45 @@ body{
     background:#050505;
     color:#fff;
     font-family:Arial,Helvetica,sans-serif;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+}
+
+button,input{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.hidden{
+    display:none!important;
+}
+
+.app{
+    width:100%;
+    max-width:430px;
+    min-height:100vh;
+    margin:auto;
+    background:#050505;
+    position:relative;
     overflow:hidden;
 }
 
-.container{
-    width:100%;
-    max-width:430px;
+/* SPLASH */
+
+#splash{
     min-height:100vh;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    padding:30px;
     text-align:center;
+    animation:fadeIn 1.5s ease;
 }
 
-.logo{
-    width:105px;
-    height:105px;
+.splash-logo{
+    width:115px;
+    height:115px;
     border:2px solid #d4af37;
     border-radius:50%;
     display:flex;
@@ -45,67 +63,899 @@ body{
     justify-content:center;
     margin-bottom:28px;
     box-shadow:
-        0 0 20px rgba(212,175,55,.25),
-        inset 0 0 20px rgba(212,175,55,.08);
+        0 0 30px rgba(212,175,55,.25),
+        inset 0 0 25px rgba(212,175,55,.08);
+    animation:logoPulse 2.5s infinite;
 }
 
-.logo span{
-    font-size:43px;
-    font-weight:800;
+.splash-logo span{
     color:#d4af37;
-    letter-spacing:-3px;
+    font-size:48px;
+    font-weight:800;
 }
 
-h1{
+.splash-title{
+    color:#d4af37;
     font-size:38px;
     letter-spacing:6px;
+}
+
+.splash-subtitle{
+    margin-top:12px;
+    color:#999;
+    font-size:12px;
+    letter-spacing:3px;
+}
+
+.welcome{
+    margin-top:38px;
+    color:#ddd;
+    font-size:14px;
+    letter-spacing:1px;
+}
+
+.gold-line{
+    width:80px;
+    height:1px;
+    background:#d4af37;
+    margin:25px auto;
+}
+
+/* AUTH */
+
+.screen{
+    min-height:100vh;
+    padding:30px 25px 100px;
+}
+
+.auth-logo{
+    text-align:center;
+    padding-top:35px;
+}
+
+.small-logo{
+    width:75px;
+    height:75px;
+    border:1px solid #d4af37;
+    border-radius:50%;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
     color:#d4af37;
+    font-size:32px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.auth-title{
+    color:#d4af37;
+    font-size:27px;
+    letter-spacing:4px;
+}
+
+.auth-subtitle{
+    color:#777;
+    margin-top:8px;
+    font-size:12px;
+    letter-spacing:1px;
+}
+
+.form{
+    margin-top:45px;
+}
+
+.label{
+    color:#aaa;
+    font-size:12px;
+    margin-bottom:8px;
+    display:block;
+}
+
+.input{
+    width:100%;
+    background:#0c0c0c;
+    border:1px solid #272727;
+    color:white;
+    padding:15px;
+    border-radius:8px;
+    outline:none;
+    margin-bottom:18px;
+}
+
+.input:focus{
+    border-color:#d4af37;
+}
+
+.gold-btn{
+    width:100%;
+    border:0;
+    background:#d4af37;
+    color:#050505;
+    padding:15px;
+    border-radius:8px;
+    font-weight:bold;
+    margin-top:8px;
+}
+
+.secondary-btn{
+    width:100%;
+    background:#0c0c0c;
+    border:1px solid #333;
+    color:#d4af37;
+    padding:14px;
+    border-radius:8px;
+    margin-top:12px;
+}
+
+.switch{
+    text-align:center;
+    color:#777;
+    margin-top:25px;
+    font-size:13px;
+}
+
+.switch span{
+    color:#d4af37;
+    cursor:pointer;
+}
+
+/* HOME */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 20px;
+    border-bottom:1px solid #1b1b1b;
+}
+
+.brand{
+    color:#d4af37;
+    font-size:20px;
+    letter-spacing:3px;
+    font-weight:bold;
+}
+
+.icon-btn{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:1px solid #333;
+    background:#0c0c0c;
+    color:#d4af37;
+    position:relative;
+}
+
+.badge{
+    position:absolute;
+    right:-2px;
+    top:-2px;
+    background:#d4af37;
+    color:#000;
+    width:17px;
+    height:17px;
+    border-radius:50%;
+    font-size:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+.content{
+    padding:22px 18px 100px;
+}
+
+.hero{
+    border:1px solid #272727;
+    border-radius:15px;
+    padding:22px;
+    background:linear-gradient(145deg,#101010,#070707);
+}
+
+.hero-title{
+    color:#d4af37;
+    font-size:22px;
+    margin-bottom:8px;
+}
+
+.hero-text{
+    color:#888;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.status-card{
+    margin-top:16px;
+    border:1px solid #272727;
+    border-radius:12px;
+    padding:18px;
+}
+
+.status-title{
+    color:#aaa;
+    font-size:12px;
+}
+
+.status-value{
+    color:#d4af37;
+    font-size:18px;
+    margin-top:8px;
+}
+
+.section-title{
+    margin:25px 0 12px;
+    color:#ddd;
+    font-size:16px;
+}
+
+/* SIGNAL */
+
+.signal-card{
+    border:1px solid #2a2a2a;
+    border-radius:12px;
+    padding:18px;
+    background:#0b0b0b;
     margin-bottom:12px;
 }
 
-.subtitle{
-    color:#aaa;
-    font-size:14px;
-    letter-spacing:2px;
-    margin-bottom:45px;
+.signal-header{
+    display:flex;
+    justify-content:space-between;
 }
 
-.line{
-    width:90px;
-    height:1px;
-    background:#d4af37;
-    margin-bottom:45px;
+.gold{
+    color:#d4af37;
 }
 
-.status{
-    color:#777;
+.signal-name{
+    font-weight:bold;
+}
+
+.signal-info{
+    color:#888;
     font-size:12px;
-    letter-spacing:1px;
+    margin-top:10px;
+}
+
+.locked{
+    text-align:center;
+    border:1px dashed #444;
+    padding:25px 15px;
+    border-radius:12px;
+    color:#777;
+}
+
+/* SUBSCRIPTIONS */
+
+.plan{
+    border:1px solid #292929;
+    border-radius:14px;
+    padding:20px;
+    margin-bottom:14px;
+    background:#0a0a0a;
+}
+
+.plan-name{
+    color:#d4af37;
+    font-size:17px;
+}
+
+.plan-price{
+    font-size:28px;
+    margin:10px 0;
+}
+
+.plan-info{
+    color:#888;
+    font-size:12px;
+}
+
+/* WALLET */
+
+.wallet-box{
+    border:1px solid #292929;
+    background:#0a0a0a;
+    border-radius:12px;
+    padding:18px;
+    margin-bottom:15px;
+}
+
+.wallet-label{
+    color:#777;
+    font-size:11px;
+    margin-bottom:8px;
+}
+
+.wallet-address{
+    color:#ddd;
+    font-size:12px;
+    word-break:break-all;
+    line-height:1.5;
+    margin-bottom:14px;
+}
+
+.copy-btn{
+    background:#d4af37;
+    border:0;
+    padding:10px 18px;
+    border-radius:7px;
+    color:#000;
+    font-weight:bold;
+}
+
+/* NOTIFICATIONS */
+
+.notification{
+    border:1px solid #252525;
+    padding:16px;
+    border-radius:10px;
+    margin-bottom:10px;
+    background:#0b0b0b;
+}
+
+.notification-title{
+    color:#d4af37;
+    font-size:14px;
+    margin-bottom:6px;
+}
+
+.notification-text{
+    color:#999;
+    font-size:12px;
+    line-height:1.5;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:430px;
+    background:#080808;
+    border-top:1px solid #222;
+    display:flex;
+    justify-content:space-around;
+    padding:10px 5px;
+    z-index:20;
+}
+
+.nav-btn{
+    background:none;
+    border:0;
+    color:#777;
+    font-size:10px;
+    padding:7px;
+}
+
+.nav-btn.active{
+    color:#d4af37;
+}
+
+/* ANIMATION */
+
+@keyframes fadeIn{
+    from{opacity:0}
+    to{opacity:1}
+}
+
+@keyframes logoPulse{
+    0%,100%{box-shadow:0 0 20px rgba(212,175,55,.2)}
+    50%{box-shadow:0 0 35px rgba(212,175,55,.4)}
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="app">
 
-    <div class="logo">
-        <span>A</span>
+<!-- SPLASH -->
+<section id="splash">
+    <div class="splash-logo"><span>A</span></div>
+    <div class="splash-title">AURIX AI</div>
+    <div class="splash-subtitle">GOLD MARKET INTELLIGENCE</div>
+    <div class="gold-line"></div>
+    <div class="welcome">WELCOME TO AURIX AI</div>
+</section>
+
+
+<!-- REGISTER -->
+<section id="register" class="screen hidden">
+
+    <div class="auth-logo">
+        <div class="small-logo">A</div>
+        <div class="auth-title">AURIX AI</div>
+        <div class="auth-subtitle">CREATE YOUR ACCOUNT</div>
     </div>
 
-    <h1>AURIX AI</h1>
+    <div class="form">
 
-    <div class="subtitle">
-        GOLD MARKET INTELLIGENCE
+        <label class="label">EMAIL</label>
+        <input id="registerEmail" class="input" type="email" placeholder="Enter your email">
+
+        <label class="label">PASSWORD</label>
+        <input id="registerPassword" class="input" type="password" placeholder="Create password">
+
+        <label class="label">CONFIRM PASSWORD</label>
+        <input id="registerConfirm" class="input" type="password" placeholder="Confirm password">
+
+        <button class="gold-btn" onclick="registerUser()">CREATE ACCOUNT</button>
+
+        <div class="switch">
+            Already have an account?
+            <span onclick="showScreen('login')">Login</span>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- LOGIN -->
+<section id="login" class="screen hidden">
+
+    <div class="auth-logo">
+        <div class="small-logo">A</div>
+        <div class="auth-title">AURIX AI</div>
+        <div class="auth-subtitle">SECURE LOGIN</div>
     </div>
 
-    <div class="line"></div>
+    <div class="form">
 
-    <div class="status">
-        AI-POWERED GOLD SIGNALS
+        <label class="label">EMAIL</label>
+        <input id="loginEmail" class="input" type="email" placeholder="Enter your email">
+
+        <label class="label">PASSWORD</label>
+        <input id="loginPassword" class="input" type="password" placeholder="Enter password">
+
+        <button class="gold-btn" onclick="loginUser()">LOGIN</button>
+
+        <div class="switch">
+            Don't have an account?
+            <span onclick="showScreen('register')">Create account</span>
+        </div>
+
     </div>
+</section>
+
+
+<!-- HOME -->
+<section id="home" class="hidden">
+
+    <div class="topbar">
+        <div class="brand">AURIX AI</div>
+
+        <button class="icon-btn" onclick="showScreen('notifications')">
+            🔔
+            <span class="badge">1</span>
+        </button>
+    </div>
+
+    <div class="content">
+
+        <div class="hero">
+            <div class="hero-title">GOLD MARKET INTELLIGENCE</div>
+            <div class="hero-text">
+                AI-powered gold market signals and market intelligence.
+            </div>
+        </div>
+
+        <div class="status-card">
+            <div class="status-title">ACCOUNT STATUS</div>
+            <div id="accountStatus" class="status-value">
+                NOT ACTIVATED
+            </div>
+        </div>
+
+        <div class="section-title">GOLD SIGNALS</div>
+
+        <div id="signalsArea">
+            <div class="locked">
+                🔒<br><br>
+                Gold trading signals are available only
+                after your deposit has been verified and
+                access has been activated.
+            </div>
+        </div>
+
+        <div class="section-title">QUICK ACCESS</div>
+
+        <button class="secondary-btn" onclick="showScreen('subscription')">
+            SUBSCRIPTION PLANS
+        </button>
+
+        <button class="secondary-btn" onclick="showScreen('wallet')">
+            DEPOSIT / WALLET
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- SUBSCRIPTION -->
+<section id="subscription" class="screen hidden">
+
+    <div class="topbar">
+        <div class="brand">SUBSCRIPTION</div>
+    </div>
+
+    <div class="content">
+
+        <div class="section-title">CHOOSE YOUR PLAN</div>
+
+        <div class="plan">
+            <div class="plan-name">1 MONTH</div>
+            <div class="plan-price">$49</div>
+            <div class="plan-info">
+                Access to AURIX AI Gold Intelligence.
+            </div>
+            <button class="gold-btn" onclick="showScreen('wallet')">
+                SELECT PLAN
+            </button>
+        </div>
+
+        <div class="plan">
+            <div class="plan-name">3 MONTHS</div>
+            <div class="plan-price">$119</div>
+            <div class="plan-info">
+                Extended access to AURIX AI Gold Intelligence.
+            </div>
+            <button class="gold-btn" onclick="showScreen('wallet')">
+                SELECT PLAN
+            </button>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- WALLET -->
+<section id="wallet" class="screen hidden">
+
+    <div class="topbar">
+        <div class="brand">DEPOSIT</div>
+    </div>
+
+    <div class="content">
+
+        <div class="section-title">BNB SMART CHAIN</div>
+
+        <div class="wallet-box">
+
+            <div class="wallet-label">USDT / BNB DEPOSIT ADDRESS</div>
+
+            <div id="walletAddress" class="wallet-address">
+                YOUR_BNB_SMART_CHAIN_WALLET_ADDRESS
+            </div>
+
+            <button class="copy-btn" onclick="copyWallet()">
+                COPY ADDRESS
+            </button>
+
+        </div>
+
+        <div class="wallet-box">
+
+            <div class="wallet-label">IMPORTANT</div>
+
+            <div class="wallet-address">
+                Send only through BNB Smart Chain.
+                After completing your deposit, submit
+                your transaction information for verification.
+            </div>
+
+            <button class="gold-btn" onclick="depositSubmitted()">
+                I HAVE MADE THE DEPOSIT
+            </button>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- NOTIFICATIONS -->
+<section id="notifications" class="screen hidden">
+
+    <div class="topbar">
+        <div class="brand">NOTIFICATIONS</div>
+    </div>
+
+    <div class="content">
+
+        <div class="notification">
+            <div class="notification-title">
+                Welcome to AURIX AI
+            </div>
+
+            <div class="notification-text">
+                Your account has been created. Complete your
+                subscription and deposit verification to access
+                gold trading signals.
+            </div>
+        </div>
+
+        <div class="notification">
+            <div class="notification-title">
+                Signal Access
+            </div>
+
+            <div class="notification-text">
+                Trading signal notifications will only be
+                delivered to accounts that have completed
+                the required deposit verification and have
+                been activated.
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- SUPPORT -->
+<section id="support" class="screen hidden">
+
+    <div class="topbar">
+        <div class="brand">SUPPORT</div>
+    </div>
+
+    <div class="content">
+
+        <div class="hero">
+
+            <div class="hero-title">AURIX AI SUPPORT</div>
+
+            <div class="hero-text">
+                Need help with your account, subscription,
+                deposit or signal access?
+            </div>
+
+            <button class="gold-btn"
+                onclick="window.location.href='mailto:support@aurixai.com?subject=AURIX%20AI%20Support'">
+                CONTACT SUPPORT
+            </button>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- SETTINGS -->
+<section id="settings" class="screen hidden">
+
+    <div class="topbar">
+        <div class="brand">SETTINGS</div>
+    </div>
+
+    <div class="content">
+
+        <div class="status-card">
+            <div class="status-title">ACCOUNT</div>
+            <div id="userEmail" class="status-value">
+                Not logged in
+            </div>
+        </div>
+
+        <button class="secondary-btn" onclick="showScreen('support')">
+            SUPPORT
+        </button>
+
+        <button class="secondary-btn" onclick="logout()">
+            LOG OUT
+        </button>
+
+    </div>
+</section>
+
+
+<!-- BOTTOM NAV -->
+<div id="bottomNav" class="bottom-nav hidden">
+
+    <button class="nav-btn active" onclick="showScreen('home')">
+        HOME
+    </button>
+
+    <button class="nav-btn" onclick="showScreen('subscription')">
+        PLANS
+    </button>
+
+    <button class="nav-btn" onclick="showScreen('wallet')">
+        WALLET
+    </button>
+
+    <button class="nav-btn" onclick="showScreen('notifications')">
+        ALERTS
+    </button>
+
+    <button class="nav-btn" onclick="showScreen('settings')">
+        SETTINGS
+    </button>
 
 </div>
+
+</div>
+
+
+<script>
+
+let currentUser = null;
+
+
+/* SPLASH */
+
+setTimeout(function(){
+
+    showScreen('register');
+
+},3500);
+
+
+/* SCREEN CONTROL */
+
+function showScreen(screen){
+
+    const screens = [
+        'splash',
+        'register',
+        'login',
+        'home',
+        'subscription',
+        'wallet',
+        'notifications',
+        'support',
+        'settings'
+    ];
+
+    screens.forEach(function(id){
+
+        const element = document.getElementById(id);
+
+        if(element){
+            element.classList.add('hidden');
+        }
+
+    });
+
+    const selected = document.getElementById(screen);
+
+    if(selected){
+        selected.classList.remove('hidden');
+    }
+
+    const authScreens = ['register','login','splash'];
+
+    const nav = document.getElementById('bottomNav');
+
+    if(authScreens.includes(screen)){
+        nav.classList.add('hidden');
+    }else{
+        nav.classList.remove('hidden');
+    }
+
+}
+
+
+/* REGISTER */
+
+function registerUser(){
+
+    const email =
+        document.getElementById('registerEmail').value.trim();
+
+    const password =
+        document.getElementById('registerPassword').value;
+
+    const confirm =
+        document.getElementById('registerConfirm').value;
+
+    if(!email || !password || !confirm){
+        alert('Please complete all fields.');
+        return;
+    }
+
+    if(password !== confirm){
+        alert('Passwords do not match.');
+        return;
+    }
+
+    if(password.length < 6){
+        alert('Password must contain at least 6 characters.');
+        return;
+    }
+
+    /*
+       TEMPORARY FRONT-END STEP.
+       Real account creation will be connected
+       to Supabase in the next step.
+    */
+
+    document.getElementById('loginEmail').value = email;
+
+    alert('Registration information accepted. Please login.');
+
+    showScreen('login');
+}
+
+
+/* LOGIN */
+
+function loginUser(){
+
+    const email =
+        document.getElementById('loginEmail').value.trim();
+
+    const password =
+        document.getElementById('loginPassword').value;
+
+    if(!email || !password){
+        alert('Please enter your email and password.');
+        return;
+    }
+
+    currentUser = {
+        email: email
+    };
+
+    document.getElementById('userEmail').textContent = email;
+
+    document.getElementById('accountStatus').textContent =
+        'DEPOSIT VERIFICATION REQUIRED';
+
+    showScreen('home');
+}
+
+
+/* COPY WALLET */
+
+function copyWallet(){
+
+    const address =
+        document.getElementById('walletAddress').innerText.trim();
+
+    navigator.clipboard.writeText(address)
+        .then(function(){
+
+            alert('Wallet address copied.');
+
+        })
+        .catch(function(){
+
+            alert('Please copy the wallet address manually.');
+
+        });
+
+}
+
+
+/* DEPOSIT */
+
+function depositSubmitted(){
+
+    alert(
+        'Deposit notification submitted. Your deposit will require verification before signal access is activated.'
+    );
+
+}
+
+
+/* LOGOUT */
+
+function logout(){
+
+    currentUser = null;
+
+    document.getElementById('loginPassword').value = '';
+
+    showScreen('login');
+
+}
+
+</script>
 
 </body>
 </html>
