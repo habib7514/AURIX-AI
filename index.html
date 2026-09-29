@@ -23,8 +23,7 @@ body{
     min-height:100vh;
 }
 
-button,
-input{
+button,input{
     font-family:inherit;
 }
 
@@ -81,14 +80,6 @@ input{
     margin-bottom:14px;
 }
 
-.subtitle{
-    text-align:center;
-    color:#aaa;
-    font-size:16px;
-    line-height:1.6;
-    margin-bottom:10px;
-}
-
 .welcome-title{
     text-align:center;
     font-size:26px;
@@ -121,11 +112,6 @@ input{
 .card h2{
     color:#F0D36A;
     font-size:22px;
-    margin-bottom:10px;
-}
-
-.card h3{
-    font-size:19px;
     margin-bottom:10px;
 }
 
@@ -188,10 +174,6 @@ input:focus{
     cursor:pointer;
     margin-top:10px;
     padding:12px 16px;
-}
-
-.btn:hover{
-    opacity:.92;
 }
 
 .btn.secondary{
@@ -485,7 +467,6 @@ input:focus{
     <div class="welcome">
 
         <div class="logo">
-
             <svg
                 viewBox="0 0 512 512"
                 xmlns="http://www.w3.org/2000/svg"
@@ -606,33 +587,10 @@ input:focus{
                     stroke-linecap="round"
                 />
 
-                <circle
-                    cx="125"
-                    cy="350"
-                    r="9"
-                    fill="#FFE58A"
-                />
-
-                <circle
-                    cx="220"
-                    cy="315"
-                    r="9"
-                    fill="#FFE58A"
-                />
-
-                <circle
-                    cx="300"
-                    cy="270"
-                    r="9"
-                    fill="#FFE58A"
-                />
-
-                <circle
-                    cx="385"
-                    cy="190"
-                    r="11"
-                    fill="#FFE58A"
-                />
+                <circle cx="125" cy="350" r="9" fill="#FFE58A"/>
+                <circle cx="220" cy="315" r="9" fill="#FFE58A"/>
+                <circle cx="300" cy="270" r="9" fill="#FFE58A"/>
+                <circle cx="385" cy="190" r="11" fill="#FFE58A"/>
 
                 <circle
                     cx="256"
@@ -649,36 +607,12 @@ input:focus{
                     fill="#FFE58A"
                 />
 
-                <circle
-                    cx="170"
-                    cy="150"
-                    r="4"
-                    fill="#D4AF37"
-                />
-
-                <circle
-                    cx="330"
-                    cy="350"
-                    r="4"
-                    fill="#D4AF37"
-                />
-
-                <circle
-                    cx="370"
-                    cy="315"
-                    r="4"
-                    fill="#D4AF37"
-                />
-
-                <circle
-                    cx="145"
-                    cy="375"
-                    r="4"
-                    fill="#D4AF37"
-                />
+                <circle cx="170" cy="150" r="4" fill="#D4AF37"/>
+                <circle cx="330" cy="350" r="4" fill="#D4AF37"/>
+                <circle cx="370" cy="315" r="4" fill="#D4AF37"/>
+                <circle cx="145" cy="375" r="4" fill="#D4AF37"/>
 
             </svg>
-
         </div>
 
         <div class="brand">
@@ -741,6 +675,7 @@ input:focus{
             </div>
 
             <button
+                type="button"
                 class="btn"
                 onclick="registerUser()"
             >
@@ -748,6 +683,7 @@ input:focus{
             </button>
 
             <button
+                type="button"
                 class="btn secondary"
                 onclick="showScreen('login')"
             >
@@ -794,6 +730,7 @@ input:focus{
             </div>
 
             <button
+                type="button"
                 class="btn"
                 onclick="loginUser()"
             >
@@ -801,6 +738,7 @@ input:focus{
             </button>
 
             <button
+                type="button"
                 class="btn secondary"
                 onclick="showScreen('register')"
             >
@@ -899,6 +837,7 @@ input:focus{
             </p>
 
             <button
+                type="button"
                 class="btn"
                 onclick="showScreen('plans')"
             >
@@ -937,12 +876,10 @@ input:focus{
             </div>
 
             <ul>
-
                 <li>Gold AI Signals</li>
                 <li>Signal Notifications</li>
                 <li>Multiple Timeframes</li>
                 <li>Premium Market Intelligence</li>
-
             </ul>
 
             <button
@@ -971,12 +908,10 @@ input:focus{
             </div>
 
             <ul>
-
                 <li>Gold AI Signals</li>
                 <li>Signal Notifications</li>
                 <li>Multiple Timeframes</li>
                 <li>Premium Market Intelligence</li>
-
             </ul>
 
             <button
@@ -1005,11 +940,9 @@ input:focus{
         </h1>
 
         <div class="notice">
-
             Send your payment using the supported network.
             Your subscription will be activated after
             deposit verification.
-
         </div>
 
         <div class="card">
@@ -1072,10 +1005,8 @@ input:focus{
             </button>
 
             <div class="status-box">
-
                 After sending your payment, submit the
                 transaction information for verification.
-
             </div>
 
             <button
@@ -1310,7 +1241,9 @@ input:focus{
 
 <script>
 
-/* SCREEN MANAGEMENT */
+/* =========================
+   SCREEN MANAGEMENT
+========================= */
 
 const appScreens = [
     "home",
@@ -1332,9 +1265,11 @@ function showScreen(screenId){
     const target =
         document.getElementById(screenId);
 
-    if(target){
-        target.classList.add("active");
+    if(!target){
+        return;
     }
+
+    target.classList.add("active");
 
     const bottomNav =
         document.getElementById("bottomNav");
@@ -1348,12 +1283,8 @@ function showScreen(screenId){
     document
         .querySelectorAll(".nav-btn")
         .forEach(btn => {
-            btn.classList.remove("active");
-        });
 
-    document
-        .querySelectorAll(".nav-btn")
-        .forEach(btn => {
+            btn.classList.remove("active");
 
             const onclick =
                 btn.getAttribute("onclick") || "";
@@ -1368,15 +1299,14 @@ function showScreen(screenId){
 
         });
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
+    window.scrollTo(0,0);
 }
 
 
-/* REGISTER */
+/* =========================
+   REGISTER
+   NO POPUP
+========================= */
 
 function registerUser(){
 
@@ -1397,20 +1327,10 @@ function registerUser(){
         .value;
 
     if(!email || !password || !confirm){
-
-        alert(
-            "Please complete all fields."
-        );
-
         return;
     }
 
     if(password !== confirm){
-
-        alert(
-            "Passwords do not match."
-        );
-
         return;
     }
 
@@ -1424,15 +1344,14 @@ function registerUser(){
         "true"
     );
 
-    alert(
-        "Account created successfully."
-    );
-
     showScreen("home");
 }
 
 
-/* LOGIN */
+/* =========================
+   LOGIN
+   NO POPUP
+========================= */
 
 function loginUser(){
 
@@ -1448,11 +1367,6 @@ function loginUser(){
         .value;
 
     if(!email || !password){
-
-        alert(
-            "Please enter your email and password."
-        );
-
         return;
     }
 
@@ -1466,28 +1380,16 @@ function loginUser(){
         "true"
     );
 
-    alert(
-        "Login successful."
-    );
-
     showScreen("home");
 }
 
 
-/* PLAN */
+/* =========================
+   PLAN
+   DIRECT TO DEPOSIT
+========================= */
 
 let selectedPlan = "";
-
-
-/*
-   IMPORTANT:
-   Clicking $49 or $119 now goes
-   DIRECTLY to the deposit page.
-
-   No alert.
-   No GitHub link.
-   No external page.
-*/
 
 function selectPlan(plan){
 
@@ -1498,47 +1400,45 @@ function selectPlan(plan){
         plan
     );
 
-    const planDisplay =
+    const display =
         document.getElementById(
             "selectedPlanDisplay"
         );
 
-    if(planDisplay){
-        planDisplay.textContent = plan;
+    if(display){
+        display.textContent = plan;
     }
 
     showScreen("wallet");
 }
 
 
-/* WALLET */
+/* =========================
+   COPY WALLET
+   NO POPUP
+========================= */
 
 function copyWallet(){
 
     const address =
         "0x4E11E978119cAAB300b5439B909D06341C24a2A7";
 
-    navigator.clipboard
-        .writeText(address)
-        .then(() => {
+    if(
+        navigator.clipboard &&
+        navigator.clipboard.writeText
+    ){
 
-            alert(
-                "Wallet address copied."
-            );
+        navigator.clipboard.writeText(address);
 
-        })
-        .catch(() => {
-
-            alert(
-                "Copy failed. Please copy the address manually."
-            );
-
-        });
+    }
 
 }
 
 
-/* DEPOSIT */
+/* =========================
+   DEPOSIT
+   NO POPUP
+========================= */
 
 function depositSubmitted(){
 
@@ -1547,27 +1447,26 @@ function depositSubmitted(){
         "true"
     );
 
-    alert(
-        "Deposit submitted for verification.\n\n" +
-        "Your access will be activated after verification."
-    );
-
     showScreen("notifications");
 }
 
 
-/* SUPPORT */
+/* =========================
+   SUPPORT
+========================= */
 
 function contactSupport(){
 
     window.location.href =
-        "mailto:mmatrix081@gmail.com" +
-        "?subject=AURIX AI Support Request";
+        "mailto:mmatrix081@gmail.com?subject=AURIX%20AI%20Support%20Request";
 
 }
 
 
-/* LOGOUT */
+/* =========================
+   LOGOUT
+   NO POPUP
+========================= */
 
 function logoutUser(){
 
@@ -1575,16 +1474,13 @@ function logoutUser(){
         "aurixLoggedIn"
     );
 
-    alert(
-        "You have been logged out."
-    );
-
     showScreen("welcome");
-
 }
 
 
-/* SPLASH */
+/* =========================
+   SPLASH
+========================= */
 
 document.addEventListener(
     "DOMContentLoaded",
