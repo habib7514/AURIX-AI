@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,7 +66,19 @@ input:focus{border-color:#D4AF37}
 .notification.unread{background:#16130a}
 .notification-time{color:#666;font-size:12px;margin-top:8px}
 .empty{color:#777;text-align:center;padding:30px}
-.badge{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;border-radius:20px;background:#c99b20;color:#050505;font-size:11px;margin-left:4px;padding:0 5px}
+.badge{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+min-width:20px;
+height:20px;
+border-radius:20px;
+background:#c99b20;
+color:#050505;
+font-size:11px;
+margin-left:4px;
+padding:0 5px
+}
 .bottom-nav{position:fixed;left:10px;right:10px;bottom:10px;z-index:1000;background:rgba(12,12,12,.97);border:1px solid #333;border-radius:20px;display:flex;justify-content:space-around;padding:8px 5px;box-shadow:0 10px 35px rgba(0,0,0,.6)}
 .bottom-nav.hidden{display:none}
 .nav-btn{background:none;border:0;color:#777;min-width:60px;min-height:58px;border-radius:14px;cursor:pointer;font-size:11px;font-weight:700;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}
@@ -277,10 +288,13 @@ Your subscription will be activated after deposit verification.
 <!-- NOTIFICATIONS -->
 <section id="notifications" class="screen">
 <div class="container">
-<h1 class="page-title">ALERTS</h1>
+
+<h1 class="page-title">NOTIFICATIONS</h1>
+
 <div id="notificationList">
 <div class="empty">Loading notifications...</div>
 </div>
+
 </div>
 </section>
 
@@ -342,8 +356,9 @@ Your subscription will be activated after deposit verification.
 <span>◈</span>Wallet
 </button>
 
-<button class="nav-btn" onclick="showScreen('notifications')">
-<span>●</span>Alerts
+<button class="nav-btn" id="notificationsNavBtn" onclick="showScreen('notifications')">
+<span>●</span>
+<div>Notifications <span id="notificationBadge" class="badge" style="display:none">0</span></div>
 </button>
 
 <button class="nav-btn" onclick="showScreen('support')">
@@ -383,6 +398,7 @@ let currentUser = null;
 let selectedPlan = "";
 let selectedAmount = 0;
 let notificationChannel = null;
+let signalChannel = null;
 
 
 /* =========================================
@@ -390,8 +406,11 @@ let notificationChannel = null;
 ========================================= */
 
 function statusMessage(id,message){
+
     const el=document.getElementById(id);
+
     if(!el)return;
+
     el.textContent=message;
     el.style.display="block";
 }
@@ -415,42 +434,64 @@ function showScreen(screenId){
     document.querySelectorAll(
         ".screen,.center-screen"
     ).forEach(function(screen){
+
         screen.classList.remove("active");
+
     });
 
-    const target=document.getElementById(screenId);
+    const target=
+        document.getElementById(screenId);
 
     if(!target)return;
 
     target.classList.add("active");
 
-    const nav=document.getElementById("bottomNav");
+    const nav=
+        document.getElementById("bottomNav");
 
     if(appScreens.includes(screenId)){
+
         nav.classList.remove("hidden");
+
     }else{
+
         nav.classList.add("hidden");
+
     }
 
     document.querySelectorAll(".nav-btn")
     .forEach(function(btn){
+
         btn.classList.remove("active");
 
         const onclick=
             btn.getAttribute("onclick")||"";
 
         if(onclick.includes("'"+screenId+"'")){
+
             btn.classList.add("active");
+
         }
+
     });
 
     if(screenId==="notifications"){
+
         loadNotifications();
+
+        setTimeout(function(){
+
+            markNotificationsRead();
+
+        },500);
+
     }
 
     if(screenId==="home"){
+
         loadProfile();
         loadLatestSignal();
+
     }
 
     window.scrollTo(0,0);
@@ -476,40 +517,50 @@ async function registerUser(){
         .value;
 
     if(!email||!password||!confirm){
+
         statusMessage(
             "registerStatus",
             "Please complete all fields."
         );
+
         return;
     }
 
     if(password!==confirm){
+
         statusMessage(
             "registerStatus",
             "Passwords do not match."
         );
+
         return;
     }
 
     if(password.length<6){
+
         statusMessage(
             "registerStatus",
             "Password must contain at least 6 characters."
         );
+
         return;
     }
 
     const {data,error}=
         await supabaseClient.auth.signUp({
+
             email:email,
             password:password
+
         });
 
     if(error){
+
         statusMessage(
             "registerStatus",
             error.message
         );
+
         return;
     }
 
@@ -527,6 +578,7 @@ async function registerUser(){
             "registerStatus",
             "Account created. Check your email if confirmation is required, then login."
         );
+
     }
 }
 
@@ -546,24 +598,30 @@ async function loginUser(){
         .value;
 
     if(!email||!password){
+
         statusMessage(
             "loginStatus",
             "Please enter your email and password."
         );
+
         return;
     }
 
     const {data,error}=
         await supabaseClient.auth.signInWithPassword({
+
             email:email,
             password:password
+
         });
 
     if(error){
+
         statusMessage(
             "loginStatus",
             error.message
         );
+
         return;
     }
 
@@ -584,7 +642,8 @@ async function afterLogin(){
     if(!currentUser)return;
 
     document.getElementById("accountEmail")
-        .textContent=currentUser.email||"-";
+        .textContent=
+        currentUser.email||"-";
 
     await loadProfile();
 
@@ -614,13 +673,17 @@ async function loadProfile(){
     if(error||!data)return;
 
     const status=
-        document.getElementById("subscriptionStatus");
+        document.getElementById(
+            "subscriptionStatus"
+        );
 
     if(status){
+
         status.textContent=
             data.subscription_active
             ? "ACTIVE"
             : "INACTIVE";
+
     }
 
     return data;
@@ -671,15 +734,23 @@ function loadSelectedPlan(){
         );
 
     if(plan){
+
         selectedPlan=plan;
-        selectedAmount=Number(amount||0);
+
+        selectedAmount=
+            Number(amount||0);
 
         const el=
             document.getElementById(
                 "selectedPlanDisplay"
             );
 
-        if(el)el.textContent=plan;
+        if(el){
+
+            el.textContent=plan;
+
+        }
+
     }
 }
 
@@ -734,15 +805,24 @@ async function depositSubmitted(){
         await supabaseClient
         .from("deposits")
         .insert({
+
             user_id:currentUser.id,
+
             plan:selectedPlan,
+
             amount:selectedAmount,
+
             network:"BEP20",
+
             asset:asset,
+
             wallet_address:
             "0x4E11E978119cAAB300b5439B909D06341C24a2A7",
+
             tx_hash:txHash,
+
             status:"pending"
+
         });
 
     if(error){
@@ -760,10 +840,10 @@ async function depositSubmitted(){
         "Deposit submitted successfully. Waiting for verification."
     );
 
-    await loadNotifications();
-
     setTimeout(function(){
+
         showScreen("notifications");
+
     },800);
 }
 
@@ -780,6 +860,7 @@ function copyWallet(){
     navigator.clipboard
     .writeText(address)
     .catch(function(){});
+
 }
 
 
@@ -803,12 +884,23 @@ async function loadNotifications(){
             "notificationList"
         );
 
+    const badge=
+        document.getElementById(
+            "notificationBadge"
+        );
+
     if(!container)return;
 
     if(error){
 
         container.innerHTML=
             '<div class="empty">Unable to load notifications.</div>';
+
+        if(badge){
+
+            badge.style.display="none";
+
+        }
 
         return;
     }
@@ -818,10 +910,48 @@ async function loadNotifications(){
         container.innerHTML=
             '<div class="empty">No notifications yet.</div>';
 
+        if(badge){
+
+            badge.style.display="none";
+
+        }
+
         return;
     }
 
+
+    /* COUNT UNREAD */
+
+    const unreadCount=
+        data.filter(function(item){
+
+            return !item.is_read;
+
+        }).length;
+
+
+    if(badge){
+
+        if(unreadCount>0){
+
+            badge.textContent=
+                unreadCount>99
+                ? "99+"
+                : unreadCount;
+
+            badge.style.display="inline-flex";
+
+        }else{
+
+            badge.style.display="none";
+
+        }
+
+    }
+
+
     container.innerHTML="";
+
 
     data.forEach(function(item){
 
@@ -830,36 +960,103 @@ async function loadNotifications(){
 
         card.className=
             "card notification "+
-            (item.is_read?"":"unread");
+            (item.is_read ? "" : "unread");
+
 
         const title=
             document.createElement("h2");
 
-        title.textContent=item.title;
+        title.textContent=
+            cleanNotificationText(
+                item.title ||
+                "Notification"
+            );
+
 
         const message=
             document.createElement("p");
 
-        message.textContent=item.message;
+        message.textContent=
+            cleanNotificationText(
+                item.message ||
+                "You have a new notification."
+            );
+
 
         const time=
             document.createElement("div");
 
-        time.className="notification-time";
+        time.className=
+            "notification-time";
 
         time.textContent=
-            new Date(item.created_at)
-            .toLocaleString();
+            new Date(
+                item.created_at
+            ).toLocaleString();
+
 
         card.appendChild(title);
+
         card.appendChild(message);
+
         card.appendChild(time);
 
         container.appendChild(card);
 
     });
 
-    await markNotificationsRead();
+}
+
+
+/* =========================================
+   CLEAN NOTIFICATION TEXT
+   Removes email + subscription amounts
+========================================= */
+
+function cleanNotificationText(text){
+
+    let clean=String(text||"");
+
+
+    /* Remove email addresses */
+
+    clean=
+        clean.replace(
+            /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi,
+            ""
+        );
+
+
+    /* Remove dollar amounts */
+
+    clean=
+        clean.replace(
+            /\$\s?\d+(?:\.\d{1,2})?/g,
+            ""
+        );
+
+
+    /* Remove common amount phrases */
+
+    clean=
+        clean.replace(
+            /\b(subscription\s*)?(amount|price|cost)\s*[:\-]?\s*\$?\s*\d+(?:\.\d{1,2})?/gi,
+            ""
+        );
+
+
+    /* Remove extra spaces */
+
+    clean=
+        clean.replace(
+            /\s{2,}/g,
+            " "
+        ).trim();
+
+
+    return clean ||
+        "You have a new notification.";
+
 }
 
 
@@ -871,11 +1068,58 @@ async function markNotificationsRead(){
 
     if(!currentUser)return;
 
-    await supabaseClient
+    const {error}=
+        await supabaseClient
         .from("notifications")
-        .update({is_read:true})
-        .eq("user_id",currentUser.id)
-        .eq("is_read",false);
+        .update({
+
+            is_read:true
+
+        })
+        .eq(
+            "user_id",
+            currentUser.id
+        )
+        .eq(
+            "is_read",
+            false
+        );
+
+    if(error){
+
+        console.error(
+            "Notification read error:",
+            error
+        );
+
+        return;
+    }
+
+
+    const badge=
+        document.getElementById(
+            "notificationBadge"
+        );
+
+    if(badge){
+
+        badge.style.display="none";
+
+    }
+
+
+    document
+        .querySelectorAll(
+            ".notification.unread"
+        )
+        .forEach(function(card){
+
+            card.classList.remove(
+                "unread"
+            );
+
+        });
+
 }
 
 
@@ -887,33 +1131,47 @@ function subscribeToNotifications(){
 
     if(!currentUser)return;
 
+
     if(notificationChannel){
+
         supabaseClient.removeChannel(
             notificationChannel
         );
+
     }
+
 
     notificationChannel=
         supabaseClient
         .channel(
-            "aurix-notifications-"+currentUser.id
+            "aurix-notifications-"+
+            currentUser.id
         )
         .on(
+
             "postgres_changes",
+
             {
                 event:"INSERT",
+
                 schema:"public",
+
                 table:"notifications",
+
                 filter:
-                "user_id=eq."+currentUser.id
+                "user_id=eq."+
+                currentUser.id
             },
+
             function(){
 
                 loadNotifications();
 
             }
+
         )
         .subscribe();
+
 }
 
 
@@ -935,13 +1193,18 @@ async function loadLatestSignal(){
 
     if(!container)return;
 
-    if(!profile||!profile.subscription_active){
+    if(
+        !profile||
+        !profile.subscription_active
+    ){
 
         container.innerHTML=`
+
         <div class="signal-row">
             <span>Asset</span>
             <strong class="gold">XAU/USD</strong>
         </div>
+
         <div class="signal-row">
             <span>Access</span>
             <strong>SUBSCRIPTION REQUIRED</strong>
@@ -950,22 +1213,29 @@ async function loadLatestSignal(){
         return;
     }
 
+
     const {data,error}=
         await supabaseClient
         .from("gold_signals")
         .select("*")
         .eq("active",true)
-        .order("created_at",{ascending:false})
+        .order(
+            "created_at",
+            {ascending:false}
+        )
         .limit(1)
         .maybeSingle();
+
 
     if(error||!data){
 
         container.innerHTML=`
+
         <div class="signal-row">
             <span>Asset</span>
             <strong class="gold">XAU/USD</strong>
         </div>
+
         <div class="signal-row">
             <span>Status</span>
             <strong>WAITING</strong>
@@ -974,7 +1244,9 @@ async function loadLatestSignal(){
         return;
     }
 
+
     container.innerHTML=`
+
     <div class="signal-row">
         <span>Asset</span>
         <strong class="gold">XAU/USD</strong>
@@ -1014,21 +1286,43 @@ async function loadLatestSignal(){
 
 function subscribeToSignals(){
 
-    supabaseClient
-    .channel("aurix-gold-signals")
-    .on(
-        "postgres_changes",
-        {
-            event:"INSERT",
-            schema:"public",
-            table:"gold_signals"
-        },
-        function(){
-            loadLatestSignal();
-            loadNotifications();
-        }
-    )
-    .subscribe();
+    if(signalChannel){
+
+        supabaseClient.removeChannel(
+            signalChannel
+        );
+
+    }
+
+
+    signalChannel=
+        supabaseClient
+        .channel(
+            "aurix-gold-signals"
+        )
+        .on(
+
+            "postgres_changes",
+
+            {
+                event:"INSERT",
+
+                schema:"public",
+
+                table:"gold_signals"
+            },
+
+            function(){
+
+                loadLatestSignal();
+
+                loadNotifications();
+
+            }
+
+        )
+        .subscribe();
+
 }
 
 
@@ -1039,11 +1333,32 @@ function subscribeToSignals(){
 function escapeHtml(value){
 
     return String(value)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+
+    .replace(
+        /</g,
+        "&lt;"
+    )
+
+    .replace(
+        />/g,
+        "&gt;"
+    )
+
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
 }
 
 
@@ -1055,6 +1370,7 @@ function contactSupport(){
 
     window.location.href=
         "mailto:mmatrix081@gmail.com?subject=AURIX%20AI%20Support%20Request";
+
 }
 
 
@@ -1068,18 +1384,38 @@ async function logoutUser(){
 
     currentUser=null;
 
+
     if(notificationChannel){
+
         supabaseClient.removeChannel(
             notificationChannel
         );
+
         notificationChannel=null;
+
     }
+
+
+    if(signalChannel){
+
+        supabaseClient.removeChannel(
+            signalChannel
+        );
+
+        signalChannel=null;
+
+    }
+
 
     showScreen("welcome");
 
+
     setTimeout(function(){
+
         showScreen("register");
+
     },500);
+
 }
 
 
@@ -1088,6 +1424,7 @@ async function logoutUser(){
 ========================================= */
 
 supabaseClient.auth.onAuthStateChange(
+
     async function(event,session){
 
         if(session&&session.user){
@@ -1096,7 +1433,9 @@ supabaseClient.auth.onAuthStateChange(
 
             setTimeout(
                 function(){
+
                     afterLogin();
+
                 },
                 0
             );
@@ -1104,8 +1443,11 @@ supabaseClient.auth.onAuthStateChange(
         }else{
 
             currentUser=null;
+
         }
+
     }
+
 );
 
 
@@ -1114,19 +1456,27 @@ supabaseClient.auth.onAuthStateChange(
 ========================================= */
 
 document.addEventListener(
+
     "DOMContentLoaded",
+
     async function(){
 
         loadSelectedPlan();
+
 
         const {
             data
         }=
         await supabaseClient.auth.getSession();
 
-        if(data&&data.session){
 
-            currentUser=data.session.user;
+        if(
+            data&&
+            data.session
+        ){
+
+            currentUser=
+                data.session.user;
 
             await afterLogin();
 
@@ -1136,15 +1486,20 @@ document.addEventListener(
 
             showScreen("welcome");
 
+
             setTimeout(function(){
 
                 showScreen("register");
 
             },5000);
+
         }
 
+
         subscribeToSignals();
+
     }
+
 );
 
 </script>
