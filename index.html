@@ -55,8 +55,6 @@ button,input{
     margin:auto;
 }
 
-/* LOGO */
-
 .logo{
     width:165px;
     height:165px;
@@ -68,8 +66,6 @@ button,input{
     height:100%;
     display:block;
 }
-
-/* BRAND */
 
 .brand{
     text-align:center;
@@ -97,8 +93,6 @@ button,input{
     margin:14px auto 0;
     max-width:500px;
 }
-
-/* CARDS */
 
 .card{
     background:linear-gradient(145deg,#111,#080808);
@@ -131,8 +125,6 @@ button,input{
     margin-bottom:25px;
 }
 
-/* INPUTS */
-
 .input-group{
     margin-bottom:16px;
 }
@@ -160,8 +152,6 @@ input:focus{
     border-color:#D4AF37;
 }
 
-/* BUTTONS */
-
 .btn{
     width:100%;
     min-height:62px;
@@ -187,8 +177,6 @@ input:focus{
     color:#ff7777;
     border:1px solid #552222;
 }
-
-/* HERO */
 
 .hero{
     padding:25px 0;
@@ -217,8 +205,6 @@ input:focus{
     line-height:1.6;
 }
 
-/* STATS */
-
 .stats{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -243,8 +229,6 @@ input:focus{
     font-size:21px;
     color:#F0D36A;
 }
-
-/* SIGNAL */
 
 .signal{
     border:1px solid #403515;
@@ -277,8 +261,6 @@ input:focus{
 .signal-row:last-child{
     border-bottom:0;
 }
-
-/* PLANS */
 
 .plan{
     position:relative;
@@ -315,8 +297,6 @@ input:focus{
     margin-right:9px;
 }
 
-/* WALLET */
-
 .wallet-box{
     background:#0c0c0c;
     border:1px solid #3d3218;
@@ -351,14 +331,10 @@ input:focus{
     margin-bottom:18px;
 }
 
-/* SUPPORT */
-
 .support-email{
     color:#F0D36A;
     word-break:break-all;
 }
-
-/* SETTINGS */
 
 .settings-row{
     display:flex;
@@ -380,8 +356,6 @@ input:focus{
     color:#F0D36A;
     font-size:14px;
 }
-
-/* BOTTOM NAV */
 
 .bottom-nav{
     position:fixed;
@@ -428,8 +402,6 @@ input:focus{
     background:#17140b;
 }
 
-/* MOBILE */
-
 @media(max-width:420px){
 
     .brand{
@@ -460,164 +432,71 @@ input:focus{
 
 <body>
 
-<!-- SPLASH -->
+<!-- WELCOME -->
 
 <section id="welcome" class="center-screen active">
 
     <div class="welcome">
 
         <div class="logo">
-            <svg
-                viewBox="0 0 512 512"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-label="AURIX AI"
-            >
+            <svg viewBox="0 0 512 512"
+                 xmlns="http://www.w3.org/2000/svg"
+                 aria-label="AURIX AI">
 
-                <rect
-                    width="512"
-                    height="512"
-                    rx="120"
-                    fill="#030303"
-                />
+                <rect width="512" height="512"
+                      rx="120" fill="#030303"/>
 
-                <circle
-                    cx="256"
-                    cy="256"
-                    r="190"
-                    fill="none"
-                    stroke="#D4AF37"
-                    stroke-width="8"
-                    opacity=".55"
-                />
+                <circle cx="256" cy="256" r="190"
+                        fill="none"
+                        stroke="#D4AF37"
+                        stroke-width="8"
+                        opacity=".55"/>
 
-                <circle
-                    cx="256"
-                    cy="256"
-                    r="155"
-                    fill="none"
-                    stroke="#8F7420"
-                    stroke-width="2"
-                    opacity=".8"
-                />
+                <circle cx="256" cy="256" r="155"
+                        fill="none"
+                        stroke="#8F7420"
+                        stroke-width="2"/>
 
-                <line
-                    x1="145"
-                    y1="300"
-                    x2="145"
-                    y2="205"
-                    stroke="#D4AF37"
-                    stroke-width="10"
-                    stroke-linecap="round"
-                />
+                <rect x="127" y="235"
+                      width="36" height="65"
+                      rx="6" fill="#D4AF37"/>
 
-                <rect
-                    x="127"
-                    y="235"
-                    width="36"
-                    height="65"
-                    rx="6"
-                    fill="#D4AF37"
-                />
+                <rect x="187" y="210"
+                      width="36" height="90"
+                      rx="6" fill="#F0D36A"/>
 
-                <line
-                    x1="205"
-                    y1="330"
-                    x2="205"
-                    y2="175"
-                    stroke="#F0D36A"
-                    stroke-width="10"
-                    stroke-linecap="round"
-                />
+                <rect x="257" y="175"
+                      width="36" height="100"
+                      rx="6" fill="#FFE58A"/>
 
-                <rect
-                    x="187"
-                    y="210"
-                    width="36"
-                    height="90"
-                    rx="6"
-                    fill="#F0D36A"
-                />
+                <rect x="327" y="150"
+                      width="36" height="95"
+                      rx="6" fill="#D4AF37"/>
 
-                <line
-                    x1="275"
-                    y1="300"
-                    x2="275"
-                    y2="145"
-                    stroke="#FFE58A"
-                    stroke-width="10"
-                    stroke-linecap="round"
-                />
-
-                <rect
-                    x="257"
-                    y="175"
-                    width="36"
-                    height="100"
-                    rx="6"
-                    fill="#FFE58A"
-                />
-
-                <line
-                    x1="345"
-                    y1="275"
-                    x2="345"
-                    y2="125"
-                    stroke="#D4AF37"
-                    stroke-width="10"
-                    stroke-linecap="round"
-                />
-
-                <rect
-                    x="327"
-                    y="150"
-                    width="36"
-                    height="95"
-                    rx="6"
-                    fill="#D4AF37"
-                />
-
-                <path
-                    d="M125 350
-                       C165 330 185 345 220 315
-                       C255 285 270 305 300 270
-                       C325 240 350 245 385 190"
-                    fill="none"
-                    stroke="#FFE58A"
-                    stroke-width="9"
-                    stroke-linecap="round"
-                />
+                <path d="M125 350
+                         C165 330 185 345 220 315
+                         C255 285 270 305 300 270
+                         C325 240 350 245 385 190"
+                      fill="none"
+                      stroke="#FFE58A"
+                      stroke-width="9"
+                      stroke-linecap="round"/>
 
                 <circle cx="125" cy="350" r="9" fill="#FFE58A"/>
                 <circle cx="220" cy="315" r="9" fill="#FFE58A"/>
                 <circle cx="300" cy="270" r="9" fill="#FFE58A"/>
                 <circle cx="385" cy="190" r="11" fill="#FFE58A"/>
 
-                <circle
-                    cx="256"
-                    cy="256"
-                    r="48"
-                    fill="#D4AF37"
-                    opacity=".08"
-                />
+                <circle cx="256" cy="256" r="48"
+                        fill="#D4AF37" opacity=".08"/>
 
-                <circle
-                    cx="256"
-                    cy="256"
-                    r="8"
-                    fill="#FFE58A"
-                />
-
-                <circle cx="170" cy="150" r="4" fill="#D4AF37"/>
-                <circle cx="330" cy="350" r="4" fill="#D4AF37"/>
-                <circle cx="370" cy="315" r="4" fill="#D4AF37"/>
-                <circle cx="145" cy="375" r="4" fill="#D4AF37"/>
+                <circle cx="256" cy="256" r="8"
+                        fill="#FFE58A"/>
 
             </svg>
         </div>
 
-        <div class="brand">
-            AURIX AI
-        </div>
+        <div class="brand">AURIX AI</div>
 
         <div class="welcome-title">
             WELCOME TO AURIX AI
@@ -638,55 +517,43 @@ input:focus{
 
     <div class="container">
 
-        <h1 class="page-title">
-            CREATE ACCOUNT
-        </h1>
+        <h1 class="page-title">CREATE ACCOUNT</h1>
 
         <div class="card">
 
             <div class="input-group">
                 <label>Email</label>
-
-                <input
-                    type="email"
-                    id="registerEmail"
-                    placeholder="Enter your email"
-                >
+                <input type="email"
+                       id="registerEmail"
+                       autocomplete="off"
+                       placeholder="Enter your email">
             </div>
 
             <div class="input-group">
                 <label>Password</label>
-
-                <input
-                    type="password"
-                    id="registerPassword"
-                    placeholder="Create password"
-                >
+                <input type="password"
+                       id="registerPassword"
+                       autocomplete="new-password"
+                       placeholder="Create password">
             </div>
 
             <div class="input-group">
                 <label>Confirm Password</label>
-
-                <input
-                    type="password"
-                    id="registerConfirm"
-                    placeholder="Confirm password"
-                >
+                <input type="password"
+                       id="registerConfirm"
+                       autocomplete="new-password"
+                       placeholder="Confirm password">
             </div>
 
-            <button
-                type="button"
-                class="btn"
-                onclick="registerUser()"
-            >
+            <button type="button"
+                    class="btn"
+                    onclick="registerUser()">
                 CREATE ACCOUNT
             </button>
 
-            <button
-                type="button"
-                class="btn secondary"
-                onclick="showScreen('login')"
-            >
+            <button type="button"
+                    class="btn secondary"
+                    onclick="showScreen('login')">
                 ALREADY HAVE AN ACCOUNT
             </button>
 
@@ -703,45 +570,35 @@ input:focus{
 
     <div class="container">
 
-        <h1 class="page-title">
-            LOGIN
-        </h1>
+        <h1 class="page-title">LOGIN</h1>
 
         <div class="card">
 
             <div class="input-group">
                 <label>Email</label>
-
-                <input
-                    type="email"
-                    id="loginEmail"
-                    placeholder="Enter your email"
-                >
+                <input type="email"
+                       id="loginEmail"
+                       autocomplete="off"
+                       placeholder="Enter your email">
             </div>
 
             <div class="input-group">
                 <label>Password</label>
-
-                <input
-                    type="password"
-                    id="loginPassword"
-                    placeholder="Enter your password"
-                >
+                <input type="password"
+                       id="loginPassword"
+                       autocomplete="new-password"
+                       placeholder="Enter your password">
             </div>
 
-            <button
-                type="button"
-                class="btn"
-                onclick="loginUser()"
-            >
+            <button type="button"
+                    class="btn"
+                    onclick="loginUser()">
                 LOGIN
             </button>
 
-            <button
-                type="button"
-                class="btn secondary"
-                onclick="showScreen('register')"
-            >
+            <button type="button"
+                    class="btn secondary"
+                    onclick="showScreen('register')">
                 CREATE ACCOUNT
             </button>
 
@@ -764,9 +621,7 @@ input:focus{
                 AURIX AI • GOLD INTELLIGENCE
             </div>
 
-            <h1>
-                Gold Market Intelligence
-            </h1>
+            <h1>Gold Market Intelligence</h1>
 
             <p>
                 Monitor gold market movements and receive
@@ -793,9 +648,7 @@ input:focus{
 
             <div class="signal-header">
 
-                <h2>
-                    Latest Signal
-                </h2>
+                <h2>Latest Signal</h2>
 
                 <div class="signal-status">
                     AI MONITORING
@@ -827,20 +680,16 @@ input:focus{
 
         <div class="card">
 
-            <h2>
-                Premium Signals
-            </h2>
+            <h2>Premium Signals</h2>
 
             <p>
                 Subscribe to activate access to AURIX AI
                 gold market signals and alerts.
             </p>
 
-            <button
-                type="button"
-                class="btn"
-                onclick="showScreen('plans')"
-            >
+            <button type="button"
+                    class="btn"
+                    onclick="showScreen('plans')">
                 VIEW PLANS
             </button>
 
@@ -863,13 +712,9 @@ input:focus{
 
         <div class="card plan">
 
-            <h2>
-                1 MONTH
-            </h2>
+            <h2>1 MONTH</h2>
 
-            <div class="plan-price">
-                $49
-            </div>
+            <div class="plan-price">$49</div>
 
             <div class="plan-period">
                 One month access
@@ -882,26 +727,19 @@ input:focus{
                 <li>Premium Market Intelligence</li>
             </ul>
 
-            <button
-                type="button"
-                class="btn"
-                onclick="selectPlan('1 Month - $49')"
-            >
+            <button type="button"
+                    class="btn"
+                    onclick="selectPlan('1 Month - $49')">
                 SELECT PLAN
             </button>
 
         </div>
 
-
         <div class="card plan">
 
-            <h2>
-                3 MONTHS
-            </h2>
+            <h2>3 MONTHS</h2>
 
-            <div class="plan-price">
-                $119
-            </div>
+            <div class="plan-price">$119</div>
 
             <div class="plan-period">
                 Three months access
@@ -914,11 +752,9 @@ input:focus{
                 <li>Premium Market Intelligence</li>
             </ul>
 
-            <button
-                type="button"
-                class="btn"
-                onclick="selectPlan('3 Months - $119')"
-            >
+            <button type="button"
+                    class="btn"
+                    onclick="selectPlan('3 Months - $119')">
                 SELECT PLAN
             </button>
 
@@ -935,9 +771,7 @@ input:focus{
 
     <div class="container">
 
-        <h1 class="page-title">
-            DEPOSIT
-        </h1>
+        <h1 class="page-title">DEPOSIT</h1>
 
         <div class="notice">
             Send your payment using the supported network.
@@ -947,14 +781,10 @@ input:focus{
 
         <div class="card">
 
-            <h2>
-                Selected Plan
-            </h2>
+            <h2>Selected Plan</h2>
 
-            <p
-                id="selectedPlanDisplay"
-                class="gold"
-            >
+            <p id="selectedPlanDisplay"
+               class="gold">
                 No plan selected
             </p>
 
@@ -962,19 +792,13 @@ input:focus{
 
         <div class="card">
 
-            <h2>
-                Network
-            </h2>
+            <h2>Network</h2>
 
-            <p>
-                BNB Smart Chain (BEP20)
-            </p>
+            <p>BNB Smart Chain (BEP20)</p>
 
             <br>
 
-            <h2>
-                Supported Assets
-            </h2>
+            <h2>Supported Assets</h2>
 
             <p>
                 USDT (BEP20)<br>
@@ -985,22 +809,16 @@ input:focus{
 
         <div class="card">
 
-            <h2>
-                Deposit Wallet
-            </h2>
+            <h2>Deposit Wallet</h2>
 
-            <div
-                class="wallet-box"
-                id="walletAddress"
-            >
+            <div class="wallet-box"
+                 id="walletAddress">
                 0x4E11E978119cAAB300b5439B909D06341C24a2A7
             </div>
 
-            <button
-                type="button"
-                class="btn copy-btn"
-                onclick="copyWallet()"
-            >
+            <button type="button"
+                    class="btn copy-btn"
+                    onclick="copyWallet()">
                 COPY WALLET ADDRESS
             </button>
 
@@ -1009,11 +827,9 @@ input:focus{
                 transaction information for verification.
             </div>
 
-            <button
-                type="button"
-                class="btn"
-                onclick="depositSubmitted()"
-            >
+            <button type="button"
+                    class="btn"
+                    onclick="depositSubmitted()">
                 I HAVE MADE THE DEPOSIT
             </button>
 
@@ -1030,15 +846,11 @@ input:focus{
 
     <div class="container">
 
-        <h1 class="page-title">
-            NOTIFICATIONS
-        </h1>
+        <h1 class="page-title">NOTIFICATIONS</h1>
 
         <div class="card">
 
-            <h2>
-                Welcome to AURIX AI
-            </h2>
+            <h2>Welcome to AURIX AI</h2>
 
             <p>
                 Your account has been created successfully.
@@ -1048,9 +860,7 @@ input:focus{
 
         <div class="card">
 
-            <h2>
-                Subscription
-            </h2>
+            <h2>Subscription</h2>
 
             <p>
                 Deposit verification is required before
@@ -1070,15 +880,11 @@ input:focus{
 
     <div class="container">
 
-        <h1 class="page-title">
-            SUPPORT
-        </h1>
+        <h1 class="page-title">SUPPORT</h1>
 
         <div class="card">
 
-            <h2>
-                Need Help?
-            </h2>
+            <h2>Need Help?</h2>
 
             <p>
                 Contact AURIX AI support for subscription,
@@ -1089,11 +895,9 @@ input:focus{
                 mmatrix081@gmail.com
             </div>
 
-            <button
-                type="button"
-                class="btn"
-                onclick="contactSupport()"
-            >
+            <button type="button"
+                    class="btn"
+                    onclick="contactSupport()">
                 CONTACT SUPPORT
             </button>
 
@@ -1110,61 +914,34 @@ input:focus{
 
     <div class="container">
 
-        <h1 class="page-title">
-            SETTINGS
-        </h1>
+        <h1 class="page-title">SETTINGS</h1>
 
         <div class="card">
 
             <div class="settings-row">
-
-                <div class="settings-label">
-                    Application
-                </div>
-
-                <div class="settings-value">
-                    AURIX AI
-                </div>
-
+                <div class="settings-label">Application</div>
+                <div class="settings-value">AURIX AI</div>
             </div>
 
             <div class="settings-row">
-
-                <div class="settings-label">
-                    Market
-                </div>
-
-                <div class="settings-value">
-                    GOLD
-                </div>
-
+                <div class="settings-label">Market</div>
+                <div class="settings-value">GOLD</div>
             </div>
 
             <div class="settings-row">
-
-                <div class="settings-label">
-                    Network
-                </div>
-
-                <div class="settings-value">
-                    BEP20
-                </div>
-
+                <div class="settings-label">Network</div>
+                <div class="settings-value">BEP20</div>
             </div>
 
         </div>
 
         <div class="card">
 
-            <h2>
-                Account
-            </h2>
+            <h2>Account</h2>
 
-            <button
-                type="button"
-                class="btn danger"
-                onclick="logoutUser()"
-            >
+            <button type="button"
+                    class="btn danger"
+                    onclick="logoutUser()">
                 LOG OUT
             </button>
 
@@ -1177,61 +954,47 @@ input:focus{
 
 <!-- BOTTOM NAV -->
 
-<nav
-    id="bottomNav"
-    class="bottom-nav hidden"
->
+<nav id="bottomNav"
+     class="bottom-nav hidden">
 
-    <button
-        type="button"
-        class="nav-btn active"
-        onclick="showScreen('home')"
-    >
+    <button type="button"
+            class="nav-btn active"
+            onclick="showScreen('home')">
         <span>⌂</span>
         Home
     </button>
 
-    <button
-        type="button"
-        class="nav-btn"
-        onclick="showScreen('plans')"
-    >
+    <button type="button"
+            class="nav-btn"
+            onclick="showScreen('plans')">
         <span>◆</span>
         Plans
     </button>
 
-    <button
-        type="button"
-        class="nav-btn"
-        onclick="showScreen('wallet')"
-    >
+    <button type="button"
+            class="nav-btn"
+            onclick="showScreen('wallet')">
         <span>◈</span>
         Wallet
     </button>
 
-    <button
-        type="button"
-        class="nav-btn"
-        onclick="showScreen('notifications')"
-    >
+    <button type="button"
+            class="nav-btn"
+            onclick="showScreen('notifications')">
         <span>●</span>
         Alerts
     </button>
 
-    <button
-        type="button"
-        class="nav-btn"
-        onclick="showScreen('support')"
-    >
+    <button type="button"
+            class="nav-btn"
+            onclick="showScreen('support')">
         <span>?</span>
         Support
     </button>
 
-    <button
-        type="button"
-        class="nav-btn"
-        onclick="showScreen('settings')"
-    >
+    <button type="button"
+            class="nav-btn"
+            onclick="showScreen('settings')">
         <span>⚙</span>
         Settings
     </button>
@@ -1240,6 +1003,36 @@ input:focus{
 
 
 <script>
+
+/* =========================
+   AURIX CLEAN SESSION
+========================= */
+
+(function(){
+
+    const forbiddenKeys = [
+        "github",
+        "githubUser",
+        "github_username",
+        "githubUsername",
+        "loginMessage",
+        "loginSuccess",
+        "successMessage",
+        "userName",
+        "username",
+        "phone",
+        "userPhone"
+    ];
+
+    forbiddenKeys.forEach(function(key){
+        try{
+            localStorage.removeItem(key);
+            sessionStorage.removeItem(key);
+        }catch(e){}
+    });
+
+})();
+
 
 /* =========================
    SCREEN MANAGEMENT
@@ -1258,7 +1051,7 @@ function showScreen(screenId){
 
     document
         .querySelectorAll(".screen, .center-screen")
-        .forEach(screen => {
+        .forEach(function(screen){
             screen.classList.remove("active");
         });
 
@@ -1274,15 +1067,19 @@ function showScreen(screenId){
     const bottomNav =
         document.getElementById("bottomNav");
 
-    if(appScreens.includes(screenId)){
-        bottomNav.classList.remove("hidden");
-    }else{
-        bottomNav.classList.add("hidden");
+    if(bottomNav){
+
+        if(appScreens.includes(screenId)){
+            bottomNav.classList.remove("hidden");
+        }else{
+            bottomNav.classList.add("hidden");
+        }
+
     }
 
     document
         .querySelectorAll(".nav-btn")
-        .forEach(btn => {
+        .forEach(function(btn){
 
             btn.classList.remove("active");
 
@@ -1306,6 +1103,7 @@ function showScreen(screenId){
 /* =========================
    REGISTER
    NO POPUP
+   NO EXTERNAL DATA
 ========================= */
 
 function registerUser(){
@@ -1334,6 +1132,16 @@ function registerUser(){
         return;
     }
 
+    // Remove possible old/foreign session values
+    localStorage.removeItem("github");
+    localStorage.removeItem("githubUser");
+    localStorage.removeItem("loginMessage");
+    localStorage.removeItem("loginSuccess");
+    localStorage.removeItem("userName");
+    localStorage.removeItem("username");
+    localStorage.removeItem("phone");
+    localStorage.removeItem("userPhone");
+
     localStorage.setItem(
         "aurixEmail",
         email
@@ -1351,6 +1159,8 @@ function registerUser(){
 /* =========================
    LOGIN
    NO POPUP
+   NO MESSAGE
+   NO GITHUB
 ========================= */
 
 function loginUser(){
@@ -1370,6 +1180,33 @@ function loginUser(){
         return;
     }
 
+    // Clear every possible old/foreign login value
+    const removeKeys = [
+        "github",
+        "githubUser",
+        "github_username",
+        "githubUsername",
+        "loginMessage",
+        "loginSuccess",
+        "successMessage",
+        "userName",
+        "username",
+        "phone",
+        "userPhone",
+        "name",
+        "user"
+    ];
+
+    removeKeys.forEach(function(key){
+
+        try{
+            localStorage.removeItem(key);
+            sessionStorage.removeItem(key);
+        }catch(e){}
+
+    });
+
+    // Save only AURIX login state
     localStorage.setItem(
         "aurixEmail",
         email
@@ -1380,6 +1217,10 @@ function loginUser(){
         "true"
     );
 
+    // Directly open Home
+    // No alert
+    // No popup
+    // No external page
     showScreen("home");
 }
 
@@ -1414,6 +1255,29 @@ function selectPlan(plan){
 
 
 /* =========================
+   LOAD SAVED PLAN
+========================= */
+
+function loadSelectedPlan(){
+
+    const savedPlan =
+        localStorage.getItem(
+            "aurixSelectedPlan"
+        );
+
+    const display =
+        document.getElementById(
+            "selectedPlanDisplay"
+        );
+
+    if(display && savedPlan){
+        display.textContent = savedPlan;
+        selectedPlan = savedPlan;
+    }
+}
+
+
+/* =========================
    COPY WALLET
    NO POPUP
 ========================= */
@@ -1428,7 +1292,8 @@ function copyWallet(){
         navigator.clipboard.writeText
     ){
 
-        navigator.clipboard.writeText(address);
+        navigator.clipboard.writeText(address)
+        .catch(function(){});
 
     }
 
@@ -1465,7 +1330,6 @@ function contactSupport(){
 
 /* =========================
    LOGOUT
-   NO POPUP
 ========================= */
 
 function logoutUser(){
@@ -1474,7 +1338,18 @@ function logoutUser(){
         "aurixLoggedIn"
     );
 
+    localStorage.removeItem(
+        "aurixEmail"
+    );
+
     showScreen("welcome");
+
+    setTimeout(function(){
+
+        showScreen("register");
+
+    },500);
+
 }
 
 
@@ -1485,6 +1360,8 @@ function logoutUser(){
 document.addEventListener(
     "DOMContentLoaded",
     function(){
+
+        loadSelectedPlan();
 
         showScreen("welcome");
 
