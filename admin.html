@@ -1084,6 +1084,14 @@ async function loadDeposits(){
 
  table.innerHTML="";
 
+ if(!data || !data.length){
+
+  table.innerHTML=
+  `<tr><td colspan="7">No deposits found.</td></tr>`;
+
+  return;
+ }
+
  for(const d of data){
 
   let email="-";
@@ -1117,8 +1125,8 @@ async function loadDeposits(){
     </td>
 
     <td>
-     <span class="badge ${escapeHtml(d.status)}">
-      ${escapeHtml(d.status)}
+     <span class="badge ${escapeHtml(d.status||"pending")}">
+      ${escapeHtml(d.status||"pending")}
      </span>
     </td>
 
@@ -1390,7 +1398,7 @@ async function loadSubscribers(){
  if(!data || !data.length){
 
   table.innerHTML=
-  `<tr><td colspan="5">No members found.</td></tr>`;
+   `<tr><td colspan="5">No members found.</td></tr>`;
 
   return;
  }
@@ -1655,79 +1663,183 @@ async function publishSignal(){
  }
 
  if(!confirm(
-  "Publish this new gold signal?\n\n" +
-  "The previous active signal will become expired."
+  "PUBLISH NEW GOLD SIGNAL?\n\n" +
+  "The current active signal will be replaced."
  ))
   return;
 
  msg.textContent =
-  "Closing previous active signal...";
+  "Checking current signal...";
 
 
- /* CLOSE ALL CURRENT ACTIVE SIGNALS */
+ /* =====================================================
+    STEP 1
+    FIND CURRENT ACTIVE SIGNAL
+    ===================================================== */
 
- const {error:closeError} =
+ const {data:oldSignals,error:findOldError} =
  await supabaseClient
  .from("gold_signals")
- .update({
-  active:false
- })
+ .select("id")
  .eq("active",true);
 
- if(closeError){
+ if(findOldError){
 
   msg.textContent =
-   "Could not close previous signal:\n\n" +
-   closeError.message;
+   "Could not check current signal:\n\n" +
+   findOldError.message;
 
-  console.log(
-   "CLOSE OLD SIGNAL ERROR:",
-   closeError
+  return;
+ }
+
+
+ /* =====================================================
+    STEP 2
+    CLOSE ALL OLD ACTIVE SIGNALS
+    ===================================================== */
+
+ if(oldSignals && oldSignals.length){
+
+  msg.textContent =
+   "Removing previous active signal...";
+
+  const {error:closeError} =
+  await supabaseClient
+  .from("gold_signals")
+  .update({
+   active:false
+  })
+  .eq("active",true);
+
+  if(closeError){
+
+   msg.textContent =
+    "Could not replace previous signal:\n\n" +
+    closeError.message;
+
+   console.log(
+    "CLOSE OLD SIGNAL ERROR:",
+    closeError
+   );
+
+   return;
+  }
+ }
+
+
+ /* =====================================================
+    STEP 3
+    VERIFY NO ACTIVE SIGNAL REMAINS
+    ===================================================== */
+
+ const {data:remainingActive,error:verifyError} =
+ await supabaseClient
+ .from("gold_signals")
+ .select("id")
+ .eq("active",true);
+
+ if(verifyError){
+
+  msg.textContent =
+   "Could not verify previous signal removal.";
+
+  return;
+ }
+
+ if(remainingActive && remainingActive.length){
+
+  msg.textContent =
+   "A previous active signal still exists. New signal was NOT published.";
+
+  alert(
+   "A previous active signal still exists.\n\n" +
+   "The new signal was not published."
   );
 
   return;
  }
 
 
+ /* =====================================================
+    STEP 4
+    CREATE NEW ACTIVE SIGNAL
+    ===================================================== */
+
  msg.textContent =
   "Publishing new signal...";
 
 
- /* CREATE NEW SIGNAL */
-
- const {data:newSignal,error} =
+ const {data:newSignal,error:createError} =
  await supabaseClient
  .from("gold_signals")
  .insert({
 
   timeframe:timeframe,
+
   signal:signal,
+
   entry:entry,
+
   stop_loss:stopLoss,
+
   take_profit:takeProfit,
+
   message:message || null,
+
   active:true
 
  })
  .select()
  .single();
 
- if(error){
+ if(createError){
 
   msg.textContent =
    "Could not publish signal:\n\n" +
-   error.message;
+   createError.message;
 
   console.log(
-   "PUBLISH SIGNAL ERROR:",
-   error
+   "CREATE SIGNAL ERROR:",
+   createError
   );
 
   return;
  }
 
 
- /* GET ACTIVE SUBSCRIBERS */
+ /* =====================================================
+    STEP 5
+    VERIFY NEW SIGNAL IS ACTIVE
+    ===================================================== */
+
+ const {data:verifyNew,error:verifyNewError} =
+ await supabaseClient
+ .from("gold_signals")
+ .select("*")
+ .eq("id",newSignal.id)
+ .eq("active",true)
+ .maybeSingle();
+
+ if(verifyNewError || !verifyNew){
+
+  msg.textContent =
+   "Signal was created but could not be verified.";
+
+  return;
+ }
+
+
+ /* =====================================================
+    STEP 6
+    GET ONLY ACTIVE SUBSCRIBERS
+    ===================================================== */
+
+ msg.textContent =
+  "Loading active subscribers...";
+
+
+ const now=
+  new Date().toISOString();
 
  const {data:members,error:membersError} =
  await supabaseClient
@@ -1735,10 +1847,10 @@ async function publishSignal(){
  .select("id")
  .eq("role","member")
  .eq("subscription_active",true)
- .gt(
-  "subscription_expires_at",
-  new Date().toISOString()
+ .or(
+  `subscription_expires_at.is.null,subscription_expires_at.gt.${now}`
  );
+
 
  if(membersError){
 
@@ -1746,7 +1858,7 @@ async function publishSignal(){
    "Signal published, but subscribers could not be loaded.";
 
   console.log(
-   "SUBSCRIBERS ERROR:",
+   "ACTIVE SUBSCRIBERS ERROR:",
    membersError
   );
 
@@ -1756,7 +1868,10 @@ async function publishSignal(){
  }
 
 
- /* SEND NOTIFICATIONS */
+ /* =====================================================
+    STEP 7
+    SEND NOTIFICATION ONLY TO ACTIVE USERS
+    ===================================================== */
 
  if(members && members.length){
 
@@ -1768,7 +1883,7 @@ async function publishSignal(){
     title:"New Gold Signal",
 
     message:
-     `New ${signal} signal on ${timeframe}. Entry: ${entry} | Stop Loss: ${stopLoss} | Take Profit: ${takeProfit}`,
+     `A new ${signal} gold signal is available on ${timeframe}.`,
 
     type:"signal",
 
@@ -1777,9 +1892,9 @@ async function publishSignal(){
    }));
 
   const {error:notificationError} =
-   await supabaseClient
-   .from("notifications")
-   .insert(notifications);
+  await supabaseClient
+  .from("notifications")
+  .insert(notifications);
 
   if(notificationError){
 
@@ -1798,14 +1913,24 @@ async function publishSignal(){
  }
 
 
- msg.textContent =
-  `Signal published successfully. ${members?.length||0} active subscriber(s) notified.`;
-
+ /* =====================================================
+    STEP 8
+    CLEAR FORM
+    ===================================================== */
 
  document.getElementById("entry").value="";
  document.getElementById("stopLoss").value="";
  document.getElementById("takeProfit").value="";
  document.getElementById("signalMessage").value="";
+
+
+ /* =====================================================
+    SUCCESS
+    ===================================================== */
+
+ msg.textContent =
+  `Signal published successfully.\n` +
+  `${members?.length || 0} ACTIVE subscriber(s) notified.`;
 
 
  await showActiveSignal();
@@ -1933,12 +2058,9 @@ async function removeCurrentSignal(){
  const display =
   document.getElementById("activeSignalDisplay");
 
-
  msg.textContent =
   "Finding current active signal...";
 
-
- /* FIND CURRENT SIGNAL */
 
  const {data,error} =
  await supabaseClient
@@ -1957,11 +2079,6 @@ async function removeCurrentSignal(){
   alert(
    "Could not find current signal:\n\n" +
    error.message
-  );
-
-  console.log(
-   "FIND CURRENT SIGNAL ERROR:",
-   error
   );
 
   return;
@@ -2009,7 +2126,7 @@ async function removeCurrentSignal(){
 
   "\n\n" +
 
-  "This will remove the current signal from the database."
+  "The signal will disappear from active investors."
  );
 
 
@@ -2020,8 +2137,6 @@ async function removeCurrentSignal(){
  msg.textContent =
   "Removing current signal...";
 
-
- /* DELETE EXACT SIGNAL BY ID */
 
  const {data:deletedRows,error:deleteError} =
  await supabaseClient
@@ -2038,46 +2153,26 @@ async function removeCurrentSignal(){
 
   alert(
    "REMOVE CURRENT SIGNAL FAILED:\n\n" +
-   deleteError.message +
-
-   "\n\nSupabase code: " +
-   (deleteError.code || "unknown")
-  );
-
-  console.log(
-   "REMOVE CURRENT SIGNAL ERROR:",
-   deleteError
+   deleteError.message
   );
 
   return;
  }
 
 
- /* VERIFY ACTUAL DELETE */
-
- if(
-  !deletedRows ||
-  deletedRows.length===0
- ){
+ if(!deletedRows || deletedRows.length===0){
 
   msg.textContent =
    "Signal was NOT removed.";
 
   alert(
    "Supabase returned 0 deleted rows.\n\n" +
-   "This usually means the database RLS policy does not allow the admin to DELETE from gold_signals."
-  );
-
-  console.log(
-   "DELETE RETURNED ZERO ROWS:",
-   deletedRows
+   "Check the DELETE policy for gold_signals."
   );
 
   return;
  }
 
-
- /* SUCCESS */
 
  msg.textContent =
   "Current signal removed successfully.";
@@ -2089,8 +2184,6 @@ async function removeCurrentSignal(){
   "CURRENT SIGNAL REMOVED SUCCESSFULLY."
  );
 
-
- /* VERIFY THERE IS NO ACTIVE SIGNAL */
 
  await showActiveSignal();
 }
@@ -2133,11 +2226,6 @@ async function deleteExpiredSignals(){
    findError.message
   );
 
-  console.log(
-   "FIND EXPIRED SIGNALS ERROR:",
-   findError
-  );
-
   return;
  }
 
@@ -2170,15 +2258,7 @@ async function deleteExpiredSignals(){
 
   alert(
    "DELETE EXPIRED SIGNALS FAILED:\n\n" +
-   deleteError.message +
-
-   "\n\nSupabase code: " +
-   (deleteError.code || "unknown")
-  );
-
-  console.log(
-   "DELETE EXPIRED SIGNALS ERROR:",
-   deleteError
+   deleteError.message
   );
 
   return;
@@ -2435,7 +2515,7 @@ async function markAdminNotificationsRead(){
 
 
 /* =====================================================
-   REALTIME
+   REALTIME ADMIN NOTIFICATIONS
    ===================================================== */
 
 async function subscribeToAdminNotifications(){
