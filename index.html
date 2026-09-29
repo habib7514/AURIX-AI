@@ -12,18 +12,64 @@
 html{scroll-behavior:smooth}
 body{font-family:Arial,Helvetica,sans-serif;background:#050505;color:#fff;min-height:100vh}
 button,input,select{font-family:inherit}
+
 .screen{display:none;min-height:100vh;padding:30px 18px 120px}
 .screen.active{display:block}
-.center-screen{display:none;min-height:100vh;padding:25px 18px;align-items:center;justify-content:center}
+
+.center-screen{
+display:none;
+min-height:100vh;
+padding:25px 18px;
+align-items:center;
+justify-content:center
+}
+
 .center-screen.active{display:flex}
-.container{width:100%;max-width:650px;margin:auto}
 
-.logo{width:165px;height:165px;margin:0 auto 25px}
-.logo svg{width:100%;height:100%;display:block}
+.container{
+width:100%;
+max-width:650px;
+margin:auto
+}
 
-.brand{text-align:center;font-size:38px;font-weight:800;letter-spacing:5px;color:#F0D36A;margin-bottom:14px}
-.welcome-title{text-align:center;font-size:26px;font-weight:700;color:#fff;letter-spacing:1px;margin-top:12px}
-.welcome-text{text-align:center;color:#999;font-size:15px;line-height:1.7;margin:14px auto 0;max-width:500px}
+.logo{
+width:165px;
+height:165px;
+margin:0 auto 25px
+}
+
+.logo svg{
+width:100%;
+height:100%;
+display:block
+}
+
+.brand{
+text-align:center;
+font-size:38px;
+font-weight:800;
+letter-spacing:5px;
+color:#F0D36A;
+margin-bottom:14px
+}
+
+.welcome-title{
+text-align:center;
+font-size:26px;
+font-weight:700;
+color:#fff;
+letter-spacing:1px;
+margin-top:12px
+}
+
+.welcome-text{
+text-align:center;
+color:#999;
+font-size:15px;
+line-height:1.7;
+margin:14px auto 0;
+max-width:500px
+}
 
 .card{
 background:linear-gradient(145deg,#111,#080808);
@@ -34,15 +80,36 @@ margin-bottom:18px;
 box-shadow:0 8px 30px rgba(0,0,0,.35)
 }
 
-.card h2{color:#F0D36A;font-size:22px;margin-bottom:10px}
-.card p{color:#aaa;line-height:1.6}
+.card h2{
+color:#F0D36A;
+font-size:22px;
+margin-bottom:10px
+}
+
+.card p{
+color:#aaa;
+line-height:1.6
+}
 
 .gold{color:#F0D36A}
 
-.page-title{text-align:center;color:#F0D36A;font-size:30px;margin-bottom:25px}
+.page-title{
+text-align:center;
+color:#F0D36A;
+font-size:30px;
+margin-bottom:25px
+}
 
-.input-group{margin-bottom:16px}
-.input-group label{display:block;color:#bbb;margin-bottom:8px;font-size:14px}
+.input-group{
+margin-bottom:16px
+}
+
+.input-group label{
+display:block;
+color:#bbb;
+margin-bottom:8px;
+font-size:14px
+}
 
 input,select{
 width:100%;
@@ -56,7 +123,9 @@ font-size:16px;
 outline:none
 }
 
-input:focus,select:focus{border-color:#D4AF37}
+input:focus,select:focus{
+border-color:#D4AF37
+}
 
 .btn{
 width:100%;
@@ -84,7 +153,11 @@ color:#ff7777;
 border:1px solid #552222
 }
 
-.hero{padding:25px 0;margin-bottom:20px}
+.hero{
+padding:25px 0;
+margin-bottom:20px
+}
+
 .hero-badge{
 display:inline-block;
 padding:8px 14px;
@@ -96,8 +169,16 @@ letter-spacing:1px;
 margin-bottom:15px
 }
 
-.hero h1{font-size:34px;line-height:1.2;margin-bottom:10px}
-.hero p{color:#999;line-height:1.6}
+.hero h1{
+font-size:34px;
+line-height:1.2;
+margin-bottom:10px
+}
+
+.hero p{
+color:#999;
+line-height:1.6
+}
 
 .stats{
 display:grid;
@@ -113,8 +194,16 @@ border-radius:16px;
 padding:18px
 }
 
-.stat small{color:#888;display:block;margin-bottom:7px}
-.stat strong{font-size:21px;color:#F0D36A}
+.stat small{
+color:#888;
+display:block;
+margin-bottom:7px
+}
+
+.stat strong{
+font-size:21px;
+color:#F0D36A
+}
 
 .signal{
 border:1px solid #403515;
@@ -146,10 +235,17 @@ padding:11px 0;
 border-bottom:1px solid #222
 }
 
-.signal-row:last-child{border-bottom:0}
+.signal-row:last-child{
+border-bottom:0
+}
 
-.signal-row span{color:#888}
-.signal-row strong{text-align:right}
+.signal-row span{
+color:#888
+}
+
+.signal-row strong{
+text-align:right
+}
 
 .signal-message{
 margin-top:15px;
@@ -161,15 +257,55 @@ color:#bbb;
 line-height:1.6
 }
 
-.signal-buy{color:#59d98a!important}
-.signal-sell{color:#ff6b6b!important}
+.signal-buy{
+color:#59d98a!important
+}
 
-.plan{position:relative;overflow:hidden}
-.plan-price{font-size:35px;font-weight:800;color:#F0D36A;margin:15px 0 5px}
-.plan-period{color:#888;font-size:14px}
+.signal-sell{
+color:#ff6b6b!important
+}
 
-.plan ul{list-style:none;margin:18px 0}
-.plan li{color:#bbb;padding:8px 0;border-bottom:1px solid #1d1d1d}
+.no-trade{
+text-align:center;
+padding:30px 15px;
+color:#777
+}
+
+.no-trade strong{
+display:block;
+font-size:17px;
+color:#aaa;
+margin-top:5px
+}
+
+.plan{
+position:relative;
+overflow:hidden
+}
+
+.plan-price{
+font-size:35px;
+font-weight:800;
+color:#F0D36A;
+margin:15px 0 5px
+}
+
+.plan-period{
+color:#888;
+font-size:14px
+}
+
+.plan ul{
+list-style:none;
+margin:18px 0
+}
+
+.plan li{
+color:#bbb;
+padding:8px 0;
+border-bottom:1px solid #1d1d1d
+}
+
 .plan li::before{
 content:"✓";
 color:#F0D36A;
@@ -188,7 +324,9 @@ line-height:1.6;
 margin:15px 0
 }
 
-.copy-btn{min-height:52px}
+.copy-btn{
+min-height:52px
+}
 
 .status-box{
 padding:15px;
@@ -209,7 +347,10 @@ line-height:1.6;
 margin-bottom:18px
 }
 
-.support-email{color:#F0D36A;word-break:break-all}
+.support-email{
+color:#F0D36A;
+word-break:break-all
+}
 
 .settings-row{
 display:flex;
@@ -219,17 +360,27 @@ padding:18px 0;
 border-bottom:1px solid #222
 }
 
-.settings-row:last-child{border-bottom:0}
+.settings-row:last-child{
+border-bottom:0
+}
 
-.settings-label{color:#ccc}
-.settings-value{color:#F0D36A;font-size:14px}
+.settings-label{
+color:#ccc
+}
+
+.settings-value{
+color:#F0D36A;
+font-size:14px
+}
 
 .notification{
 border-left:3px solid #D4AF37;
 cursor:pointer
 }
 
-.notification.unread{background:#16130a}
+.notification.unread{
+background:#16130a
+}
 
 .notification-time{
 color:#666;
@@ -237,7 +388,11 @@ font-size:12px;
 margin-top:8px
 }
 
-.empty{color:#777;text-align:center;padding:30px}
+.empty{
+color:#777;
+text-align:center;
+padding:30px
+}
 
 .badge{
 display:inline-flex;
@@ -269,7 +424,9 @@ box-shadow:0 10px 35px rgba(0,0,0,.6);
 overflow-x:auto
 }
 
-.bottom-nav.hidden{display:none}
+.bottom-nav.hidden{
+display:none
+}
 
 .nav-btn{
 background:none;
@@ -288,15 +445,40 @@ justify-content:center;
 gap:5px
 }
 
-.nav-btn span{font-size:21px}
-.nav-btn.active{color:#F0D36A;background:#17140b}
+.nav-btn span{
+font-size:21px
+}
+
+.nav-btn.active{
+color:#F0D36A;
+background:#17140b
+}
 
 @media(max-width:420px){
-.brand{font-size:32px}
-.page-title{font-size:27px}
-.logo{width:145px;height:145px}
-.bottom-nav{left:5px;right:5px}
-.nav-btn{min-width:52px;font-size:10px}
+
+.brand{
+font-size:32px
+}
+
+.page-title{
+font-size:27px
+}
+
+.logo{
+width:145px;
+height:145px
+}
+
+.bottom-nav{
+left:5px;
+right:5px
+}
+
+.nav-btn{
+min-width:52px;
+font-size:10px
+}
+
 }
 </style>
 </head>
@@ -305,107 +487,235 @@ gap:5px
 
 <!-- WELCOME -->
 <section id="welcome" class="center-screen active">
+
 <div class="welcome">
 
 <div class="logo">
+
 <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+
 <rect width="512" height="512" rx="120" fill="#030303"/>
-<circle cx="256" cy="256" r="190" fill="none" stroke="#D4AF37" stroke-width="8" opacity=".55"/>
-<circle cx="256" cy="256" r="155" fill="none" stroke="#8F7420" stroke-width="2"/>
-<rect x="127" y="235" width="36" height="65" rx="6" fill="#D4AF37"/>
-<rect x="187" y="210" width="36" height="90" rx="6" fill="#F0D36A"/>
-<rect x="257" y="175" width="36" height="100" rx="6" fill="#FFE58A"/>
-<rect x="327" y="150" width="36" height="95" rx="6" fill="#D4AF37"/>
-<path d="M125 350 C165 330 185 345 220 315 C255 285 270 305 300 270 C325 240 350 245 385 190"
-fill="none" stroke="#FFE58A" stroke-width="9" stroke-linecap="round"/>
+
+<circle
+cx="256"
+cy="256"
+r="190"
+fill="none"
+stroke="#D4AF37"
+stroke-width="8"
+opacity=".55"/>
+
+<circle
+cx="256"
+cy="256"
+r="155"
+fill="none"
+stroke="#8F7420"
+stroke-width="2"/>
+
+<rect
+x="127"
+y="235"
+width="36"
+height="65"
+rx="6"
+fill="#D4AF37"/>
+
+<rect
+x="187"
+y="210"
+width="36"
+height="90"
+rx="6"
+fill="#F0D36A"/>
+
+<rect
+x="257"
+y="175"
+width="36"
+height="100"
+rx="6"
+fill="#FFE58A"/>
+
+<rect
+x="327"
+y="150"
+width="36"
+height="95"
+rx="6"
+fill="#D4AF37"/>
+
+<path
+d="M125 350 C165 330 185 345 220 315 C255 285 270 305 300 270 C325 240 350 245 385 190"
+fill="none"
+stroke="#FFE58A"
+stroke-width="9"
+stroke-linecap="round"/>
+
 <circle cx="125" cy="350" r="9" fill="#FFE58A"/>
 <circle cx="220" cy="315" r="9" fill="#FFE58A"/>
 <circle cx="300" cy="270" r="9" fill="#FFE58A"/>
 <circle cx="385" cy="190" r="11" fill="#FFE58A"/>
-<circle cx="256" cy="256" r="48" fill="#D4AF37" opacity=".08"/>
-<circle cx="256" cy="256" r="8" fill="#FFE58A"/>
+
+<circle
+cx="256"
+cy="256"
+r="48"
+fill="#D4AF37"
+opacity=".08"/>
+
+<circle
+cx="256"
+cy="256"
+r="8"
+fill="#FFE58A"/>
+
 </svg>
+
 </div>
 
 <div class="brand">AURIX AI</div>
-<div class="welcome-title">WELCOME TO AURIX AI</div>
+
+<div class="welcome-title">
+WELCOME TO AURIX AI
+</div>
+
 <div class="welcome-text">
 Gold market intelligence and premium AI signal alerts.
 </div>
 
 </div>
+
 </section>
 
 
 <!-- REGISTER -->
 <section id="register" class="screen">
+
 <div class="container">
 
-<h1 class="page-title">CREATE ACCOUNT</h1>
+<h1 class="page-title">
+CREATE ACCOUNT
+</h1>
 
 <div class="card">
 
 <div class="input-group">
 <label>Email</label>
-<input type="email" id="registerEmail" placeholder="Enter your email">
+
+<input
+type="email"
+id="registerEmail"
+placeholder="Enter your email">
+
 </div>
 
 <div class="input-group">
 <label>Password</label>
-<input type="password" id="registerPassword" placeholder="Create password">
+
+<input
+type="password"
+id="registerPassword"
+placeholder="Create password">
+
 </div>
 
 <div class="input-group">
 <label>Confirm Password</label>
-<input type="password" id="registerConfirm" placeholder="Confirm password">
+
+<input
+type="password"
+id="registerConfirm"
+placeholder="Confirm password">
+
 </div>
 
-<button class="btn" onclick="registerUser()">CREATE ACCOUNT</button>
+<button
+class="btn"
+onclick="registerUser()">
+CREATE ACCOUNT
+</button>
 
-<button class="btn secondary" onclick="showScreen('login')">
+<button
+class="btn secondary"
+onclick="showScreen('login')">
 ALREADY HAVE AN ACCOUNT
 </button>
 
-<div id="registerStatus" class="status-box" style="display:none"></div>
+<div
+id="registerStatus"
+class="status-box"
+style="display:none">
+</div>
 
 </div>
+
 </div>
+
 </section>
 
 
 <!-- LOGIN -->
 <section id="login" class="screen">
+
 <div class="container">
 
-<h1 class="page-title">LOGIN</h1>
+<h1 class="page-title">
+LOGIN
+</h1>
 
 <div class="card">
 
 <div class="input-group">
+
 <label>Email</label>
-<input type="email" id="loginEmail" placeholder="Enter your email">
+
+<input
+type="email"
+id="loginEmail"
+placeholder="Enter your email">
+
 </div>
 
 <div class="input-group">
+
 <label>Password</label>
-<input type="password" id="loginPassword" placeholder="Enter your password">
+
+<input
+type="password"
+id="loginPassword"
+placeholder="Enter your password">
+
 </div>
 
-<button class="btn" onclick="loginUser()">LOGIN</button>
+<button
+class="btn"
+onclick="loginUser()">
+LOGIN
+</button>
 
-<button class="btn secondary" onclick="showScreen('register')">
+<button
+class="btn secondary"
+onclick="showScreen('register')">
 CREATE ACCOUNT
 </button>
 
-<div id="loginStatus" class="status-box" style="display:none"></div>
+<div
+id="loginStatus"
+class="status-box"
+style="display:none">
+</div>
 
 </div>
+
 </div>
+
 </section>
 
 
 <!-- HOME -->
 <section id="home" class="screen">
+
 <div class="container">
 
 <div class="hero">
@@ -414,7 +724,9 @@ CREATE ACCOUNT
 AURIX AI • GOLD INTELLIGENCE
 </div>
 
-<h1>Gold Market Intelligence</h1>
+<h1>
+Gold Market Intelligence
+</h1>
 
 <p>
 Monitor gold market movements and receive premium signal alerts.
@@ -426,23 +738,41 @@ Monitor gold market movements and receive premium signal alerts.
 <div class="stats">
 
 <div class="stat">
-<small>MARKET</small>
-<strong>GOLD</strong>
+
+<small>
+MARKET
+</small>
+
+<strong>
+GOLD
+</strong>
+
 </div>
 
 <div class="stat">
-<small>STATUS</small>
-<strong id="subscriptionStatus">INACTIVE</strong>
-</div>
+
+<small>
+STATUS
+</small>
+
+<strong id="subscriptionStatus">
+INACTIVE
+</strong>
 
 </div>
 
+</div>
+
+
+<!-- CURRENT TRADE -->
 
 <div class="card signal">
 
 <div class="signal-header">
 
-<h2>Latest Signal</h2>
+<h2>
+Current Trade
+</h2>
 
 <div class="signal-status">
 AI MONITORING
@@ -452,14 +782,14 @@ AI MONITORING
 
 <div id="latestSignal">
 
-<div class="signal-row">
-<span>Asset</span>
-<strong class="gold">XAU/USD</strong>
-</div>
+<div class="no-trade">
 
-<div class="signal-row">
-<span>Status</span>
-<strong>WAITING</strong>
+NO TRADE CURRENTLY
+
+<strong>
+Waiting for the next gold trade.
+</strong>
+
 </div>
 
 </div>
@@ -469,7 +799,9 @@ id="viewSignalBtn"
 class="btn secondary"
 style="display:none"
 onclick="showSignalDetails()">
+
 VIEW SIGNAL
+
 </button>
 
 </div>
@@ -477,71 +809,109 @@ VIEW SIGNAL
 
 <div class="card">
 
-<h2>Premium Signals</h2>
+<h2>
+Premium Signals
+</h2>
 
 <p>
 Subscribe to activate access to AURIX AI gold market signals and alerts.
 </p>
 
-<button class="btn" onclick="showScreen('plans')">
+<button
+class="btn"
+onclick="showScreen('plans')">
+
 VIEW PLANS
+
 </button>
 
 </div>
 
 </div>
+
 </section>
 
 
 <!-- SIGNAL DETAILS -->
 <section id="signalDetails" class="screen">
+
 <div class="container">
 
-<h1 class="page-title">GOLD SIGNAL</h1>
+<h1 class="page-title">
+GOLD SIGNAL
+</h1>
 
 <div id="signalDetailsContainer">
 
 <div class="empty">
-Loading signal...
+No trade currently.
 </div>
 
 </div>
 
-<button class="btn secondary" onclick="showScreen('home')">
+<button
+class="btn secondary"
+onclick="showScreen('home')">
+
 BACK TO HOME
+
 </button>
 
 </div>
+
 </section>
 
 
 <!-- PLANS -->
 <section id="plans" class="screen">
+
 <div class="container">
 
-<h1 class="page-title">SUBSCRIPTION PLANS</h1>
+<h1 class="page-title">
+SUBSCRIPTION PLANS
+</h1>
+
 
 <div class="card plan">
 
-<h2>1 MONTH</h2>
+<h2>
+1 MONTH
+</h2>
 
-<div class="plan-price">$49</div>
+<div class="plan-price">
+$49
+</div>
 
 <div class="plan-period">
 One month access
 </div>
 
 <ul>
-<li>Gold AI Signals</li>
-<li>Signal Notifications</li>
-<li>Multiple Timeframes</li>
-<li>Premium Market Intelligence</li>
+
+<li>
+Gold AI Signals
+</li>
+
+<li>
+Signal Notifications
+</li>
+
+<li>
+Multiple Timeframes
+</li>
+
+<li>
+Premium Market Intelligence
+</li>
+
 </ul>
 
 <button
 class="btn"
 onclick="selectPlan('1 Month - $49',49)">
+
 SELECT PLAN
+
 </button>
 
 </div>
@@ -549,51 +919,82 @@ SELECT PLAN
 
 <div class="card plan">
 
-<h2>3 MONTHS</h2>
+<h2>
+3 MONTHS
+</h2>
 
-<div class="plan-price">$119</div>
+<div class="plan-price">
+$119
+</div>
 
 <div class="plan-period">
 Three months access
 </div>
 
 <ul>
-<li>Gold AI Signals</li>
-<li>Signal Notifications</li>
-<li>Multiple Timeframes</li>
-<li>Premium Market Intelligence</li>
+
+<li>
+Gold AI Signals
+</li>
+
+<li>
+Signal Notifications
+</li>
+
+<li>
+Multiple Timeframes
+</li>
+
+<li>
+Premium Market Intelligence
+</li>
+
 </ul>
 
 <button
 class="btn"
 onclick="selectPlan('3 Months - $119',119)">
+
 SELECT PLAN
+
 </button>
 
 </div>
 
 </div>
+
 </section>
 
 
 <!-- WALLET -->
 <section id="wallet" class="screen">
+
 <div class="container">
 
-<h1 class="page-title">DEPOSIT</h1>
+<h1 class="page-title">
+DEPOSIT
+</h1>
 
 <div class="notice">
+
 Send your payment using BNB Smart Chain (BEP20).
 Your subscription will be activated after deposit verification.
+
 </div>
 
 
 <div class="card">
 
-<h2>Selected Plan</h2>
+<h2>
+Selected Plan
+</h2>
 
-<p id="selectedPlanDisplay" class="gold">
+<p
+id="selectedPlanDisplay"
+class="gold">
+
 No plan selected
+
 </p>
 
 </div>
@@ -601,13 +1002,19 @@ No plan selected
 
 <div class="card">
 
-<h2>Network</h2>
+<h2>
+Network
+</h2>
 
-<p>BNB Smart Chain (BEP20)</p>
+<p>
+BNB Smart Chain (BEP20)
+</p>
 
 <br>
 
-<h2>Supported Assets</h2>
+<h2>
+Supported Assets
+</h2>
 
 <p>
 USDT (BEP20)<br>
@@ -619,20 +1026,34 @@ BNB
 
 <div class="card">
 
-<h2>Deposit Wallet</h2>
+<h2>
+Deposit Wallet
+</h2>
 
-<div class="wallet-box" id="walletAddress">
+<div
+class="wallet-box"
+id="walletAddress">
+
 0x4E11E978119cAAB300b5439B909D06341C24a2A7
+
 </div>
 
-<button class="btn copy-btn" onclick="copyWallet()">
+<button
+class="btn copy-btn"
+onclick="copyWallet()">
+
 COPY WALLET ADDRESS
+
 </button>
 
 
-<div class="input-group" style="margin-top:18px">
+<div
+class="input-group"
+style="margin-top:18px">
 
-<label>Asset</label>
+<label>
+Asset
+</label>
 
 <select id="depositAsset">
 
@@ -651,7 +1072,9 @@ BNB
 
 <div class="input-group">
 
-<label>Transaction Hash</label>
+<label>
+Transaction Hash
+</label>
 
 <input
 type="text"
@@ -661,27 +1084,37 @@ placeholder="Paste transaction hash">
 </div>
 
 
-<button class="btn" onclick="depositSubmitted()">
+<button
+class="btn"
+onclick="depositSubmitted()">
+
 SUBMIT DEPOSIT
+
 </button>
+
 
 <div
 id="depositStatus"
 class="status-box"
 style="display:none">
-</div>
 
 </div>
 
 </div>
+
+</div>
+
 </section>
 
 
 <!-- NOTIFICATIONS -->
 <section id="notifications" class="screen">
+
 <div class="container">
 
-<h1 class="page-title">NOTIFICATIONS</h1>
+<h1 class="page-title">
+NOTIFICATIONS
+</h1>
 
 <div id="notificationList">
 
@@ -692,18 +1125,24 @@ Loading notifications...
 </div>
 
 </div>
+
 </section>
 
 
 <!-- SUPPORT -->
 <section id="support" class="screen">
+
 <div class="container">
 
-<h1 class="page-title">SUPPORT</h1>
+<h1 class="page-title">
+SUPPORT
+</h1>
 
 <div class="card">
 
-<h2>Need Help?</h2>
+<h2>
+Need Help?
+</h2>
 
 <p>
 Contact AURIX AI support for subscription,
@@ -714,41 +1153,83 @@ deposit verification or account assistance.
 mmatrix081@gmail.com
 </div>
 
-<button class="btn" onclick="contactSupport()">
+<button
+class="btn"
+onclick="contactSupport()">
+
 CONTACT SUPPORT
+
 </button>
 
 </div>
+
 </div>
+
 </section>
 
 
 <!-- SETTINGS -->
 <section id="settings" class="screen">
+
 <div class="container">
 
-<h1 class="page-title">SETTINGS</h1>
+<h1 class="page-title">
+SETTINGS
+</h1>
 
 <div class="card">
 
 <div class="settings-row">
-<div class="settings-label">Application</div>
-<div class="settings-value">AURIX AI</div>
+
+<div class="settings-label">
+Application
 </div>
 
-<div class="settings-row">
-<div class="settings-label">Market</div>
-<div class="settings-value">GOLD</div>
+<div class="settings-value">
+AURIX AI
 </div>
 
-<div class="settings-row">
-<div class="settings-label">Network</div>
-<div class="settings-value">BEP20</div>
 </div>
 
+
 <div class="settings-row">
-<div class="settings-label">Account</div>
-<div class="settings-value" id="accountEmail">-</div>
+
+<div class="settings-label">
+Market
+</div>
+
+<div class="settings-value">
+GOLD
+</div>
+
+</div>
+
+
+<div class="settings-row">
+
+<div class="settings-label">
+Network
+</div>
+
+<div class="settings-value">
+BEP20
+</div>
+
+</div>
+
+
+<div class="settings-row">
+
+<div class="settings-label">
+Account
+</div>
+
+<div
+class="settings-value"
+id="accountEmail">
+-
+</div>
+
 </div>
 
 </div>
@@ -756,30 +1237,55 @@ CONTACT SUPPORT
 
 <div class="card">
 
-<button class="btn danger" onclick="logoutUser()">
+<button
+class="btn danger"
+onclick="logoutUser()">
+
 LOG OUT
+
 </button>
 
 </div>
 
 </div>
+
 </section>
 
 
 <!-- NAV -->
-<nav id="bottomNav" class="bottom-nav hidden">
+<nav
+id="bottomNav"
+class="bottom-nav hidden">
 
-<button class="nav-btn active" onclick="showScreen('home')">
-<span>⌂</span>Home
+<button
+class="nav-btn active"
+onclick="showScreen('home')">
+
+<span>⌂</span>
+Home
+
 </button>
 
-<button class="nav-btn" onclick="showScreen('plans')">
-<span>◆</span>Plans
+
+<button
+class="nav-btn"
+onclick="showScreen('plans')">
+
+<span>◆</span>
+Plans
+
 </button>
 
-<button class="nav-btn" onclick="showScreen('wallet')">
-<span>◈</span>Wallet
+
+<button
+class="nav-btn"
+onclick="showScreen('wallet')">
+
+<span>◈</span>
+Wallet
+
 </button>
+
 
 <button
 class="nav-btn"
@@ -789,23 +1295,40 @@ onclick="showScreen('notifications')">
 <span>●</span>
 
 <div>
+
 Notifications
+
 <span
 id="notificationBadge"
 class="badge"
 style="display:none">
+
 0
+
 </span>
+
 </div>
 
 </button>
 
-<button class="nav-btn" onclick="showScreen('support')">
-<span>?</span>Support
+
+<button
+class="nav-btn"
+onclick="showScreen('support')">
+
+<span>?</span>
+Support
+
 </button>
 
-<button class="nav-btn" onclick="showScreen('settings')">
-<span>⚙</span>Settings
+
+<button
+class="nav-btn"
+onclick="showScreen('settings')">
+
+<span>⚙</span>
+Settings
+
 </button>
 
 </nav>
@@ -834,14 +1357,15 @@ SUPABASE_KEY
    STATE
 ========================================= */
 
-let currentUser=null;
-let selectedPlan="";
-let selectedAmount=0;
+let currentUser = null;
 
-let notificationChannel=null;
-let signalChannel=null;
+let selectedPlan = "";
+let selectedAmount = 0;
 
-let latestSignalData=null;
+let notificationChannel = null;
+let signalChannel = null;
+
+let latestSignalData = null;
 
 
 /* =========================================
@@ -877,23 +1401,26 @@ const appScreens=[
 
 function showScreen(screenId){
 
-document.querySelectorAll(
-".screen,.center-screen"
-).forEach(function(screen){
+document
+.querySelectorAll(".screen,.center-screen")
+.forEach(function(screen){
 
 screen.classList.remove("active");
 
 });
 
 
-const target=document.getElementById(screenId);
+const target=
+document.getElementById(screenId);
 
 if(!target)return;
 
 target.classList.add("active");
 
 
-const nav=document.getElementById("bottomNav");
+const nav=
+document.getElementById("bottomNav");
+
 
 if(appScreens.includes(screenId)){
 
@@ -906,7 +1433,8 @@ nav.classList.add("hidden");
 }
 
 
-document.querySelectorAll(".nav-btn")
+document
+.querySelectorAll(".nav-btn")
 .forEach(function(btn){
 
 btn.classList.remove("active");
@@ -914,7 +1442,9 @@ btn.classList.remove("active");
 const onclick=
 btn.getAttribute("onclick")||"";
 
-if(onclick.includes("'"+screenId+"'")){
+if(
+onclick.includes("'"+screenId+"'")
+){
 
 btn.classList.add("active");
 
@@ -957,15 +1487,19 @@ window.scrollTo(0,0);
 async function registerUser(){
 
 const email=
-document.getElementById("registerEmail")
-.value.trim();
+document
+.getElementById("registerEmail")
+.value
+.trim();
 
 const password=
-document.getElementById("registerPassword")
+document
+.getElementById("registerPassword")
 .value;
 
 const confirm=
-document.getElementById("registerConfirm")
+document
+.getElementById("registerConfirm")
 .value;
 
 
@@ -1053,11 +1587,14 @@ statusMessage(
 async function loginUser(){
 
 const email=
-document.getElementById("loginEmail")
-.value.trim();
+document
+.getElementById("loginEmail")
+.value
+.trim();
 
 const password=
-document.getElementById("loginPassword")
+document
+.getElementById("loginPassword")
 .value;
 
 
@@ -1112,9 +1649,15 @@ async function afterLogin(){
 if(!currentUser)return;
 
 
-document.getElementById("accountEmail")
-.textContent=
+const accountEmail=
+document.getElementById("accountEmail");
+
+if(accountEmail){
+
+accountEmail.textContent=
 currentUser.email||"-";
+
+}
 
 
 await loadProfile();
@@ -1172,6 +1715,18 @@ if(!data){
 console.error(
 "No profile found for user."
 );
+
+const status=
+document.getElementById(
+"subscriptionStatus"
+);
+
+if(status){
+
+status.textContent="INACTIVE";
+status.style.color="#F0D36A";
+
+}
 
 return null;
 
@@ -1247,9 +1802,16 @@ amount
 );
 
 
+const display=
 document.getElementById(
 "selectedPlanDisplay"
-).textContent=plan;
+);
+
+if(display){
+
+display.textContent=plan;
+
+}
 
 
 showScreen("wallet");
@@ -1330,15 +1892,16 @@ return;
 
 
 const asset=
-document.getElementById(
-"depositAsset"
-).value;
+document
+.getElementById("depositAsset")
+.value;
 
 
 const txHash=
-document.getElementById(
-"txHash"
-).value.trim();
+document
+.getElementById("txHash")
+.value
+.trim();
 
 
 if(!txHash){
@@ -1435,6 +1998,56 @@ async function loadNotifications(){
 if(!currentUser)return;
 
 
+/* =========================================
+   IMPORTANT:
+   INACTIVE USERS MUST NOT SEE
+   TRADE NOTIFICATIONS
+========================================= */
+
+const profile=await loadProfile();
+
+
+const container=
+document.getElementById(
+"notificationList"
+);
+
+const badge=
+document.getElementById(
+"notificationBadge"
+);
+
+
+if(!container)return;
+
+
+if(!profile || !profile.isActive){
+
+container.innerHTML=`
+
+<div class="empty">
+
+No notifications available.
+
+</div>
+
+`;
+
+if(badge){
+
+badge.style.display="none";
+
+}
+
+return;
+
+}
+
+
+/* =========================================
+   ACTIVE USERS ONLY
+========================================= */
+
 const {data,error}=
 await supabaseClient
 .from("notifications")
@@ -1444,21 +2057,6 @@ await supabaseClient
 "created_at",
 {ascending:false}
 );
-
-
-const container=
-document.getElementById(
-"notificationList"
-);
-
-
-const badge=
-document.getElementById(
-"notificationBadge"
-);
-
-
-if(!container)return;
 
 
 if(error){
@@ -1518,11 +2116,13 @@ unreadCount>99
 ?"99+"
 :unreadCount;
 
-badge.style.display="inline-flex";
+badge.style.display=
+"inline-flex";
 
 }else{
 
-badge.style.display="none";
+badge.style.display=
+"none";
 
 }
 
@@ -1584,7 +2184,9 @@ card.appendChild(message);
 card.appendChild(time);
 
 
-/* OPEN GOLD SIGNAL */
+/* =========================================
+   GOLD SIGNAL NOTIFICATION
+========================================= */
 
 if(
 item.type==="signal" ||
@@ -1662,6 +2264,17 @@ return clean||
 async function markNotificationsRead(){
 
 if(!currentUser)return;
+
+
+const profile=
+await loadProfile();
+
+
+if(!profile || !profile.isActive){
+
+return;
+
+}
 
 
 const {error}=
@@ -1754,9 +2367,22 @@ table:"notifications",
 filter:
 "user_id=eq."+currentUser.id
 },
-function(){
+async function(){
+
+const profile=
+await loadProfile();
+
+
+/*
+   Only ACTIVE users react
+   to incoming notifications.
+*/
+
+if(profile && profile.isActive){
 
 loadNotifications();
+
+}
 
 }
 )
@@ -1766,7 +2392,7 @@ loadNotifications();
 
 
 /* =========================================
-   GOLD SIGNAL
+   ACTIVE PROFILE
 ========================================= */
 
 async function getActiveProfile(){
@@ -1786,7 +2412,7 @@ return profile.isActive
 
 
 /* =========================================
-   LOAD LATEST SIGNAL
+   LOAD CURRENT ACTIVE TRADE
 ========================================= */
 
 async function loadLatestSignal(){
@@ -1799,7 +2425,6 @@ document.getElementById(
 "latestSignal"
 );
 
-
 const viewButton=
 document.getElementById(
 "viewSignalBtn"
@@ -1809,9 +2434,18 @@ document.getElementById(
 if(!container)return;
 
 
+/* =========================================
+   CHECK SUBSCRIPTION FIRST
+========================================= */
+
 const profile=
 await loadProfile();
 
+
+/*
+   INACTIVE USERS
+   NEVER RECEIVE OR SEE TRADE
+*/
 
 if(
 !profile ||
@@ -1830,14 +2464,14 @@ viewButton.style.display="none";
 
 container.innerHTML=`
 
-<div class="signal-row">
-<span>Asset</span>
-<strong class="gold">XAU/USD</strong>
-</div>
+<div class="no-trade">
 
-<div class="signal-row">
-<span>Access</span>
-<strong>SUBSCRIPTION REQUIRED</strong>
+NO TRADE CURRENTLY
+
+<strong>
+Premium access required.
+</strong>
+
 </div>
 
 `;
@@ -1846,6 +2480,11 @@ return;
 
 }
 
+
+/* =========================================
+   ACTIVE USER
+   FETCH ONLY ACTIVE TRADE
+========================================= */
 
 const {data,error}=
 await supabaseClient
@@ -1880,14 +2519,14 @@ viewButton.style.display="none";
 
 container.innerHTML=`
 
-<div class="signal-row">
-<span>Asset</span>
-<strong class="gold">XAU/USD</strong>
-</div>
+<div class="no-trade">
 
-<div class="signal-row">
-<span>Status</span>
-<strong>WAITING</strong>
+NO TRADE CURRENTLY
+
+<strong>
+Waiting for the next gold trade.
+</strong>
+
 </div>
 
 `;
@@ -1896,6 +2535,10 @@ return;
 
 }
 
+
+/* =========================================
+   NO ACTIVE TRADE
+========================================= */
 
 if(!data){
 
@@ -1911,14 +2554,14 @@ viewButton.style.display="none";
 
 container.innerHTML=`
 
-<div class="signal-row">
-<span>Asset</span>
-<strong class="gold">XAU/USD</strong>
-</div>
+<div class="no-trade">
 
-<div class="signal-row">
-<span>Status</span>
-<strong>WAITING</strong>
+NO TRADE CURRENTLY
+
+<strong>
+Waiting for the next gold trade.
+</strong>
+
 </div>
 
 `;
@@ -1927,6 +2570,10 @@ return;
 
 }
 
+
+/* =========================================
+   ACTIVE TRADE FOUND
+========================================= */
 
 latestSignalData=data;
 
@@ -1959,45 +2606,83 @@ signalClass="signal-sell";
 container.innerHTML=`
 
 <div class="signal-row">
-<span>Asset</span>
-<strong class="gold">XAU/USD</strong>
+
+<span>
+Asset
+</span>
+
+<strong class="gold">
+XAU/USD
+</strong>
+
 </div>
 
-<div class="signal-row">
-<span>Timeframe</span>
-<strong>${escapeHtml(data.timeframe||"-")}</strong>
-</div>
 
 <div class="signal-row">
-<span>Signal</span>
+
+<span>
+Timeframe
+</span>
+
+<strong>
+${escapeHtml(data.timeframe||"-")}
+</strong>
+
+</div>
+
+
+<div class="signal-row">
+
+<span>
+Signal
+</span>
+
 <strong class="${signalClass}">
 ${escapeHtml(data.signal||"-")}
 </strong>
+
 </div>
 
+
 <div class="signal-row">
-<span>Entry</span>
+
+<span>
+Entry
+</span>
+
 <strong>
 ${escapeHtml(data.entry||"-")}
 </strong>
+
 </div>
 
+
 <div class="signal-row">
-<span>Stop Loss</span>
+
+<span>
+Stop Loss
+</span>
+
 <strong>
 ${escapeHtml(data.stop_loss||"-")}
 </strong>
+
 </div>
 
+
 <div class="signal-row">
-<span>Take Profit</span>
+
+<span>
+Take Profit
+</span>
+
 <strong>
 ${escapeHtml(data.take_profit||"-")}
 </strong>
+
 </div>
 
 `;
-
 
 }
 
@@ -2017,29 +2702,32 @@ document.getElementById(
 if(!container)return;
 
 
+/* =========================================
+   ACTIVE USER CHECK
+========================================= */
+
 const profile=
 await getActiveProfile();
 
 
 if(!profile){
 
+latestSignalData=null;
+
+
 container.innerHTML=`
 
 <div class="card">
 
-<h2>PREMIUM ACCESS REQUIRED</h2>
+<div class="no-trade">
 
-<p>
-Your subscription is not currently active.
-Please activate a subscription to access
-gold trading signals.
-</p>
+NO TRADE CURRENTLY
 
-<button
-class="btn"
-onclick="showScreen('plans')">
-VIEW PLANS
-</button>
+<strong>
+Premium access required.
+</strong>
+
+</div>
 
 </div>
 
@@ -2050,24 +2738,77 @@ return;
 }
 
 
-if(!latestSignalData){
+/* =========================================
+   FETCH CURRENT ACTIVE TRADE AGAIN
+========================================= */
 
-await loadLatestSignal();
+const {data,error}=
+await supabaseClient
+.from("gold_signals")
+.select("*")
+.eq("active",true)
+.order(
+"created_at",
+{ascending:false}
+)
+.limit(1)
+.maybeSingle();
+
+
+if(error){
+
+console.error(
+"Signal details error:",
+error
+);
+
+latestSignalData=null;
+
+
+container.innerHTML=`
+
+<div class="card">
+
+<div class="no-trade">
+
+NO TRADE CURRENTLY
+
+<strong>
+Waiting for the next gold trade.
+</strong>
+
+</div>
+
+</div>
+
+`;
+
+return;
 
 }
 
 
-const data=latestSignalData;
-
+/* =========================================
+   NO TRADE
+========================================= */
 
 if(!data){
 
+latestSignalData=null;
+
+
 container.innerHTML=`
 
 <div class="card">
 
-<div class="empty">
-No active gold signal available.
+<div class="no-trade">
+
+NO TRADE CURRENTLY
+
+<strong>
+Waiting for the next gold trade.
+</strong>
+
 </div>
 
 </div>
@@ -2077,6 +2818,13 @@ No active gold signal available.
 return;
 
 }
+
+
+/* =========================================
+   CURRENT TRADE
+========================================= */
+
+latestSignalData=data;
 
 
 const signalText=
@@ -2103,7 +2851,9 @@ container.innerHTML=`
 
 <div class="signal-header">
 
-<h2>XAU/USD</h2>
+<h2>
+XAU/USD
+</h2>
 
 <div class="signal-status">
 ACTIVE SIGNAL
@@ -2113,52 +2863,82 @@ ACTIVE SIGNAL
 
 
 <div class="signal-row">
-<span>Timeframe</span>
+
+<span>
+Timeframe
+</span>
+
 <strong>
 ${escapeHtml(data.timeframe||"-")}
 </strong>
+
 </div>
 
 
 <div class="signal-row">
-<span>Signal</span>
+
+<span>
+Signal
+</span>
+
 <strong class="${signalClass}">
 ${escapeHtml(data.signal||"-")}
 </strong>
+
 </div>
 
 
 <div class="signal-row">
-<span>Entry</span>
+
+<span>
+Entry
+</span>
+
 <strong>
 ${escapeHtml(data.entry||"-")}
 </strong>
+
 </div>
 
 
 <div class="signal-row">
-<span>Stop Loss</span>
+
+<span>
+Stop Loss
+</span>
+
 <strong>
 ${escapeHtml(data.stop_loss||"-")}
 </strong>
+
 </div>
 
 
 <div class="signal-row">
-<span>Take Profit</span>
+
+<span>
+Take Profit
+</span>
+
 <strong>
 ${escapeHtml(data.take_profit||"-")}
 </strong>
+
 </div>
 
 
 <div class="signal-message">
 
-<strong class="gold">MESSAGE</strong>
+<strong class="gold">
+MESSAGE
+</strong>
 
 <br><br>
 
-${escapeHtml(data.message||"No additional message.")}
+${escapeHtml(
+data.message||
+"No additional message."
+)}
 
 </div>
 
@@ -2166,7 +2946,9 @@ ${escapeHtml(data.message||"No additional message.")}
 <div class="notification-time">
 
 ${data.created_at
-?new Date(data.created_at).toLocaleString()
+?new Date(
+data.created_at
+).toLocaleString()
 :""}
 
 </div>
@@ -2190,14 +2972,13 @@ await getActiveProfile();
 
 if(!profile){
 
-showScreen("plans");
-
 return;
 
 }
 
 
-await loadLatestSignal();
+await loadSignalDetails();
+
 
 showScreen("signalDetails");
 
@@ -2215,8 +2996,6 @@ await getActiveProfile();
 
 
 if(!profile){
-
-showScreen("plans");
 
 return;
 
@@ -2248,6 +3027,18 @@ signalChannel
 }
 
 
+/*
+   IMPORTANT:
+   Listen to ALL changes:
+   INSERT
+   UPDATE
+   DELETE
+
+   This allows the investor interface
+   to react when Admin publishes,
+   replaces or removes a trade.
+*/
+
 signalChannel=
 supabaseClient
 .channel(
@@ -2256,14 +3047,70 @@ supabaseClient
 .on(
 "postgres_changes",
 {
-event:"INSERT",
+event:"*",
 schema:"public",
 table:"gold_signals"
 },
-function(){
+async function(payload){
+
+console.log(
+"Gold signal update:",
+payload.eventType
+);
+
+
+/*
+   Always re-check subscription
+   before displaying anything.
+*/
+
+const profile=
+await loadProfile();
+
+
+if(!profile || !profile.isActive){
+
+latestSignalData=null;
 
 loadLatestSignal();
-loadNotifications();
+
+return;
+
+}
+
+
+/*
+   Reload current active trade.
+*/
+
+await loadLatestSignal();
+
+
+/*
+   If the investor is currently
+   viewing signal details, refresh it.
+*/
+
+const details=
+document.getElementById(
+"signalDetails"
+);
+
+if(
+details &&
+details.classList.contains("active")
+){
+
+await loadSignalDetails();
+
+}
+
+
+/*
+   Refresh notifications as well.
+*/
+
+await loadNotifications();
 
 }
 )
@@ -2356,7 +3203,7 @@ supabaseClient.auth.onAuthStateChange(
 
 async function(event,session){
 
-if(session&&session.user){
+if(session && session.user){
 
 currentUser=session.user;
 
@@ -2377,7 +3224,6 @@ currentUser=null;
 }
 
 }
-
 );
 
 
