@@ -490,6 +490,32 @@ textarea{
  margin-top:4px;
 }
 
+.analysis-stats{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:10px;
+ margin-top:12px;
+}
+
+.analysis-stat{
+ background:#0b0b0b;
+ border:1px solid #29251c;
+ border-radius:10px;
+ padding:10px;
+}
+
+.analysis-stat-label{
+ color:#777;
+ font-size:10px;
+ margin-bottom:4px;
+}
+
+.analysis-stat-value{
+ color:#d6a84f;
+ font-weight:800;
+ font-size:14px;
+}
+
 hr{
  border:0;
  border-top:1px solid #252015;
@@ -510,6 +536,10 @@ hr{
   grid-template-columns:1fr;
  }
 
+ .analysis-stats{
+  grid-template-columns:1fr 1fr;
+ }
+
  .ai-preview-header{
   flex-direction:column;
   align-items:flex-start;
@@ -522,7 +552,10 @@ hr{
 
 <body>
 
-<!-- LOGIN -->
+
+<!-- =====================================================
+     LOGIN
+     ===================================================== -->
 
 <div id="login">
 
@@ -562,7 +595,9 @@ hr{
 </div>
 
 
-<!-- ADMIN APP -->
+<!-- =====================================================
+     ADMIN APP
+     ===================================================== -->
 
 <div id="app">
 
@@ -584,7 +619,9 @@ hr{
 <div class="container">
 
 
-<!-- TABS -->
+<!-- =====================================================
+     TABS
+     ===================================================== -->
 
 <div class="tabs">
 
@@ -627,7 +664,9 @@ hr{
 </div>
 
 
-<!-- OVERVIEW -->
+<!-- =====================================================
+     OVERVIEW
+     ===================================================== -->
 
 <section
  id="overview"
@@ -692,7 +731,9 @@ hr{
 </section>
 
 
-<!-- REGISTRATIONS -->
+<!-- =====================================================
+     REGISTRATIONS
+     ===================================================== -->
 
 <section
  id="registrations"
@@ -728,7 +769,9 @@ hr{
 </section>
 
 
-<!-- DEPOSITS -->
+<!-- =====================================================
+     DEPOSITS
+     ===================================================== -->
 
 <section
  id="deposits"
@@ -765,7 +808,9 @@ hr{
 </section>
 
 
-<!-- SUBSCRIBERS -->
+<!-- =====================================================
+     SUBSCRIBERS
+     ===================================================== -->
 
 <section
  id="subscribers"
@@ -800,7 +845,9 @@ hr{
 </section>
 
 
-<!-- GOLD AI -->
+<!-- =====================================================
+     GOLD AI
+     ===================================================== -->
 
 <section
  id="signals"
@@ -1031,6 +1078,102 @@ hr{
   </div>
 
 
+  <!-- TECHNICAL DATA -->
+
+  <div class="analysis-stats">
+
+   <div class="analysis-stat">
+
+    <div class="analysis-stat-label">
+     RSI 14
+    </div>
+
+    <div
+     id="aiRSI"
+     class="analysis-stat-value">
+     -
+    </div>
+
+   </div>
+
+
+   <div class="analysis-stat">
+
+    <div class="analysis-stat-label">
+     EMA 20
+    </div>
+
+    <div
+     id="aiEMA20"
+     class="analysis-stat-value">
+     -
+    </div>
+
+   </div>
+
+
+   <div class="analysis-stat">
+
+    <div class="analysis-stat-label">
+     EMA 50
+    </div>
+
+    <div
+     id="aiEMA50"
+     class="analysis-stat-value">
+     -
+    </div>
+
+   </div>
+
+
+   <div class="analysis-stat">
+
+    <div class="analysis-stat-label">
+     ATR 14
+    </div>
+
+    <div
+     id="aiATR"
+     class="analysis-stat-value">
+     -
+    </div>
+
+   </div>
+
+
+   <div class="analysis-stat">
+
+    <div class="analysis-stat-label">
+     SUPPORT
+    </div>
+
+    <div
+     id="aiSupport"
+     class="analysis-stat-value">
+     -
+    </div>
+
+   </div>
+
+
+   <div class="analysis-stat">
+
+    <div class="analysis-stat-label">
+     RESISTANCE
+    </div>
+
+    <div
+     id="aiResistance"
+     class="analysis-stat-value">
+     -
+    </div>
+
+   </div>
+
+  </div>
+
+
   <div class="ai-reason">
 
    <strong class="gold">
@@ -1174,7 +1317,9 @@ hr{
 </div>
 
 
-<!-- MANUAL SIGNAL -->
+<!-- =====================================================
+     MANUAL SIGNAL
+     ===================================================== -->
 
 <div
  class="card"
@@ -1264,7 +1409,9 @@ hr{
 </div>
 
 
-<!-- SIGNAL CONTROLS -->
+<!-- =====================================================
+     SIGNAL CONTROLS
+     ===================================================== -->
 
 <div
  class="card"
@@ -1322,7 +1469,9 @@ hr{
 </section>
 
 
-<!-- NOTIFICATIONS -->
+<!-- =====================================================
+     NOTIFICATIONS
+     ===================================================== -->
 
 <section
  id="notifications"
@@ -1371,6 +1520,8 @@ let adminNotificationChannel=null;
 let aiResults=[];
 
 let selectedAIIndex=0;
+
+let lastAIProcessorData={};
 
 
 /* =====================================================
@@ -1538,8 +1689,11 @@ function showTab(id,button){
  );
 
 
- document.getElementById(id)
- .classList.add("active");
+ const section=
+  document.getElementById(id);
+
+ if(section)
+  section.classList.add("active");
 
 
  document.querySelectorAll(".tab")
@@ -1548,7 +1702,8 @@ function showTab(id,button){
  );
 
 
- button.classList.add("active");
+ if(button)
+  button.classList.add("active");
 
 
  if(id==="registrations")
@@ -2025,6 +2180,19 @@ async function loadDeposits(){
    email=user.email;
 
 
+  const status=
+   String(d.status||"pending").toLowerCase();
+
+
+  let badgeClass="pending";
+
+  if(status==="approved")
+   badgeClass="approved";
+
+  if(status==="rejected")
+   badgeClass="rejected";
+
+
   table.innerHTML+=`
 
    <tr>
@@ -2045,8 +2213,8 @@ async function loadDeposits(){
 
     <td>
 
-     <span class="badge ${escapeHtml(d.status||"pending")}">
-      ${escapeHtml(d.status||"pending")}
+     <span class="badge ${badgeClass}">
+      ${escapeHtml(status)}
      </span>
 
     </td>
@@ -2054,7 +2222,7 @@ async function loadDeposits(){
     <td>
 
      ${
-      d.status==="pending"
+      status==="pending"
 
       ?
 
@@ -2634,8 +2802,6 @@ async function activateSubscription(userId){
 
 /* =====================================================
    AI GOLD ANALYZER
-   IMPORTANT:
-   Uses smart-processor, NOT analyze-gold.
    ===================================================== */
 
 async function analyzeGold(){
@@ -2703,6 +2869,8 @@ async function analyzeGold(){
 
  selectedAIIndex=0;
 
+ lastAIProcessorData={};
+
 
  try{
 
@@ -2731,8 +2899,22 @@ async function analyzeGold(){
    );
 
 
-  const data=
-   await response.json();
+  let data=null;
+
+
+  try{
+
+   data=
+    await response.json();
+
+  }
+  catch(jsonError){
+
+   throw new Error(
+    "Smart Processor returned an invalid response."
+   );
+
+  }
 
 
   if(!response.ok){
@@ -2764,6 +2946,9 @@ async function analyzeGold(){
   }
 
 
+  lastAIProcessorData=data;
+
+
   aiResults=
    Array.isArray(data.signals)
    ? data.signals
@@ -2772,7 +2957,7 @@ async function analyzeGold(){
 
   /*
    ===================================================
-   IF NO SIGNAL ARRAY
+   NO SIGNAL ARRAY
    ===================================================
   */
 
@@ -2800,7 +2985,7 @@ async function analyzeGold(){
 
   /*
    ===================================================
-   MAXIMUM 2 RESULTS
+   MAXIMUM TWO RESULTS
    ===================================================
   */
 
@@ -2813,7 +2998,11 @@ async function analyzeGold(){
 
   selectedAIIndex=0;
 
-  applyAIResult(0,data);
+
+  applyAIResult(
+   0,
+   lastAIProcessorData
+  );
 
 
   list.style.display=
@@ -2919,6 +3108,9 @@ function renderAIResultList(){
     );
 
 
+   button.type="button";
+
+
    button.className=
     "ai-option"+
     (
@@ -2951,7 +3143,7 @@ function renderAIResultList(){
 
     applyAIResult(
      index,
-     window.lastAIProcessorData||{}
+     lastAIProcessorData
     );
 
    };
@@ -2969,7 +3161,10 @@ function renderAIResultList(){
    APPLY SELECTED AI RESULT
    ===================================================== */
 
-function applyAIResult(index,processorData){
+function applyAIResult(
+ index,
+ processorData
+){
 
  const item=
   aiResults[index];
@@ -2979,8 +3174,8 @@ function applyAIResult(index,processorData){
   return;
 
 
- window.lastAIProcessorData=
-  processorData;
+ lastAIProcessorData=
+  processorData||{};
 
 
  const signal=
@@ -2991,10 +3186,12 @@ function applyAIResult(index,processorData){
 
 
  const timeframe=
-  item.timeframe||
-  document.getElementById(
-   "aiTimeframe"
-  ).value;
+  normalizeTimeframe(
+   item.timeframe||
+   document.getElementById(
+    "aiTimeframe"
+   ).value
+  );
 
 
  const entry=
@@ -3015,6 +3212,11 @@ function applyAIResult(index,processorData){
  const reason=
   item.reason ||
   "No reason was returned by the analyzer.";
+
+
+ const technical=
+  processorData.technical||
+  {};
 
 
  document.getElementById(
@@ -3047,12 +3249,19 @@ function applyAIResult(index,processorData){
   takeProfit || "-";
 
 
+ /*
+  IMPORTANT FIX:
+  Parentheses avoid mixing ?? with ||.
+ */
+
  document.getElementById(
   "aiPreviewPrice"
  ).textContent=
-  processorData.price ??
-  entry ||
-  "-";
+  (
+   processorData.price ??
+   entry ??
+   "-"
+  );
 
 
  document.getElementById(
@@ -3070,23 +3279,69 @@ function applyAIResult(index,processorData){
 
 
  document.getElementById(
+  "aiRSI"
+ ).textContent=
+  formatNumber(
+   technical.rsi14
+  );
+
+
+ document.getElementById(
+  "aiEMA20"
+ ).textContent=
+  formatNumber(
+   technical.ema20
+  );
+
+
+ document.getElementById(
+  "aiEMA50"
+ ).textContent=
+  formatNumber(
+   technical.ema50
+  );
+
+
+ document.getElementById(
+  "aiATR"
+ ).textContent=
+  formatNumber(
+   technical.atr14
+  );
+
+
+ document.getElementById(
+  "aiSupport"
+ ).textContent=
+  formatNumber(
+   technical.support
+  );
+
+
+ document.getElementById(
+  "aiResistance"
+ ).textContent=
+  formatNumber(
+   technical.resistance
+  );
+
+
+ document.getElementById(
   "aiReason"
  ).textContent=
   reason;
 
 
  /*
-  ================================================
-  FILL FINAL PUBLICATION FORM
-  ================================================
+  ===================================================
+  FINAL PUBLICATION FORM
+  ===================================================
  */
 
  document.getElementById(
   "timeframe"
  ).value=
-  normalizeTimeframe(
-   timeframe
-  );
+  timeframe;
 
 
  document.getElementById(
@@ -3130,6 +3385,33 @@ function applyAIResult(index,processorData){
 
 
 /* =====================================================
+   NUMBER FORMAT
+   ===================================================== */
+
+function formatNumber(value){
+
+ if(
+  value===null ||
+  value===undefined ||
+  value===""
+ )
+  return "-";
+
+
+ const number=
+  Number(value);
+
+
+ if(!Number.isFinite(number))
+  return String(value);
+
+
+ return number.toFixed(2);
+
+}
+
+
+/* =====================================================
    TIMEFRAME NORMALIZATION
    ===================================================== */
 
@@ -3166,6 +3448,9 @@ function discardAIAnalysis(){
  aiResults=[];
 
  selectedAIIndex=0;
+
+ lastAIProcessorData={};
+
 
  document.getElementById(
   "aiPreview"
@@ -3291,9 +3576,11 @@ function useManualSignal(){
 async function publishSignal(){
 
  const timeframe=
-  document.getElementById(
-   "timeframe"
-  ).value;
+  normalizeTimeframe(
+   document.getElementById(
+    "timeframe"
+   ).value
+  );
 
 
  const signal=
@@ -3373,7 +3660,7 @@ async function publishSignal(){
 
  /*
   ===================================================
-  CLOSE OLD ACTIVE SIGNAL
+  SAVE OLD ACTIVE SIGNALS
   ===================================================
  */
 
@@ -3383,7 +3670,7 @@ async function publishSignal(){
  }=
  await supabaseClient
  .from("gold_signals")
- .select("id")
+ .select("*")
  .eq("active",true);
 
 
@@ -3396,6 +3683,12 @@ async function publishSignal(){
   return;
  }
 
+
+ /*
+  ===================================================
+  CLOSE OLD ACTIVE SIGNALS
+  ===================================================
+ */
 
  if(oldSignals?.length){
 
@@ -3428,7 +3721,7 @@ async function publishSignal(){
 
  /*
   ===================================================
-  VERIFY
+  VERIFY OLD SIGNALS CLOSED
   ===================================================
  */
 
@@ -3462,6 +3755,7 @@ async function publishSignal(){
   );
 
   return;
+
  }
 
 
@@ -3503,11 +3797,49 @@ async function publishSignal(){
  .single();
 
 
+ /*
+  ===================================================
+  ROLLBACK IF INSERT FAILS
+  ===================================================
+ */
+
  if(createError){
 
+  console.error(
+   "PUBLISH ERROR:",
+   createError
+  );
+
+
+  if(oldSignals?.length){
+
+   for(const oldSignal of oldSignals){
+
+    await supabaseClient
+    .from("gold_signals")
+    .update({
+     active:true
+    })
+    .eq("id",oldSignal.id);
+
+   }
+
+  }
+
+
   msg.textContent=
-   "Could not publish signal:\n\n"+
-   createError.message;
+   "Could not publish signal.\n"+
+   "Previous active signal was restored.";
+
+
+  alert(
+   "PUBLISH FAILED.\n\n"+
+   createError.message+
+   "\n\nPrevious active signal was restored."
+  );
+
+
+  await showActiveSignal();
 
   return;
  }
@@ -3536,8 +3868,47 @@ async function publishSignal(){
   !verifyNew
  ){
 
+  /*
+   Try to deactivate failed/unverified signal
+  */
+
+  await supabaseClient
+  .from("gold_signals")
+  .update({
+   active:false
+  })
+  .eq("id",newSignal.id);
+
+
+  /*
+   Restore previous signal
+  */
+
+  if(oldSignals?.length){
+
+   for(const oldSignal of oldSignals){
+
+    await supabaseClient
+    .from("gold_signals")
+    .update({
+     active:true
+    })
+    .eq("id",oldSignal.id);
+
+   }
+
+  }
+
+
   msg.textContent=
-   "Signal was created but could not be verified.";
+   "Signal could not be verified. Previous signal was restored.";
+
+  alert(
+   "Signal was created but could not be verified.\n\n"+
+   "Previous active signal was restored."
+  );
+
+  await showActiveSignal();
 
   return;
  }
@@ -3573,8 +3944,19 @@ async function publishSignal(){
 
  if(membersError){
 
+  /*
+   Signal is already published.
+   Do not delete it.
+  */
+
   msg.textContent=
    "Signal published, but subscribers could not be loaded.";
+
+  alert(
+   "SIGNAL PUBLISHED.\n\n"+
+   "However, subscribers could not be loaded:\n\n"+
+   membersError.message
+  );
 
   await showActiveSignal();
 
@@ -3622,13 +4004,22 @@ async function publishSignal(){
 
   if(notificationError){
 
-   console.log(
+   console.error(
     "NOTIFICATION ERROR:",
     notificationError
    );
 
+
    msg.textContent=
     "Signal published, but notifications could not be created.";
+
+
+   alert(
+    "SIGNAL PUBLISHED.\n\n"+
+    "But subscriber notifications failed:\n\n"+
+    notificationError.message
+   );
+
 
    await showActiveSignal();
 
@@ -3683,6 +4074,10 @@ async function publishSignal(){
 
 
  aiResults=[];
+
+ selectedAIIndex=0;
+
+ lastAIProcessorData={};
 
 
  /*
@@ -4427,9 +4822,15 @@ function formatDate(date){
   return "-";
 
 
- return new Date(
-  date
- ).toLocaleString();
+ const parsed=
+  new Date(date);
+
+
+ if(Number.isNaN(parsed.getTime()))
+  return "-";
+
+
+ return parsed.toLocaleString();
 
 }
 
@@ -4457,7 +4858,10 @@ function escapeAttr(value){
 
  .replace(/\\/g,"\\\\")
 
- .replace(/'/g,"\\'");
+ .replace(/'/g,"\\'")
+ .replace(/"/g,"&quot;")
+ .replace(/</g,"&lt;")
+ .replace(/>/g,"&gt;");
 
 }
 
@@ -4468,18 +4872,30 @@ function escapeAttr(value){
 
 (async function(){
 
- const {data}=
- await supabaseClient
- .auth
- .getSession();
+ try{
+
+  const {data}=
+   await supabaseClient
+   .auth
+   .getSession();
 
 
- if(data.session){
+  if(data.session){
 
-  currentUser=
-   data.session.user;
+   currentUser=
+    data.session.user;
 
-  await checkAdmin();
+   await checkAdmin();
+
+  }
+
+ }
+ catch(error){
+
+  console.error(
+   "SESSION ERROR:",
+   error
+  );
 
  }
 
