@@ -11,61 +11,234 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:Arial,Helvetica,sans-serif;background:#050505;color:#fff;min-height:100vh}
-button,input{font-family:inherit}
+button,input,select{font-family:inherit}
 .screen{display:none;min-height:100vh;padding:30px 18px 120px}
 .screen.active{display:block}
 .center-screen{display:none;min-height:100vh;padding:25px 18px;align-items:center;justify-content:center}
 .center-screen.active{display:flex}
 .container{width:100%;max-width:650px;margin:auto}
+
 .logo{width:165px;height:165px;margin:0 auto 25px}
 .logo svg{width:100%;height:100%;display:block}
+
 .brand{text-align:center;font-size:38px;font-weight:800;letter-spacing:5px;color:#F0D36A;margin-bottom:14px}
 .welcome-title{text-align:center;font-size:26px;font-weight:700;color:#fff;letter-spacing:1px;margin-top:12px}
 .welcome-text{text-align:center;color:#999;font-size:15px;line-height:1.7;margin:14px auto 0;max-width:500px}
-.card{background:linear-gradient(145deg,#111,#080808);border:1px solid #292929;border-radius:20px;padding:22px;margin-bottom:18px;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+
+.card{
+background:linear-gradient(145deg,#111,#080808);
+border:1px solid #292929;
+border-radius:20px;
+padding:22px;
+margin-bottom:18px;
+box-shadow:0 8px 30px rgba(0,0,0,.35)
+}
+
 .card h2{color:#F0D36A;font-size:22px;margin-bottom:10px}
 .card p{color:#aaa;line-height:1.6}
+
 .gold{color:#F0D36A}
+
 .page-title{text-align:center;color:#F0D36A;font-size:30px;margin-bottom:25px}
+
 .input-group{margin-bottom:16px}
 .input-group label{display:block;color:#bbb;margin-bottom:8px;font-size:14px}
-input{width:100%;height:58px;background:#101010;color:#fff;border:1px solid #333;border-radius:14px;padding:0 16px;font-size:16px;outline:none}
-input:focus{border-color:#D4AF37}
-.btn{width:100%;min-height:62px;border:none;border-radius:15px;background:linear-gradient(135deg,#F0D36A,#B78D20);color:#050505;font-size:17px;font-weight:800;cursor:pointer;margin-top:10px;padding:12px 16px}
-.btn.secondary{background:#171717;color:#F0D36A;border:1px solid #4b3b12}
-.btn.danger{background:#171717;color:#ff7777;border:1px solid #552222}
+
+input,select{
+width:100%;
+height:58px;
+background:#101010;
+color:#fff;
+border:1px solid #333;
+border-radius:14px;
+padding:0 16px;
+font-size:16px;
+outline:none
+}
+
+input:focus,select:focus{border-color:#D4AF37}
+
+.btn{
+width:100%;
+min-height:62px;
+border:none;
+border-radius:15px;
+background:linear-gradient(135deg,#F0D36A,#B78D20);
+color:#050505;
+font-size:17px;
+font-weight:800;
+cursor:pointer;
+margin-top:10px;
+padding:12px 16px
+}
+
+.btn.secondary{
+background:#171717;
+color:#F0D36A;
+border:1px solid #4b3b12
+}
+
+.btn.danger{
+background:#171717;
+color:#ff7777;
+border:1px solid #552222
+}
+
 .hero{padding:25px 0;margin-bottom:20px}
-.hero-badge{display:inline-block;padding:8px 14px;border:1px solid #4d3e17;border-radius:30px;color:#F0D36A;font-size:12px;letter-spacing:1px;margin-bottom:15px}
+.hero-badge{
+display:inline-block;
+padding:8px 14px;
+border:1px solid #4d3e17;
+border-radius:30px;
+color:#F0D36A;
+font-size:12px;
+letter-spacing:1px;
+margin-bottom:15px
+}
+
 .hero h1{font-size:34px;line-height:1.2;margin-bottom:10px}
 .hero p{color:#999;line-height:1.6}
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:18px}
-.stat{background:#101010;border:1px solid #292929;border-radius:16px;padding:18px}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+margin-bottom:18px
+}
+
+.stat{
+background:#101010;
+border:1px solid #292929;
+border-radius:16px;
+padding:18px
+}
+
 .stat small{color:#888;display:block;margin-bottom:7px}
 .stat strong{font-size:21px;color:#F0D36A}
-.signal{border:1px solid #403515;background:linear-gradient(145deg,#12100a,#080808)}
-.signal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
-.signal-status{padding:6px 10px;border-radius:20px;font-size:11px;color:#F0D36A;background:#211c0d;border:1px solid #554719}
-.signal-row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid #222}
+
+.signal{
+border:1px solid #403515;
+background:linear-gradient(145deg,#12100a,#080808)
+}
+
+.signal-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:15px;
+gap:10px
+}
+
+.signal-status{
+padding:6px 10px;
+border-radius:20px;
+font-size:11px;
+color:#F0D36A;
+background:#211c0d;
+border:1px solid #554719
+}
+
+.signal-row{
+display:flex;
+justify-content:space-between;
+gap:15px;
+padding:11px 0;
+border-bottom:1px solid #222
+}
+
 .signal-row:last-child{border-bottom:0}
+
+.signal-row span{color:#888}
+.signal-row strong{text-align:right}
+
+.signal-message{
+margin-top:15px;
+padding:14px;
+border:1px solid #3d3218;
+border-radius:14px;
+background:#0c0c0c;
+color:#bbb;
+line-height:1.6
+}
+
+.signal-buy{color:#59d98a!important}
+.signal-sell{color:#ff6b6b!important}
+
 .plan{position:relative;overflow:hidden}
 .plan-price{font-size:35px;font-weight:800;color:#F0D36A;margin:15px 0 5px}
 .plan-period{color:#888;font-size:14px}
+
 .plan ul{list-style:none;margin:18px 0}
 .plan li{color:#bbb;padding:8px 0;border-bottom:1px solid #1d1d1d}
-.plan li::before{content:"✓";color:#F0D36A;font-weight:bold;margin-right:9px}
-.wallet-box{background:#0c0c0c;border:1px solid #3d3218;border-radius:15px;padding:16px;word-break:break-all;color:#F0D36A;line-height:1.6;margin:15px 0}
+.plan li::before{
+content:"✓";
+color:#F0D36A;
+font-weight:bold;
+margin-right:9px
+}
+
+.wallet-box{
+background:#0c0c0c;
+border:1px solid #3d3218;
+border-radius:15px;
+padding:16px;
+word-break:break-all;
+color:#F0D36A;
+line-height:1.6;
+margin:15px 0
+}
+
 .copy-btn{min-height:52px}
-.status-box{padding:15px;border-radius:14px;background:#111;border:1px solid #292929;color:#aaa;margin-top:15px}
-.notice{padding:15px;border-radius:14px;background:#12100a;border:1px solid #423616;color:#c8b879;line-height:1.6;margin-bottom:18px}
+
+.status-box{
+padding:15px;
+border-radius:14px;
+background:#111;
+border:1px solid #292929;
+color:#aaa;
+margin-top:15px
+}
+
+.notice{
+padding:15px;
+border-radius:14px;
+background:#12100a;
+border:1px solid #423616;
+color:#c8b879;
+line-height:1.6;
+margin-bottom:18px
+}
+
 .support-email{color:#F0D36A;word-break:break-all}
-.settings-row{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid #222}
+
+.settings-row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:18px 0;
+border-bottom:1px solid #222
+}
+
 .settings-row:last-child{border-bottom:0}
+
 .settings-label{color:#ccc}
 .settings-value{color:#F0D36A;font-size:14px}
-.notification{border-left:3px solid #D4AF37}
+
+.notification{
+border-left:3px solid #D4AF37;
+cursor:pointer
+}
+
 .notification.unread{background:#16130a}
-.notification-time{color:#666;font-size:12px;margin-top:8px}
+
+.notification-time{
+color:#666;
+font-size:12px;
+margin-top:8px
+}
+
 .empty{color:#777;text-align:center;padding:30px}
+
 .badge{
 display:inline-flex;
 align-items:center;
@@ -79,11 +252,45 @@ font-size:11px;
 margin-left:4px;
 padding:0 5px
 }
-.bottom-nav{position:fixed;left:10px;right:10px;bottom:10px;z-index:1000;background:rgba(12,12,12,.97);border:1px solid #333;border-radius:20px;display:flex;justify-content:space-around;padding:8px 5px;box-shadow:0 10px 35px rgba(0,0,0,.6)}
+
+.bottom-nav{
+position:fixed;
+left:10px;
+right:10px;
+bottom:10px;
+z-index:1000;
+background:rgba(12,12,12,.97);
+border:1px solid #333;
+border-radius:20px;
+display:flex;
+justify-content:space-around;
+padding:8px 5px;
+box-shadow:0 10px 35px rgba(0,0,0,.6);
+overflow-x:auto
+}
+
 .bottom-nav.hidden{display:none}
-.nav-btn{background:none;border:0;color:#777;min-width:60px;min-height:58px;border-radius:14px;cursor:pointer;font-size:11px;font-weight:700;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+
+.nav-btn{
+background:none;
+border:0;
+color:#777;
+min-width:60px;
+min-height:58px;
+border-radius:14px;
+cursor:pointer;
+font-size:11px;
+font-weight:700;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:5px
+}
+
 .nav-btn span{font-size:21px}
 .nav-btn.active{color:#F0D36A;background:#17140b}
+
 @media(max-width:420px){
 .brand{font-size:32px}
 .page-title{font-size:27px}
@@ -99,6 +306,7 @@ padding:0 5px
 <!-- WELCOME -->
 <section id="welcome" class="center-screen active">
 <div class="welcome">
+
 <div class="logo">
 <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
 <rect width="512" height="512" rx="120" fill="#030303"/>
@@ -108,7 +316,8 @@ padding:0 5px
 <rect x="187" y="210" width="36" height="90" rx="6" fill="#F0D36A"/>
 <rect x="257" y="175" width="36" height="100" rx="6" fill="#FFE58A"/>
 <rect x="327" y="150" width="36" height="95" rx="6" fill="#D4AF37"/>
-<path d="M125 350 C165 330 185 345 220 315 C255 285 270 305 300 270 C325 240 350 245 385 190" fill="none" stroke="#FFE58A" stroke-width="9" stroke-linecap="round"/>
+<path d="M125 350 C165 330 185 345 220 315 C255 285 270 305 300 270 C325 240 350 245 385 190"
+fill="none" stroke="#FFE58A" stroke-width="9" stroke-linecap="round"/>
 <circle cx="125" cy="350" r="9" fill="#FFE58A"/>
 <circle cx="220" cy="315" r="9" fill="#FFE58A"/>
 <circle cx="300" cy="270" r="9" fill="#FFE58A"/>
@@ -117,125 +326,260 @@ padding:0 5px
 <circle cx="256" cy="256" r="8" fill="#FFE58A"/>
 </svg>
 </div>
+
 <div class="brand">AURIX AI</div>
 <div class="welcome-title">WELCOME TO AURIX AI</div>
-<div class="welcome-text">Gold market intelligence and premium AI signal alerts.</div>
+<div class="welcome-text">
+Gold market intelligence and premium AI signal alerts.
+</div>
+
 </div>
 </section>
+
 
 <!-- REGISTER -->
 <section id="register" class="screen">
 <div class="container">
+
 <h1 class="page-title">CREATE ACCOUNT</h1>
+
 <div class="card">
+
 <div class="input-group">
 <label>Email</label>
 <input type="email" id="registerEmail" placeholder="Enter your email">
 </div>
+
 <div class="input-group">
 <label>Password</label>
 <input type="password" id="registerPassword" placeholder="Create password">
 </div>
+
 <div class="input-group">
 <label>Confirm Password</label>
 <input type="password" id="registerConfirm" placeholder="Confirm password">
 </div>
+
 <button class="btn" onclick="registerUser()">CREATE ACCOUNT</button>
-<button class="btn secondary" onclick="showScreen('login')">ALREADY HAVE AN ACCOUNT</button>
+
+<button class="btn secondary" onclick="showScreen('login')">
+ALREADY HAVE AN ACCOUNT
+</button>
+
 <div id="registerStatus" class="status-box" style="display:none"></div>
+
 </div>
 </div>
 </section>
+
 
 <!-- LOGIN -->
 <section id="login" class="screen">
 <div class="container">
+
 <h1 class="page-title">LOGIN</h1>
+
 <div class="card">
+
 <div class="input-group">
 <label>Email</label>
 <input type="email" id="loginEmail" placeholder="Enter your email">
 </div>
+
 <div class="input-group">
 <label>Password</label>
 <input type="password" id="loginPassword" placeholder="Enter your password">
 </div>
+
 <button class="btn" onclick="loginUser()">LOGIN</button>
-<button class="btn secondary" onclick="showScreen('register')">CREATE ACCOUNT</button>
+
+<button class="btn secondary" onclick="showScreen('register')">
+CREATE ACCOUNT
+</button>
+
 <div id="loginStatus" class="status-box" style="display:none"></div>
+
 </div>
 </div>
 </section>
+
 
 <!-- HOME -->
 <section id="home" class="screen">
 <div class="container">
+
 <div class="hero">
-<div class="hero-badge">AURIX AI • GOLD INTELLIGENCE</div>
-<h1>Gold Market Intelligence</h1>
-<p>Monitor gold market movements and receive premium signal alerts.</p>
+
+<div class="hero-badge">
+AURIX AI • GOLD INTELLIGENCE
 </div>
+
+<h1>Gold Market Intelligence</h1>
+
+<p>
+Monitor gold market movements and receive premium signal alerts.
+</p>
+
+</div>
+
 
 <div class="stats">
-<div class="stat"><small>MARKET</small><strong>GOLD</strong></div>
-<div class="stat"><small>STATUS</small><strong id="subscriptionStatus">INACTIVE</strong></div>
+
+<div class="stat">
+<small>MARKET</small>
+<strong>GOLD</strong>
 </div>
+
+<div class="stat">
+<small>STATUS</small>
+<strong id="subscriptionStatus">INACTIVE</strong>
+</div>
+
+</div>
+
 
 <div class="card signal">
+
 <div class="signal-header">
+
 <h2>Latest Signal</h2>
-<div class="signal-status">AI MONITORING</div>
-</div>
-<div id="latestSignal">
-<div class="signal-row"><span>Asset</span><strong class="gold">XAU/USD</strong></div>
-<div class="signal-row"><span>Status</span><strong>WAITING</strong></div>
-</div>
+
+<div class="signal-status">
+AI MONITORING
 </div>
 
-<div class="card">
-<h2>Premium Signals</h2>
-<p>Subscribe to activate access to AURIX AI gold market signals and alerts.</p>
-<button class="btn" onclick="showScreen('plans')">VIEW PLANS</button>
 </div>
+
+<div id="latestSignal">
+
+<div class="signal-row">
+<span>Asset</span>
+<strong class="gold">XAU/USD</strong>
+</div>
+
+<div class="signal-row">
+<span>Status</span>
+<strong>WAITING</strong>
+</div>
+
+</div>
+
+<button
+id="viewSignalBtn"
+class="btn secondary"
+style="display:none"
+onclick="showSignalDetails()">
+VIEW SIGNAL
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>Premium Signals</h2>
+
+<p>
+Subscribe to activate access to AURIX AI gold market signals and alerts.
+</p>
+
+<button class="btn" onclick="showScreen('plans')">
+VIEW PLANS
+</button>
+
+</div>
+
 </div>
 </section>
+
+
+<!-- SIGNAL DETAILS -->
+<section id="signalDetails" class="screen">
+<div class="container">
+
+<h1 class="page-title">GOLD SIGNAL</h1>
+
+<div id="signalDetailsContainer">
+
+<div class="empty">
+Loading signal...
+</div>
+
+</div>
+
+<button class="btn secondary" onclick="showScreen('home')">
+BACK TO HOME
+</button>
+
+</div>
+</section>
+
 
 <!-- PLANS -->
 <section id="plans" class="screen">
 <div class="container">
+
 <h1 class="page-title">SUBSCRIPTION PLANS</h1>
 
 <div class="card plan">
+
 <h2>1 MONTH</h2>
+
 <div class="plan-price">$49</div>
-<div class="plan-period">One month access</div>
-<ul>
-<li>Gold AI Signals</li>
-<li>Signal Notifications</li>
-<li>Multiple Timeframes</li>
-<li>Premium Market Intelligence</li>
-</ul>
-<button class="btn" onclick="selectPlan('1 Month - $49',49)">SELECT PLAN</button>
+
+<div class="plan-period">
+One month access
 </div>
 
-<div class="card plan">
-<h2>3 MONTHS</h2>
-<div class="plan-price">$119</div>
-<div class="plan-period">Three months access</div>
 <ul>
 <li>Gold AI Signals</li>
 <li>Signal Notifications</li>
 <li>Multiple Timeframes</li>
 <li>Premium Market Intelligence</li>
 </ul>
-<button class="btn" onclick="selectPlan('3 Months - $119',119)">SELECT PLAN</button>
+
+<button
+class="btn"
+onclick="selectPlan('1 Month - $49',49)">
+SELECT PLAN
+</button>
+
 </div>
+
+
+<div class="card plan">
+
+<h2>3 MONTHS</h2>
+
+<div class="plan-price">$119</div>
+
+<div class="plan-period">
+Three months access
+</div>
+
+<ul>
+<li>Gold AI Signals</li>
+<li>Signal Notifications</li>
+<li>Multiple Timeframes</li>
+<li>Premium Market Intelligence</li>
+</ul>
+
+<button
+class="btn"
+onclick="selectPlan('3 Months - $119',119)">
+SELECT PLAN
+</button>
+
+</div>
+
 </div>
 </section>
+
 
 <!-- WALLET -->
 <section id="wallet" class="screen">
 <div class="container">
+
 <h1 class="page-title">DEPOSIT</h1>
 
 <div class="notice">
@@ -243,47 +587,95 @@ Send your payment using BNB Smart Chain (BEP20).
 Your subscription will be activated after deposit verification.
 </div>
 
+
 <div class="card">
+
 <h2>Selected Plan</h2>
-<p id="selectedPlanDisplay" class="gold">No plan selected</p>
+
+<p id="selectedPlanDisplay" class="gold">
+No plan selected
+</p>
+
 </div>
 
+
 <div class="card">
+
 <h2>Network</h2>
+
 <p>BNB Smart Chain (BEP20)</p>
+
 <br>
+
 <h2>Supported Assets</h2>
-<p>USDT (BEP20)<br>BNB</p>
+
+<p>
+USDT (BEP20)<br>
+BNB
+</p>
+
 </div>
 
+
 <div class="card">
+
 <h2>Deposit Wallet</h2>
 
 <div class="wallet-box" id="walletAddress">
 0x4E11E978119cAAB300b5439B909D06341C24a2A7
 </div>
 
-<button class="btn copy-btn" onclick="copyWallet()">COPY WALLET ADDRESS</button>
+<button class="btn copy-btn" onclick="copyWallet()">
+COPY WALLET ADDRESS
+</button>
+
 
 <div class="input-group" style="margin-top:18px">
+
 <label>Asset</label>
-<select id="depositAsset" style="width:100%;height:58px;background:#101010;color:#fff;border:1px solid #333;border-radius:14px;padding:0 16px;font-size:16px">
-<option value="USDT">USDT (BEP20)</option>
-<option value="BNB">BNB</option>
+
+<select id="depositAsset">
+
+<option value="USDT">
+USDT (BEP20)
+</option>
+
+<option value="BNB">
+BNB
+</option>
+
 </select>
+
 </div>
+
 
 <div class="input-group">
+
 <label>Transaction Hash</label>
-<input type="text" id="txHash" placeholder="Paste transaction hash">
+
+<input
+type="text"
+id="txHash"
+placeholder="Paste transaction hash">
+
 </div>
 
-<button class="btn" onclick="depositSubmitted()">SUBMIT DEPOSIT</button>
 
-<div id="depositStatus" class="status-box" style="display:none"></div>
+<button class="btn" onclick="depositSubmitted()">
+SUBMIT DEPOSIT
+</button>
+
+<div
+id="depositStatus"
+class="status-box"
+style="display:none">
 </div>
+
+</div>
+
 </div>
 </section>
+
 
 <!-- NOTIFICATIONS -->
 <section id="notifications" class="screen">
@@ -292,54 +684,87 @@ Your subscription will be activated after deposit verification.
 <h1 class="page-title">NOTIFICATIONS</h1>
 
 <div id="notificationList">
-<div class="empty">Loading notifications...</div>
+
+<div class="empty">
+Loading notifications...
+</div>
+
 </div>
 
 </div>
 </section>
+
 
 <!-- SUPPORT -->
 <section id="support" class="screen">
 <div class="container">
+
 <h1 class="page-title">SUPPORT</h1>
+
 <div class="card">
+
 <h2>Need Help?</h2>
-<p>Contact AURIX AI support for subscription, deposit verification or account assistance.</p>
-<div class="wallet-box support-email">mmatrix081@gmail.com</div>
-<button class="btn" onclick="contactSupport()">CONTACT SUPPORT</button>
+
+<p>
+Contact AURIX AI support for subscription,
+deposit verification or account assistance.
+</p>
+
+<div class="wallet-box support-email">
+mmatrix081@gmail.com
+</div>
+
+<button class="btn" onclick="contactSupport()">
+CONTACT SUPPORT
+</button>
+
 </div>
 </div>
 </section>
+
 
 <!-- SETTINGS -->
 <section id="settings" class="screen">
 <div class="container">
+
 <h1 class="page-title">SETTINGS</h1>
 
 <div class="card">
+
 <div class="settings-row">
 <div class="settings-label">Application</div>
 <div class="settings-value">AURIX AI</div>
 </div>
+
 <div class="settings-row">
 <div class="settings-label">Market</div>
 <div class="settings-value">GOLD</div>
 </div>
+
 <div class="settings-row">
 <div class="settings-label">Network</div>
 <div class="settings-value">BEP20</div>
 </div>
+
 <div class="settings-row">
 <div class="settings-label">Account</div>
 <div class="settings-value" id="accountEmail">-</div>
 </div>
+
 </div>
 
+
 <div class="card">
-<button class="btn danger" onclick="logoutUser()">LOG OUT</button>
+
+<button class="btn danger" onclick="logoutUser()">
+LOG OUT
+</button>
+
 </div>
+
 </div>
 </section>
+
 
 <!-- NAV -->
 <nav id="bottomNav" class="bottom-nav hidden">
@@ -356,9 +781,23 @@ Your subscription will be activated after deposit verification.
 <span>◈</span>Wallet
 </button>
 
-<button class="nav-btn" id="notificationsNavBtn" onclick="showScreen('notifications')">
+<button
+class="nav-btn"
+id="notificationsNavBtn"
+onclick="showScreen('notifications')">
+
 <span>●</span>
-<div>Notifications <span id="notificationBadge" class="badge" style="display:none">0</span></div>
+
+<div>
+Notifications
+<span
+id="notificationBadge"
+class="badge"
+style="display:none">
+0
+</span>
+</div>
+
 </button>
 
 <button class="nav-btn" onclick="showScreen('support')">
@@ -370,6 +809,7 @@ Your subscription will be activated after deposit verification.
 </button>
 
 </nav>
+
 
 <script>
 
@@ -385,8 +825,8 @@ const SUPABASE_KEY =
 
 const supabaseClient =
 window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
+SUPABASE_URL,
+SUPABASE_KEY
 );
 
 
@@ -394,11 +834,14 @@ window.supabase.createClient(
    STATE
 ========================================= */
 
-let currentUser = null;
-let selectedPlan = "";
-let selectedAmount = 0;
-let notificationChannel = null;
-let signalChannel = null;
+let currentUser=null;
+let selectedPlan="";
+let selectedAmount=0;
+
+let notificationChannel=null;
+let signalChannel=null;
+
+let latestSignalData=null;
 
 
 /* =========================================
@@ -407,12 +850,13 @@ let signalChannel = null;
 
 function statusMessage(id,message){
 
-    const el=document.getElementById(id);
+const el=document.getElementById(id);
 
-    if(!el)return;
+if(!el)return;
 
-    el.textContent=message;
-    el.style.display="block";
+el.textContent=message;
+el.style.display="block";
+
 }
 
 
@@ -421,80 +865,88 @@ function statusMessage(id,message){
 ========================================= */
 
 const appScreens=[
-    "home",
-    "plans",
-    "wallet",
-    "notifications",
-    "support",
-    "settings"
+"home",
+"plans",
+"wallet",
+"notifications",
+"support",
+"settings",
+"signalDetails"
 ];
+
 
 function showScreen(screenId){
 
-    document.querySelectorAll(
-        ".screen,.center-screen"
-    ).forEach(function(screen){
+document.querySelectorAll(
+".screen,.center-screen"
+).forEach(function(screen){
 
-        screen.classList.remove("active");
+screen.classList.remove("active");
 
-    });
+});
 
-    const target=
-        document.getElementById(screenId);
 
-    if(!target)return;
+const target=document.getElementById(screenId);
 
-    target.classList.add("active");
+if(!target)return;
 
-    const nav=
-        document.getElementById("bottomNav");
+target.classList.add("active");
 
-    if(appScreens.includes(screenId)){
 
-        nav.classList.remove("hidden");
+const nav=document.getElementById("bottomNav");
 
-    }else{
+if(appScreens.includes(screenId)){
 
-        nav.classList.add("hidden");
+nav.classList.remove("hidden");
 
-    }
+}else{
 
-    document.querySelectorAll(".nav-btn")
-    .forEach(function(btn){
+nav.classList.add("hidden");
 
-        btn.classList.remove("active");
+}
 
-        const onclick=
-            btn.getAttribute("onclick")||"";
 
-        if(onclick.includes("'"+screenId+"'")){
+document.querySelectorAll(".nav-btn")
+.forEach(function(btn){
 
-            btn.classList.add("active");
+btn.classList.remove("active");
 
-        }
+const onclick=
+btn.getAttribute("onclick")||"";
 
-    });
+if(onclick.includes("'"+screenId+"'")){
 
-    if(screenId==="notifications"){
+btn.classList.add("active");
 
-        loadNotifications();
+}
 
-        setTimeout(function(){
+});
 
-            markNotificationsRead();
 
-        },500);
+if(screenId==="notifications"){
 
-    }
+loadNotifications();
 
-    if(screenId==="home"){
+}
 
-        loadProfile();
-        loadLatestSignal();
 
-    }
+if(screenId==="home"){
 
-    window.scrollTo(0,0);
+loadProfile();
+loadLatestSignal();
+
+}
+
+
+if(screenId==="signalDetails"){
+
+loadSignalDetails();
+
+}
+
+
+window.scrollTo(0,0);
+
 }
 
 
@@ -504,82 +956,93 @@ function showScreen(screenId){
 
 async function registerUser(){
 
-    const email=
-        document.getElementById("registerEmail")
-        .value.trim();
+const email=
+document.getElementById("registerEmail")
+.value.trim();
 
-    const password=
-        document.getElementById("registerPassword")
-        .value;
+const password=
+document.getElementById("registerPassword")
+.value;
 
-    const confirm=
-        document.getElementById("registerConfirm")
-        .value;
+const confirm=
+document.getElementById("registerConfirm")
+.value;
 
-    if(!email||!password||!confirm){
 
-        statusMessage(
-            "registerStatus",
-            "Please complete all fields."
-        );
+if(!email||!password||!confirm){
 
-        return;
-    }
+statusMessage(
+"registerStatus",
+"Please complete all fields."
+);
 
-    if(password!==confirm){
+return;
 
-        statusMessage(
-            "registerStatus",
-            "Passwords do not match."
-        );
+}
 
-        return;
-    }
 
-    if(password.length<6){
+if(password!==confirm){
 
-        statusMessage(
-            "registerStatus",
-            "Password must contain at least 6 characters."
-        );
+statusMessage(
+"registerStatus",
+"Passwords do not match."
+);
 
-        return;
-    }
+return;
 
-    const {data,error}=
-        await supabaseClient.auth.signUp({
+}
 
-            email:email,
-            password:password
 
-        });
+if(password.length<6){
 
-    if(error){
+statusMessage(
+"registerStatus",
+"Password must contain at least 6 characters."
+);
 
-        statusMessage(
-            "registerStatus",
-            error.message
-        );
+return;
 
-        return;
-    }
+}
 
-    if(data.session){
 
-        currentUser=data.user;
+const {data,error}=
+await supabaseClient.auth.signUp({
 
-        await afterLogin();
+email:email,
+password:password
 
-        showScreen("home");
+});
 
-    }else{
 
-        statusMessage(
-            "registerStatus",
-            "Account created. Check your email if confirmation is required, then login."
-        );
+if(error){
 
-    }
+statusMessage(
+"registerStatus",
+error.message
+);
+
+return;
+
+}
+
+
+if(data.session){
+
+currentUser=data.user;
+
+await afterLogin();
+
+showScreen("home");
+
+}else{
+
+statusMessage(
+"registerStatus",
+"Account created. Check your email if confirmation is required, then login."
+);
+
+}
+
 }
 
 
@@ -589,47 +1052,54 @@ async function registerUser(){
 
 async function loginUser(){
 
-    const email=
-        document.getElementById("loginEmail")
-        .value.trim();
+const email=
+document.getElementById("loginEmail")
+.value.trim();
 
-    const password=
-        document.getElementById("loginPassword")
-        .value;
+const password=
+document.getElementById("loginPassword")
+.value;
 
-    if(!email||!password){
 
-        statusMessage(
-            "loginStatus",
-            "Please enter your email and password."
-        );
+if(!email||!password){
 
-        return;
-    }
+statusMessage(
+"loginStatus",
+"Please enter your email and password."
+);
 
-    const {data,error}=
-        await supabaseClient.auth.signInWithPassword({
+return;
 
-            email:email,
-            password:password
+}
 
-        });
 
-    if(error){
+const {data,error}=
+await supabaseClient.auth.signInWithPassword({
 
-        statusMessage(
-            "loginStatus",
-            error.message
-        );
+email:email,
+password:password
 
-        return;
-    }
+});
 
-    currentUser=data.user;
 
-    await afterLogin();
+if(error){
 
-    showScreen("home");
+statusMessage(
+"loginStatus",
+error.message
+);
+
+return;
+
+}
+
+
+currentUser=data.user;
+
+await afterLogin();
+
+showScreen("home");
+
 }
 
 
@@ -639,19 +1109,24 @@ async function loginUser(){
 
 async function afterLogin(){
 
-    if(!currentUser)return;
+if(!currentUser)return;
 
-    document.getElementById("accountEmail")
-        .textContent=
-        currentUser.email||"-";
 
-    await loadProfile();
+document.getElementById("accountEmail")
+.textContent=
+currentUser.email||"-";
 
-    await loadNotifications();
 
-    subscribeToNotifications();
+await loadProfile();
 
-    await loadLatestSignal();
+await loadNotifications();
+
+subscribeToNotifications();
+
+subscribeToSignals();
+
+await loadLatestSignal();
+
 }
 
 
@@ -661,32 +1136,93 @@ async function afterLogin(){
 
 async function loadProfile(){
 
-    if(!currentUser)return;
+if(!currentUser)return null;
 
-    const {data,error}=
-        await supabaseClient
-        .from("profiles")
-        .select("*")
-        .eq("id",currentUser.id)
-        .maybeSingle();
 
-    if(error||!data)return;
+const {data,error}=
+await supabaseClient
+.from("profiles")
+.select(`
+id,
+email,
+role,
+subscription_active,
+subscription_plan,
+subscription_expires_at,
+created_at
+`)
+.eq("id",currentUser.id)
+.maybeSingle();
 
-    const status=
-        document.getElementById(
-            "subscriptionStatus"
-        );
 
-    if(status){
+if(error){
 
-        status.textContent=
-            data.subscription_active
-            ? "ACTIVE"
-            : "INACTIVE";
+console.error(
+"Profile error:",
+error
+);
 
-    }
+return null;
 
-    return data;
+}
+
+
+if(!data){
+
+console.error(
+"No profile found for user."
+);
+
+return null;
+
+}
+
+
+const status=
+document.getElementById(
+"subscriptionStatus"
+);
+
+
+const expiresAt=
+data.subscription_expires_at
+?new Date(data.subscription_expires_at)
+:null;
+
+const now=new Date();
+
+
+const isActive=
+data.subscription_active===true &&
+(
+!expiresAt ||
+expiresAt>now
+);
+
+
+if(status){
+
+status.textContent=
+isActive
+?"ACTIVE"
+:"INACTIVE";
+
+status.style.color=
+isActive
+?"#59d98a"
+:"#F0D36A";
+
+}
+
+
+return {
+
+...data,
+
+isActive:isActive
+
+};
+
 }
 
 
@@ -696,24 +1232,28 @@ async function loadProfile(){
 
 function selectPlan(plan,amount){
 
-    selectedPlan=plan;
-    selectedAmount=amount;
+selectedPlan=plan;
+selectedAmount=amount;
 
-    localStorage.setItem(
-        "aurixSelectedPlan",
-        plan
-    );
 
-    localStorage.setItem(
-        "aurixSelectedAmount",
-        amount
-    );
+localStorage.setItem(
+"aurixSelectedPlan",
+plan
+);
 
-    document.getElementById(
-        "selectedPlanDisplay"
-    ).textContent=plan;
+localStorage.setItem(
+"aurixSelectedAmount",
+amount
+);
 
-    showScreen("wallet");
+
+document.getElementById(
+"selectedPlanDisplay"
+).textContent=plan;
+
+
+showScreen("wallet");
+
 }
 
 
@@ -723,35 +1263,39 @@ function selectPlan(plan,amount){
 
 function loadSelectedPlan(){
 
-    const plan=
-        localStorage.getItem(
-            "aurixSelectedPlan"
-        );
+const plan=
+localStorage.getItem(
+"aurixSelectedPlan"
+);
 
-    const amount=
-        localStorage.getItem(
-            "aurixSelectedAmount"
-        );
+const amount=
+localStorage.getItem(
+"aurixSelectedAmount"
+);
 
-    if(plan){
 
-        selectedPlan=plan;
+if(plan){
 
-        selectedAmount=
-            Number(amount||0);
+selectedPlan=plan;
 
-        const el=
-            document.getElementById(
-                "selectedPlanDisplay"
-            );
+selectedAmount=
+Number(amount||0);
 
-        if(el){
 
-            el.textContent=plan;
+const el=
+document.getElementById(
+"selectedPlanDisplay"
+);
 
-        }
 
-    }
+if(el){
+
+el.textContent=plan;
+
+}
+
+}
+
 }
 
 
@@ -761,90 +1305,103 @@ function loadSelectedPlan(){
 
 async function depositSubmitted(){
 
-    if(!currentUser){
+if(!currentUser){
 
-        statusMessage(
-            "depositStatus",
-            "Please login first."
-        );
+statusMessage(
+"depositStatus",
+"Please login first."
+);
 
-        return;
-    }
+return;
 
-    if(!selectedPlan){
+}
 
-        statusMessage(
-            "depositStatus",
-            "Please select a plan first."
-        );
 
-        return;
-    }
+if(!selectedPlan){
 
-    const asset=
-        document.getElementById(
-            "depositAsset"
-        ).value;
+statusMessage(
+"depositStatus",
+"Please select a plan first."
+);
 
-    const txHash=
-        document.getElementById(
-            "txHash"
-        ).value.trim();
+return;
 
-    if(!txHash){
+}
 
-        statusMessage(
-            "depositStatus",
-            "Please enter the transaction hash."
-        );
 
-        return;
-    }
+const asset=
+document.getElementById(
+"depositAsset"
+).value;
 
-    const {error}=
-        await supabaseClient
-        .from("deposits")
-        .insert({
 
-            user_id:currentUser.id,
+const txHash=
+document.getElementById(
+"txHash"
+).value.trim();
 
-            plan:selectedPlan,
 
-            amount:selectedAmount,
+if(!txHash){
 
-            network:"BEP20",
+statusMessage(
+"depositStatus",
+"Please enter the transaction hash."
+);
 
-            asset:asset,
+return;
 
-            wallet_address:
-            "0x4E11E978119cAAB300b5439B909D06341C24a2A7",
+}
 
-            tx_hash:txHash,
 
-            status:"pending"
+const {error}=
+await supabaseClient
+.from("deposits")
+.insert({
 
-        });
+user_id:currentUser.id,
 
-    if(error){
+plan:selectedPlan,
 
-        statusMessage(
-            "depositStatus",
-            error.message
-        );
+amount:selectedAmount,
 
-        return;
-    }
+network:"BEP20",
 
-    statusMessage(
-        "depositStatus",
-        "Deposit submitted successfully. Waiting for verification."
-    );
+asset:asset,
 
-    setTimeout(function(){
+wallet_address:
+"0x4E11E978119cAAB300b5439B909D06341C24a2A7",
 
-        showScreen("notifications");
+tx_hash:txHash,
 
-    },800);
+status:"pending"
+
+});
+
+
+if(error){
+
+statusMessage(
+"depositStatus",
+error.message
+);
+
+return;
+
+}
+
+
+statusMessage(
+"depositStatus",
+"Deposit submitted successfully. Waiting for verification."
+);
+
+
+setTimeout(function(){
+
+showScreen("notifications");
+
+},800);
+
 }
 
 
@@ -854,12 +1411,17 @@ async function depositSubmitted(){
 
 function copyWallet(){
 
-    const address=
-        "0x4E11E978119cAAB300b5439B909D06341C24a2A7";
+const address=
+"0x4E11E978119cAAB300b5439B909D06341C24a2A7";
 
-    navigator.clipboard
-    .writeText(address)
-    .catch(function(){});
+
+if(navigator.clipboard){
+
+navigator.clipboard
+.writeText(address)
+.catch(function(){});
+
+}
 
 }
 
@@ -870,192 +1432,225 @@ function copyWallet(){
 
 async function loadNotifications(){
 
-    if(!currentUser)return;
-
-    const {data,error}=
-        await supabaseClient
-        .from("notifications")
-        .select("*")
-        .eq("user_id",currentUser.id)
-        .order("created_at",{ascending:false});
-
-    const container=
-        document.getElementById(
-            "notificationList"
-        );
-
-    const badge=
-        document.getElementById(
-            "notificationBadge"
-        );
-
-    if(!container)return;
-
-    if(error){
-
-        container.innerHTML=
-            '<div class="empty">Unable to load notifications.</div>';
-
-        if(badge){
-
-            badge.style.display="none";
-
-        }
-
-        return;
-    }
-
-    if(!data||data.length===0){
-
-        container.innerHTML=
-            '<div class="empty">No notifications yet.</div>';
-
-        if(badge){
-
-            badge.style.display="none";
-
-        }
-
-        return;
-    }
+if(!currentUser)return;
 
 
-    /* COUNT UNREAD */
-
-    const unreadCount=
-        data.filter(function(item){
-
-            return !item.is_read;
-
-        }).length;
-
-
-    if(badge){
-
-        if(unreadCount>0){
-
-            badge.textContent=
-                unreadCount>99
-                ? "99+"
-                : unreadCount;
-
-            badge.style.display="inline-flex";
-
-        }else{
-
-            badge.style.display="none";
-
-        }
-
-    }
+const {data,error}=
+await supabaseClient
+.from("notifications")
+.select("*")
+.eq("user_id",currentUser.id)
+.order(
+"created_at",
+{ascending:false}
+);
 
 
-    container.innerHTML="";
+const container=
+document.getElementById(
+"notificationList"
+);
 
 
-    data.forEach(function(item){
-
-        const card=
-            document.createElement("div");
-
-        card.className=
-            "card notification "+
-            (item.is_read ? "" : "unread");
+const badge=
+document.getElementById(
+"notificationBadge"
+);
 
 
-        const title=
-            document.createElement("h2");
-
-        title.textContent=
-            cleanNotificationText(
-                item.title ||
-                "Notification"
-            );
+if(!container)return;
 
 
-        const message=
-            document.createElement("p");
+if(error){
 
-        message.textContent=
-            cleanNotificationText(
-                item.message ||
-                "You have a new notification."
-            );
+console.error(
+"Notification error:",
+error
+);
 
 
-        const time=
-            document.createElement("div");
-
-        time.className=
-            "notification-time";
-
-        time.textContent=
-            new Date(
-                item.created_at
-            ).toLocaleString();
+container.innerHTML=
+'<div class="empty">Unable to load notifications.</div>';
 
 
-        card.appendChild(title);
+if(badge){
 
-        card.appendChild(message);
+badge.style.display="none";
 
-        card.appendChild(time);
+}
 
-        container.appendChild(card);
+return;
 
-    });
+}
+
+
+if(!data||data.length===0){
+
+container.innerHTML=
+'<div class="empty">No notifications yet.</div>';
+
+
+if(badge){
+
+badge.style.display="none";
+
+}
+
+return;
+
+}
+
+
+const unreadCount=
+data.filter(function(item){
+
+return !item.is_read;
+
+}).length;
+
+
+if(badge){
+
+if(unreadCount>0){
+
+badge.textContent=
+unreadCount>99
+?"99+"
+:unreadCount;
+
+badge.style.display="inline-flex";
+
+}else{
+
+badge.style.display="none";
+
+}
+
+}
+
+
+container.innerHTML="";
+
+
+data.forEach(function(item){
+
+const card=
+document.createElement("div");
+
+
+card.className=
+"card notification "+
+(item.is_read?"":"unread");
+
+
+const title=
+document.createElement("h2");
+
+
+title.textContent=
+cleanNotificationText(
+item.title||
+"Notification"
+);
+
+
+const message=
+document.createElement("p");
+
+
+message.textContent=
+cleanNotificationText(
+item.message||
+"You have a new notification."
+);
+
+
+const time=
+document.createElement("div");
+
+
+time.className=
+"notification-time";
+
+
+time.textContent=
+new Date(
+item.created_at
+).toLocaleString();
+
+
+card.appendChild(title);
+card.appendChild(message);
+card.appendChild(time);
+
+
+/* OPEN GOLD SIGNAL */
+
+if(
+item.type==="signal" ||
+(item.title||"")
+.toLowerCase()
+.includes("gold signal")
+){
+
+card.style.cursor="pointer";
+
+
+card.onclick=function(){
+
+openSignalFromNotification();
+
+};
+
+}
+
+
+container.appendChild(card);
+
+});
 
 }
 
 
 /* =========================================
    CLEAN NOTIFICATION TEXT
-   Removes email + subscription amounts
 ========================================= */
 
 function cleanNotificationText(text){
 
-    let clean=String(text||"");
+let clean=String(text||"");
 
 
-    /* Remove email addresses */
-
-    clean=
-        clean.replace(
-            /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi,
-            ""
-        );
+clean=
+clean.replace(
+/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi,
+""
+);
 
 
-    /* Remove dollar amounts */
-
-    clean=
-        clean.replace(
-            /\$\s?\d+(?:\.\d{1,2})?/g,
-            ""
-        );
+clean=
+clean.replace(
+/\$\s?\d+(?:\.\d{1,2})?/g,
+""
+);
 
 
-    /* Remove common amount phrases */
-
-    clean=
-        clean.replace(
-            /\b(subscription\s*)?(amount|price|cost)\s*[:\-]?\s*\$?\s*\d+(?:\.\d{1,2})?/gi,
-            ""
-        );
+clean=
+clean.replace(
+/\b(subscription\s*)?(amount|price|cost)\s*[:\-]?\s*\$?\s*\d+(?:\.\d{1,2})?/gi,
+""
+);
 
 
-    /* Remove extra spaces */
-
-    clean=
-        clean.replace(
-            /\s{2,}/g,
-            " "
-        ).trim();
+clean=
+clean.replace(
+/\s{2,}/g,
+" "
+).trim();
 
 
-    return clean ||
-        "You have a new notification.";
+return clean||
+"You have a new notification.";
 
 }
 
@@ -1066,59 +1661,63 @@ function cleanNotificationText(text){
 
 async function markNotificationsRead(){
 
-    if(!currentUser)return;
-
-    const {error}=
-        await supabaseClient
-        .from("notifications")
-        .update({
-
-            is_read:true
-
-        })
-        .eq(
-            "user_id",
-            currentUser.id
-        )
-        .eq(
-            "is_read",
-            false
-        );
-
-    if(error){
-
-        console.error(
-            "Notification read error:",
-            error
-        );
-
-        return;
-    }
+if(!currentUser)return;
 
 
-    const badge=
-        document.getElementById(
-            "notificationBadge"
-        );
+const {error}=
+await supabaseClient
+.from("notifications")
+.update({
 
-    if(badge){
+is_read:true
 
-        badge.style.display="none";
+})
+.eq(
+"user_id",
+currentUser.id
+)
+.eq(
+"is_read",
+false
+);
 
-    }
+
+if(error){
+
+console.error(
+"Notification read error:",
+error
+);
+
+return;
+
+}
 
 
-    document
-        .querySelectorAll(
-            ".notification.unread"
-        )
-        .forEach(function(card){
+const badge=
+document.getElementById(
+"notificationBadge"
+);
 
-            card.classList.remove(
-                "unread"
-            );
 
-        });
+if(badge){
+
+badge.style.display="none";
+
+}
+
+
+document
+.querySelectorAll(
+".notification.unread"
+)
+.forEach(function(card){
+
+card.classList.remove(
+"unread"
+);
+
+});
 
 }
 
@@ -1129,153 +1728,504 @@ async function markNotificationsRead(){
 
 function subscribeToNotifications(){
 
-    if(!currentUser)return;
+if(!currentUser)return;
 
 
-    if(notificationChannel){
+if(notificationChannel){
 
-        supabaseClient.removeChannel(
-            notificationChannel
-        );
+supabaseClient.removeChannel(
+notificationChannel
+);
 
-    }
+}
 
 
-    notificationChannel=
-        supabaseClient
-        .channel(
-            "aurix-notifications-"+
-            currentUser.id
-        )
-        .on(
+notificationChannel=
+supabaseClient
+.channel(
+"aurix-notifications-"+currentUser.id
+)
+.on(
+"postgres_changes",
+{
+event:"INSERT",
+schema:"public",
+table:"notifications",
+filter:
+"user_id=eq."+currentUser.id
+},
+function(){
 
-            "postgres_changes",
+loadNotifications();
 
-            {
-                event:"INSERT",
-
-                schema:"public",
-
-                table:"notifications",
-
-                filter:
-                "user_id=eq."+
-                currentUser.id
-            },
-
-            function(){
-
-                loadNotifications();
-
-            }
-
-        )
-        .subscribe();
+}
+)
+.subscribe();
 
 }
 
 
 /* =========================================
-   GOLD SIGNALS
+   GOLD SIGNAL
+========================================= */
+
+async function getActiveProfile(){
+
+const profile=
+await loadProfile();
+
+
+if(!profile)return null;
+
+
+return profile.isActive
+?profile
+:null;
+
+}
+
+
+/* =========================================
+   LOAD LATEST SIGNAL
 ========================================= */
 
 async function loadLatestSignal(){
 
-    if(!currentUser)return;
-
-    const profile=
-        await loadProfile();
-
-    const container=
-        document.getElementById(
-            "latestSignal"
-        );
-
-    if(!container)return;
-
-    if(
-        !profile||
-        !profile.subscription_active
-    ){
-
-        container.innerHTML=`
-
-        <div class="signal-row">
-            <span>Asset</span>
-            <strong class="gold">XAU/USD</strong>
-        </div>
-
-        <div class="signal-row">
-            <span>Access</span>
-            <strong>SUBSCRIPTION REQUIRED</strong>
-        </div>`;
-
-        return;
-    }
+if(!currentUser)return;
 
 
-    const {data,error}=
-        await supabaseClient
-        .from("gold_signals")
-        .select("*")
-        .eq("active",true)
-        .order(
-            "created_at",
-            {ascending:false}
-        )
-        .limit(1)
-        .maybeSingle();
+const container=
+document.getElementById(
+"latestSignal"
+);
 
 
-    if(error||!data){
-
-        container.innerHTML=`
-
-        <div class="signal-row">
-            <span>Asset</span>
-            <strong class="gold">XAU/USD</strong>
-        </div>
-
-        <div class="signal-row">
-            <span>Status</span>
-            <strong>WAITING</strong>
-        </div>`;
-
-        return;
-    }
+const viewButton=
+document.getElementById(
+"viewSignalBtn"
+);
 
 
-    container.innerHTML=`
+if(!container)return;
 
-    <div class="signal-row">
-        <span>Asset</span>
-        <strong class="gold">XAU/USD</strong>
-    </div>
 
-    <div class="signal-row">
-        <span>Timeframe</span>
-        <strong>${escapeHtml(data.timeframe)}</strong>
-    </div>
+const profile=
+await loadProfile();
 
-    <div class="signal-row">
-        <span>Signal</span>
-        <strong class="gold">${escapeHtml(data.signal)}</strong>
-    </div>
 
-    <div class="signal-row">
-        <span>Entry</span>
-        <strong>${escapeHtml(data.entry||"-")}</strong>
-    </div>
+if(
+!profile ||
+!profile.isActive
+){
 
-    <div class="signal-row">
-        <span>Stop Loss</span>
-        <strong>${escapeHtml(data.stop_loss||"-")}</strong>
-    </div>
+latestSignalData=null;
 
-    <div class="signal-row">
-        <span>Take Profit</span>
-        <strong>${escapeHtml(data.take_profit||"-")}</strong>
-    </div>`;
+
+if(viewButton){
+
+viewButton.style.display="none";
+
+}
+
+
+container.innerHTML=`
+
+<div class="signal-row">
+<span>Asset</span>
+<strong class="gold">XAU/USD</strong>
+</div>
+
+<div class="signal-row">
+<span>Access</span>
+<strong>SUBSCRIPTION REQUIRED</strong>
+</div>
+
+`;
+
+return;
+
+}
+
+
+const {data,error}=
+await supabaseClient
+.from("gold_signals")
+.select("*")
+.eq("active",true)
+.order(
+"created_at",
+{ascending:false}
+)
+.limit(1)
+.maybeSingle();
+
+
+if(error){
+
+console.error(
+"Gold signal error:",
+error
+);
+
+
+latestSignalData=null;
+
+
+if(viewButton){
+
+viewButton.style.display="none";
+
+}
+
+
+container.innerHTML=`
+
+<div class="signal-row">
+<span>Asset</span>
+<strong class="gold">XAU/USD</strong>
+</div>
+
+<div class="signal-row">
+<span>Status</span>
+<strong>WAITING</strong>
+</div>
+
+`;
+
+return;
+
+}
+
+
+if(!data){
+
+latestSignalData=null;
+
+
+if(viewButton){
+
+viewButton.style.display="none";
+
+}
+
+
+container.innerHTML=`
+
+<div class="signal-row">
+<span>Asset</span>
+<strong class="gold">XAU/USD</strong>
+</div>
+
+<div class="signal-row">
+<span>Status</span>
+<strong>WAITING</strong>
+</div>
+
+`;
+
+return;
+
+}
+
+
+latestSignalData=data;
+
+
+if(viewButton){
+
+viewButton.style.display="block";
+
+}
+
+
+const signalText=
+String(data.signal||"").toUpperCase();
+
+
+let signalClass="gold";
+
+
+if(signalText.includes("BUY")){
+
+signalClass="signal-buy";
+
+}else if(signalText.includes("SELL")){
+
+signalClass="signal-sell";
+
+}
+
+
+container.innerHTML=`
+
+<div class="signal-row">
+<span>Asset</span>
+<strong class="gold">XAU/USD</strong>
+</div>
+
+<div class="signal-row">
+<span>Timeframe</span>
+<strong>${escapeHtml(data.timeframe||"-")}</strong>
+</div>
+
+<div class="signal-row">
+<span>Signal</span>
+<strong class="${signalClass}">
+${escapeHtml(data.signal||"-")}
+</strong>
+</div>
+
+<div class="signal-row">
+<span>Entry</span>
+<strong>
+${escapeHtml(data.entry||"-")}
+</strong>
+</div>
+
+<div class="signal-row">
+<span>Stop Loss</span>
+<strong>
+${escapeHtml(data.stop_loss||"-")}
+</strong>
+</div>
+
+<div class="signal-row">
+<span>Take Profit</span>
+<strong>
+${escapeHtml(data.take_profit||"-")}
+</strong>
+</div>
+
+`;
+
+
+}
+
+
+/* =========================================
+   SIGNAL DETAILS
+========================================= */
+
+async function loadSignalDetails(){
+
+const container=
+document.getElementById(
+"signalDetailsContainer"
+);
+
+
+if(!container)return;
+
+
+const profile=
+await getActiveProfile();
+
+
+if(!profile){
+
+container.innerHTML=`
+
+<div class="card">
+
+<h2>PREMIUM ACCESS REQUIRED</h2>
+
+<p>
+Your subscription is not currently active.
+Please activate a subscription to access
+gold trading signals.
+</p>
+
+<button
+class="btn"
+onclick="showScreen('plans')">
+VIEW PLANS
+</button>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+if(!latestSignalData){
+
+await loadLatestSignal();
+
+}
+
+
+const data=latestSignalData;
+
+
+if(!data){
+
+container.innerHTML=`
+
+<div class="card">
+
+<div class="empty">
+No active gold signal available.
+</div>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+const signalText=
+String(data.signal||"").toUpperCase();
+
+
+let signalClass="gold";
+
+
+if(signalText.includes("BUY")){
+
+signalClass="signal-buy";
+
+}else if(signalText.includes("SELL")){
+
+signalClass="signal-sell";
+
+}
+
+
+container.innerHTML=`
+
+<div class="card signal">
+
+<div class="signal-header">
+
+<h2>XAU/USD</h2>
+
+<div class="signal-status">
+ACTIVE SIGNAL
+</div>
+
+</div>
+
+
+<div class="signal-row">
+<span>Timeframe</span>
+<strong>
+${escapeHtml(data.timeframe||"-")}
+</strong>
+</div>
+
+
+<div class="signal-row">
+<span>Signal</span>
+<strong class="${signalClass}">
+${escapeHtml(data.signal||"-")}
+</strong>
+</div>
+
+
+<div class="signal-row">
+<span>Entry</span>
+<strong>
+${escapeHtml(data.entry||"-")}
+</strong>
+</div>
+
+
+<div class="signal-row">
+<span>Stop Loss</span>
+<strong>
+${escapeHtml(data.stop_loss||"-")}
+</strong>
+</div>
+
+
+<div class="signal-row">
+<span>Take Profit</span>
+<strong>
+${escapeHtml(data.take_profit||"-")}
+</strong>
+</div>
+
+
+<div class="signal-message">
+
+<strong class="gold">MESSAGE</strong>
+
+<br><br>
+
+${escapeHtml(data.message||"No additional message.")}
+
+</div>
+
+
+<div class="notification-time">
+
+${data.created_at
+?new Date(data.created_at).toLocaleString()
+:""}
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================================
+   OPEN SIGNAL FROM NOTIFICATION
+========================================= */
+
+async function openSignalFromNotification(){
+
+const profile=
+await getActiveProfile();
+
+
+if(!profile){
+
+showScreen("plans");
+
+return;
+
+}
+
+
+await loadLatestSignal();
+
+showScreen("signalDetails");
+
+}
+
+
+/* =========================================
+   VIEW SIGNAL
+========================================= */
+
+async function showSignalDetails(){
+
+const profile=
+await getActiveProfile();
+
+
+if(!profile){
+
+showScreen("plans");
+
+return;
+
+}
+
+
+await loadSignalDetails();
+
+showScreen("signalDetails");
 
 }
 
@@ -1286,42 +2236,38 @@ async function loadLatestSignal(){
 
 function subscribeToSignals(){
 
-    if(signalChannel){
-
-        supabaseClient.removeChannel(
-            signalChannel
-        );
-
-    }
+if(!currentUser)return;
 
 
-    signalChannel=
-        supabaseClient
-        .channel(
-            "aurix-gold-signals"
-        )
-        .on(
+if(signalChannel){
 
-            "postgres_changes",
+supabaseClient.removeChannel(
+signalChannel
+);
 
-            {
-                event:"INSERT",
+}
 
-                schema:"public",
 
-                table:"gold_signals"
-            },
+signalChannel=
+supabaseClient
+.channel(
+"aurix-gold-signals-"+currentUser.id
+)
+.on(
+"postgres_changes",
+{
+event:"INSERT",
+schema:"public",
+table:"gold_signals"
+},
+function(){
 
-            function(){
+loadLatestSignal();
+loadNotifications();
 
-                loadLatestSignal();
-
-                loadNotifications();
-
-            }
-
-        )
-        .subscribe();
+}
+)
+.subscribe();
 
 }
 
@@ -1332,32 +2278,13 @@ function subscribeToSignals(){
 
 function escapeHtml(value){
 
-    return String(value)
+return String(value)
 
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-
-    .replace(
-        /</g,
-        "&lt;"
-    )
-
-    .replace(
-        />/g,
-        "&gt;"
-    )
-
-    .replace(
-        /"/g,
-        "&quot;"
-    )
-
-    .replace(
-        /'/g,
-        "&#039;"
-    );
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
 
@@ -1368,8 +2295,8 @@ function escapeHtml(value){
 
 function contactSupport(){
 
-    window.location.href=
-        "mailto:mmatrix081@gmail.com?subject=AURIX%20AI%20Support%20Request";
+window.location.href=
+"mailto:mmatrix081@gmail.com?subject=AURIX%20AI%20Support%20Request";
 
 }
 
@@ -1380,41 +2307,43 @@ function contactSupport(){
 
 async function logoutUser(){
 
-    await supabaseClient.auth.signOut();
+await supabaseClient.auth.signOut();
 
-    currentUser=null;
+currentUser=null;
 
-
-    if(notificationChannel){
-
-        supabaseClient.removeChannel(
-            notificationChannel
-        );
-
-        notificationChannel=null;
-
-    }
+latestSignalData=null;
 
 
-    if(signalChannel){
+if(notificationChannel){
 
-        supabaseClient.removeChannel(
-            signalChannel
-        );
+supabaseClient.removeChannel(
+notificationChannel
+);
 
-        signalChannel=null;
+notificationChannel=null;
 
-    }
-
-
-    showScreen("welcome");
+}
 
 
-    setTimeout(function(){
+if(signalChannel){
 
-        showScreen("register");
+supabaseClient.removeChannel(
+signalChannel
+);
 
-    },500);
+signalChannel=null;
+
+}
+
+
+showScreen("welcome");
+
+
+setTimeout(function(){
+
+showScreen("register");
+
+},500);
 
 }
 
@@ -1425,28 +2354,29 @@ async function logoutUser(){
 
 supabaseClient.auth.onAuthStateChange(
 
-    async function(event,session){
+async function(event,session){
 
-        if(session&&session.user){
+if(session&&session.user){
 
-            currentUser=session.user;
+currentUser=session.user;
 
-            setTimeout(
-                function(){
 
-                    afterLogin();
+setTimeout(
+function(){
 
-                },
-                0
-            );
+afterLogin();
 
-        }else{
+},
+0
+);
 
-            currentUser=null;
+}else{
 
-        }
+currentUser=null;
 
-    }
+}
+
+}
 
 );
 
@@ -1456,50 +2386,43 @@ supabaseClient.auth.onAuthStateChange(
 ========================================= */
 
 document.addEventListener(
+"DOMContentLoaded",
+async function(){
 
-    "DOMContentLoaded",
-
-    async function(){
-
-        loadSelectedPlan();
+loadSelectedPlan();
 
 
-        const {
-            data
-        }=
-        await supabaseClient.auth.getSession();
+const {data}=
+await supabaseClient.auth.getSession();
 
 
-        if(
-            data&&
-            data.session
-        ){
+if(
+data &&
+data.session
+){
 
-            currentUser=
-                data.session.user;
-
-            await afterLogin();
-
-            showScreen("home");
-
-        }else{
-
-            showScreen("welcome");
+currentUser=
+data.session.user;
 
 
-            setTimeout(function(){
+await afterLogin();
 
-                showScreen("register");
+showScreen("home");
 
-            },5000);
+}else{
 
-        }
+showScreen("welcome");
 
 
-        subscribeToSignals();
+setTimeout(function(){
 
-    }
+showScreen("register");
 
+},5000);
+
+}
+
+}
 );
 
 </script>
