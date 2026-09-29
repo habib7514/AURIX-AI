@@ -98,6 +98,11 @@ button{
  color:#fff;
 }
 
+.copy-btn{
+ background:#d6a84f;
+ color:#080808;
+}
+
 #app{display:none}
 
 header{
@@ -123,23 +128,38 @@ header strong{
  padding:20px;
 }
 
+
+/* =========================
+   MAIN NAVIGATION
+   ONE BUTTON PER LINE
+   ========================= */
+
 .tabs{
  display:flex;
- gap:8px;
- overflow-x:auto;
- padding-bottom:15px;
+ flex-direction:column;
+ gap:10px;
+ width:100%;
+ padding-bottom:20px;
 }
 
 .tab{
+ width:100%;
+ display:block;
+ text-align:left;
  background:#141414;
  color:#aaa;
- white-space:nowrap;
+ white-space:normal;
+ padding:14px 16px;
+ border:1px solid #252015;
+ border-radius:10px;
 }
 
 .tab.active{
  background:#d6a84f;
  color:#080808;
+ border-color:#d6a84f;
 }
+
 
 .section{display:none}
 .section.active{display:block}
@@ -223,7 +243,8 @@ th{
  color:#bbb;
 }
 
-/* ACTION BUTTONS - ONE BUTTON PER LINE */
+
+/* ACTION BUTTONS */
 
 .actions{
  display:flex;
@@ -265,17 +286,55 @@ textarea{
  border-color:#d6a84f;
 }
 
+
+/* SIGNAL BUTTONS */
+
 .signal-tools{
- display:grid;
- grid-template-columns:1fr 1fr;
+ display:flex;
+ flex-direction:column;
  gap:10px;
  margin-top:10px;
 }
 
+.signal-tools button{
+ width:100%;
+}
+
+.copy-signal-box{
+ margin-top:14px;
+ padding-top:14px;
+ border-top:1px solid #29251c;
+}
+
+.copy-signal-box button{
+ width:100%;
+}
+
+.active-signal-card{
+ margin-top:15px;
+ background:#0b0b0b;
+ border:1px solid #3a2e18;
+ border-radius:12px;
+ padding:15px;
+ line-height:1.8;
+}
+
+.active-signal-title{
+ color:#d6a84f;
+ font-weight:800;
+ margin-bottom:8px;
+}
+
 @media(max-width:600px){
- .signal-tools{
-  grid-template-columns:1fr;
+
+ .container{
+  padding:14px;
  }
+
+ .tab{
+  padding:14px;
+ }
+
 }
 </style>
 </head>
@@ -323,6 +382,10 @@ textarea{
 
 
 <div class="container">
+
+<!-- =========================
+     NAVIGATION
+     ========================= -->
 
 <div class="tabs">
 
@@ -484,6 +547,7 @@ textarea{
    <option value="1d">1 Day</option>
   </select>
 
+
   <label>Signal</label>
 
   <select id="signal">
@@ -492,14 +556,30 @@ textarea{
    <option value="WAIT">WAIT</option>
   </select>
 
+
   <label>Entry</label>
-  <input id="entry" placeholder="Example: 2650.50">
+
+  <input
+   id="entry"
+   placeholder="Example: 2650.50"
+  >
+
 
   <label>Stop Loss</label>
-  <input id="stopLoss" placeholder="Example: 2642.00">
+
+  <input
+   id="stopLoss"
+   placeholder="Example: 2642.00"
+  >
+
 
   <label>Take Profit</label>
-  <input id="takeProfit" placeholder="Example: 2670.00">
+
+  <input
+   id="takeProfit"
+   placeholder="Example: 2670.00"
+  >
+
 
   <label>Message</label>
 
@@ -509,18 +589,37 @@ textarea{
   ></textarea>
 
 
-  <button class="gold-btn" onclick="publishSignal()">
+  <button
+   class="gold-btn"
+   onclick="publishSignal()">
    PUBLISH SIGNAL
   </button>
 
 
+  <!-- SIGNAL CONTROLS -->
+
   <div class="signal-tools">
+
+   <button
+    class="copy-btn"
+    onclick="copyActiveSignal()">
+    COPY SIGNAL
+   </button>
+
+
+   <button
+    class="danger"
+    onclick="removeCurrentSignal()">
+    REMOVE CURRENT SIGNAL
+   </button>
+
 
    <button
     class="danger"
     onclick="deleteExpiredSignals()">
     DELETE EXPIRED SIGNALS
    </button>
+
 
    <button
     class="secondary"
@@ -530,6 +629,8 @@ textarea{
 
   </div>
 
+
+  <div id="activeSignalDisplay"></div>
 
   <div id="signalMsg" class="message"></div>
 
@@ -1572,7 +1673,9 @@ async function activateSubscription(userId){
 }
 
 
-/* PUBLISH GOLD SIGNAL */
+/* =========================
+   PUBLISH GOLD SIGNAL
+   ========================= */
 
 async function publishSignal(){
 
@@ -1743,7 +1846,235 @@ async function publishSignal(){
 }
 
 
-/* DELETE EXPIRED SIGNALS */
+/* =========================
+   COPY ACTIVE SIGNAL
+   ========================= */
+
+async function copyActiveSignal(){
+
+ const msg =
+  document.getElementById("signalMsg");
+
+ msg.textContent =
+  "Loading active signal...";
+
+ const {data,error} =
+ await supabaseClient
+ .from("gold_signals")
+ .select("*")
+ .eq("active",true)
+ .order("created_at",{ascending:false})
+ .limit(1);
+
+ if(error){
+
+  msg.textContent =
+   "Could not load active signal.";
+
+  alert(
+   "Could not load active signal:\n\n" +
+   error.message
+  );
+
+  return;
+ }
+
+ if(!data || !data.length){
+
+  msg.textContent =
+   "No active gold signal.";
+
+  alert(
+   "There is no active signal to copy."
+  );
+
+  return;
+ }
+
+ const s=data[0];
+
+ const copyText =
+`XAU/USD
+SIGNAL: ${s.signal}
+TIMEFRAME: ${s.timeframe}
+ENTRY: ${s.entry}
+STOP LOSS: ${s.stop_loss}
+TAKE PROFIT: ${s.take_profit}${s.message ? `\nMESSAGE: ${s.message}` : ""}`;
+
+ try{
+
+  await navigator.clipboard.writeText(copyText);
+
+  msg.textContent =
+   "Signal copied successfully.";
+
+  alert(
+   "SIGNAL COPIED\n\n" +
+   copyText
+  );
+
+ }
+ catch(error){
+
+  /* Fallback for some mobile browsers */
+
+  const textArea =
+   document.createElement("textarea");
+
+  textArea.value=copyText;
+
+  textArea.style.position="fixed";
+  textArea.style.left="-9999px";
+
+  document.body.appendChild(textArea);
+
+  textArea.select();
+
+  try{
+
+   document.execCommand("copy");
+
+   msg.textContent =
+    "Signal copied successfully.";
+
+   alert("Signal copied successfully.");
+
+  }
+  catch(copyError){
+
+   msg.textContent =
+    "Could not copy automatically.";
+
+   alert(
+    "Copy failed.\n\n" +
+    copyText
+   );
+
+  }
+
+  document.body.removeChild(textArea);
+ }
+}
+
+
+/* =========================
+   REMOVE CURRENT SIGNAL
+   ========================= */
+
+async function removeCurrentSignal(){
+
+ const msg =
+  document.getElementById("signalMsg");
+
+ msg.textContent =
+  "Finding current signal...";
+
+ const {data,error} =
+ await supabaseClient
+ .from("gold_signals")
+ .select("*")
+ .eq("active",true)
+ .order("created_at",{ascending:false})
+ .limit(1);
+
+ if(error){
+
+  msg.textContent =
+   "Could not find current signal.";
+
+  alert(
+   "Could not find current signal:\n\n" +
+   error.message
+  );
+
+  return;
+ }
+
+ if(!data || !data.length){
+
+  msg.textContent =
+   "No active gold signal.";
+
+  alert(
+   "There is no current active signal."
+  );
+
+  return;
+ }
+
+ const s=data[0];
+
+ const confirmed=
+ confirm(
+  "REMOVE CURRENT SIGNAL?\n\n" +
+  "XAU/USD\n" +
+  "Signal: " + s.signal + "\n" +
+  "Timeframe: " + s.timeframe + "\n" +
+  "Entry: " + s.entry + "\n" +
+  "Stop Loss: " + s.stop_loss + "\n" +
+  "Take Profit: " + s.take_profit +
+  "\n\nSubscribers will no longer see this as the active signal."
+ );
+
+ if(!confirmed)
+  return;
+
+ msg.textContent =
+  "Removing current signal...";
+
+ const {data:deletedRows,error:deleteError} =
+ await supabaseClient
+ .from("gold_signals")
+ .delete()
+ .eq("id",s.id)
+ .select("id");
+
+ if(deleteError){
+
+  msg.textContent =
+   "Could not remove current signal.";
+
+  alert(
+   "Could not remove current signal:\n\n" +
+   deleteError.message
+  );
+
+  console.log(
+   "REMOVE CURRENT SIGNAL ERROR:",
+   deleteError
+  );
+
+  return;
+ }
+
+ if(!deletedRows || deletedRows.length===0){
+
+  msg.textContent =
+   "The signal was not removed.";
+
+  alert(
+   "Supabase did not delete the signal."
+  );
+
+  return;
+ }
+
+ msg.textContent =
+  "Current signal removed successfully.";
+
+ document.getElementById(
+  "activeSignalDisplay"
+ ).innerHTML="";
+
+ alert(
+  "Current gold signal removed successfully."
+ );
+}
+
+
+/* =========================
+   DELETE EXPIRED SIGNALS
+   ========================= */
 
 async function deleteExpiredSignals(){
 
@@ -1795,11 +2126,12 @@ async function deleteExpiredSignals(){
   return;
  }
 
- const {error:deleteError} =
+ const {data:deletedRows,error:deleteError} =
  await supabaseClient
  .from("gold_signals")
  .delete()
- .eq("active",false);
+ .eq("active",false)
+ .select("id");
 
  if(deleteError){
 
@@ -1819,23 +2151,31 @@ async function deleteExpiredSignals(){
   return;
  }
 
+ const count =
+  deletedRows?.length || 0;
+
  msg.textContent =
-  expiredSignals.length +
+  count +
   " expired signal(s) deleted successfully.";
 
  alert(
-  expiredSignals.length +
+  count +
   " expired signal(s) deleted successfully."
  );
 }
 
 
-/* CHECK ACTIVE SIGNAL */
+/* =========================
+   CHECK ACTIVE SIGNAL
+   ========================= */
 
 async function showActiveSignal(){
 
  const msg =
   document.getElementById("signalMsg");
+
+ const display =
+  document.getElementById("activeSignalDisplay");
 
  const {data,error} =
  await supabaseClient
@@ -1850,6 +2190,8 @@ async function showActiveSignal(){
   msg.textContent =
    "Could not check active signal.";
 
+  display.innerHTML="";
+
   console.log(
    "ACTIVE SIGNAL ERROR:",
    error
@@ -1863,22 +2205,68 @@ async function showActiveSignal(){
   msg.textContent =
    "No active gold signal.";
 
+  display.innerHTML="";
   return;
  }
 
  const s=data[0];
 
  msg.textContent =
-  "ACTIVE SIGNAL: " +
-  s.signal +
-  " | " +
-  s.timeframe +
-  " | Entry " +
-  s.entry +
-  " | SL " +
-  s.stop_loss +
-  " | TP " +
-  s.take_profit;
+  "Active signal loaded.";
+
+ display.innerHTML=`
+
+  <div class="active-signal-card">
+
+   <div class="active-signal-title">
+    CURRENT ACTIVE SIGNAL
+   </div>
+
+   <div>
+    <strong>Pair:</strong> XAU/USD
+   </div>
+
+   <div>
+    <strong>Signal:</strong>
+    <span class="gold">
+     ${escapeHtml(s.signal)}
+    </span>
+   </div>
+
+   <div>
+    <strong>Timeframe:</strong>
+    ${escapeHtml(s.timeframe)}
+   </div>
+
+   <div>
+    <strong>Entry:</strong>
+    ${escapeHtml(s.entry)}
+   </div>
+
+   <div>
+    <strong>Stop Loss:</strong>
+    ${escapeHtml(s.stop_loss)}
+   </div>
+
+   <div>
+    <strong>Take Profit:</strong>
+    ${escapeHtml(s.take_profit)}
+   </div>
+
+   ${
+    s.message
+    ?
+    `<div style="margin-top:8px">
+      <strong>Message:</strong>
+      ${escapeHtml(s.message)}
+     </div>`
+    :
+    ""
+   }
+
+  </div>
+
+ `;
 }
 
 
