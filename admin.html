@@ -78,10 +78,25 @@ button{
  color:#080808;
 }
 
-.danger{background:#8d2929;color:#fff}
-.approve{background:#2f8f55;color:#fff}
-.secondary{background:#242424;color:#fff}
-.activate{background:#315d91;color:#fff}
+.danger{
+ background:#8d2929;
+ color:#fff;
+}
+
+.approve{
+ background:#2f8f55;
+ color:#fff;
+}
+
+.secondary{
+ background:#242424;
+ color:#fff;
+}
+
+.activate{
+ background:#315d91;
+ color:#fff;
+}
 
 #app{display:none}
 
@@ -208,15 +223,20 @@ th{
  color:#bbb;
 }
 
+/* ACTION BUTTONS - ONE BUTTON PER LINE */
+
 .actions{
  display:flex;
- gap:6px;
- flex-wrap:wrap;
+ flex-direction:column;
+ gap:8px;
+ width:100%;
 }
 
 .actions button{
- padding:8px 10px;
+ width:100%;
+ padding:9px 10px;
  font-size:12px;
+ display:block;
 }
 
 h2{margin-top:5px}
@@ -243,6 +263,19 @@ textarea{
 
 .notification.unread{
  border-color:#d6a84f;
+}
+
+.signal-tools{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px;
+ margin-top:10px;
+}
+
+@media(max-width:600px){
+ .signal-tools{
+  grid-template-columns:1fr;
+ }
 }
 </style>
 </head>
@@ -469,11 +502,34 @@ textarea{
   <input id="takeProfit" placeholder="Example: 2670.00">
 
   <label>Message</label>
-  <textarea id="signalMessage" placeholder="Gold signal details..."></textarea>
+
+  <textarea
+   id="signalMessage"
+   placeholder="Gold signal details..."
+  ></textarea>
+
 
   <button class="gold-btn" onclick="publishSignal()">
    PUBLISH SIGNAL
   </button>
+
+
+  <div class="signal-tools">
+
+   <button
+    class="danger"
+    onclick="deleteExpiredSignals()">
+    DELETE EXPIRED SIGNALS
+   </button>
+
+   <button
+    class="secondary"
+    onclick="showActiveSignal()">
+    CHECK ACTIVE SIGNAL
+   </button>
+
+  </div>
+
 
   <div id="signalMsg" class="message"></div>
 
@@ -625,6 +681,9 @@ function showTab(id,button){
 
  if(id==="subscribers")
   loadSubscribers();
+
+ if(id==="signals")
+  showActiveSignal();
 
  if(id==="notifications"){
 
@@ -820,11 +879,7 @@ async function loadMembers(){
 }
 
 
-/* REMOVE MEMBER
-   IMPORTANT:
-   Removal depends ONLY on subscription_active.
-   Expiration date is NOT used to block deletion.
-*/
+/* REMOVE MEMBER */
 
 async function removeMember(userId,email){
 
@@ -832,7 +887,6 @@ async function removeMember(userId,email){
 
   alert("Member ID is missing.");
   return;
-
  }
 
  if(!confirm(
@@ -840,10 +894,7 @@ async function removeMember(userId,email){
  ))
   return;
 
-
  try{
-
-  /* CHECK MEMBER */
 
   const {data:user,error:checkError} =
    await supabaseClient
@@ -853,7 +904,6 @@ async function removeMember(userId,email){
    )
    .eq("id",userId)
    .single();
-
 
   if(checkError){
 
@@ -870,20 +920,11 @@ async function removeMember(userId,email){
    return;
   }
 
-
   if(!user){
 
    alert("Member not found.");
    return;
-
   }
-
-
-  /*
-   ONLY subscription_active controls removal.
-   Even if subscription_expires_at is in the future,
-   an INACTIVE member can be removed.
-  */
 
   if(user.subscription_active===true){
 
@@ -893,11 +934,7 @@ async function removeMember(userId,email){
    );
 
    return;
-
   }
-
-
-  /* DELETE PROFILE */
 
   const {data:deletedRows,error:deleteError} =
    await supabaseClient
@@ -906,7 +943,6 @@ async function removeMember(userId,email){
    .eq("id",userId)
    .eq("role","member")
    .select("id,email");
-
 
   if(deleteError){
 
@@ -923,18 +959,13 @@ async function removeMember(userId,email){
    );
 
    return;
-
   }
-
-
-  /* VERIFY DELETE */
 
   if(!deletedRows || deletedRows.length===0){
 
    alert(
     "The member was NOT removed.\n\n" +
-    "Supabase did not delete the profile.\n\n" +
-    "The DELETE policy or database permissions may be blocking the operation."
+    "Supabase did not delete the profile."
    );
 
    console.log(
@@ -943,15 +974,12 @@ async function removeMember(userId,email){
    );
 
    return;
-
   }
-
 
   alert(
    "Member removed successfully:\n\n" +
    email
   );
-
 
   await loadDashboard();
   await loadMembers();
@@ -969,7 +997,6 @@ async function removeMember(userId,email){
    "REMOVE MEMBER EXCEPTION:",
    error
   );
-
  }
 }
 
@@ -1113,7 +1140,6 @@ async function approveDeposit(
 
   months=3;
   finalPlan="3 Months - $119";
-
  }
 
  const expires=new Date();
@@ -1121,9 +1147,6 @@ async function approveDeposit(
  expires.setMonth(
   expires.getMonth()+months
  );
-
-
- /* FIRST ACTIVATE PROFILE */
 
  const {data:updatedProfile,error:profileError} =
  await supabaseClient
@@ -1145,7 +1168,6 @@ async function approveDeposit(
  )
  .single();
 
-
  if(profileError){
 
   alert(
@@ -1159,9 +1181,7 @@ async function approveDeposit(
   );
 
   return;
-
  }
-
 
  if(
   !updatedProfile ||
@@ -1173,11 +1193,7 @@ async function approveDeposit(
   );
 
   return;
-
  }
-
-
- /* THEN APPROVE DEPOSIT */
 
  const {error:depositError} =
  await supabaseClient
@@ -1187,7 +1203,6 @@ async function approveDeposit(
  })
  .eq("id",depositId);
 
-
  if(depositError){
 
   alert(
@@ -1196,11 +1211,7 @@ async function approveDeposit(
   );
 
   return;
-
  }
-
-
- /* MEMBER NOTIFICATION */
 
  const {error:notifError} =
  await supabaseClient
@@ -1220,16 +1231,11 @@ async function approveDeposit(
 
  });
 
-
- if(notifError){
-
+ if(notifError)
   console.log(
    "Member notification error:",
    notifError.message
   );
-
- }
-
 
  alert(
   "SUCCESS!\n\n" +
@@ -1239,12 +1245,10 @@ async function approveDeposit(
   expires.toLocaleString()
  );
 
-
  await loadDashboard();
  await loadDeposits();
  await loadSubscribers();
  await loadMembers();
-
 }
 
 
@@ -1270,7 +1274,6 @@ async function rejectDeposit(
 
   alert(error.message);
   return;
-
  }
 
  const {error:notifError} =
@@ -1363,7 +1366,6 @@ async function loadSubscribers(){
 
    status="EXPIRED";
    badge="expired";
-
   }
 
   let controls="";
@@ -1405,7 +1407,6 @@ async function loadSubscribers(){
     </button>
 
    `;
-
   }
 
   table.innerHTML+=`
@@ -1459,7 +1460,6 @@ async function disableSubscription(userId){
 
   alert(error.message);
   return;
-
  }
 
  const {error:notifError} =
@@ -1510,7 +1510,6 @@ async function activateSubscription(userId){
 
   alert("Please enter a valid number of months.");
   return;
-
  }
 
  const expires=new Date();
@@ -1543,7 +1542,6 @@ async function activateSubscription(userId){
 
   alert(error.message);
   return;
-
  }
 
  const {error:notifError} =
@@ -1574,44 +1572,84 @@ async function activateSubscription(userId){
 }
 
 
-/* PUBLISH SIGNAL */
+/* PUBLISH GOLD SIGNAL */
 
 async function publishSignal(){
 
- const timeframe=
- document.getElementById("timeframe").value;
+ const timeframe =
+  document.getElementById("timeframe").value;
 
- const signal=
- document.getElementById("signal").value;
+ const signal =
+  document.getElementById("signal").value;
 
- const entry=
- document.getElementById("entry").value.trim();
+ const entry =
+  document.getElementById("entry").value.trim();
 
- const stopLoss=
- document.getElementById("stopLoss").value.trim();
+ const stopLoss =
+  document.getElementById("stopLoss").value.trim();
 
- const takeProfit=
- document.getElementById("takeProfit").value.trim();
+ const takeProfit =
+  document.getElementById("takeProfit").value.trim();
 
- const message=
- document.getElementById("signalMessage").value.trim();
+ const message =
+  document.getElementById("signalMessage").value.trim();
 
- const msg=
- document.getElementById("signalMsg");
+ const msg =
+  document.getElementById("signalMsg");
 
- msg.textContent="Publishing...";
+ if(!entry || !stopLoss || !takeProfit){
 
- const {error} =
+  msg.textContent =
+   "Please enter Entry, Stop Loss and Take Profit.";
+
+  return;
+ }
+
+ if(!confirm(
+  "Publish this new gold signal?\n\n" +
+  "The previous active signal will be marked as expired."
+ ))
+  return;
+
+ msg.textContent =
+  "Closing previous signal...";
+
+ const {error:closeError} =
+ await supabaseClient
+ .from("gold_signals")
+ .update({
+  active:false
+ })
+ .eq("active",true);
+
+ if(closeError){
+
+  msg.textContent =
+   "Could not close previous signal:\n\n" +
+   closeError.message;
+
+  console.log(
+   "CLOSE OLD SIGNAL ERROR:",
+   closeError
+  );
+
+  return;
+ }
+
+ msg.textContent =
+  "Publishing new signal...";
+
+ const {data:newSignal,error} =
  await supabaseClient
  .from("gold_signals")
  .insert({
 
-  timeframe,
-  signal,
-  entry:entry||null,
-  stop_loss:stopLoss||null,
-  take_profit:takeProfit||null,
-  message:message||null,
+  timeframe:timeframe,
+  signal:signal,
+  entry:entry,
+  stop_loss:stopLoss,
+  take_profit:takeProfit,
+  message:message || null,
   active:true
 
  })
@@ -1620,9 +1658,16 @@ async function publishSignal(){
 
  if(error){
 
-  msg.textContent=error.message;
-  return;
+  msg.textContent =
+   "Could not publish signal:\n\n" +
+   error.message;
 
+  console.log(
+   "PUBLISH SIGNAL ERROR:",
+   error
+  );
+
+  return;
  }
 
  const {data:members,error:membersError} =
@@ -1638,18 +1683,20 @@ async function publishSignal(){
 
  if(membersError){
 
-  msg.textContent=
+  msg.textContent =
    "Signal published, but subscribers could not be loaded.";
 
-  console.log(membersError.message);
+  console.log(
+   "SUBSCRIBERS ERROR:",
+   membersError
+  );
 
   return;
-
  }
 
  if(members && members.length){
 
-  const notifications=
+  const notifications =
    members.map(member=>({
 
     user_id:member.id,
@@ -1657,7 +1704,7 @@ async function publishSignal(){
     title:"New Gold Signal",
 
     message:
-     `New ${signal} signal on ${timeframe}. Entry: ${entry||"-"} | Stop Loss: ${stopLoss||"-"} | Take Profit: ${takeProfit||"-"}`,
+     `New ${signal} signal on ${timeframe}. Entry: ${entry} | Stop Loss: ${stopLoss} | Take Profit: ${takeProfit}`,
 
     type:"signal",
 
@@ -1672,24 +1719,166 @@ async function publishSignal(){
 
   if(notificationError){
 
-   console.log(notificationError.message);
+   console.log(
+    "NOTIFICATION ERROR:",
+    notificationError
+   );
 
-   msg.textContent=
+   msg.textContent =
     "Signal published, but notifications could not be created.";
 
    return;
-
   }
-
  }
 
- msg.textContent=
- `Signal published successfully. ${members?.length||0} active subscriber(s) notified.`;
+ msg.textContent =
+  `Signal published successfully. ${members?.length||0} active subscriber(s) notified.`;
 
  document.getElementById("entry").value="";
  document.getElementById("stopLoss").value="";
  document.getElementById("takeProfit").value="";
  document.getElementById("signalMessage").value="";
+
+ await showActiveSignal();
+}
+
+
+/* DELETE EXPIRED SIGNALS */
+
+async function deleteExpiredSignals(){
+
+ if(!confirm(
+  "Delete all expired gold signals?\n\n" +
+  "Only inactive signals will be permanently deleted."
+ ))
+  return;
+
+ const msg =
+  document.getElementById("signalMsg");
+
+ msg.textContent =
+  "Finding expired signals...";
+
+ const {data:expiredSignals,error:findError} =
+ await supabaseClient
+ .from("gold_signals")
+ .select("id")
+ .eq("active",false);
+
+ if(findError){
+
+  msg.textContent =
+   "Could not find expired signals.";
+
+  alert(
+   "Could not find expired signals:\n\n" +
+   findError.message
+  );
+
+  console.log(
+   "FIND EXPIRED SIGNALS ERROR:",
+   findError
+  );
+
+  return;
+ }
+
+ if(!expiredSignals || expiredSignals.length===0){
+
+  msg.textContent =
+   "No expired signals found.";
+
+  alert(
+   "There are no expired signals to delete."
+  );
+
+  return;
+ }
+
+ const {error:deleteError} =
+ await supabaseClient
+ .from("gold_signals")
+ .delete()
+ .eq("active",false);
+
+ if(deleteError){
+
+  msg.textContent =
+   "Could not delete expired signals.";
+
+  alert(
+   "Could not delete expired signals:\n\n" +
+   deleteError.message
+  );
+
+  console.log(
+   "DELETE EXPIRED SIGNALS ERROR:",
+   deleteError
+  );
+
+  return;
+ }
+
+ msg.textContent =
+  expiredSignals.length +
+  " expired signal(s) deleted successfully.";
+
+ alert(
+  expiredSignals.length +
+  " expired signal(s) deleted successfully."
+ );
+}
+
+
+/* CHECK ACTIVE SIGNAL */
+
+async function showActiveSignal(){
+
+ const msg =
+  document.getElementById("signalMsg");
+
+ const {data,error} =
+ await supabaseClient
+ .from("gold_signals")
+ .select("*")
+ .eq("active",true)
+ .order("created_at",{ascending:false})
+ .limit(1);
+
+ if(error){
+
+  msg.textContent =
+   "Could not check active signal.";
+
+  console.log(
+   "ACTIVE SIGNAL ERROR:",
+   error
+  );
+
+  return;
+ }
+
+ if(!data || !data.length){
+
+  msg.textContent =
+   "No active gold signal.";
+
+  return;
+ }
+
+ const s=data[0];
+
+ msg.textContent =
+  "ACTIVE SIGNAL: " +
+  s.signal +
+  " | " +
+  s.timeframe +
+  " | Entry " +
+  s.entry +
+  " | SL " +
+  s.stop_loss +
+  " | TP " +
+  s.take_profit;
 }
 
 
@@ -1716,7 +1905,6 @@ async function loadNotifications(){
   `<div class="card">${escapeHtml(error.message)}</div>`;
 
   return;
-
  }
 
  box.innerHTML="";
@@ -1727,7 +1915,6 @@ async function loadNotifications(){
   `<div class="card">No notifications.</div>`;
 
   return;
-
  }
 
  data.forEach(n=>{
