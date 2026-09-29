@@ -820,7 +820,11 @@ async function loadMembers(){
 }
 
 
-/* REMOVE MEMBER — UPDATED */
+/* REMOVE MEMBER
+   IMPORTANT:
+   Removal depends ONLY on subscription_active.
+   Expiration date is NOT used to block deletion.
+*/
 
 async function removeMember(userId,email){
 
@@ -832,20 +836,20 @@ async function removeMember(userId,email){
  }
 
  if(!confirm(
-  "Remove this non-active member?\n\nMember: " + email
+  "Remove this INACTIVE member?\n\nMember: " + email
  ))
   return;
 
 
  try{
 
-  /* Check member */
+  /* CHECK MEMBER */
 
   const {data:user,error:checkError} =
    await supabaseClient
    .from("profiles")
    .select(
-    "id,email,role,subscription_active,subscription_expires_at"
+    "id,email,role,subscription_active"
    )
    .eq("id",userId)
    .single();
@@ -858,7 +862,10 @@ async function removeMember(userId,email){
     checkError.message
    );
 
-   console.log("CHECK MEMBER ERROR:",checkError);
+   console.log(
+    "CHECK MEMBER ERROR:",
+    checkError
+   );
 
    return;
   }
@@ -872,22 +879,17 @@ async function removeMember(userId,email){
   }
 
 
-  /* Check active status */
+  /*
+   ONLY subscription_active controls removal.
+   Even if subscription_expires_at is in the future,
+   an INACTIVE member can be removed.
+  */
 
-  const expired =
-   user.subscription_expires_at &&
-   new Date(user.subscription_expires_at)<=new Date();
-
-
-  const isActive =
-   user.subscription_active===true &&
-   !expired;
-
-
-  if(isActive){
+  if(user.subscription_active===true){
 
    alert(
-    "This member is ACTIVE and cannot be removed."
+    "This member is ACTIVE and cannot be removed.\n\n" +
+    "Disable the subscription first."
    );
 
    return;
@@ -925,13 +927,13 @@ async function removeMember(userId,email){
   }
 
 
-  /* VERIFY */
+  /* VERIFY DELETE */
 
   if(!deletedRows || deletedRows.length===0){
 
    alert(
     "The member was NOT removed.\n\n" +
-    "Supabase did not delete the profile. " +
+    "Supabase did not delete the profile.\n\n" +
     "The DELETE policy or database permissions may be blocking the operation."
    );
 
