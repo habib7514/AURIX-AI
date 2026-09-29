@@ -9,7 +9,10 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{box-sizing:border-box}
+
+*{
+ box-sizing:border-box;
+}
 
 body{
  margin:0;
@@ -18,10 +21,22 @@ body{
  font-family:Arial,sans-serif;
 }
 
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
+button,input,select,textarea{
+ font:inherit;
+}
 
-.gold{color:#d6a84f}
+button{
+ cursor:pointer;
+}
+
+button:disabled{
+ opacity:.55;
+ cursor:not-allowed;
+}
+
+.gold{
+ color:#d6a84f;
+}
 
 #login{
  min-height:100vh;
@@ -50,7 +65,9 @@ button{cursor:pointer}
  margin-bottom:25px;
 }
 
-input,select,textarea{
+input,
+select,
+textarea{
  width:100%;
  background:#080808;
  border:1px solid #302a1d;
@@ -61,7 +78,9 @@ input,select,textarea{
  outline:none;
 }
 
-input:focus,select:focus,textarea:focus{
+input:focus,
+select:focus,
+textarea:focus{
  border-color:#d6a84f;
 }
 
@@ -103,7 +122,9 @@ button{
  color:#080808;
 }
 
-#app{display:none}
+#app{
+ display:none;
+}
 
 header{
  position:sticky;
@@ -154,8 +175,13 @@ header strong{
  border-color:#d6a84f;
 }
 
-.section{display:none}
-.section.active{display:block}
+.section{
+ display:none;
+}
+
+.section.active{
+ display:block;
+}
 
 .grid{
  display:grid;
@@ -250,7 +276,9 @@ th{
  display:block;
 }
 
-h2{margin-top:5px}
+h2{
+ margin-top:5px;
+}
 
 .small{
  color:#888;
@@ -312,7 +340,132 @@ textarea{
  color:#aaa;
 }
 
+.ai-card{
+ background:
+ linear-gradient(
+  145deg,
+  #111 0%,
+  #090909 60%,
+  #151108 100%
+ );
+ border:1px solid #5b4520;
+ box-shadow:0 0 30px rgba(214,168,79,.06);
+}
+
+.ai-title{
+ color:#d6a84f;
+ font-size:20px;
+ font-weight:800;
+ letter-spacing:1px;
+ margin-bottom:8px;
+}
+
+.ai-subtitle{
+ color:#888;
+ font-size:12px;
+ line-height:1.6;
+ margin-bottom:16px;
+}
+
+.ai-preview{
+ display:none;
+ margin-top:18px;
+}
+
+.ai-preview-header{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+ margin-bottom:15px;
+}
+
+.ai-badge{
+ display:inline-block;
+ padding:6px 10px;
+ border-radius:20px;
+ background:#3a2e18;
+ color:#f0ce7c;
+ font-size:11px;
+ font-weight:800;
+}
+
+.ai-grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:10px;
+}
+
+.ai-field{
+ background:#0b0b0b;
+ border:1px solid #29251c;
+ border-radius:10px;
+ padding:12px;
+}
+
+.ai-field-label{
+ color:#777;
+ font-size:11px;
+ margin-bottom:5px;
+}
+
+.ai-field-value{
+ color:#fff;
+ font-size:17px;
+ font-weight:800;
+}
+
+.ai-reason{
+ margin-top:12px;
+ background:#0b0b0b;
+ border:1px solid #29251c;
+ border-radius:10px;
+ padding:13px;
+ line-height:1.6;
+ color:#bbb;
+ font-size:13px;
+}
+
+.ai-warning{
+ margin-top:12px;
+ padding:11px;
+ border-radius:10px;
+ background:#211b10;
+ border:1px solid #4b3a1d;
+ color:#d8c28b;
+ font-size:12px;
+ line-height:1.5;
+}
+
+.ai-actions{
+ display:flex;
+ flex-direction:column;
+ gap:10px;
+ margin-top:15px;
+}
+
+.ai-actions button{
+ width:100%;
+}
+
+.analyzing{
+ animation:aiPulse 1.2s infinite;
+}
+
+@keyframes aiPulse{
+ 0%{opacity:1}
+ 50%{opacity:.55}
+ 100%{opacity:1}
+}
+
+hr{
+ border:0;
+ border-top:1px solid #252015;
+ margin:25px 0;
+}
+
 @media(max-width:600px){
+
  .container{
   padding:14px;
  }
@@ -320,11 +473,27 @@ textarea{
  .tab{
   padding:14px;
  }
+
+ .ai-grid{
+  grid-template-columns:1fr;
+ }
+
+ .ai-preview-header{
+  flex-direction:column;
+  align-items:flex-start;
+ }
+
 }
+
 </style>
 </head>
 
 <body>
+
+
+<!-- =====================================================
+     LOGIN
+     ===================================================== -->
 
 <div id="login">
 
@@ -338,28 +507,48 @@ textarea{
    Administrator Login
   </div>
 
-  <input id="email" type="email" placeholder="Admin Email">
+  <input
+   id="email"
+   type="email"
+   placeholder="Admin Email">
 
-  <input id="password" type="password" placeholder="Password">
+  <input
+   id="password"
+   type="password"
+   placeholder="Password">
 
-  <button class="gold-btn" onclick="login()">
+  <button
+   class="gold-btn"
+   onclick="login()">
    LOGIN
   </button>
 
-  <div id="loginMsg" class="message"></div>
+  <div
+   id="loginMsg"
+   class="message">
+  </div>
 
  </div>
 
 </div>
 
 
+<!-- =====================================================
+     ADMIN APP
+     ===================================================== -->
+
 <div id="app">
+
 
 <header>
 
- <strong>AURIX AI ADMIN</strong>
+ <strong>
+  AURIX AI ADMIN
+ </strong>
 
- <button class="secondary" onclick="logout()">
+ <button
+  class="secondary"
+  onclick="logout()">
   Logout
  </button>
 
@@ -368,59 +557,115 @@ textarea{
 
 <div class="container">
 
+
+<!-- =====================================================
+     TABS
+     ===================================================== -->
+
 <div class="tabs">
 
- <button class="tab active" onclick="showTab('overview',this)">
+ <button
+  class="tab active"
+  onclick="showTab('overview',this)">
   Overview
  </button>
 
- <button class="tab" onclick="showTab('registrations',this)">
+ <button
+  class="tab"
+  onclick="showTab('registrations',this)">
   Registrations
  </button>
 
- <button class="tab" onclick="showTab('deposits',this)">
+ <button
+  class="tab"
+  onclick="showTab('deposits',this)">
   Deposits
  </button>
 
- <button class="tab" onclick="showTab('subscribers',this)">
+ <button
+  class="tab"
+  onclick="showTab('subscribers',this)">
   Subscribers
  </button>
 
- <button class="tab" onclick="showTab('signals',this)">
-  Publish Signal
+ <button
+  class="tab"
+  onclick="showTab('signals',this)">
+  Gold AI / Signal
  </button>
 
- <button class="tab" onclick="showTab('notifications',this)">
+ <button
+  class="tab"
+  onclick="showTab('notifications',this)">
   Notifications
  </button>
 
 </div>
 
 
-<section id="overview" class="section active">
+<!-- =====================================================
+     OVERVIEW
+     ===================================================== -->
 
- <h2>Dashboard</h2>
+<section
+ id="overview"
+ class="section active">
+
+ <h2>
+  Dashboard
+ </h2>
 
  <div class="grid">
 
   <div class="card">
-   <div class="small">Total Members</div>
-   <div id="totalMembers" class="stat">0</div>
+   <div class="small">
+    Total Members
+   </div>
+
+   <div
+    id="totalMembers"
+    class="stat">
+    0
+   </div>
   </div>
 
-  <div class="card">
-   <div class="small">Active Subscribers</div>
-   <div id="activeSubscribers" class="stat">0</div>
-  </div>
 
   <div class="card">
-   <div class="small">Pending Deposits</div>
-   <div id="pendingDeposits" class="stat">0</div>
+   <div class="small">
+    Active Subscribers
+   </div>
+
+   <div
+    id="activeSubscribers"
+    class="stat">
+    0
+   </div>
   </div>
 
+
   <div class="card">
-   <div class="small">Admin Notifications</div>
-   <div id="notificationCount" class="stat">0</div>
+   <div class="small">
+    Pending Deposits
+   </div>
+
+   <div
+    id="pendingDeposits"
+    class="stat">
+    0
+   </div>
+  </div>
+
+
+  <div class="card">
+   <div class="small">
+    Admin Notifications
+   </div>
+
+   <div
+    id="notificationCount"
+    class="stat">
+    0
+   </div>
   </div>
 
  </div>
@@ -428,26 +673,45 @@ textarea{
 </section>
 
 
-<section id="registrations" class="section">
+<!-- =====================================================
+     REGISTRATIONS
+     ===================================================== -->
 
- <h2>Registrations</h2>
+<section
+ id="registrations"
+ class="section">
+
+ <h2>
+  Registrations
+ </h2>
 
  <div class="table-wrap">
 
   <table>
 
    <thead>
+
     <tr>
+
      <th>Email</th>
+
      <th>Role</th>
+
      <th>Subscription</th>
+
      <th>Plan</th>
+
      <th>Created</th>
+
      <th>Action</th>
+
     </tr>
+
    </thead>
 
-   <tbody id="membersTable"></tbody>
+   <tbody
+    id="membersTable">
+   </tbody>
 
   </table>
 
@@ -456,27 +720,47 @@ textarea{
 </section>
 
 
-<section id="deposits" class="section">
+<!-- =====================================================
+     DEPOSITS
+     ===================================================== -->
 
- <h2>Deposits</h2>
+<section
+ id="deposits"
+ class="section">
+
+ <h2>
+  Deposits
+ </h2>
 
  <div class="table-wrap">
 
   <table>
 
    <thead>
+
     <tr>
+
      <th>Email</th>
+
      <th>Plan</th>
+
      <th>Amount</th>
+
      <th>Asset</th>
+
      <th>Transaction</th>
+
      <th>Status</th>
+
      <th>Action</th>
+
     </tr>
+
    </thead>
 
-   <tbody id="depositsTable"></tbody>
+   <tbody
+    id="depositsTable">
+   </tbody>
 
   </table>
 
@@ -485,25 +769,43 @@ textarea{
 </section>
 
 
-<section id="subscribers" class="section">
+<!-- =====================================================
+     SUBSCRIBERS
+     ===================================================== -->
 
- <h2>Subscribers</h2>
+<section
+ id="subscribers"
+ class="section">
+
+ <h2>
+  Subscribers
+ </h2>
 
  <div class="table-wrap">
 
   <table>
 
    <thead>
+
     <tr>
+
      <th>Email</th>
+
      <th>Plan</th>
+
      <th>Status</th>
+
      <th>Expires</th>
+
      <th>Control</th>
+
     </tr>
+
    </thead>
 
-   <tbody id="subscribersTable"></tbody>
+   <tbody
+    id="subscribersTable">
+   </tbody>
 
   </table>
 
@@ -512,113 +814,547 @@ textarea{
 </section>
 
 
-<section id="signals" class="section">
+<!-- =====================================================
+     GOLD AI / SIGNAL
+     ===================================================== -->
 
- <h2>Publish Gold Signal</h2>
+<section
+ id="signals"
+ class="section">
 
- <div class="card">
+ <h2>
+  Gold AI / Signal
+ </h2>
 
-  <label>Timeframe</label>
 
-  <select id="timeframe">
-   <option value="1m">1 Minute</option>
-   <option value="5m">5 Minutes</option>
-   <option value="30m">30 Minutes</option>
-   <option value="1h">1 Hour</option>
-   <option value="1d">1 Day</option>
+ <!-- ===================================================
+      AI ANALYZER
+      =================================================== -->
+
+ <div class="card ai-card">
+
+  <div class="ai-title">
+   🤖 AURIX GOLD AI
+  </div>
+
+  <div class="ai-subtitle">
+
+   Analyze XAU/USD and prepare a signal preview.
+   The AI does not publish automatically.
+   You review the result first.
+
+  </div>
+
+
+  <label>
+   Analysis Timeframe
+  </label>
+
+  <select id="aiTimeframe">
+
+   <option value="1m">
+    1 Minute
+   </option>
+
+   <option value="5m">
+    5 Minutes
+   </option>
+
+   <option value="30m" selected>
+    30 Minutes
+   </option>
+
+   <option value="1h">
+    1 Hour
+   </option>
+
+   <option value="1d">
+    1 Day
+   </option>
+
   </select>
-
-
-  <label>Signal</label>
-
-  <select id="signal">
-   <option value="BUY">BUY</option>
-   <option value="SELL">SELL</option>
-   <option value="WAIT">WAIT</option>
-  </select>
-
-
-  <label>Entry</label>
-
-  <input id="entry" placeholder="Example: 2650.50">
-
-
-  <label>Stop Loss</label>
-
-  <input id="stopLoss" placeholder="Example: 2642.00">
-
-
-  <label>Take Profit</label>
-
-  <input id="takeProfit" placeholder="Example: 2670.00">
-
-
-  <label>Message</label>
-
-  <textarea
-   id="signalMessage"
-   placeholder="Gold signal details..."
-  ></textarea>
 
 
   <button
+   id="analyzeGoldBtn"
    class="gold-btn"
-   onclick="publishSignal()">
-   PUBLISH SIGNAL
+   onclick="analyzeGold()">
+
+   🤖 ANALYZE GOLD
+
   </button>
 
+
+  <div
+   id="aiStatus"
+   class="signal-status"
+   style="display:none">
+
+  </div>
+
+
+  <!-- AI PREVIEW -->
+
+  <div
+   id="aiPreview"
+   class="ai-preview">
+
+
+   <div class="ai-preview-header">
+
+    <strong class="gold">
+     AI ANALYSIS PREVIEW
+    </strong>
+
+    <span class="ai-badge">
+     NOT PUBLISHED
+    </span>
+
+   </div>
+
+
+   <div class="ai-grid">
+
+    <div class="ai-field">
+
+     <div class="ai-field-label">
+      RECOMMENDATION
+     </div>
+
+     <div
+      id="aiRecommendation"
+      class="ai-field-value gold">
+      WAIT
+     </div>
+
+    </div>
+
+
+    <div class="ai-field">
+
+     <div class="ai-field-label">
+      TIMEFRAME
+     </div>
+
+     <div
+      id="aiPreviewTimeframe"
+      class="ai-field-value">
+      -
+     </div>
+
+    </div>
+
+
+    <div class="ai-field">
+
+     <div class="ai-field-label">
+      ENTRY
+     </div>
+
+     <div
+      id="aiPreviewEntry"
+      class="ai-field-value">
+      -
+     </div>
+
+    </div>
+
+
+    <div class="ai-field">
+
+     <div class="ai-field-label">
+      STOP LOSS
+     </div>
+
+     <div
+      id="aiPreviewSL"
+      class="ai-field-value">
+      -
+     </div>
+
+    </div>
+
+
+    <div class="ai-field">
+
+     <div class="ai-field-label">
+      TAKE PROFIT
+     </div>
+
+     <div
+      id="aiPreviewTP"
+      class="ai-field-value">
+      -
+     </div>
+
+    </div>
+
+
+    <div class="ai-field">
+
+     <div class="ai-field-label">
+      SYMBOL
+     </div>
+
+     <div
+      class="ai-field-value">
+      XAU/USD
+     </div>
+
+    </div>
+
+   </div>
+
+
+   <div class="ai-reason">
+
+    <strong class="gold">
+     AI REASON
+    </strong>
+
+    <div
+     id="aiReason"
+     style="margin-top:7px">
+     -
+    </div>
+
+   </div>
+
+
+   <div class="ai-warning">
+
+    ⚠ Review the Entry, Stop Loss, Take Profit
+    and timeframe before publishing.
+    Nothing is sent to subscribers until you press
+    <strong>PUBLISH SIGNAL</strong>.
+
+   </div>
+
+
+   <!-- Hidden / editable publication fields -->
+
+   <div style="margin-top:18px">
+
+    <label>
+     Final Timeframe
+    </label>
+
+    <select id="timeframe">
+
+     <option value="1m">
+      1 Minute
+     </option>
+
+     <option value="5m">
+      5 Minutes
+     </option>
+
+     <option value="30m">
+      30 Minutes
+     </option>
+
+     <option value="1h">
+      1 Hour
+     </option>
+
+     <option value="1d">
+      1 Day
+     </option>
+
+    </select>
+
+
+    <label>
+     Final Signal
+    </label>
+
+    <select id="signal">
+
+     <option value="BUY">
+      BUY
+     </option>
+
+     <option value="SELL">
+      SELL
+     </option>
+
+     <option value="WAIT">
+      WAIT
+     </option>
+
+    </select>
+
+
+    <label>
+     Final Entry
+    </label>
+
+    <input
+     id="entry"
+     placeholder="Example: 2650.50">
+
+
+    <label>
+     Final Stop Loss
+    </label>
+
+    <input
+     id="stopLoss"
+     placeholder="Example: 2642.00">
+
+
+    <label>
+     Final Take Profit
+    </label>
+
+    <input
+     id="takeProfit"
+     placeholder="Example: 2670.00">
+
+
+    <label>
+     Final Message
+    </label>
+
+    <textarea
+     id="signalMessage"
+     placeholder="Gold signal details...">
+    </textarea>
+
+
+   </div>
+
+
+   <div class="ai-actions">
+
+    <button
+     class="gold-btn"
+     onclick="publishSignal()">
+
+     PUBLISH SIGNAL
+
+    </button>
+
+
+    <button
+     class="danger"
+     onclick="discardAIAnalysis()">
+
+     DISCARD PREVIEW
+
+    </button>
+
+   </div>
+
+  </div>
+
+ </div>
+
+
+ <!-- ===================================================
+      MANUAL SIGNAL
+      =================================================== -->
+
+ <div class="card" style="margin-top:15px">
+
+  <h3 style="margin-top:0">
+   Manual Signal
+  </h3>
+
+  <div class="small">
+   You can also create a signal manually.
+  </div>
+
+
+  <label>
+   Timeframe
+  </label>
+
+  <select id="manualTimeframe">
+
+   <option value="1m">
+    1 Minute
+   </option>
+
+   <option value="5m">
+    5 Minutes
+   </option>
+
+   <option value="30m">
+    30 Minutes
+   </option>
+
+   <option value="1h">
+    1 Hour
+   </option>
+
+   <option value="1d">
+    1 Day
+   </option>
+
+  </select>
+
+
+  <label>
+   Signal
+  </label>
+
+  <select id="manualSignal">
+
+   <option value="BUY">
+    BUY
+   </option>
+
+   <option value="SELL">
+    SELL
+   </option>
+
+   <option value="WAIT">
+    WAIT
+   </option>
+
+  </select>
+
+
+  <label>
+   Entry
+  </label>
+
+  <input
+   id="manualEntry"
+   placeholder="Example: 2650.50">
+
+
+  <label>
+   Stop Loss
+  </label>
+
+  <input
+   id="manualStopLoss"
+   placeholder="Example: 2642.00">
+
+
+  <label>
+   Take Profit
+  </label>
+
+  <input
+   id="manualTakeProfit"
+   placeholder="Example: 2670.00">
+
+
+  <label>
+   Message
+  </label>
+
+  <textarea
+   id="manualMessage"
+   placeholder="Gold signal details...">
+  </textarea>
+
+
+  <button
+   class="secondary"
+   onclick="useManualSignal()">
+
+   USE MANUAL SIGNAL
+
+  </button>
+
+ </div>
+
+
+ <!-- ===================================================
+      CURRENT SIGNAL CONTROLS
+      =================================================== -->
+
+ <div class="card" style="margin-top:15px">
 
   <div class="signal-tools">
 
    <button
     class="copy-btn"
     onclick="copyActiveSignal()">
+
     COPY ACTIVE SIGNAL
+
    </button>
+
 
    <button
     class="danger"
     onclick="removeCurrentSignal()">
+
     REMOVE CURRENT SIGNAL
+
    </button>
+
 
    <button
     class="danger"
     onclick="deleteExpiredSignals()">
+
     DELETE EXPIRED SIGNALS
+
    </button>
+
 
    <button
     class="secondary"
     onclick="showActiveSignal()">
+
     CHECK ACTIVE SIGNAL
+
    </button>
 
   </div>
 
 
-  <div id="activeSignalDisplay"></div>
+  <div
+   id="activeSignalDisplay">
+  </div>
 
-  <div id="signalMsg" class="message"></div>
+
+  <div
+   id="signalMsg"
+   class="message">
+  </div>
 
  </div>
 
 </section>
 
 
-<section id="notifications" class="section">
+<!-- =====================================================
+     NOTIFICATIONS
+     ===================================================== -->
 
- <h2>Admin Notifications</h2>
+<section
+ id="notifications"
+ class="section">
 
- <div id="notificationsList"></div>
+ <h2>
+  Admin Notifications
+ </h2>
+
+ <div
+  id="notificationsList">
+ </div>
 
 </section>
 
+
 </div>
+
 </div>
 
 
 <script>
+
+
+/* =====================================================
+   SUPABASE
+   ===================================================== */
 
 const SUPABASE_URL =
 "https://mcjbcnadnwzmbubmvttk.supabase.co";
@@ -632,54 +1368,74 @@ supabase.createClient(
  SUPABASE_KEY
 );
 
+
 let currentUser=null;
+
 let adminNotificationChannel=null;
 
 
-/* =========================
+/* =====================================================
    LOGIN
-   ========================= */
+   ===================================================== */
 
 async function login(){
 
  const email =
- document.getElementById("email").value.trim();
+ document.getElementById("email")
+ .value
+ .trim();
 
  const password =
- document.getElementById("password").value;
+ document.getElementById("password")
+ .value;
 
  const msg =
  document.getElementById("loginMsg");
 
+
  if(!email || !password){
 
-  msg.textContent="Enter email and password.";
+  msg.textContent=
+   "Enter email and password.";
+
   return;
  }
 
- msg.textContent="Logging in...";
+
+ msg.textContent=
+  "Logging in...";
+
 
  const {data,error} =
- await supabaseClient.auth.signInWithPassword({
+ await supabaseClient.auth
+ .signInWithPassword({
+
   email,
   password
+
  });
+
 
  if(error){
 
-  msg.textContent=error.message;
+  msg.textContent=
+   error.message;
+
   return;
  }
 
- currentUser=data.user;
+
+ currentUser=
+  data.user;
+
 
  await checkAdmin();
 }
 
 
-/* =========================
+/* =====================================================
    CHECK ADMIN
-   ========================= */
+   ===================================================== */
 
 async function checkAdmin(){
 
@@ -690,38 +1446,54 @@ async function checkAdmin(){
  .eq("id",currentUser.id)
  .single();
 
+
  if(error || !data){
 
   await supabaseClient.auth.signOut();
 
-  document.getElementById("loginMsg").textContent =
-  "Administrator profile not found.";
+  document.getElementById(
+   "loginMsg"
+  ).textContent=
+   "Administrator profile not found.";
 
   return;
  }
+
 
  if(data.role!=="admin"){
 
   await supabaseClient.auth.signOut();
 
-  document.getElementById("loginMsg").textContent =
-  "Access denied. Admin only.";
+  document.getElementById(
+   "loginMsg"
+  ).textContent=
+   "Access denied. Admin only.";
 
   return;
  }
 
- document.getElementById("login").style.display="none";
- document.getElementById("app").style.display="block";
+
+ document.getElementById(
+  "login"
+ ).style.display="none";
+
+
+ document.getElementById(
+  "app"
+ ).style.display="block";
+
 
  await expireSubscriptions();
+
  await loadDashboard();
+
  await subscribeToAdminNotifications();
 }
 
 
-/* =========================
+/* =====================================================
    LOGOUT
-   ========================= */
+   ===================================================== */
 
 async function logout(){
 
@@ -734,39 +1506,57 @@ async function logout(){
   adminNotificationChannel=null;
  }
 
+
  await supabaseClient.auth.signOut();
 
  location.reload();
 }
 
 
-/* =========================
+/* =====================================================
    TABS
-   ========================= */
+   ===================================================== */
 
 function showTab(id,button){
 
- document.querySelectorAll(".section")
- .forEach(x=>x.classList.remove("active"));
+ document.querySelectorAll(
+  ".section"
+ )
+ .forEach(x=>
+  x.classList.remove("active")
+ );
 
- document.getElementById(id).classList.add("active");
 
- document.querySelectorAll(".tab")
- .forEach(x=>x.classList.remove("active"));
+ document.getElementById(id)
+ .classList.add("active");
+
+
+ document.querySelectorAll(
+  ".tab"
+ )
+ .forEach(x=>
+  x.classList.remove("active")
+ );
+
 
  button.classList.add("active");
+
 
  if(id==="registrations")
   loadMembers();
 
+
  if(id==="deposits")
   loadDeposits();
+
 
  if(id==="subscribers")
   loadSubscribers();
 
+
  if(id==="signals")
   showActiveSignal();
+
 
  if(id==="notifications"){
 
@@ -776,55 +1566,77 @@ function showTab(id,button){
    markAdminNotificationsRead,
    500
   );
+
  }
+
 }
 
 
-/* =========================
+/* =====================================================
    AUTOMATIC EXPIRY
-   ========================= */
+   ===================================================== */
 
 async function expireSubscriptions(){
 
- const now=new Date().toISOString();
+ const now=
+  new Date().toISOString();
+
 
  const {data,error} =
  await supabaseClient
  .from("profiles")
- .select("id,email,subscription_expires_at")
+ .select(
+  "id,email,subscription_expires_at"
+ )
  .eq("role","member")
  .eq("subscription_active",true)
- .not("subscription_expires_at","is",null)
- .lt("subscription_expires_at",now);
+ .not(
+  "subscription_expires_at",
+  "is",
+  null
+ )
+ .lt(
+  "subscription_expires_at",
+  now
+ );
+
 
  if(error){
 
   console.log(error.message);
+
   return;
  }
+
 
  if(!data || !data.length)
   return;
 
+
  for(const user of data){
 
   await supabaseClient
-   .from("profiles")
-   .update({
-    subscription_active:false
-   })
-   .eq("id",user.id);
+  .from("profiles")
+  .update({
+
+   subscription_active:false
+
+  })
+  .eq("id",user.id);
+
  }
+
 }
 
 
-/* =========================
+/* =====================================================
    DASHBOARD
-   ========================= */
+   ===================================================== */
 
 async function loadDashboard(){
 
  await expireSubscriptions();
+
 
  const {data:members} =
  await supabaseClient
@@ -832,42 +1644,69 @@ async function loadDashboard(){
  .select("*")
  .eq("role","member");
 
+
  const {data:deposits} =
  await supabaseClient
  .from("deposits")
  .select("*")
  .eq("status","pending");
 
+
  const {data:notifs} =
  await supabaseClient
  .from("notifications")
  .select("id")
- .eq("user_id",currentUser.id)
- .eq("is_read",false);
+ .eq(
+  "user_id",
+  currentUser.id
+ )
+ .eq(
+  "is_read",
+  false
+ );
 
- document.getElementById("totalMembers").textContent =
- members?.length || 0;
 
- document.getElementById("activeSubscribers").textContent =
- members?.filter(x =>
-  x.subscription_active===true &&
-  (
-   !x.subscription_expires_at ||
-   new Date(x.subscription_expires_at)>new Date()
-  )
- ).length || 0;
+ document.getElementById(
+  "totalMembers"
+ ).textContent=
+  members?.length || 0;
 
- document.getElementById("pendingDeposits").textContent =
- deposits?.length || 0;
 
- document.getElementById("notificationCount").textContent =
- notifs?.length || 0;
+ document.getElementById(
+  "activeSubscribers"
+ ).textContent=
+  members?.filter(x=>
+
+   x.subscription_active===true &&
+
+   (
+    !x.subscription_expires_at ||
+
+    new Date(
+     x.subscription_expires_at
+    ) > new Date()
+   )
+
+  ).length || 0;
+
+
+ document.getElementById(
+  "pendingDeposits"
+ ).textContent=
+  deposits?.length || 0;
+
+
+ document.getElementById(
+  "notificationCount"
+ ).textContent=
+  notifs?.length || 0;
+
 }
 
 
-/* =========================
+/* =====================================================
    MEMBERS
-   ========================= */
+   ===================================================== */
 
 async function loadMembers(){
 
@@ -876,50 +1715,83 @@ async function loadMembers(){
  .from("profiles")
  .select("*")
  .eq("role","member")
- .order("created_at",{ascending:false});
+ .order(
+  "created_at",
+  {ascending:false}
+ );
 
- const table=document.getElementById("membersTable");
+
+ const table=
+ document.getElementById(
+  "membersTable"
+ );
+
 
  if(error){
 
   table.innerHTML=
-  `<tr><td colspan="6">${escapeHtml(error.message)}</td></tr>`;
+   `<tr>
+    <td colspan="6">
+     ${escapeHtml(error.message)}
+    </td>
+   </tr>`;
 
   return;
  }
 
+
  table.innerHTML="";
+
 
  if(!data || !data.length){
 
   table.innerHTML=
-  `<tr><td colspan="6">No members found.</td></tr>`;
+   `<tr>
+    <td colspan="6">
+     No members found.
+    </td>
+   </tr>`;
 
   return;
  }
+
 
  data.forEach(user=>{
 
   const expired =
    user.subscription_expires_at &&
-   new Date(user.subscription_expires_at)<=new Date();
+   new Date(
+    user.subscription_expires_at
+   ) <= new Date();
+
 
   let status="INACTIVE";
+
   let badge="inactive";
 
-  if(user.subscription_active===true && !expired){
+
+  if(
+   user.subscription_active===true &&
+   !expired
+  ){
 
    status="ACTIVE";
+
    badge="approved";
 
   }
+
   else if(expired){
 
    status="EXPIRED";
+
    badge="expired";
+
   }
 
+
   let action="-";
+
 
   if(status!=="ACTIVE"){
 
@@ -931,60 +1803,93 @@ async function loadMembers(){
       '${escapeAttr(user.id)}',
       '${escapeAttr(user.email||"")}'
      )">
+
      REMOVE MEMBER
+
     </button>
 
    `;
+
   }
+
 
   table.innerHTML+=`
 
    <tr>
 
-    <td>${escapeHtml(user.email||"-")}</td>
-
-    <td>${escapeHtml(user.role||"-")}</td>
+    <td>
+     ${escapeHtml(user.email||"-")}
+    </td>
 
     <td>
+     ${escapeHtml(user.role||"-")}
+    </td>
+
+    <td>
+
      <span class="badge ${badge}">
       ${status}
      </span>
+
     </td>
 
-    <td>${escapeHtml(user.subscription_plan||"-")}</td>
-
-    <td>${formatDate(user.created_at)}</td>
+    <td>
+     ${escapeHtml(
+      user.subscription_plan||"-"
+     )}
+    </td>
 
     <td>
+     ${formatDate(user.created_at)}
+    </td>
+
+    <td>
+
      <div class="actions">
       ${action}
      </div>
+
     </td>
 
    </tr>
+
   `;
+
  });
+
 }
 
 
-/* =========================
+/* =====================================================
    REMOVE MEMBER
-   ========================= */
+   ===================================================== */
 
-async function removeMember(userId,email){
+async function removeMember(
+ userId,
+ email
+){
 
  if(!userId){
 
-  alert("Member ID is missing.");
+  alert(
+   "Member ID is missing."
+  );
+
   return;
  }
 
+
  if(!confirm(
-  "Remove this INACTIVE member?\n\nMember: " + email
+  "Remove this INACTIVE member?\n\nMember: " +
+  email
  ))
   return;
 
- const {data:user,error:checkError} =
+
+ const {
+  data:user,
+  error:checkError
+ } =
  await supabaseClient
  .from("profiles")
  .select(
@@ -992,6 +1897,7 @@ async function removeMember(userId,email){
  )
  .eq("id",userId)
  .single();
+
 
  if(checkError){
 
@@ -1003,11 +1909,16 @@ async function removeMember(userId,email){
   return;
  }
 
+
  if(!user){
 
-  alert("Member not found.");
+  alert(
+   "Member not found."
+  );
+
   return;
  }
+
 
  if(user.subscription_active===true){
 
@@ -1019,7 +1930,11 @@ async function removeMember(userId,email){
   return;
  }
 
- const {data:deletedRows,error:deleteError} =
+
+ const {
+  data:deletedRows,
+  error:deleteError
+ } =
  await supabaseClient
  .from("profiles")
  .delete()
@@ -1027,19 +1942,27 @@ async function removeMember(userId,email){
  .eq("role","member")
  .select("id,email");
 
+
  if(deleteError){
 
   alert(
    "REMOVE MEMBER FAILED:\n\n" +
    deleteError.message +
    "\n\nCode: " +
-   (deleteError.code || "unknown")
+   (
+    deleteError.code ||
+    "unknown"
+   )
   );
 
   return;
  }
 
- if(!deletedRows || deletedRows.length===0){
+
+ if(
+  !deletedRows ||
+  deletedRows.length===0
+ ){
 
   alert(
    "The member was NOT removed.\n\n" +
@@ -1049,20 +1972,25 @@ async function removeMember(userId,email){
   return;
  }
 
+
  alert(
   "Member removed successfully:\n\n" +
   email
  );
 
+
  await loadDashboard();
+
  await loadMembers();
+
  await loadSubscribers();
+
 }
 
 
-/* =========================
+/* =====================================================
    DEPOSITS
-   ========================= */
+   ===================================================== */
 
 async function loadDeposits(){
 
@@ -1070,31 +1998,51 @@ async function loadDeposits(){
  await supabaseClient
  .from("deposits")
  .select("*")
- .order("created_at",{ascending:false});
+ .order(
+  "created_at",
+  {ascending:false}
+ );
 
- const table=document.getElementById("depositsTable");
+
+ const table=
+ document.getElementById(
+  "depositsTable"
+ );
+
 
  if(error){
 
   table.innerHTML=
-  `<tr><td colspan="7">${escapeHtml(error.message)}</td></tr>`;
+   `<tr>
+    <td colspan="7">
+     ${escapeHtml(error.message)}
+    </td>
+   </tr>`;
 
   return;
  }
 
+
  table.innerHTML="";
+
 
  if(!data || !data.length){
 
   table.innerHTML=
-  `<tr><td colspan="7">No deposits found.</td></tr>`;
+   `<tr>
+    <td colspan="7">
+     No deposits found.
+    </td>
+   </tr>`;
 
   return;
  }
 
+
  for(const d of data){
 
   let email="-";
+
 
   const {data:user} =
   await supabaseClient
@@ -1103,31 +2051,53 @@ async function loadDeposits(){
   .eq("id",d.user_id)
   .single();
 
+
   if(user)
    email=user.email;
+
 
   table.innerHTML+=`
 
    <tr>
 
-    <td>${escapeHtml(email)}</td>
-
-    <td>${escapeHtml(d.plan||"-")}</td>
-
-    <td>$${escapeHtml(d.amount||0)}</td>
-
-    <td>${escapeHtml(d.asset||"USDT")}</td>
-
     <td>
-     <span class="small">
-      ${escapeHtml(d.tx_hash||"-")}
-     </span>
+     ${escapeHtml(email)}
     </td>
 
     <td>
-     <span class="badge ${escapeHtml(d.status||"pending")}">
-      ${escapeHtml(d.status||"pending")}
+     ${escapeHtml(d.plan||"-")}
+    </td>
+
+    <td>
+     $${escapeHtml(d.amount||0)}
+    </td>
+
+    <td>
+     ${escapeHtml(d.asset||"USDT")}
+    </td>
+
+    <td>
+
+     <span class="small">
+      ${escapeHtml(
+       d.tx_hash||"-"
+      )}
      </span>
+
+    </td>
+
+    <td>
+
+     <span class="badge ${escapeHtml(
+      d.status||"pending"
+     )}">
+
+      ${escapeHtml(
+       d.status||"pending"
+      )}
+
+     </span>
+
     </td>
 
     <td>
@@ -1147,8 +2117,11 @@ async function loadDeposits(){
          '${escapeAttr(d.plan)}',
          '${escapeAttr(d.amount)}'
         )">
+
         Approve
+
        </button>
+
 
        <button
         class="danger"
@@ -1156,7 +2129,9 @@ async function loadDeposits(){
          '${escapeAttr(d.id)}',
          '${escapeAttr(d.user_id)}'
         )">
+
         Reject
+
        </button>
 
       </div>`
@@ -1170,14 +2145,17 @@ async function loadDeposits(){
     </td>
 
    </tr>
+
   `;
+
  }
+
 }
 
 
-/* =========================
+/* =====================================================
    APPROVE DEPOSIT
-   ========================= */
+   ===================================================== */
 
 async function approveDeposit(
  depositId,
@@ -1191,42 +2169,63 @@ async function approveDeposit(
  ))
   return;
 
+
  const numericAmount=
  Number(
   String(amount||"")
-  .replace(/[^0-9.]/g,"")
+  .replace(
+   /[^0-9.]/g,
+   ""
+  )
  );
 
+
  let months=1;
- let finalPlan="1 Month - $49";
+
+ let finalPlan=
+  "1 Month - $49";
+
 
  if(
   numericAmount>=119 ||
+
   String(plan||"")
-   .toLowerCase()
-   .includes("3 month") ||
+  .toLowerCase()
+  .includes("3 month") ||
+
   String(plan||"")
-   .includes("119")
+  .includes("119")
  ){
 
   months=3;
-  finalPlan="3 Months - $119";
+
+  finalPlan=
+   "3 Months - $119";
+
  }
 
- const expires=new Date();
+
+ const expires=
+  new Date();
+
 
  expires.setMonth(
   expires.getMonth()+months
  );
 
- const {data:updatedProfile,error:profileError} =
+
+ const {
+  data:updatedProfile,
+  error:profileError
+ } =
  await supabaseClient
  .from("profiles")
  .update({
 
   subscription_active:true,
 
-  subscription_plan:finalPlan,
+  subscription_plan:
+   finalPlan,
 
   subscription_expires_at:
    expires.toISOString()
@@ -1239,6 +2238,7 @@ async function approveDeposit(
  )
  .single();
 
+
  if(profileError){
 
   alert(
@@ -1248,6 +2248,7 @@ async function approveDeposit(
 
   return;
  }
+
 
  if(
   !updatedProfile ||
@@ -1261,6 +2262,7 @@ async function approveDeposit(
   return;
  }
 
+
  const {error:depositError} =
  await supabaseClient
  .from("deposits")
@@ -1268,6 +2270,7 @@ async function approveDeposit(
   status:"approved"
  })
  .eq("id",depositId);
+
 
  if(depositError){
 
@@ -1279,22 +2282,26 @@ async function approveDeposit(
   return;
  }
 
+
  await supabaseClient
  .from("notifications")
  .insert({
 
   user_id:userId,
 
-  title:"Subscription Activated",
+  title:
+   "Subscription Activated",
 
   message:
    `Your ${finalPlan} subscription has been approved and activated.`,
 
-  type:"subscription",
+  type:
+   "subscription",
 
   is_read:false
 
  });
+
 
  alert(
   "SUCCESS!\n\n" +
@@ -1304,24 +2311,32 @@ async function approveDeposit(
   expires.toLocaleString()
  );
 
+
  await loadDashboard();
+
  await loadDeposits();
+
  await loadSubscribers();
+
  await loadMembers();
+
 }
 
 
-/* =========================
+/* =====================================================
    REJECT DEPOSIT
-   ========================= */
+   ===================================================== */
 
 async function rejectDeposit(
  depositId,
  userId
 ){
 
- if(!confirm("Reject this deposit?"))
+ if(!confirm(
+  "Reject this deposit?"
+ ))
   return;
+
 
  const {error} =
  await supabaseClient
@@ -1331,11 +2346,14 @@ async function rejectDeposit(
  })
  .eq("id",depositId);
 
+
  if(error){
 
   alert(error.message);
+
   return;
  }
+
 
  await supabaseClient
  .from("notifications")
@@ -1343,31 +2361,40 @@ async function rejectDeposit(
 
   user_id:userId,
 
-  title:"Deposit Rejected",
+  title:
+   "Deposit Rejected",
 
   message:
    "Your deposit was rejected. Please contact support.",
 
-  type:"deposit",
+  type:
+   "deposit",
 
   is_read:false
 
  });
 
- alert("Deposit rejected.");
+
+ alert(
+  "Deposit rejected."
+ );
+
 
  await loadDashboard();
+
  await loadDeposits();
+
 }
 
 
-/* =========================
+/* =====================================================
    SUBSCRIBERS
-   ========================= */
+   ===================================================== */
 
 async function loadSubscribers(){
 
  await expireSubscriptions();
+
 
  const {data,error} =
  await supabaseClient
@@ -1382,52 +2409,80 @@ async function loadSubscribers(){
   }
  );
 
+
  const table=
- document.getElementById("subscribersTable");
+ document.getElementById(
+  "subscribersTable"
+ );
+
 
  if(error){
 
   table.innerHTML=
-  `<tr><td colspan="5">${escapeHtml(error.message)}</td></tr>`;
+   `<tr>
+    <td colspan="5">
+     ${escapeHtml(error.message)}
+    </td>
+   </tr>`;
 
   return;
  }
 
+
  table.innerHTML="";
+
 
  if(!data || !data.length){
 
   table.innerHTML=
-   `<tr><td colspan="5">No members found.</td></tr>`;
+   `<tr>
+    <td colspan="5">
+     No members found.
+    </td>
+   </tr>`;
 
   return;
  }
+
 
  data.forEach(user=>{
 
   const active=
    user.subscription_active===true;
 
+
   const expired=
    user.subscription_expires_at &&
-   new Date(user.subscription_expires_at)<=new Date();
+
+   new Date(
+    user.subscription_expires_at
+   ) <= new Date();
+
 
   let status="INACTIVE";
+
   let badge="inactive";
+
 
   if(active && !expired){
 
    status="ACTIVE";
+
    badge="approved";
 
   }
+
   else if(expired){
 
    status="EXPIRED";
+
    badge="expired";
+
   }
 
+
   let controls="";
+
 
   if(active && !expired){
 
@@ -1438,12 +2493,15 @@ async function loadSubscribers(){
      onclick="disableSubscription(
       '${escapeAttr(user.id)}'
      )">
+
      Disable
+
     </button>
 
    `;
 
   }
+
   else{
 
    controls=`
@@ -1453,8 +2511,11 @@ async function loadSubscribers(){
      onclick="activateSubscription(
       '${escapeAttr(user.id)}'
      )">
+
      Activate
+
     </button>
+
 
     <button
      class="danger"
@@ -1462,52 +2523,76 @@ async function loadSubscribers(){
       '${escapeAttr(user.id)}',
       '${escapeAttr(user.email||"")}'
      )">
+
      REMOVE MEMBER
+
     </button>
 
    `;
+
   }
+
 
   table.innerHTML+=`
 
    <tr>
 
-    <td>${escapeHtml(user.email||"-")}</td>
-
-    <td>${escapeHtml(user.subscription_plan||"-")}</td>
+    <td>
+     ${escapeHtml(
+      user.email||"-"
+     )}
+    </td>
 
     <td>
+     ${escapeHtml(
+      user.subscription_plan||"-"
+     )}
+    </td>
+
+    <td>
+
      <span class="badge ${badge}">
       ${status}
      </span>
+
     </td>
 
     <td>
-     ${formatDate(user.subscription_expires_at)}
+     ${formatDate(
+      user.subscription_expires_at
+     )}
     </td>
 
     <td>
+
      <div class="actions">
       ${controls}
      </div>
+
     </td>
 
    </tr>
+
   `;
+
  });
+
 }
 
 
-/* =========================
-   DISABLE
-   ========================= */
+/* =====================================================
+   DISABLE SUBSCRIPTION
+   ===================================================== */
 
-async function disableSubscription(userId){
+async function disableSubscription(
+ userId
+){
 
  if(!confirm(
   "Disable this user's subscription?"
  ))
   return;
+
 
  const {error} =
  await supabaseClient
@@ -1517,11 +2602,14 @@ async function disableSubscription(userId){
  })
  .eq("id",userId);
 
+
  if(error){
 
   alert(error.message);
+
   return;
  }
+
 
  await supabaseClient
  .from("notifications")
@@ -1529,29 +2617,39 @@ async function disableSubscription(userId){
 
   user_id:userId,
 
-  title:"Subscription Disabled",
+  title:
+   "Subscription Disabled",
 
   message:
    "Your subscription has been disabled by the administrator.",
 
-  type:"subscription",
+  type:
+   "subscription",
 
   is_read:false
 
  });
 
- alert("Subscription disabled.");
+
+ alert(
+  "Subscription disabled."
+ );
+
 
  await loadDashboard();
+
  await loadSubscribers();
+
 }
 
 
-/* =========================
-   ACTIVATE
-   ========================= */
+/* =====================================================
+   ACTIVATE SUBSCRIPTION
+   ===================================================== */
 
-async function activateSubscription(userId){
+async function activateSubscription(
+ userId
+){
 
  const months=
  prompt(
@@ -1559,28 +2657,45 @@ async function activateSubscription(userId){
   "1"
  );
 
+
  if(months===null)
   return;
 
+
  const duration=
- parseInt(months,10);
+  parseInt(
+   months,
+   10
+  );
 
- if(!duration || duration<1){
 
-  alert("Please enter a valid number of months.");
+ if(
+  !duration ||
+  duration<1
+ ){
+
+  alert(
+   "Please enter a valid number of months."
+  );
+
   return;
  }
 
- const expires=new Date();
+
+ const expires=
+  new Date();
+
 
  expires.setMonth(
   expires.getMonth()+duration
  );
 
+
  const finalPlan=
   duration>=3
   ? "3 Months - $119"
   : "1 Month - $49";
+
 
  const {error} =
  await supabaseClient
@@ -1589,7 +2704,8 @@ async function activateSubscription(userId){
 
   subscription_active:true,
 
-  subscription_plan:finalPlan,
+  subscription_plan:
+   finalPlan,
 
   subscription_expires_at:
    expires.toISOString()
@@ -1597,11 +2713,14 @@ async function activateSubscription(userId){
  })
  .eq("id",userId);
 
+
  if(error){
 
   alert(error.message);
+
   return;
  }
+
 
  await supabaseClient
  .from("notifications")
@@ -1609,21 +2728,479 @@ async function activateSubscription(userId){
 
   user_id:userId,
 
-  title:"Subscription Activated",
+  title:
+   "Subscription Activated",
 
   message:
    "Your subscription has been activated by the administrator.",
 
-  type:"subscription",
+  type:
+   "subscription",
 
   is_read:false
 
  });
 
- alert("Subscription activated.");
+
+ alert(
+  "Subscription activated."
+ );
+
 
  await loadDashboard();
+
  await loadSubscribers();
+
+}
+
+
+/* =====================================================
+   AI GOLD ANALYZER
+   ===================================================== */
+
+async function analyzeGold(){
+
+ const button=
+  document.getElementById(
+   "analyzeGoldBtn"
+  );
+
+
+ const status=
+  document.getElementById(
+   "aiStatus"
+  );
+
+
+ const preview=
+  document.getElementById(
+   "aiPreview"
+  );
+
+
+ const msg=
+  document.getElementById(
+   "signalMsg"
+  );
+
+
+ const timeframe=
+  document.getElementById(
+   "aiTimeframe"
+  ).value;
+
+
+ button.disabled=true;
+
+ button.classList.add(
+  "analyzing"
+ );
+
+ button.textContent=
+  "🤖 ANALYZING GOLD...";
+
+
+ status.style.display="block";
+
+
+ status.textContent=
+  "Connecting to the Gold AI analyzer...";
+
+
+ preview.style.display="none";
+
+
+ msg.textContent="";
+
+
+ try{
+
+
+  /*
+   =====================================================
+   SUPABASE EDGE FUNCTION
+   =====================================================
+
+   The Edge Function must be named:
+
+   analyze-gold
+
+   It should return:
+
+   {
+    recommendation:"BUY",
+    timeframe:"30m",
+    entry:"...",
+    stop_loss:"...",
+    take_profit:"...",
+    reason:"..."
+   }
+
+   =====================================================
+  */
+
+
+  const {
+   data,
+   error
+  } =
+  await supabaseClient
+  .functions
+  .invoke(
+   "analyze-gold",
+   {
+    body:{
+     symbol:"XAU/USD",
+     timeframe:timeframe
+    }
+   }
+  );
+
+
+  if(error){
+
+   throw new Error(
+    error.message ||
+    "AI analyzer could not be reached."
+   );
+
+  }
+
+
+  if(!data){
+
+   throw new Error(
+    "AI analyzer returned no data."
+   );
+
+  }
+
+
+  if(data.error){
+
+   throw new Error(
+    data.error
+   );
+
+  }
+
+
+  const recommendation=
+   String(
+    data.recommendation ||
+    "WAIT"
+   ).toUpperCase();
+
+
+  const validSignals=[
+   "BUY",
+   "SELL",
+   "WAIT"
+  ];
+
+
+  const finalSignal=
+   validSignals.includes(
+    recommendation
+   )
+   ?
+   recommendation
+   :
+   "WAIT";
+
+
+  const finalTimeframe=
+   data.timeframe ||
+   timeframe;
+
+
+  const entry=
+   data.entry ??
+   "";
+
+
+  const stopLoss=
+   data.stop_loss ??
+   "";
+
+
+  const takeProfit=
+   data.take_profit ??
+   "";
+
+
+  const reason=
+   data.reason ||
+   "No explanation was returned by the AI.";
+
+
+  /*
+   =====================================================
+   FILL PREVIEW
+   =====================================================
+  */
+
+
+  document.getElementById(
+   "aiRecommendation"
+  ).textContent=
+   finalSignal;
+
+
+  document.getElementById(
+   "aiPreviewTimeframe"
+  ).textContent=
+   finalTimeframe;
+
+
+  document.getElementById(
+   "aiPreviewEntry"
+  ).textContent=
+   entry || "-";
+
+
+  document.getElementById(
+   "aiPreviewSL"
+  ).textContent=
+   stopLoss || "-";
+
+
+  document.getElementById(
+   "aiPreviewTP"
+  ).textContent=
+   takeProfit || "-";
+
+
+  document.getElementById(
+   "aiReason"
+  ).textContent=
+   reason;
+
+
+  /*
+   =====================================================
+   FILL FINAL PUBLISH FORM
+   =====================================================
+  */
+
+
+  document.getElementById(
+   "timeframe"
+  ).value=
+   finalTimeframe;
+
+
+  document.getElementById(
+   "signal"
+  ).value=
+   finalSignal;
+
+
+  document.getElementById(
+   "entry"
+  ).value=
+   entry;
+
+
+  document.getElementById(
+   "stopLoss"
+  ).value=
+   stopLoss;
+
+
+  document.getElementById(
+   "takeProfit"
+  ).value=
+   takeProfit;
+
+
+  document.getElementById(
+   "signalMessage"
+  ).value=
+   reason;
+
+
+  /*
+   =====================================================
+   SHOW PREVIEW
+   =====================================================
+  */
+
+
+  preview.style.display=
+   "block";
+
+
+  status.textContent=
+   "AI analysis completed. Review the signal before publishing.";
+
+
+  msg.textContent=
+   "AI analysis ready for your review.";
+
+
+ }
+
+ catch(error){
+
+  console.error(
+   "AI GOLD ERROR:",
+   error
+  );
+
+
+  status.textContent=
+   "AI analysis failed.";
+
+
+  msg.textContent=
+   error.message ||
+   "Could not analyze Gold.";
+
+
+  alert(
+   "AI GOLD ANALYSIS FAILED\n\n" +
+   (
+    error.message ||
+    "Unknown error"
+   )
+  );
+
+ }
+
+ finally{
+
+  button.disabled=false;
+
+  button.classList.remove(
+   "analyzing"
+  );
+
+  button.textContent=
+   "🤖 ANALYZE GOLD";
+
+ }
+
+}
+
+
+/* =====================================================
+   DISCARD AI PREVIEW
+   ===================================================== */
+
+function discardAIAnalysis(){
+
+ document.getElementById(
+  "aiPreview"
+ ).style.display=
+  "none";
+
+
+ document.getElementById(
+  "aiStatus"
+ ).style.display=
+  "none";
+
+
+ document.getElementById(
+  "entry"
+ ).value="";
+
+
+ document.getElementById(
+  "stopLoss"
+ ).value="";
+
+
+ document.getElementById(
+  "takeProfit"
+ ).value="";
+
+
+ document.getElementById(
+  "signalMessage"
+ ).value="";
+
+
+ document.getElementById(
+  "signalMsg"
+ ).textContent=
+  "AI preview discarded.";
+
+}
+
+
+/* =====================================================
+   USE MANUAL SIGNAL
+   ===================================================== */
+
+function useManualSignal(){
+
+ document.getElementById(
+  "timeframe"
+ ).value=
+  document.getElementById(
+   "manualTimeframe"
+  ).value;
+
+
+ document.getElementById(
+  "signal"
+ ).value=
+  document.getElementById(
+   "manualSignal"
+  ).value;
+
+
+ document.getElementById(
+  "entry"
+ ).value=
+  document.getElementById(
+   "manualEntry"
+  ).value.trim();
+
+
+ document.getElementById(
+  "stopLoss"
+ ).value=
+  document.getElementById(
+   "manualStopLoss"
+  ).value.trim();
+
+
+ document.getElementById(
+  "takeProfit"
+ ).value=
+  document.getElementById(
+   "manualTakeProfit"
+  ).value.trim();
+
+
+ document.getElementById(
+  "signalMessage"
+ ).value=
+  document.getElementById(
+   "manualMessage"
+  ).value.trim();
+
+
+ document.getElementById(
+  "aiPreview"
+ ).style.display=
+  "block";
+
+
+ document.getElementById(
+  "aiStatus"
+ ).style.display=
+  "block";
+
+
+ document.getElementById(
+  "aiStatus"
+ ).textContent=
+  "Manual signal loaded. Review it before publishing.";
+
 }
 
 
@@ -1633,59 +3210,118 @@ async function activateSubscription(userId){
 
 async function publishSignal(){
 
- const timeframe =
-  document.getElementById("timeframe").value;
+ const timeframe=
+  document.getElementById(
+   "timeframe"
+  ).value;
 
- const signal =
-  document.getElementById("signal").value;
 
- const entry =
-  document.getElementById("entry").value.trim();
+ const signal=
+  document.getElementById(
+   "signal"
+  ).value;
 
- const stopLoss =
-  document.getElementById("stopLoss").value.trim();
 
- const takeProfit =
-  document.getElementById("takeProfit").value.trim();
+ const entry=
+  document.getElementById(
+   "entry"
+  ).value.trim();
 
- const message =
-  document.getElementById("signalMessage").value.trim();
 
- const msg =
-  document.getElementById("signalMsg");
+ const stopLoss=
+  document.getElementById(
+   "stopLoss"
+  ).value.trim();
 
- if(!entry || !stopLoss || !takeProfit){
 
-  msg.textContent =
+ const takeProfit=
+  document.getElementById(
+   "takeProfit"
+  ).value.trim();
+
+
+ const message=
+  document.getElementById(
+   "signalMessage"
+  ).value.trim();
+
+
+ const msg=
+  document.getElementById(
+   "signalMsg"
+  );
+
+
+ if(!entry ||
+    !stopLoss ||
+    !takeProfit){
+
+  msg.textContent=
    "Please enter Entry, Stop Loss and Take Profit.";
 
   return;
  }
 
+
+ if(signal==="WAIT"){
+
+  if(!confirm(
+   "The selected signal is WAIT.\n\n" +
+   "Publish anyway?"
+  ))
+   return;
+
+ }
+
+
  if(!confirm(
   "PUBLISH NEW GOLD SIGNAL?\n\n" +
+
+  "XAU/USD\n" +
+
+  "Signal: " +
+  signal +
+
+  "\nTimeframe: " +
+  timeframe +
+
+  "\nEntry: " +
+  entry +
+
+  "\nStop Loss: " +
+  stopLoss +
+
+  "\nTake Profit: " +
+  takeProfit +
+
+  "\n\n" +
+
   "The current active signal will be replaced."
  ))
   return;
 
- msg.textContent =
+
+ msg.textContent=
   "Checking current signal...";
 
 
- /* =====================================================
+ /* ===================================================
     STEP 1
-    FIND CURRENT ACTIVE SIGNAL
-    ===================================================== */
+    =================================================== */
 
- const {data:oldSignals,error:findOldError} =
+ const {
+  data:oldSignals,
+  error:findOldError
+ } =
  await supabaseClient
  .from("gold_signals")
  .select("id")
  .eq("active",true);
 
+
  if(findOldError){
 
-  msg.textContent =
+  msg.textContent=
    "Could not check current signal:\n\n" +
    findOldError.message;
 
@@ -1693,15 +3329,18 @@ async function publishSignal(){
  }
 
 
- /* =====================================================
+ /* ===================================================
     STEP 2
-    CLOSE ALL OLD ACTIVE SIGNALS
-    ===================================================== */
+    =================================================== */
 
- if(oldSignals && oldSignals.length){
+ if(
+  oldSignals &&
+  oldSignals.length
+ ){
 
-  msg.textContent =
+  msg.textContent=
    "Removing previous active signal...";
+
 
   const {error:closeError} =
   await supabaseClient
@@ -1711,9 +3350,10 @@ async function publishSignal(){
   })
   .eq("active",true);
 
+
   if(closeError){
 
-   msg.textContent =
+   msg.textContent=
     "Could not replace previous signal:\n\n" +
     closeError.message;
 
@@ -1724,31 +3364,39 @@ async function publishSignal(){
 
    return;
   }
+
  }
 
 
- /* =====================================================
+ /* ===================================================
     STEP 3
-    VERIFY NO ACTIVE SIGNAL REMAINS
-    ===================================================== */
+    =================================================== */
 
- const {data:remainingActive,error:verifyError} =
+ const {
+  data:remainingActive,
+  error:verifyError
+ } =
  await supabaseClient
  .from("gold_signals")
  .select("id")
  .eq("active",true);
 
+
  if(verifyError){
 
-  msg.textContent =
+  msg.textContent=
    "Could not verify previous signal removal.";
 
   return;
  }
 
- if(remainingActive && remainingActive.length){
 
-  msg.textContent =
+ if(
+  remainingActive &&
+  remainingActive.length
+ ){
+
+  msg.textContent=
    "A previous active signal still exists. New signal was NOT published.";
 
   alert(
@@ -1760,16 +3408,18 @@ async function publishSignal(){
  }
 
 
- /* =====================================================
+ /* ===================================================
     STEP 4
-    CREATE NEW ACTIVE SIGNAL
-    ===================================================== */
+    =================================================== */
 
- msg.textContent =
+ msg.textContent=
   "Publishing new signal...";
 
 
- const {data:newSignal,error:createError} =
+ const {
+  data:newSignal,
+  error:createError
+ } =
  await supabaseClient
  .from("gold_signals")
  .insert({
@@ -1784,7 +3434,8 @@ async function publishSignal(){
 
   take_profit:takeProfit,
 
-  message:message || null,
+  message:
+   message || null,
 
   active:true
 
@@ -1792,9 +3443,10 @@ async function publishSignal(){
  .select()
  .single();
 
+
  if(createError){
 
-  msg.textContent =
+  msg.textContent=
    "Could not publish signal:\n\n" +
    createError.message;
 
@@ -1807,12 +3459,14 @@ async function publishSignal(){
  }
 
 
- /* =====================================================
+ /* ===================================================
     STEP 5
-    VERIFY NEW SIGNAL IS ACTIVE
-    ===================================================== */
+    =================================================== */
 
- const {data:verifyNew,error:verifyNewError} =
+ const {
+  data:verifyNew,
+  error:verifyNewError
+ } =
  await supabaseClient
  .from("gold_signals")
  .select("*")
@@ -1820,33 +3474,43 @@ async function publishSignal(){
  .eq("active",true)
  .maybeSingle();
 
- if(verifyNewError || !verifyNew){
 
-  msg.textContent =
+ if(
+  verifyNewError ||
+  !verifyNew
+ ){
+
+  msg.textContent=
    "Signal was created but could not be verified.";
 
   return;
  }
 
 
- /* =====================================================
+ /* ===================================================
     STEP 6
-    GET ONLY ACTIVE SUBSCRIBERS
-    ===================================================== */
+    =================================================== */
 
- msg.textContent =
+ msg.textContent=
   "Loading active subscribers...";
 
 
  const now=
   new Date().toISOString();
 
- const {data:members,error:membersError} =
+
+ const {
+  data:members,
+  error:membersError
+ } =
  await supabaseClient
  .from("profiles")
  .select("id")
  .eq("role","member")
- .eq("subscription_active",true)
+ .eq(
+  "subscription_active",
+  true
+ )
  .or(
   `subscription_expires_at.is.null,subscription_expires_at.gt.${now}`
  );
@@ -1854,7 +3518,7 @@ async function publishSignal(){
 
  if(membersError){
 
-  msg.textContent =
+  msg.textContent=
    "Signal published, but subscribers could not be loaded.";
 
   console.log(
@@ -1868,33 +3532,46 @@ async function publishSignal(){
  }
 
 
- /* =====================================================
+ /* ===================================================
     STEP 7
-    SEND NOTIFICATION ONLY TO ACTIVE USERS
-    ===================================================== */
+    =================================================== */
 
- if(members && members.length){
+ if(
+  members &&
+  members.length
+ ){
 
-  const notifications =
-   members.map(member=>({
+  const notifications=
+   members.map(
+    member=>({
 
-    user_id:member.id,
+     user_id:
+      member.id,
 
-    title:"New Gold Signal",
+     title:
+      "New Gold Signal",
 
-    message:
-     `A new ${signal} gold signal is available on ${timeframe}.`,
+     message:
+      `A new ${signal} gold signal is available on ${timeframe}.`,
 
-    type:"signal",
+     type:
+      "signal",
 
-    is_read:false
+     is_read:false
 
-   }));
+    })
+   );
 
-  const {error:notificationError} =
+
+  const {
+   error:notificationError
+  } =
   await supabaseClient
   .from("notifications")
-  .insert(notifications);
+  .insert(
+   notifications
+  );
+
 
   if(notificationError){
 
@@ -1903,37 +3580,64 @@ async function publishSignal(){
     notificationError
    );
 
-   msg.textContent =
+   msg.textContent=
     "Signal published, but notifications could not be created.";
 
    await showActiveSignal();
 
    return;
   }
+
  }
 
 
- /* =====================================================
+ /* ===================================================
     STEP 8
-    CLEAR FORM
-    ===================================================== */
+    =================================================== */
 
- document.getElementById("entry").value="";
- document.getElementById("stopLoss").value="";
- document.getElementById("takeProfit").value="";
- document.getElementById("signalMessage").value="";
+ document.getElementById(
+  "entry"
+ ).value="";
 
 
- /* =====================================================
+ document.getElementById(
+  "stopLoss"
+ ).value="";
+
+
+ document.getElementById(
+  "takeProfit"
+ ).value="";
+
+
+ document.getElementById(
+  "signalMessage"
+ ).value="";
+
+
+ document.getElementById(
+  "aiPreview"
+ ).style.display=
+  "none";
+
+
+ document.getElementById(
+  "aiStatus"
+ ).style.display=
+  "none";
+
+
+ /* ===================================================
     SUCCESS
-    ===================================================== */
+    =================================================== */
 
- msg.textContent =
+ msg.textContent=
   `Signal published successfully.\n` +
   `${members?.length || 0} ACTIVE subscriber(s) notified.`;
 
 
  await showActiveSignal();
+
 }
 
 
@@ -1943,23 +3647,31 @@ async function publishSignal(){
 
 async function copyActiveSignal(){
 
- const msg =
-  document.getElementById("signalMsg");
+ const msg=
+  document.getElementById(
+   "signalMsg"
+  );
 
- msg.textContent =
+
+ msg.textContent=
   "Loading active signal...";
+
 
  const {data,error} =
  await supabaseClient
  .from("gold_signals")
  .select("*")
  .eq("active",true)
- .order("created_at",{ascending:false})
+ .order(
+  "created_at",
+  {ascending:false}
+ )
  .limit(1);
+
 
  if(error){
 
-  msg.textContent =
+  msg.textContent=
    "Could not load active signal.";
 
   alert(
@@ -1970,9 +3682,13 @@ async function copyActiveSignal(){
   return;
  }
 
- if(!data || !data.length){
 
-  msg.textContent =
+ if(
+  !data ||
+  !data.length
+ ){
+
+  msg.textContent=
    "No active gold signal.";
 
   alert(
@@ -1982,9 +3698,12 @@ async function copyActiveSignal(){
   return;
  }
 
- const s=data[0];
 
- const copyText =
+ const s=
+  data[0];
+
+
+ const copyText=
 `XAU/USD
 SIGNAL: ${s.signal}
 TIMEFRAME: ${s.timeframe}
@@ -1992,12 +3711,17 @@ ENTRY: ${s.entry}
 STOP LOSS: ${s.stop_loss}
 TAKE PROFIT: ${s.take_profit}${s.message ? `\nMESSAGE: ${s.message}` : ""}`;
 
+
  try{
 
-  await navigator.clipboard.writeText(copyText);
+  await navigator.clipboard.writeText(
+   copyText
+  );
 
-  msg.textContent =
+
+  msg.textContent=
    "Signal copied successfully.";
+
 
   alert(
    "SIGNAL COPIED\n\n" +
@@ -2007,32 +3731,53 @@ TAKE PROFIT: ${s.take_profit}${s.message ? `\nMESSAGE: ${s.message}` : ""}`;
  }
  catch(error){
 
-  const textArea =
-   document.createElement("textarea");
+  const textArea=
+   document.createElement(
+    "textarea"
+   );
 
-  textArea.value=copyText;
 
-  textArea.style.position="fixed";
-  textArea.style.left="-9999px";
+  textArea.value=
+   copyText;
 
-  document.body.appendChild(textArea);
+
+  textArea.style.position=
+   "fixed";
+
+
+  textArea.style.left=
+   "-9999px";
+
+
+  document.body.appendChild(
+   textArea
+  );
+
 
   textArea.select();
 
+
   try{
 
-   document.execCommand("copy");
+   document.execCommand(
+    "copy"
+   );
 
-   msg.textContent =
+
+   msg.textContent=
     "Signal copied successfully.";
 
-   alert("Signal copied successfully.");
+
+   alert(
+    "Signal copied successfully."
+   );
 
   }
   catch(copyError){
 
-   msg.textContent =
+   msg.textContent=
     "Could not copy automatically.";
+
 
    alert(
     "Copy failed.\n\n" +
@@ -2041,8 +3786,13 @@ TAKE PROFIT: ${s.take_profit}${s.message ? `\nMESSAGE: ${s.message}` : ""}`;
 
   }
 
-  document.body.removeChild(textArea);
+
+  document.body.removeChild(
+   textArea
+  );
+
  }
+
 }
 
 
@@ -2052,13 +3802,19 @@ TAKE PROFIT: ${s.take_profit}${s.message ? `\nMESSAGE: ${s.message}` : ""}`;
 
 async function removeCurrentSignal(){
 
- const msg =
-  document.getElementById("signalMsg");
+ const msg=
+  document.getElementById(
+   "signalMsg"
+  );
 
- const display =
-  document.getElementById("activeSignalDisplay");
 
- msg.textContent =
+ const display=
+  document.getElementById(
+   "activeSignalDisplay"
+  );
+
+
+ msg.textContent=
   "Finding current active signal...";
 
 
@@ -2067,13 +3823,16 @@ async function removeCurrentSignal(){
  .from("gold_signals")
  .select("*")
  .eq("active",true)
- .order("created_at",{ascending:false})
+ .order(
+  "created_at",
+  {ascending:false}
+ )
  .limit(1);
 
 
  if(error){
 
-  msg.textContent =
+  msg.textContent=
    "Could not find current signal.";
 
   alert(
@@ -2085,9 +3844,12 @@ async function removeCurrentSignal(){
  }
 
 
- if(!data || !data.length){
+ if(
+  !data ||
+  !data.length
+ ){
 
-  msg.textContent =
+  msg.textContent=
    "There is no active signal.";
 
   display.innerHTML="";
@@ -2100,45 +3862,49 @@ async function removeCurrentSignal(){
  }
 
 
- const s=data[0];
+ const s=
+  data[0];
 
 
  const confirmed=
- confirm(
-  "REMOVE CURRENT SIGNAL?\n\n" +
+  confirm(
+   "REMOVE CURRENT SIGNAL?\n\n" +
 
-  "XAU/USD\n" +
+   "XAU/USD\n" +
 
-  "Signal: " +
-  s.signal +
+   "Signal: " +
+   s.signal +
 
-  "\nTimeframe: " +
-  s.timeframe +
+   "\nTimeframe: " +
+   s.timeframe +
 
-  "\nEntry: " +
-  s.entry +
+   "\nEntry: " +
+   s.entry +
 
-  "\nStop Loss: " +
-  s.stop_loss +
+   "\nStop Loss: " +
+   s.stop_loss +
 
-  "\nTake Profit: " +
-  s.take_profit +
+   "\nTake Profit: " +
+   s.take_profit +
 
-  "\n\n" +
+   "\n\n" +
 
-  "The signal will disappear from active investors."
- );
+   "The signal will disappear from active investors."
+  );
 
 
  if(!confirmed)
   return;
 
 
- msg.textContent =
+ msg.textContent=
   "Removing current signal...";
 
 
- const {data:deletedRows,error:deleteError} =
+ const {
+  data:deletedRows,
+  error:deleteError
+ } =
  await supabaseClient
  .from("gold_signals")
  .delete()
@@ -2148,7 +3914,7 @@ async function removeCurrentSignal(){
 
  if(deleteError){
 
-  msg.textContent =
+  msg.textContent=
    "REMOVE FAILED.";
 
   alert(
@@ -2160,9 +3926,12 @@ async function removeCurrentSignal(){
  }
 
 
- if(!deletedRows || deletedRows.length===0){
+ if(
+  !deletedRows ||
+  deletedRows.length===0
+ ){
 
-  msg.textContent =
+  msg.textContent=
    "Signal was NOT removed.";
 
   alert(
@@ -2174,8 +3943,9 @@ async function removeCurrentSignal(){
  }
 
 
- msg.textContent =
+ msg.textContent=
   "Current signal removed successfully.";
+
 
  display.innerHTML="";
 
@@ -2186,6 +3956,7 @@ async function removeCurrentSignal(){
 
 
  await showActiveSignal();
+
 }
 
 
@@ -2195,8 +3966,11 @@ async function removeCurrentSignal(){
 
 async function deleteExpiredSignals(){
 
- const msg =
-  document.getElementById("signalMsg");
+ const msg=
+  document.getElementById(
+   "signalMsg"
+  );
+
 
  if(!confirm(
   "DELETE ALL EXPIRED SIGNALS?\n\n" +
@@ -2205,11 +3979,14 @@ async function deleteExpiredSignals(){
   return;
 
 
- msg.textContent =
+ msg.textContent=
   "Finding expired signals...";
 
 
- const {data:expiredSignals,error:findError} =
+ const {
+  data:expiredSignals,
+  error:findError
+ } =
  await supabaseClient
  .from("gold_signals")
  .select("id")
@@ -2218,7 +3995,7 @@ async function deleteExpiredSignals(){
 
  if(findError){
 
-  msg.textContent =
+  msg.textContent=
    "Could not find expired signals.";
 
   alert(
@@ -2230,9 +4007,12 @@ async function deleteExpiredSignals(){
  }
 
 
- if(!expiredSignals || expiredSignals.length===0){
+ if(
+  !expiredSignals ||
+  expiredSignals.length===0
+ ){
 
-  msg.textContent =
+  msg.textContent=
    "No expired signals found.";
 
   alert(
@@ -2243,7 +4023,10 @@ async function deleteExpiredSignals(){
  }
 
 
- const {data:deletedRows,error:deleteError} =
+ const {
+  data:deletedRows,
+  error:deleteError
+ } =
  await supabaseClient
  .from("gold_signals")
  .delete()
@@ -2253,7 +4036,7 @@ async function deleteExpiredSignals(){
 
  if(deleteError){
 
-  msg.textContent =
+  msg.textContent=
    "Could not delete expired signals.";
 
   alert(
@@ -2265,13 +4048,13 @@ async function deleteExpiredSignals(){
  }
 
 
- const count =
+ const count=
   deletedRows?.length || 0;
 
 
  if(count===0){
 
-  msg.textContent =
+  msg.textContent=
    "No rows were deleted.";
 
   alert(
@@ -2282,7 +4065,7 @@ async function deleteExpiredSignals(){
  }
 
 
- msg.textContent =
+ msg.textContent=
   count +
   " expired signal(s) deleted successfully.";
 
@@ -2294,6 +4077,7 @@ async function deleteExpiredSignals(){
 
 
  await showActiveSignal();
+
 }
 
 
@@ -2303,41 +4087,57 @@ async function deleteExpiredSignals(){
 
 async function showActiveSignal(){
 
- const msg =
-  document.getElementById("signalMsg");
+ const msg=
+  document.getElementById(
+   "signalMsg"
+  );
 
- const display =
-  document.getElementById("activeSignalDisplay");
+
+ const display=
+  document.getElementById(
+   "activeSignalDisplay"
+  );
 
 
- const {data,error} =
+ const {
+  data,
+  error
+ } =
  await supabaseClient
  .from("gold_signals")
  .select("*")
  .eq("active",true)
- .order("created_at",{ascending:false})
+ .order(
+  "created_at",
+  {ascending:false}
+ )
  .limit(1);
 
 
  if(error){
 
-  msg.textContent =
+  msg.textContent=
    "Could not check active signal.";
 
   display.innerHTML="";
+
 
   console.log(
    "ACTIVE SIGNAL ERROR:",
    error
   );
 
+
   return;
  }
 
 
- if(!data || !data.length){
+ if(
+  !data ||
+  !data.length
+ ){
 
-  msg.textContent =
+  msg.textContent=
    "No active gold signal.";
 
   display.innerHTML="";
@@ -2346,10 +4146,11 @@ async function showActiveSignal(){
  }
 
 
- const s=data[0];
+ const s=
+  data[0];
 
 
- msg.textContent =
+ msg.textContent=
   "Active signal loaded.";
 
 
@@ -2361,60 +4162,100 @@ async function showActiveSignal(){
     CURRENT ACTIVE SIGNAL
    </div>
 
+
    <div>
     <strong>Pair:</strong>
     XAU/USD
    </div>
 
+
    <div>
     <strong>Signal:</strong>
 
     <span class="gold">
-     ${escapeHtml(s.signal)}
+     ${escapeHtml(
+      s.signal
+     )}
     </span>
+
    </div>
+
 
    <div>
     <strong>Timeframe:</strong>
-    ${escapeHtml(s.timeframe)}
+
+    ${escapeHtml(
+     s.timeframe
+    )}
+
    </div>
+
 
    <div>
     <strong>Entry:</strong>
-    ${escapeHtml(s.entry)}
+
+    ${escapeHtml(
+     s.entry
+    )}
+
    </div>
+
 
    <div>
     <strong>Stop Loss:</strong>
-    ${escapeHtml(s.stop_loss)}
+
+    ${escapeHtml(
+     s.stop_loss
+    )}
+
    </div>
+
 
    <div>
     <strong>Take Profit:</strong>
-    ${escapeHtml(s.take_profit)}
+
+    ${escapeHtml(
+     s.take_profit
+    )}
+
    </div>
+
 
    ${
     s.message
+
     ?
+
     `<div style="margin-top:8px">
+
       <strong>Message:</strong>
-      ${escapeHtml(s.message)}
+
+      ${escapeHtml(
+       s.message
+      )}
+
      </div>`
+
     :
+
     ""
    }
 
+
    <div class="signal-status">
+
     STATUS:
+
     <span class="gold">
      ACTIVE
     </span>
+
    </div>
 
   </div>
 
  `;
+
 }
 
 
@@ -2428,22 +4269,37 @@ async function loadNotifications(){
   return;
 
 
- const {data,error} =
+ const {
+  data,
+  error
+ } =
  await supabaseClient
  .from("notifications")
  .select("*")
- .eq("user_id",currentUser.id)
- .order("created_at",{ascending:false});
+ .eq(
+  "user_id",
+  currentUser.id
+ )
+ .order(
+  "created_at",
+  {ascending:false}
+ );
 
 
  const box=
- document.getElementById("notificationsList");
+ document.getElementById(
+  "notificationsList"
+ );
 
 
  if(error){
 
   box.innerHTML=
-  `<div class="card">${escapeHtml(error.message)}</div>`;
+   `<div class="card">
+    ${escapeHtml(
+     error.message
+    )}
+   </div>`;
 
   return;
  }
@@ -2452,10 +4308,15 @@ async function loadNotifications(){
  box.innerHTML="";
 
 
- if(!data || !data.length){
+ if(
+  !data ||
+  !data.length
+ ){
 
   box.innerHTML=
-  `<div class="card">No notifications.</div>`;
+   `<div class="card">
+    No notifications.
+   </div>`;
 
   return;
  }
@@ -2465,24 +4326,47 @@ async function loadNotifications(){
 
   box.innerHTML+=`
 
-   <div class="card notification ${n.is_read?"":"unread"}">
+   <div class="card notification ${
+    n.is_read
+    ? ""
+    : "unread"
+   }">
 
     <strong class="gold">
-     ${escapeHtml(n.title||"Notification")}
+
+     ${escapeHtml(
+      n.title ||
+      "Notification"
+     )}
+
     </strong>
 
+
     <div style="margin-top:8px">
-     ${escapeHtml(n.message||"")}
+
+     ${escapeHtml(
+      n.message || ""
+     )}
+
     </div>
 
-    <div class="small" style="margin-top:8px">
-     ${formatDate(n.created_at)}
+
+    <div
+     class="small"
+     style="margin-top:8px">
+
+     ${formatDate(
+      n.created_at
+     )}
+
     </div>
 
    </div>
 
   `;
+
  });
+
 }
 
 
@@ -2502,15 +4386,24 @@ async function markAdminNotificationsRead(){
  .update({
   is_read:true
  })
- .eq("user_id",currentUser.id)
- .eq("is_read",false);
+ .eq(
+  "user_id",
+  currentUser.id
+ )
+ .eq(
+  "is_read",
+  false
+ );
 
 
  if(error)
-  console.log(error.message);
+  console.log(
+   error.message
+  );
 
 
  await loadDashboard();
+
 }
 
 
@@ -2536,7 +4429,8 @@ async function subscribeToAdminNotifications(){
  adminNotificationChannel=
  supabaseClient
  .channel(
-  "admin-notifications-"+currentUser.id
+  "admin-notifications-" +
+  currentUser.id
  )
  .on(
   "postgres_changes",
@@ -2544,16 +4438,19 @@ async function subscribeToAdminNotifications(){
    event:"INSERT",
    schema:"public",
    table:"notifications",
-   filter:`user_id=eq.${currentUser.id}`
+   filter:
+    `user_id=eq.${currentUser.id}`
   },
   payload=>{
 
    loadNotifications();
+
    loadDashboard();
 
   }
  )
  .subscribe();
+
 }
 
 
@@ -2566,28 +4463,63 @@ function formatDate(date){
  if(!date)
   return "-";
 
- return new Date(date).toLocaleString();
+
+ return new Date(
+  date
+ ).toLocaleString();
 
 }
 
 
 function escapeHtml(value){
 
- return String(value??"")
- .replace(/&/g,"&amp;")
- .replace(/</g,"&lt;")
- .replace(/>/g,"&gt;")
- .replace(/"/g,"&quot;")
- .replace(/'/g,"&#039;");
+ return String(
+  value ?? ""
+ )
+
+ .replace(
+  /&/g,
+  "&amp;"
+ )
+
+ .replace(
+  /</g,
+  "&lt;"
+ )
+
+ .replace(
+  />/g,
+  "&gt;"
+ )
+
+ .replace(
+  /"/g,
+  "&quot;"
+ )
+
+ .replace(
+  /'/g,
+  "&#039;"
+ );
 
 }
 
 
 function escapeAttr(value){
 
- return String(value??"")
- .replace(/\\/g,"\\\\")
- .replace(/'/g,"\\'");
+ return String(
+  value ?? ""
+ )
+
+ .replace(
+  /\\/g,
+  "\\\\"
+ )
+
+ .replace(
+  /'/g,
+  "\\'"
+ );
 
 }
 
@@ -2599,11 +4531,15 @@ function escapeAttr(value){
 (async function(){
 
  const {data} =
- await supabaseClient.auth.getSession();
+ await supabaseClient
+ .auth
+ .getSession();
+
 
  if(data.session){
 
-  currentUser=data.session.user;
+  currentUser=
+   data.session.user;
 
   await checkAdmin();
 
