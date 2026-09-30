@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download source
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Java
@@ -17,34 +17,16 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
 
-      - name: Install Capacitor
-        run: |
-          npm init -y
-          npm install @capacitor/core @capacitor/cli @capacitor/android
+      - name: Generate Gradle wrapper
+        working-directory: android
+        run: gradle wrapper --gradle-version 8.9
 
-      - name: Configure Capacitor
-        run: |
-          cat > capacitor.config.json <<'EOF'
-          {
-            "appId": "com.aurixai.gold",
-            "appName": "AURIX AI",
-            "webDir": ".",
-            "server": {
-              "androidScheme": "https"
-            }
-          }
-          EOF
-
-      - name: Add Android
-        run: npx cap add android
-
-      - name: Sync
-        run: npx cap sync android
+      - name: Make Gradle executable
+        working-directory: android
+        run: chmod +x gradlew
 
       - name: Build APK
         working-directory: android
