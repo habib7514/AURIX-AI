@@ -2,68 +2,55 @@ name: Build AURIX AI APK
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout AURIX AI
+      - name: Download source
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '20'
 
-      - name: Create package.json
+      - name: Install Capacitor
         run: |
-          cat > package.json <<'EOF'
-          {
-            "name": "aurix-ai",
-            "version": "1.0.0",
-            "private": true,
-            "scripts": {
-              "build": "echo AURIX AI"
-            },
-            "dependencies": {
-              "@capacitor/core": "^7.4.3",
-              "@capacitor/android": "^7.4.3"
-            },
-            "devDependencies": {
-              "@capacitor/cli": "^7.4.3"
-            }
-          }
-          EOF
+          npm init -y
+          npm install @capacitor/core @capacitor/cli @capacitor/android
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Create Capacitor config
+      - name: Configure Capacitor
         run: |
           cat > capacitor.config.json <<'EOF'
           {
             "appId": "com.aurixai.gold",
             "appName": "AURIX AI",
             "webDir": ".",
-            "bundledWebRuntime": false
+            "server": {
+              "androidScheme": "https"
+            }
           }
           EOF
 
-      - name: Create Android project
+      - name: Add Android
         run: npx cap add android
 
-      - name: Copy AURIX AI website
-        run: npx cap copy android
+      - name: Sync
+        run: npx cap sync android
 
-      - name: Build AURIX AI APK
+      - name: Build APK
         working-directory: android
         run: ./gradlew assembleDebug --no-daemon
 
-      - name: Upload AURIX AI APK
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: AURIX-AI-APK
