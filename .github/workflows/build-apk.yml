@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout AURIX AI
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Java
@@ -21,11 +21,6 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
-
-      - name: Prepare AURIX web files
-        run: |
-          mkdir -p android/app/src/main/assets
-          cp index.html android/app/src/main/assets/index.html
 
       - name: Build APK
         working-directory: android
