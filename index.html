@@ -624,23 +624,58 @@ text-align:right
 
 .notification{
 border-left:3px solid #D4AF37;
-cursor:pointer
+cursor:pointer;
+transition:.2s ease
+}
+
+.notification:active{
+transform:scale(.99)
 }
 
 .notification.unread{
-background:#16130a
+background:#16130a;
+border-left-color:#D4AF37
 }
 
-.notification-time{
-color:#666;
-font-size:12px;
-margin-top:8px
+.notification:not(.unread){
+border-left-color:#333;
+opacity:.9
 }
 
-.empty{
-color:#777;
-text-align:center;
-padding:30px
+.notification-read{
+display:inline-block;
+margin-top:10px;
+color:#59d98a;
+font-size:10px;
+font-weight:800;
+letter-spacing:1px
+}
+
+.notification-detail{
+display:none;
+background:linear-gradient(145deg,#171309,#080808);
+border:1px solid #4d3e17;
+border-radius:20px;
+padding:20px;
+margin-bottom:18px;
+box-shadow:0 8px 30px rgba(0,0,0,.35)
+}
+
+.notification-detail h2{
+color:#F0D36A;
+font-size:22px;
+margin-bottom:12px
+}
+
+.notification-detail-message{
+color:#bbb;
+line-height:1.8;
+white-space:pre-wrap;
+word-break:break-word
+}
+
+.notification-detail .btn{
+margin-top:14px
 }
 
 .badge{
@@ -745,7 +780,6 @@ height:270px
 </head>
 
 <body>
-
 
 <!-- =========================
 WELCOME
@@ -982,9 +1016,6 @@ HOME
 
 <div class="container">
 
-
-<!-- GOLD VISUAL FIRST -->
-
 <div class="gold-visual">
 
 <div class="gold-visual-content">
@@ -1002,7 +1033,6 @@ XAU/USD • GOLD MARKET SIGNALS
 </div>
 
 </div>
-
 
 <svg
 viewBox="0 0 650 300"
@@ -1053,189 +1083,45 @@ stop-opacity="0"/>
 
 </defs>
 
-
-<!-- GRID -->
-
 <g
 stroke="#D4AF37"
 opacity=".10">
 
-<line
-x1="0"
-y1="70"
-x2="650"
-y2="70"/>
-
-<line
-x1="0"
-y1="120"
-x2="650"
-y2="120"/>
-
-<line
-x1="0"
-y1="170"
-x2="650"
-y2="170"/>
-
-<line
-x1="0"
-y1="220"
-x2="650"
-y2="220"/>
-
-<line
-x1="0"
-y1="270"
-x2="650"
-y2="270"/>
+<line x1="0" y1="70" x2="650" y2="70"/>
+<line x1="0" y1="120" x2="650" y2="120"/>
+<line x1="0" y1="170" x2="650" y2="170"/>
+<line x1="0" y1="220" x2="650" y2="220"/>
+<line x1="0" y1="270" x2="650" y2="270"/>
 
 </g>
-
-
-<!-- CANDLESTICKS -->
 
 <g>
 
-<line
-x1="55"
-y1="215"
-x2="55"
-y2="145"
-stroke="#D4AF37"
-stroke-width="2"/>
+<line x1="55" y1="215" x2="55" y2="145" stroke="#D4AF37" stroke-width="2"/>
+<rect x="46" y="170" width="18" height="40" rx="3" fill="#B78D20"/>
 
-<rect
-x="46"
-y="170"
-width="18"
-height="40"
-rx="3"
-fill="#B78D20"/>
+<line x1="125" y1="205" x2="125" y2="125" stroke="#F0D36A" stroke-width="2"/>
+<rect x="116" y="145" width="18" height="52" rx="3" fill="#F0D36A"/>
 
+<line x1="195" y1="190" x2="195" y2="110" stroke="#D4AF37" stroke-width="2"/>
+<rect x="186" y="130" width="18" height="48" rx="3" fill="#D4AF37"/>
 
-<line
-x1="125"
-y1="205"
-x2="125"
-y2="125"
-stroke="#F0D36A"
-stroke-width="2"/>
+<line x1="265" y1="175" x2="265" y2="92" stroke="#FFE58A" stroke-width="2"/>
+<rect x="256" y="108" width="18" height="51" rx="3" fill="#FFE58A"/>
 
-<rect
-x="116"
-y="145"
-width="18"
-height="52"
-rx="3"
-fill="#F0D36A"/>
+<line x1="335" y1="160" x2="335" y2="80" stroke="#D4AF37" stroke-width="2"/>
+<rect x="326" y="96" width="18" height="45" rx="3" fill="#D4AF37"/>
 
+<line x1="405" y1="140" x2="405" y2="62" stroke="#FFE58A" stroke-width="2"/>
+<rect x="396" y="78" width="18" height="46" rx="3" fill="#FFE58A"/>
 
-<line
-x1="195"
-y1="190"
-x2="195"
-y2="110"
-stroke="#D4AF37"
-stroke-width="2"/>
+<line x1="475" y1="125" x2="475" y2="50" stroke="#D4AF37" stroke-width="2"/>
+<rect x="466" y="66" width="18" height="42" rx="3" fill="#D4AF37"/>
 
-<rect
-x="186"
-y="130"
-width="18"
-height="48"
-rx="3"
-fill="#D4AF37"/>
-
-
-<line
-x1="265"
-y1="175"
-x2="265"
-y2="92"
-stroke="#FFE58A"
-stroke-width="2"/>
-
-<rect
-x="256"
-y="108"
-width="18"
-height="51"
-rx="3"
-fill="#FFE58A"/>
-
-
-<line
-x1="335"
-y1="160"
-x2="335"
-y2="80"
-stroke="#D4AF37"
-stroke-width="2"/>
-
-<rect
-x="326"
-y="96"
-width="18"
-height="45"
-rx="3"
-fill="#D4AF37"/>
-
-
-<line
-x1="405"
-y1="140"
-x2="405"
-y2="62"
-stroke="#FFE58A"
-stroke-width="2"/>
-
-<rect
-x="396"
-y="78"
-width="18"
-height="46"
-rx="3"
-fill="#FFE58A"/>
-
-
-<line
-x1="475"
-y1="125"
-x2="475"
-y2="50"
-stroke="#D4AF37"
-stroke-width="2"/>
-
-<rect
-x="466"
-y="66"
-width="18"
-height="42"
-rx="3"
-fill="#D4AF37"/>
-
-
-<line
-x1="545"
-y1="105"
-x2="545"
-y2="35"
-stroke="#FFE58A"
-stroke-width="2"/>
-
-<rect
-x="536"
-y="50"
-width="18"
-height="40"
-rx="3"
-fill="#FFE58A"/>
+<line x1="545" y1="105" x2="545" y2="35" stroke="#FFE58A" stroke-width="2"/>
+<rect x="536" y="50" width="18" height="40" rx="3" fill="#FFE58A"/>
 
 </g>
-
-
-<!-- AREA -->
 
 <path
 d="M0 245
@@ -1251,9 +1137,6 @@ L650 80
 L650 300
 L0 300 Z"
 fill="url(#areaGold)"/>
-
-
-<!-- MAIN LINE -->
 
 <path
 d="M0 245
@@ -1272,24 +1155,10 @@ stroke-width="5"
 stroke-linecap="round"
 stroke-linejoin="round"/>
 
-
-<!-- LAST POINT -->
-
-<circle
-cx="650"
-cy="80"
-r="7"
-fill="#FFE58A"/>
-
-<circle
-cx="650"
-cy="80"
-r="15"
-fill="#D4AF37"
-opacity=".12"/>
+<circle cx="650" cy="80" r="7" fill="#FFE58A"/>
+<circle cx="650" cy="80" r="15" fill="#D4AF37" opacity=".12"/>
 
 </svg>
-
 
 <div class="gold-price-tag">
 
@@ -1303,8 +1172,6 @@ GOLD • XAU/USD
 
 </div>
 
-
-<!-- WELCOME -->
 
 <div class="hero">
 
@@ -1323,8 +1190,6 @@ XAU/USD trade alerts through your AURIX AI subscription.
 
 </div>
 
-
-<!-- STATS -->
 
 <div class="stats">
 
@@ -1355,8 +1220,6 @@ INACTIVE
 </div>
 
 
-<!-- VIP DIRECTLY ON HOME -->
-
 <div class="card vip-section">
 
 <div class="vip-heading">
@@ -1375,9 +1238,7 @@ PREMIUM
 Choose your VIP subscription and continue directly to the deposit page.
 </p>
 
-
 <div class="vip-plans">
-
 
 <div class="vip-plan">
 
@@ -1428,13 +1289,10 @@ GET VIP
 
 </div>
 
-
 </div>
 
 </div>
 
-
-<!-- HOW IT WORKS -->
 
 <div class="card">
 
@@ -1446,9 +1304,7 @@ HOW AURIX AI WORKS
 A simple subscription process for accessing premium gold signals.
 </p>
 
-
 <div class="steps">
-
 
 <div class="step">
 
@@ -1533,13 +1389,10 @@ After activation, access the manually published premium gold signals.
 
 </div>
 
-
 </div>
 
 </div>
 
-
-<!-- CURRENT TRADE -->
 
 <div class="card signal">
 
@@ -1582,8 +1435,6 @@ VIEW SIGNAL
 </div>
 
 
-<!-- SUPPORT ON SAME PAGE -->
-
 <div class="card">
 
 <h2>
@@ -1614,8 +1465,6 @@ CONTACT ADMIN / SUPPORT
 </div>
 
 
-<!-- RISK / INFO -->
-
 <div class="card">
 
 <h2>
@@ -1630,8 +1479,6 @@ placing a trade.
 
 </div>
 
-
-<!-- PLANS BUTTON -->
 
 <div class="card">
 
@@ -1652,7 +1499,6 @@ VIEW SUBSCRIPTION PLANS
 </button>
 
 </div>
-
 
 </div>
 
@@ -1703,7 +1549,6 @@ PLANS
 <h1 class="page-title">
 VIP SUBSCRIPTION
 </h1>
-
 
 <div class="card plan">
 
@@ -1790,7 +1635,6 @@ DEPOSIT
 <h1 class="page-title">
 DEPOSIT
 </h1>
-
 
 <div class="notice">
 
@@ -1937,6 +1781,13 @@ NOTIFICATIONS
 <h1 class="page-title">
 NOTIFICATIONS
 </h1>
+
+<!-- NOTIFICATION DETAIL -->
+<div
+id="notificationDetail"
+class="notification-detail">
+
+</div>
 
 <div id="notificationList">
 
@@ -2199,6 +2050,9 @@ let notificationChannel = null;
 let signalChannel = null;
 
 let latestSignalData = null;
+
+/* Prevent double-opening the same notification */
+let openingNotificationId = null;
 
 
 /* =========================================
@@ -2951,10 +2805,17 @@ return;
 }
 
 
+/*
+IMPORTANT:
+Only TRUE means read.
+FALSE or NULL means unread.
+This keeps the unread counter accurate.
+*/
+
 const unreadCount =
 data.filter(function(item){
 
-return !item.is_read;
+return item.is_read !== true;
 
 }).length;
 
@@ -2989,9 +2850,27 @@ data.forEach(function(item){
 const card =
 document.createElement("div");
 
+
+/*
+Every notification is clickable.
+Read notifications stay in history.
+Unread notifications have the gold highlight.
+*/
+
 card.className =
 "card notification " +
-(item.is_read ? "" : "unread");
+(item.is_read === true ? "" : "unread");
+
+
+card.setAttribute(
+"role",
+"button"
+);
+
+card.setAttribute(
+"tabindex",
+"0"
+);
 
 
 const title =
@@ -3032,22 +2911,368 @@ card.appendChild(message);
 card.appendChild(time);
 
 
-if(
-item.type === "signal" ||
-(item.title || "")
-.toLowerCase()
-.includes("gold signal")
-){
+/*
+Show READ only when it is already read.
+*/
 
-card.onclick =
-openSignalFromNotification;
+if(item.is_read === true){
+
+const read =
+document.createElement("div");
+
+read.className =
+"notification-read";
+
+read.textContent =
+"READ";
+
+card.appendChild(read);
 
 }
+
+
+/*
+Open notification.
+This works for both signal and normal notifications.
+*/
+
+card.onclick =
+function(){
+
+openNotification(item);
+
+};
+
+
+/*
+Keyboard support.
+*/
+
+card.onkeydown =
+function(event){
+
+if(
+event.key === "Enter" ||
+event.key === " "
+){
+
+event.preventDefault();
+
+openNotification(item);
+
+}
+
+};
 
 
 container.appendChild(card);
 
 });
+
+}
+
+
+/* =========================================
+OPEN NOTIFICATION
+========================================= */
+
+async function openNotification(notification){
+
+if(!notification || !currentUser)return;
+
+
+/*
+Prevent double taps from sending multiple updates.
+*/
+
+if(
+openingNotificationId === notification.id
+){
+
+return;
+
+}
+
+
+openingNotificationId =
+notification.id;
+
+
+try{
+
+/*
+Only update the database if it is currently unread.
+Therefore opening an already-read notification
+does NOT decrease the counter again.
+*/
+
+if(notification.is_read !== true){
+
+const {error} =
+await supabaseClient
+.from("notifications")
+.update({
+is_read:true
+})
+.eq("id",notification.id)
+.eq("user_id",currentUser.id);
+
+
+if(error){
+
+console.error(
+"Mark notification read error:",
+error
+);
+
+return;
+
+}
+
+
+/*
+Update local object after successful database update.
+*/
+
+notification.is_read = true;
+
+}
+
+
+/*
+Reload notifications so the badge is recalculated
+from the database.
+*/
+
+await loadNotifications();
+
+
+/*
+Show the complete notification.
+*/
+
+showNotificationDetails(notification);
+
+}finally{
+
+openingNotificationId = null;
+
+}
+
+}
+
+
+/* =========================================
+SHOW NOTIFICATION DETAILS
+========================================= */
+
+function showNotificationDetails(notification){
+
+const detail =
+document.getElementById(
+"notificationDetail"
+);
+
+
+if(!detail)return;
+
+
+const title =
+cleanNotificationText(
+notification.title ||
+"Notification"
+);
+
+
+const message =
+cleanNotificationText(
+notification.message ||
+"You have a new notification."
+);
+
+
+const time =
+notification.created_at
+? new Date(
+notification.created_at
+).toLocaleString()
+: "";
+
+
+detail.innerHTML = "";
+
+
+/*
+TITLE
+*/
+
+const titleElement =
+document.createElement("h2");
+
+titleElement.textContent =
+title;
+
+
+/*
+FULL MESSAGE
+*/
+
+const messageElement =
+document.createElement("div");
+
+messageElement.className =
+"notification-detail-message";
+
+messageElement.textContent =
+message;
+
+
+/*
+TIME
+*/
+
+const timeElement =
+document.createElement("div");
+
+timeElement.className =
+"notification-time";
+
+timeElement.textContent =
+time;
+
+
+/*
+READ STATUS
+*/
+
+const readElement =
+document.createElement("div");
+
+readElement.className =
+"notification-read";
+
+readElement.textContent =
+"READ";
+
+
+detail.appendChild(
+titleElement
+);
+
+detail.appendChild(
+messageElement
+);
+
+detail.appendChild(
+timeElement
+);
+
+detail.appendChild(
+readElement
+);
+
+
+/*
+If this is a signal notification,
+show a button to view the active gold signal.
+*/
+
+const titleLower =
+String(
+notification.title || ""
+).toLowerCase();
+
+
+const typeLower =
+String(
+notification.type || ""
+).toLowerCase();
+
+
+const isSignal =
+typeLower === "signal" ||
+titleLower.includes("gold signal") ||
+titleLower.includes("trade");
+
+
+if(isSignal){
+
+const signalButton =
+document.createElement("button");
+
+signalButton.className =
+"btn secondary";
+
+signalButton.textContent =
+"VIEW GOLD SIGNAL";
+
+signalButton.onclick =
+function(){
+
+showSignalDetailsFromNotification();
+
+};
+
+
+detail.appendChild(
+signalButton
+);
+
+}
+
+
+/*
+Close detail button.
+*/
+
+const closeButton =
+document.createElement("button");
+
+closeButton.className =
+"btn secondary";
+
+closeButton.textContent =
+"CLOSE";
+
+closeButton.onclick =
+function(){
+
+detail.style.display =
+"none";
+
+};
+
+
+detail.appendChild(
+closeButton
+);
+
+
+detail.style.display =
+"block";
+
+
+/*
+Bring the detail box into view.
+*/
+
+detail.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+}
+
+
+/* =========================================
+VIEW SIGNAL FROM NOTIFICATION
+========================================= */
+
+async function showSignalDetailsFromNotification(){
+
+await loadSignalDetails();
+
+showScreen("signalDetails");
 
 }
 
@@ -3712,9 +3937,7 @@ OPEN SIGNAL FROM NOTIFICATION
 
 async function openSignalFromNotification(){
 
-await loadSignalDetails();
-
-showScreen("signalDetails");
+await showSignalDetailsFromNotification();
 
 }
 
@@ -3801,6 +4024,7 @@ await supabaseClient.auth.signOut();
 
 currentUser = null;
 latestSignalData = null;
+openingNotificationId = null;
 
 
 if(notificationChannel){
@@ -3821,6 +4045,34 @@ signalChannel
 );
 
 signalChannel = null;
+
+}
+
+
+const badge =
+document.getElementById(
+"notificationBadge"
+);
+
+if(badge){
+
+badge.style.display =
+"none";
+
+}
+
+
+const detail =
+document.getElementById(
+"notificationDetail"
+);
+
+if(detail){
+
+detail.style.display =
+"none";
+
+detail.innerHTML = "";
 
 }
 
