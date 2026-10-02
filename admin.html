@@ -3,4718 +3,2413 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#050505">
-
 <title>AURIX AI — Admin</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{box-sizing:border-box}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
- margin:0;
- background:#050505;
- color:#fff;
- font-family:Arial,sans-serif;
-}
-
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-button:disabled{opacity:.55;cursor:not-allowed}
-
-.gold{color:#d6a84f}
-
-#login{
- min-height:100vh;
- display:flex;
- align-items:center;
- justify-content:center;
- padding:20px;
-}
-
-.login-box{
- width:100%;
- max-width:420px;
- background:#101010;
- border:1px solid #2b2417;
- border-radius:20px;
- padding:28px;
- box-shadow:0 0 40px #000;
-}
-
-.logo{
- text-align:center;
- font-size:30px;
- font-weight:800;
- letter-spacing:3px;
- color:#d6a84f;
- margin-bottom:25px;
-}
-
-input,select,textarea{
- width:100%;
- background:#080808;
- border:1px solid #302a1d;
- color:#fff;
- border-radius:10px;
- padding:13px;
- margin:7px 0 12px;
- outline:none;
-}
-
-input:focus,select:focus,textarea:focus{
- border-color:#d6a84f;
+    background:#050505;
+    color:#f5c542;
+    font-family:Arial,Helvetica,sans-serif;
+    min-height:100vh;
 }
 
 button{
- border:0;
- border-radius:10px;
- padding:12px 16px;
- font-weight:700;
+    border:0;
+    cursor:pointer;
+    font-weight:bold;
 }
 
-.gold-btn{
- width:100%;
- background:#d6a84f;
- color:#080808;
-}
-
-.danger{background:#8d2929;color:#fff}
-.approve{background:#2f8f55;color:#fff}
-.secondary{background:#242424;color:#fff}
-.activate{background:#315d91;color:#fff}
-.copy-btn{background:#d6a84f;color:#080808}
-
-#app{display:none}
-
-header{
- position:sticky;
- top:0;
- z-index:5;
- background:#080808;
- border-bottom:1px solid #211d16;
- padding:16px 20px;
- display:flex;
- justify-content:space-between;
- align-items:center;
-}
-
-header strong{
- color:#d6a84f;
- letter-spacing:2px;
-}
+.hidden{display:none!important}
 
 .container{
- max-width:1200px;
- margin:auto;
- padding:20px;
-}
-
-.tabs{
- display:flex;
- flex-direction:column;
- gap:10px;
- width:100%;
- padding-bottom:20px;
-}
-
-.tab{
- width:100%;
- display:block;
- text-align:left;
- background:#141414;
- color:#aaa;
- white-space:normal;
- padding:14px 16px;
- border:1px solid #252015;
- border-radius:10px;
-}
-
-.tab.active{
- background:#d6a84f;
- color:#080808;
- border-color:#d6a84f;
-}
-
-.section{display:none}
-.section.active{display:block}
-
-.grid{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
- gap:14px;
- margin-bottom:20px;
+    width:100%;
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
 }
 
 .card{
- background:#101010;
- border:1px solid #252015;
- border-radius:16px;
- padding:18px;
+    background:#101010;
+    border:1px solid #3a2d0b;
+    border-radius:16px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 0 20px rgba(245,197,66,.05);
+}
+
+h1,h2,h3{color:#f5c542}
+
+input,select,textarea{
+    width:100%;
+    background:#080808;
+    color:#fff;
+    border:1px solid #3b3014;
+    border-radius:10px;
+    padding:13px;
+    margin-top:7px;
+    outline:none;
+}
+
+input:focus,select:focus,textarea:focus{
+    border-color:#f5c542;
+}
+
+label{
+    display:block;
+    color:#aaa;
+    font-size:13px;
+    margin-top:12px;
+}
+
+.gold{
+    color:#f5c542;
+}
+
+.btn{
+    background:#f5c542;
+    color:#050505;
+    padding:13px 18px;
+    border-radius:10px;
+    margin-top:12px;
+}
+
+.btn:hover{
+    opacity:.9;
+}
+
+.btn.dark{
+    background:#181818;
+    color:#f5c542;
+    border:1px solid #51400f;
+}
+
+.btn.danger{
+    background:#9b2226;
+    color:#fff;
+}
+
+.btn.success{
+    background:#287d3c;
+    color:#fff;
+}
+
+.btn.full{
+    width:100%;
+}
+
+.login-box{
+    max-width:420px;
+    margin:70px auto;
+}
+
+.logo{
+    text-align:center;
+    font-size:32px;
+    font-weight:bold;
+    letter-spacing:3px;
+    margin-bottom:25px;
+}
+
+.logo span{
+    color:#fff;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.header-title{
+    font-size:25px;
+    font-weight:bold;
+}
+
+.tabs{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    margin-bottom:20px;
+    padding-bottom:5px;
+}
+
+.tab{
+    white-space:nowrap;
+    background:#111;
+    color:#aaa;
+    border:1px solid #33290d;
+    padding:11px 15px;
+    border-radius:9px;
+}
+
+.tab.active{
+    background:#f5c542;
+    color:#050505;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
 }
 
 .stat{
- font-size:30px;
- font-weight:800;
- color:#d6a84f;
- margin-top:8px;
+    background:#0d0d0d;
+    border:1px solid #30260d;
+    border-radius:14px;
+    padding:18px;
+}
+
+.stat-number{
+    font-size:28px;
+    font-weight:bold;
+    margin-top:8px;
 }
 
 .table-wrap{
- overflow-x:auto;
- background:#101010;
- border:1px solid #252015;
- border-radius:16px;
+    overflow-x:auto;
 }
 
 table{
- width:100%;
- border-collapse:collapse;
- min-width:1000px;
+    width:100%;
+    border-collapse:collapse;
+    min-width:650px;
 }
 
 th,td{
- padding:13px;
- border-bottom:1px solid #222;
- text-align:left;
- font-size:13px;
+    padding:12px;
+    border-bottom:1px solid #27200e;
+    text-align:left;
+    color:#ddd;
 }
 
 th{
- color:#d6a84f;
- background:#15130f;
+    color:#f5c542;
 }
 
 .badge{
- display:inline-block;
- padding:5px 9px;
- border-radius:20px;
- font-size:11px;
- font-weight:bold;
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:12px;
+    background:#222;
 }
 
-.pending{background:#5b4820;color:#f5d98d}
-.approved{background:#174c2d;color:#8ee0aa}
-.rejected{background:#542020;color:#ff9a9a}
-.expired{background:#542020;color:#ff9a9a}
-.inactive{background:#333;color:#bbb}
-
-.actions{
- display:flex;
- flex-direction:column;
- gap:8px;
- width:100%;
+.badge.active{
+    background:#1c632e;
+    color:#fff;
 }
 
-.actions button{
- width:100%;
- padding:9px 10px;
- font-size:12px;
- display:block;
+.badge.pending{
+    background:#6b5512;
+    color:#fff;
 }
 
-h2{margin-top:5px}
-
-.small{
- color:#888;
- font-size:12px;
+.badge.wait{
+    background:#444;
+    color:#fff;
 }
 
-.message{
- margin-top:10px;
- color:#d6a84f;
- font-size:13px;
- white-space:pre-line;
+.badge.buy{
+    background:#1c632e;
+    color:#fff;
 }
 
-textarea{
- min-height:90px;
- resize:vertical;
-}
-
-.notification{
- margin-bottom:10px;
-}
-
-.notification.unread{
- border-color:#d6a84f;
-}
-
-.signal-tools{
- display:flex;
- flex-direction:column;
- gap:10px;
- margin-top:10px;
-}
-
-.signal-tools button{width:100%}
-
-.active-signal-card{
- margin-top:15px;
- background:#0b0b0b;
- border:1px solid #3a2e18;
- border-radius:12px;
- padding:15px;
- line-height:1.8;
-}
-
-.active-signal-title{
- color:#d6a84f;
- font-weight:800;
- margin-bottom:8px;
-}
-
-.signal-status{
- margin-top:15px;
- padding:12px;
- border-radius:10px;
- background:#151515;
- border:1px solid #29251c;
- color:#aaa;
-}
-
-.ai-card{
- background:linear-gradient(
-  145deg,
-  #111 0%,
-  #090909 60%,
-  #151108 100%
- );
- border:1px solid #5b4520;
- box-shadow:0 0 30px rgba(214,168,79,.06);
+.badge.sell{
+    background:#8b2525;
+    color:#fff;
 }
 
 .ai-title{
- color:#d6a84f;
- font-size:20px;
- font-weight:800;
- letter-spacing:1px;
- margin-bottom:8px;
+    font-size:22px;
+    margin-bottom:8px;
 }
 
-.ai-subtitle{
- color:#888;
- font-size:12px;
- line-height:1.6;
- margin-bottom:16px;
+.ai-sub{
+    color:#999;
+    font-size:13px;
+    margin-bottom:15px;
 }
 
-.ai-preview{
- display:none;
- margin-top:18px;
+.analysis-box{
+    border:1px solid #5b4610;
+    border-radius:15px;
+    padding:18px;
+    margin-top:18px;
+    background:#0b0b0b;
 }
 
-.ai-preview-header{
- display:flex;
- justify-content:space-between;
- align-items:center;
- gap:10px;
- margin-bottom:15px;
+.preview-title{
+    color:#f5c542;
+    font-weight:bold;
+    font-size:18px;
+    margin-bottom:15px;
 }
 
-.ai-badge{
- display:inline-block;
- padding:6px 10px;
- border-radius:20px;
- background:#3a2e18;
- color:#f0ce7c;
- font-size:11px;
- font-weight:800;
+.signal-big{
+    font-size:30px;
+    font-weight:bold;
+    margin:10px 0;
 }
 
-.ai-grid{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:10px;
+.signal-buy{color:#40c463}
+.signal-sell{color:#ff5b5b}
+.signal-wait{color:#aaa}
+
+.metric-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+    gap:10px;
+    margin-top:15px;
 }
 
-.ai-field{
- background:#0b0b0b;
- border:1px solid #29251c;
- border-radius:10px;
- padding:12px;
+.metric{
+    background:#111;
+    border:1px solid #29220d;
+    padding:12px;
+    border-radius:10px;
 }
 
-.ai-field-label{
- color:#777;
- font-size:11px;
- margin-bottom:5px;
+.metric small{
+    color:#888;
+    display:block;
+    margin-bottom:5px;
 }
 
-.ai-field-value{
- color:#fff;
- font-size:17px;
- font-weight:800;
+.metric strong{
+    color:#fff;
 }
 
-.ai-reason{
- margin-top:12px;
- background:#0b0b0b;
- border:1px solid #29251c;
- border-radius:10px;
- padding:13px;
- line-height:1.6;
- color:#bbb;
- font-size:13px;
+.reason{
+    color:#ddd;
+    line-height:1.6;
+    margin-top:15px;
+    padding:12px;
+    background:#111;
+    border-radius:10px;
 }
 
-.ai-warning{
- margin-top:12px;
- padding:11px;
- border-radius:10px;
- background:#211b10;
- border:1px solid #4b3a1d;
- color:#d8c28b;
- font-size:12px;
- line-height:1.5;
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:15px;
 }
 
-.ai-actions{
- display:flex;
- flex-direction:column;
- gap:10px;
- margin-top:15px;
+.actions .btn{
+    margin-top:0;
 }
 
-.ai-actions button{width:100%}
-
-.analyzing{
- animation:aiPulse 1.2s infinite;
+.notice{
+    padding:12px;
+    border-radius:10px;
+    background:#151515;
+    color:#aaa;
+    margin-top:12px;
+    font-size:13px;
 }
 
-@keyframes aiPulse{
- 0%{opacity:1}
- 50%{opacity:.55}
- 100%{opacity:1}
+.loading{
+    text-align:center;
+    padding:20px;
+    color:#f5c542;
 }
 
-.ai-list{
- margin-top:15px;
- display:none;
+.notification{
+    border-bottom:1px solid #29220d;
+    padding:15px 0;
 }
 
-.ai-list-title{
- color:#d6a84f;
- font-size:12px;
- font-weight:800;
- margin-bottom:8px;
+.notification:last-child{
+    border-bottom:0;
 }
 
-.ai-option{
- width:100%;
- text-align:left;
- background:#111;
- color:#fff;
- border:1px solid #302a1d;
- margin-bottom:8px;
+.notification-title{
+    color:#f5c542;
+    font-weight:bold;
 }
 
-.ai-option.selected{
- border-color:#d6a84f;
- background:#19150c;
+.notification-message{
+    color:#ccc;
+    margin-top:5px;
 }
 
-.ai-meta{
- color:#888;
- font-size:11px;
- margin-top:4px;
+.notification-date{
+    color:#777;
+    font-size:12px;
+    margin-top:7px;
 }
 
-.analysis-stats{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:10px;
- margin-top:12px;
-}
-
-.analysis-stat{
- background:#0b0b0b;
- border:1px solid #29251c;
- border-radius:10px;
- padding:10px;
-}
-
-.analysis-stat-label{
- color:#777;
- font-size:10px;
- margin-bottom:4px;
-}
-
-.analysis-stat-value{
- color:#d6a84f;
- font-weight:800;
- font-size:14px;
-}
-
-.signal-direction-buy{
- color:#59d98a!important;
-}
-
-.signal-direction-sell{
- color:#ff6b6b!important;
-}
-
-.signal-direction-wait{
- color:#d6a84f!important;
-}
-
-hr{
- border:0;
- border-top:1px solid #252015;
- margin:25px 0;
-}
-
-.login-error{
- margin-top:12px;
- padding:12px;
- border-radius:10px;
- background:#211010;
- border:1px solid #5b2424;
- color:#ffb0b0;
- font-size:13px;
- white-space:pre-line;
- display:none;
-}
-
-.login-success{
- margin-top:12px;
- padding:12px;
- border-radius:10px;
- background:#102116;
- border:1px solid #275d35;
- color:#8ee0aa;
- font-size:13px;
- display:none;
+.empty{
+    text-align:center;
+    color:#777;
+    padding:25px;
 }
 
 @media(max-width:600px){
-
- .container{padding:14px}
-
- .tab{padding:14px}
-
- .ai-grid{
-  grid-template-columns:1fr;
- }
-
- .analysis-stats{
-  grid-template-columns:1fr 1fr;
- }
-
- .ai-preview-header{
-  flex-direction:column;
-  align-items:flex-start;
- }
-
+    .container{padding:12px}
+    .card{padding:15px}
+    .header{align-items:flex-start}
+    .header-title{font-size:21px}
 }
 </style>
 </head>
 
 <body>
 
-<div id="login">
+<!-- LOGIN -->
+<div id="loginScreen" class="container">
+    <div class="login-box">
+        <div class="logo">
+            AURIX <span>AI</span>
+        </div>
 
- <div class="login-box">
+        <div class="card">
+            <h2>Admin Login</h2>
 
-  <div class="logo">
-   AURIX AI
-  </div>
+            <label>Email</label>
+            <input id="loginEmail" type="email" placeholder="Admin email">
 
-  <div class="small">
-   Administrator Login
-  </div>
+            <label>Password</label>
+            <input id="loginPassword" type="password" placeholder="Password">
 
-  <input
-   id="email"
-   type="email"
-   placeholder="Admin Email"
-   autocomplete="username">
+            <button class="btn full" onclick="login()">LOGIN</button>
 
-  <input
-   id="password"
-   type="password"
-   placeholder="Password"
-   autocomplete="current-password">
-
-  <button
-   id="loginButton"
-   class="gold-btn"
-   type="button"
-   onclick="login()">
-   LOGIN
-  </button>
-
-  <div id="loginMsg" class="message"></div>
-
-  <div id="loginError" class="login-error"></div>
-
-  <div id="loginSuccess" class="login-success"></div>
-
- </div>
-
+            <div id="loginMessage" class="notice hidden"></div>
+        </div>
+    </div>
 </div>
 
 
-<div id="app">
-
-<header>
-
- <strong>AURIX AI ADMIN</strong>
-
- <button
-  class="secondary"
-  type="button"
-  onclick="logout()">
-  Logout
- </button>
-
-</header>
-
-
-<div class="container">
-
-<div class="tabs">
-
- <button class="tab active" type="button"
-  onclick="showTab('overview',this)">
-  Overview
- </button>
-
- <button class="tab" type="button"
-  onclick="showTab('registrations',this)">
-  Registrations
- </button>
-
- <button class="tab" type="button"
-  onclick="showTab('deposits',this)">
-  Deposits
- </button>
-
- <button class="tab" type="button"
-  onclick="showTab('subscribers',this)">
-  Subscribers
- </button>
-
- <button class="tab" type="button"
-  onclick="showTab('signals',this)">
-  Gold AI / Signal
- </button>
-
- <button class="tab" type="button"
-  onclick="showTab('notifications',this)">
-  Notifications
- </button>
-
-</div>
-
-
-<section id="overview" class="section active">
-
- <h2>Dashboard</h2>
-
- <div class="grid">
-
-  <div class="card">
-   <div class="small">Total Members</div>
-   <div id="totalMembers" class="stat">0</div>
-  </div>
-
-  <div class="card">
-   <div class="small">Active Subscribers</div>
-   <div id="activeSubscribers" class="stat">0</div>
-  </div>
-
-  <div class="card">
-   <div class="small">Pending Deposits</div>
-   <div id="pendingDeposits" class="stat">0</div>
-  </div>
-
- </div>
-
-</section>
-
-
-<section id="registrations" class="section">
-
- <h2>Registrations</h2>
-
- <div class="table-wrap">
-
-  <table>
-
-   <thead>
-    <tr>
-     <th>Email</th>
-     <th>Role</th>
-     <th>Subscription</th>
-     <th>Plan</th>
-     <th>Created</th>
-     <th>Action</th>
-    </tr>
-   </thead>
-
-   <tbody id="membersTable"></tbody>
-
-  </table>
-
- </div>
-
-</section>
-
-
-<section id="deposits" class="section">
-
- <h2>Deposits</h2>
-
- <div class="table-wrap">
-
-  <table>
-
-   <thead>
-    <tr>
-     <th>Email</th>
-     <th>Plan</th>
-     <th>Amount</th>
-     <th>Asset</th>
-     <th>Transaction</th>
-     <th>Status</th>
-     <th>Action</th>
-    </tr>
-   </thead>
-
-   <tbody id="depositsTable"></tbody>
-
-  </table>
-
- </div>
-
-</section>
-
-
-<section id="subscribers" class="section">
-
- <h2>Subscribers</h2>
-
- <div class="table-wrap">
-
-  <table>
-
-   <thead>
-    <tr>
-     <th>Email</th>
-     <th>Plan</th>
-     <th>Status</th>
-     <th>Expires</th>
-     <th>Control</th>
-    </tr>
-   </thead>
-
-   <tbody id="subscribersTable"></tbody>
-
-  </table>
-
- </div>
-
-</section>
-
-
-<section id="signals" class="section">
-
- <h2>Gold AI / Signal</h2>
-
- <div class="card ai-card">
-
-  <div class="ai-title">
-   🤖 AURIX GOLD AI
-  </div>
-
-  <div class="ai-subtitle">
-   Analyze XAU/USD and prepare the same gold signal
-   that will appear inside the AURIX AI application.
-   The result is only a PREVIEW until you publish it.
-  </div>
-
-
-  <label>Analysis Timeframe</label>
-
-  <select id="aiTimeframe">
-
-   <option value="5m">
-    5 Minutes
-   </option>
-
-   <option value="30m" selected>
-    30 Minutes
-   </option>
-
-   <option value="1h">
-    1 Hour
-   </option>
-
-   <option value="1d">
-    1 Day
-   </option>
-
-  </select>
-
-
-  <button
-   id="analyzeGoldBtn"
-   class="gold-btn"
-   type="button"
-   onclick="analyzeGold()">
-   🤖 ANALYZE GOLD
-  </button>
-
-
-  <div
-   id="aiStatus"
-   class="signal-status"
-   style="display:none">
-  </div>
-
-
-  <div id="aiList" class="ai-list">
-
-   <div class="ai-list-title">
-    AVAILABLE AI RESULTS
-   </div>
-
-   <div id="aiListItems"></div>
-
-  </div>
-
-
-  <div id="aiPreview" class="ai-preview">
-
-   <div class="ai-preview-header">
-
-    <strong class="gold">
-     AI ANALYSIS PREVIEW
-    </strong>
-
-    <span class="ai-badge">
-     NOT PUBLISHED
-    </span>
-
-   </div>
-
-
-   <div class="ai-grid">
-
-    <div class="ai-field">
-
-     <div class="ai-field-label">
-      RECOMMENDATION
-     </div>
-
-     <div
-      id="aiRecommendation"
-      class="ai-field-value gold">
-      WAIT
-     </div>
-
+<!-- ADMIN -->
+<div id="adminScreen" class="container hidden">
+
+    <div class="header">
+        <div>
+            <div class="header-title">AURIX AI ADMIN</div>
+            <div style="color:#777;font-size:12px;margin-top:4px">
+                Control Panel
+            </div>
+        </div>
+
+        <button class="btn dark" onclick="logout()">LOGOUT</button>
     </div>
 
 
-    <div class="ai-field">
-
-     <div class="ai-field-label">
-      TIMEFRAME
-     </div>
-
-     <div
-      id="aiPreviewTimeframe"
-      class="ai-field-value">
-      -
-     </div>
-
+    <!-- TABS -->
+    <div class="tabs">
+        <button class="tab active" onclick="showTab('overview',this)">Overview</button>
+        <button class="tab" onclick="showTab('registrations',this)">Registrations</button>
+        <button class="tab" onclick="showTab('deposits',this)">Deposits</button>
+        <button class="tab" onclick="showTab('subscribers',this)">Subscribers</button>
+        <button class="tab" onclick="showTab('gold',this)">Gold AI / Signal</button>
+        <button class="tab" onclick="showTab('notifications',this)">Notifications</button>
     </div>
 
 
-    <div class="ai-field">
+    <!-- OVERVIEW -->
+    <section id="overview" class="tab-content">
 
-     <div class="ai-field-label">
-      ENTRY
-     </div>
+        <div class="grid">
 
-     <div
-      id="aiPreviewEntry"
-      class="ai-field-value">
-      -
-     </div>
+            <div class="stat">
+                <div>Members</div>
+                <div id="statMembers" class="stat-number">0</div>
+            </div>
 
-    </div>
+            <div class="stat">
+                <div>Deposits</div>
+                <div id="statDeposits" class="stat-number">0</div>
+            </div>
 
+            <div class="stat">
+                <div>Subscribers</div>
+                <div id="statSubscribers" class="stat-number">0</div>
+            </div>
 
-    <div class="ai-field">
+            <div class="stat">
+                <div>Active Signals</div>
+                <div id="statSignals" class="stat-number">0</div>
+            </div>
 
-     <div class="ai-field-label">
-      STOP LOSS
-     </div>
+        </div>
 
-     <div
-      id="aiPreviewSL"
-      class="ai-field-value">
-      -
-     </div>
+        <div class="card">
+            <h2>System</h2>
+            <div class="notice">
+                AURIX AI administration panel is connected to Supabase.
+            </div>
+        </div>
 
-    </div>
+    </section>
 
 
-    <div class="ai-field">
+    <!-- REGISTRATIONS -->
+    <section id="registrations" class="tab-content hidden">
 
-     <div class="ai-field-label">
-      TAKE PROFIT
-     </div>
+        <div class="card">
+            <div class="header">
+                <h2>Registrations</h2>
+                <button class="btn dark" onclick="loadMembers()">REFRESH</button>
+            </div>
 
-     <div
-      id="aiPreviewTP"
-      class="ai-field-value">
-      -
-     </div>
+            <div id="membersTable" class="table-wrap">
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
 
-    </div>
+    </section>
 
 
-    <div class="ai-field">
+    <!-- DEPOSITS -->
+    <section id="deposits" class="tab-content hidden">
 
-     <div class="ai-field-label">
-      XAU/USD PRICE
-     </div>
+        <div class="card">
+            <div class="header">
+                <h2>Deposits</h2>
+                <button class="btn dark" onclick="loadDeposits()">REFRESH</button>
+            </div>
 
-     <div
-      id="aiPreviewPrice"
-      class="ai-field-value">
-      -
-     </div>
+            <div id="depositsTable" class="table-wrap">
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
 
-    </div>
+    </section>
 
 
-    <div class="ai-field">
+    <!-- SUBSCRIBERS -->
+    <section id="subscribers" class="tab-content hidden">
 
-     <div class="ai-field-label">
-      TREND
-     </div>
+        <div class="card">
+            <div class="header">
+                <h2>Subscribers</h2>
+                <button class="btn dark" onclick="loadSubscribers()">REFRESH</button>
+            </div>
 
-     <div
-      id="aiPreviewTrend"
-      class="ai-field-value">
-      -
-     </div>
+            <div id="subscribersTable" class="table-wrap">
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
 
-    </div>
+    </section>
 
 
-    <div class="ai-field">
+    <!-- GOLD -->
+    <section id="gold" class="tab-content hidden">
 
-     <div class="ai-field-label">
-      MOMENTUM
-     </div>
+        <div class="card">
 
-     <div
-      id="aiPreviewMomentum"
-      class="ai-field-value">
-      -
-     </div>
+            <div class="ai-title">GOLD AI ANALYSIS</div>
 
-    </div>
+            <div class="ai-sub">
+                Analyze XAU/USD using real market data and technical indicators.
+                The result is only a PREVIEW until you manually publish it.
+            </div>
 
-   </div>
+            <label>Timeframe</label>
+
+            <select id="goldTimeframe">
+                <option value="5m">5 Minutes</option>
+                <option value="30m">30 Minutes</option>
+                <option value="1h">1 Hour</option>
+                <option value="1d">1 Day</option>
+            </select>
+
+            <button id="analyzeGoldBtn" class="btn full" onclick="analyzeGold()">
+                ANALYZE GOLD
+            </button>
 
+            <div id="goldStatus" class="notice hidden"></div>
 
-   <div class="analysis-stats">
+            <div id="aiPreview" class="analysis-box hidden">
 
-    <div class="analysis-stat">
-     <div class="analysis-stat-label">RSI 14</div>
-     <div id="aiRSI" class="analysis-stat-value">-</div>
-    </div>
+                <div class="preview-title">
+                    AI PREVIEW — NOT PUBLISHED
+                </div>
 
-    <div class="analysis-stat">
-     <div class="analysis-stat-label">EMA 20</div>
-     <div id="aiEMA20" class="analysis-stat-value">-</div>
-    </div>
+                <div id="aiSignal" class="signal-big"></div>
 
-    <div class="analysis-stat">
-     <div class="analysis-stat-label">EMA 50</div>
-     <div id="aiEMA50" class="analysis-stat-value">-</div>
-    </div>
+                <div class="metric-grid">
 
-    <div class="analysis-stat">
-     <div class="analysis-stat-label">ATR 14</div>
-     <div id="aiATR" class="analysis-stat-value">-</div>
-    </div>
+                    <div class="metric">
+                        <small>Timeframe</small>
+                        <strong id="aiTimeframe">-</strong>
+                    </div>
 
-    <div class="analysis-stat">
-     <div class="analysis-stat-label">SUPPORT</div>
-     <div id="aiSupport" class="analysis-stat-value">-</div>
-    </div>
+                    <div class="metric">
+                        <small>XAU/USD Price</small>
+                        <strong id="aiPrice">-</strong>
+                    </div>
 
-    <div class="analysis-stat">
-     <div class="analysis-stat-label">RESISTANCE</div>
-     <div id="aiResistance" class="analysis-stat-value">-</div>
-    </div>
+                    <div class="metric">
+                        <small>Entry</small>
+                        <strong id="aiEntry">-</strong>
+                    </div>
 
-   </div>
+                    <div class="metric">
+                        <small>Stop Loss</small>
+                        <strong id="aiSL">-</strong>
+                    </div>
 
+                    <div class="metric">
+                        <small>Take Profit</small>
+                        <strong id="aiTP">-</strong>
+                    </div>
 
-   <div class="ai-reason">
+                    <div class="metric">
+                        <small>Trend</small>
+                        <strong id="aiTrend">-</strong>
+                    </div>
 
-    <strong class="gold">
-     AI REASON
-    </strong>
+                    <div class="metric">
+                        <small>Momentum</small>
+                        <strong id="aiMomentum">-</strong>
+                    </div>
 
-    <div
-     id="aiReason"
-     style="margin-top:7px">
-     -
-    </div>
+                    <div class="metric">
+                        <small>RSI 14</small>
+                        <strong id="aiRSI">-</strong>
+                    </div>
 
-   </div>
+                    <div class="metric">
+                        <small>EMA 20</small>
+                        <strong id="aiEMA20">-</strong>
+                    </div>
 
+                    <div class="metric">
+                        <small>EMA 50</small>
+                        <strong id="aiEMA50">-</strong>
+                    </div>
 
-   <div class="ai-warning">
+                    <div class="metric">
+                        <small>ATR 14</small>
+                        <strong id="aiATR">-</strong>
+                    </div>
 
-    ⚠ This is an automated technical analysis.
-    Review all values before publishing.
-    Nothing is sent to subscribers until you press
-    <strong>PUBLISH SIGNAL</strong>.
+                    <div class="metric">
+                        <small>Support</small>
+                        <strong id="aiSupport">-</strong>
+                    </div>
 
-   </div>
+                    <div class="metric">
+                        <small>Resistance</small>
+                        <strong id="aiResistance">-</strong>
+                    </div>
 
+                </div>
 
-   <div style="margin-top:18px">
+                <div class="reason">
+                    <strong>Reason</strong>
+                    <div id="aiReason" style="margin-top:6px">-</div>
+                </div>
 
-    <label>Final Timeframe</label>
+                <div class="actions">
 
-    <select id="timeframe">
+                    <button class="btn success" onclick="applyAIResult()">
+                        USE AI RESULT
+                    </button>
 
-     <option value="5m">5 Minutes</option>
-     <option value="30m">30 Minutes</option>
-     <option value="1h">1 Hour</option>
-     <option value="1d">1 Day</option>
+                    <button class="btn dark" onclick="discardAIAnalysis()">
+                        DISCARD
+                    </button>
 
-    </select>
+                </div>
 
+            </div>
 
-    <label>Final Signal</label>
+        </div>
 
-    <select id="signal">
-     <option value="BUY">BUY</option>
-     <option value="SELL">SELL</option>
-     <option value="WAIT">WAIT</option>
-    </select>
 
+        <!-- MANUAL SIGNAL -->
+        <div class="card">
 
-    <label>Final Entry</label>
+            <h2>Manual Signal</h2>
 
-    <input
-     id="entry"
-     placeholder="Example: 2650.50">
+            <label>Signal</label>
+            <select id="manualSignal">
+                <option value="BUY">BUY</option>
+                <option value="SELL">SELL</option>
+                <option value="WAIT">WAIT</option>
+            </select>
 
+            <label>Timeframe</label>
+            <select id="manualTimeframe">
+                <option value="5m">5m</option>
+                <option value="30m">30m</option>
+                <option value="1h">1h</option>
+                <option value="1d">1d</option>
+            </select>
 
-    <label>Final Stop Loss</label>
+            <label>Entry</label>
+            <input id="manualEntry" type="number" step="any">
 
-    <input
-     id="stopLoss"
-     placeholder="Example: 2642.00">
+            <label>Stop Loss</label>
+            <input id="manualSL" type="number" step="any">
 
+            <label>Take Profit</label>
+            <input id="manualTP" type="number" step="any">
 
-    <label>Final Take Profit</label>
+            <label>Message / Reason</label>
+            <textarea id="manualMessage" rows="4"
+                placeholder="Short reason for the trade"></textarea>
 
-    <input
-     id="takeProfit"
-     placeholder="Example: 2670.00">
+            <button class="btn dark full" onclick="useManualSignal()">
+                USE MANUAL SIGNAL
+            </button>
 
+        </div>
 
-    <label>Final Message</label>
 
-    <textarea
-     id="signalMessage"
-     placeholder="Gold signal details..."></textarea>
+        <!-- PUBLISH -->
+        <div class="card">
 
-   </div>
+            <h2>Publish Signal</h2>
 
+            <label>Signal</label>
+            <select id="publishSignal">
+                <option value="BUY">BUY</option>
+                <option value="SELL">SELL</option>
+                <option value="WAIT">WAIT</option>
+            </select>
 
-   <div class="ai-actions">
+            <label>Timeframe</label>
+            <select id="publishTimeframe">
+                <option value="5m">5m</option>
+                <option value="30m">30m</option>
+                <option value="1h">1h</option>
+                <option value="1d">1d</option>
+            </select>
 
-    <button
-     class="gold-btn"
-     type="button"
-     onclick="publishSignal()">
-     PUBLISH SIGNAL
-    </button>
+            <label>Entry</label>
+            <input id="publishEntry" type="number" step="any">
 
-    <button
-     class="danger"
-     type="button"
-     onclick="discardAIAnalysis()">
-     DISCARD PREVIEW
-    </button>
+            <label>Stop Loss</label>
+            <input id="publishSL" type="number" step="any">
 
-   </div>
+            <label>Take Profit</label>
+            <input id="publishTP" type="number" step="any">
 
-  </div>
+            <label>Message</label>
+            <textarea id="publishMessage" rows="4"></textarea>
 
- </div>
+            <button class="btn full" onclick="publishSignal()">
+                PUBLISH SIGNAL
+            </button>
 
+            <div id="publishStatus" class="notice hidden"></div>
 
- <div class="card" style="margin-top:15px">
+        </div>
 
-  <h3 style="margin-top:0">
-   Manual Signal
-  </h3>
 
-  <div class="small">
-   Create a signal manually if needed.
-  </div>
+        <!-- ACTIVE SIGNAL -->
+        <div class="card">
 
+            <div class="header">
+                <h2>Active Signal</h2>
+                <button class="btn dark" onclick="showActiveSignal()">
+                    REFRESH
+                </button>
+            </div>
 
-  <label>Timeframe</label>
+            <div id="activeSignalBox">
+                <div class="loading">Loading...</div>
+            </div>
 
-  <select id="manualTimeframe">
+        </div>
 
-   <option value="5m">5 Minutes</option>
-   <option value="30m">30 Minutes</option>
-   <option value="1h">1 Hour</option>
-   <option value="1d">1 Day</option>
+    </section>
 
-  </select>
 
+    <!-- NOTIFICATIONS -->
+    <section id="notifications" class="tab-content hidden">
 
-  <label>Signal</label>
+        <div class="card">
 
-  <select id="manualSignal">
-   <option value="BUY">BUY</option>
-   <option value="SELL">SELL</option>
-   <option value="WAIT">WAIT</option>
-  </select>
+            <div class="header">
+                <h2>Notifications</h2>
 
+                <button class="btn dark" onclick="loadNotifications()">
+                    REFRESH
+                </button>
 
-  <label>Entry</label>
+                <button class="btn danger" onclick="deleteAllNotifications()">
+                    DELETE ALL
+                </button>
+            </div>
 
-  <input
-   id="manualEntry"
-   placeholder="Example: 2650.50">
+            <div id="notificationsList">
+                <div class="loading">Loading...</div>
+            </div>
 
+        </div>
 
-  <label>Stop Loss</label>
+    </section>
 
-  <input
-   id="manualStopLoss"
-   placeholder="Example: 2642.00">
-
-
-  <label>Take Profit</label>
-
-  <input
-   id="manualTakeProfit"
-   placeholder="Example: 2670.00">
-
-
-  <label>Message</label>
-
-  <textarea
-   id="manualMessage"
-   placeholder="Gold signal details..."></textarea>
-
-
-  <button
-   class="secondary"
-   type="button"
-   onclick="useManualSignal()">
-   USE MANUAL SIGNAL
-  </button>
-
- </div>
-
-
- <div class="card" style="margin-top:15px">
-
-  <div class="signal-tools">
-
-   <button
-    class="copy-btn"
-    type="button"
-    onclick="copyActiveSignal()">
-    COPY ACTIVE SIGNAL
-   </button>
-
-   <button
-    class="danger"
-    type="button"
-    onclick="removeCurrentSignal()">
-    REMOVE CURRENT SIGNAL
-   </button>
-
-   <button
-    class="danger"
-    type="button"
-    onclick="deleteExpiredSignals()">
-    DELETE EXPIRED SIGNALS
-   </button>
-
-   <button
-    class="secondary"
-    type="button"
-    onclick="showActiveSignal()">
-    CHECK ACTIVE SIGNAL
-   </button>
-
-  </div>
-
-  <div id="activeSignalDisplay"></div>
-
-  <div id="signalMsg" class="message"></div>
-
- </div>
-
-</section>
-
-
-<section id="notifications" class="section">
-
- <h2>Notifications</h2>
-
- <div id="notificationsList"></div>
-
-</section>
-
-</div>
 </div>
 
 
 <script>
 
 const SUPABASE_URL =
- "https://mcjbcnadnwzmbubmvttk.supabase.co";
+    "https://mcjbcnadnwzmbubmvttk.supabase.co";
 
 const SUPABASE_KEY =
- "sb_publishable_FAmvB5BxcoTWwDHlJkj5DA_es6p3gFa";
+    "sb_publishable_FAmvB5BxcoTWwDHlJkj5DA_es6p3gFa";
 
-const SMART_PROCESSOR_URL =
- "https://mcjbcnadnwzmbubmvttk.supabase.co/functions/v1/smart-processor";
-
-
-let supabaseClient=null;
-
-try{
-
- if(
-  typeof window.supabase==="undefined" ||
-  typeof window.supabase.createClient!=="function"
- ){
-  throw new Error(
-   "Supabase library failed to load."
-  );
- }
-
- supabaseClient=
-  window.supabase.createClient(
-   SUPABASE_URL,
-   SUPABASE_KEY
-  );
-
-}
-catch(error){
-
- console.error(
-  "SUPABASE INITIALIZATION ERROR:",
-  error
- );
-
-}
-
-
-let currentUser=null;
-let adminNotificationChannel=null;
-
-let aiResults=[];
-let selectedAIIndex=0;
-let lastAIProcessorData={};
-
-
-const ALLOWED_GOLD_TIMEFRAMES=[
- "5m",
- "30m",
- "1h",
- "1d"
-];
-
-
-window.addEventListener(
- "error",
- function(event){
-
-  console.error(
-   "AURIX JAVASCRIPT ERROR:",
-   event.error || event.message
-  );
-
-  const msg=
-   document.getElementById("loginMsg");
-
-  if(msg && !currentUser){
-
-   msg.textContent=
-    "Page error: "+
-    (
-     event.error?.message ||
-     event.message ||
-     "JavaScript error"
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
     );
 
-  }
 
- }
-);
+let currentAIResult = null;
 
 
-window.addEventListener(
- "unhandledrejection",
- function(event){
-
-  console.error(
-   "AURIX UNHANDLED PROMISE:",
-   event.reason
-  );
-
-  const msg=
-   document.getElementById("loginMsg");
-
-  if(msg && !currentUser){
-
-   msg.textContent=
-    "Page error: "+
-    (
-     event.reason?.message ||
-     String(event.reason) ||
-     "Unexpected error"
-    );
-
-  }
-
- }
-);
-
-
-function showLoginMessage(
- message,
- type="normal"
-){
-
- const msg=
-  document.getElementById("loginMsg");
-
- const errorBox=
-  document.getElementById("loginError");
-
- const successBox=
-  document.getElementById("loginSuccess");
-
-
- if(msg)
-  msg.textContent="";
-
-
- if(errorBox){
-
-  errorBox.style.display="none";
-  errorBox.textContent="";
-
- }
-
-
- if(successBox){
-
-  successBox.style.display="none";
-  successBox.textContent="";
-
- }
-
-
- if(type==="error"){
-
-  if(errorBox){
-
-   errorBox.textContent=message;
-   errorBox.style.display="block";
-
-  }
-  else if(msg){
-
-   msg.textContent=message;
-
-  }
-
-  return;
- }
-
-
- if(type==="success"){
-
-  if(successBox){
-
-   successBox.textContent=message;
-   successBox.style.display="block";
-
-  }
-
-  return;
- }
-
-
- if(msg)
-  msg.textContent=message;
-
-}
-
+/* =========================
+   LOGIN
+========================= */
 
 async function login(){
 
- const button=
-  document.getElementById("loginButton");
+    const email =
+        document.getElementById("loginEmail").value.trim();
 
- const emailInput=
-  document.getElementById("email");
+    const password =
+        document.getElementById("loginPassword").value;
 
- const passwordInput=
-  document.getElementById("password");
+    const message =
+        document.getElementById("loginMessage");
 
+    message.classList.remove("hidden");
+    message.textContent = "Logging in...";
 
- const email=
-  String(
-   emailInput?.value || ""
-  ).trim();
+    if(!email || !password){
+        message.textContent = "Enter email and password.";
+        return;
+    }
 
+    const {data,error} =
+        await supabaseClient.auth.signInWithPassword({
+            email,
+            password
+        });
 
- const password=
-  String(
-   passwordInput?.value || ""
-  );
+    if(error){
+        message.textContent = error.message;
+        return;
+    }
 
-
- showLoginMessage("");
-
-
- if(!supabaseClient){
-
-  showLoginMessage(
-   "Supabase did not load. Please refresh the page.",
-   "error"
-  );
-
-  return;
- }
-
-
- if(!email){
-
-  showLoginMessage(
-   "Enter your admin email.",
-   "error"
-  );
-
-  emailInput?.focus();
-
-  return;
- }
-
-
- if(!password){
-
-  showLoginMessage(
-   "Enter your password.",
-   "error"
-  );
-
-  passwordInput?.focus();
-
-  return;
- }
-
-
- button.disabled=true;
- button.textContent="LOGGING IN...";
-
- showLoginMessage(
-  "Connecting to Supabase..."
- );
-
-
- try{
-
-  const {
-   data,
-   error
-  }=
-  await supabaseClient.auth.signInWithPassword({
-
-   email:email,
-   password:password
-
-  });
-
-
-  if(error){
-
-   const errorText=
-    String(
-     error.message ||
-     error.error_description ||
-     error.code ||
-     "Login failed."
-    );
-
-
-   if(
-    errorText.toLowerCase()
-    .includes("email not confirmed")
-   ){
-
-    showLoginMessage(
-     "Your email is not confirmed in Supabase Authentication.\n\nOpen Supabase → Authentication → Users and confirm the account.",
-     "error"
-    );
-
-   }
-   else if(
-    errorText.toLowerCase()
-    .includes("invalid login credentials")
-   ){
-
-    showLoginMessage(
-     "Invalid email or password.",
-     "error"
-    );
-
-   }
-   else{
-
-    showLoginMessage(
-     "LOGIN ERROR:\n\n"+
-     errorText,
-     "error"
-    );
-
-   }
-
-   return;
-  }
-
-
-  if(!data?.user){
-
-   showLoginMessage(
-    "No authenticated user was returned.",
-    "error"
-   );
-
-   return;
-  }
-
-
-  if(!data?.session){
-
-   showLoginMessage(
-    "Login succeeded but no session was created.",
-    "error"
-   );
-
-   return;
-  }
-
-
-  currentUser=data.user;
-
-
-  showLoginMessage(
-   "Login successful. Checking administrator access...",
-   "success"
-  );
-
-
-  await checkAdmin();
-
- }
- catch(error){
-
-  console.error(
-   "LOGIN EXCEPTION:",
-   error
-  );
-
-  showLoginMessage(
-   "LOGIN ERROR:\n\n"+
-   (
-    error?.message ||
-    String(error)
-   ),
-   "error"
-  );
-
- }
- finally{
-
-  button.disabled=false;
-  button.textContent="LOGIN";
-
- }
-
+    await checkAdmin();
 }
 
+
+/* =========================
+   CHECK ADMIN
+========================= */
 
 async function checkAdmin(){
 
- if(!currentUser){
+    const {
+        data:{user}
+    } = await supabaseClient.auth.getUser();
 
-  showLoginMessage(
-   "No authenticated user was found.",
-   "error"
-  );
+    if(!user){
+        showLogin();
+        return;
+    }
 
-  return false;
- }
+    const {data:profile,error} =
+        await supabaseClient
+        .from("profiles")
+        .select("*")
+        .eq("id",user.id)
+        .single();
 
+    if(error || !profile || profile.role !== "admin"){
 
- try{
+        await supabaseClient.auth.signOut();
 
-  const {
-   data,
-   error
-  }=
-  await supabaseClient
-  .from("profiles")
-  .select("id,email,role")
-  .eq("id",currentUser.id)
-  .maybeSingle();
+        showLogin();
 
+        const message =
+            document.getElementById("loginMessage");
 
-  if(error){
+        message.classList.remove("hidden");
+        message.textContent =
+            "This account is not an administrator.";
 
-   showLoginMessage(
-    "ADMIN PROFILE ERROR:\n\n"+
-    error.message,
-    "error"
-   );
+        return;
+    }
 
-   return false;
-  }
+    document
+        .getElementById("loginScreen")
+        .classList.add("hidden");
 
+    document
+        .getElementById("adminScreen")
+        .classList.remove("hidden");
 
-  if(!data){
-
-   showLoginMessage(
-    "Administrator profile not found.",
-    "error"
-   );
-
-   return false;
-  }
-
-
-  if(
-   String(data.role||"")
-   .toLowerCase()!=="admin"
-  ){
-
-   showLoginMessage(
-    "Access denied.\n\nRequired role: admin\nCurrent role: "+
-    (data.role||"NULL"),
-    "error"
-   );
-
-   await supabaseClient.auth.signOut();
-
-   currentUser=null;
-
-   return false;
-  }
-
-
-  document.getElementById(
-   "login"
-  ).style.display="none";
-
-
-  document.getElementById(
-   "app"
-  ).style.display="block";
-
-
-  try{
-   await expireSubscriptions();
-  }
-  catch(error){
-   console.warn(error);
-  }
-
-
-  try{
-   await loadDashboard();
-  }
-  catch(error){
-   console.warn(error);
-  }
-
-
-  try{
-   await subscribeToAdminNotifications();
-  }
-  catch(error){
-   console.warn(error);
-  }
-
-
-  return true;
-
- }
- catch(error){
-
-  console.error(
-   "CHECK ADMIN ERROR:",
-   error
-  );
-
-  showLoginMessage(
-   "ADMIN CHECK ERROR:\n\n"+
-   (
-    error?.message ||
-    String(error)
-   ),
-   "error"
-  );
-
-  return false;
-
- }
-
+    await expireSubscriptions();
+    await loadDashboard();
+    await loadMembers();
+    await loadDeposits();
+    await loadSubscribers();
+    await showActiveSignal();
+    await loadNotifications();
+    subscribeToAdminNotifications();
 }
 
+
+/* =========================
+   LOGOUT
+========================= */
 
 async function logout(){
 
- try{
+    await supabaseClient.auth.signOut();
 
-  if(adminNotificationChannel){
-
-   await supabaseClient.removeChannel(
-    adminNotificationChannel
-   );
-
-   adminNotificationChannel=null;
-
-  }
-
-
-  await supabaseClient.auth.signOut();
-
- }
- catch(error){
-
-  console.error(
-   "LOGOUT ERROR:",
-   error
-  );
-
- }
- finally{
-
-  currentUser=null;
-  location.reload();
-
- }
-
+    showLogin();
 }
 
 
-function showTab(id,button){
+function showLogin(){
 
- document.querySelectorAll(".section")
- .forEach(
-  x=>x.classList.remove("active")
- );
+    document
+        .getElementById("adminScreen")
+        .classList.add("hidden");
 
-
- const section=
-  document.getElementById(id);
-
-
- if(section)
-  section.classList.add("active");
-
-
- document.querySelectorAll(".tab")
- .forEach(
-  x=>x.classList.remove("active")
- );
-
-
- if(button)
-  button.classList.add("active");
-
-
- if(id==="registrations")
-  loadMembers();
-
-
- if(id==="deposits")
-  loadDeposits();
-
-
- if(id==="subscribers")
-  loadSubscribers();
-
-
- if(id==="signals")
-  showActiveSignal();
-
-
- if(id==="notifications")
-  loadNotifications();
-
+    document
+        .getElementById("loginScreen")
+        .classList.remove("hidden");
 }
 
+
+/* =========================
+   TABS
+========================= */
+
+function showTab(name,button){
+
+    document
+        .querySelectorAll(".tab-content")
+        .forEach(x => x.classList.add("hidden"));
+
+    document
+        .getElementById(name)
+        .classList.remove("hidden");
+
+    document
+        .querySelectorAll(".tab")
+        .forEach(x => x.classList.remove("active"));
+
+    if(button){
+        button.classList.add("active");
+    }
+
+    if(name === "overview"){
+        loadDashboard();
+    }
+
+    if(name === "registrations"){
+        loadMembers();
+    }
+
+    if(name === "deposits"){
+        loadDeposits();
+    }
+
+    if(name === "subscribers"){
+        loadSubscribers();
+    }
+
+    if(name === "gold"){
+        showActiveSignal();
+    }
+
+    if(name === "notifications"){
+        loadNotifications();
+    }
+}
+
+
+/* =========================
+   EXPIRE SUBSCRIPTIONS
+========================= */
 
 async function expireSubscriptions(){
 
- if(!supabaseClient)
-  return;
+    const now = new Date().toISOString();
 
-
- const now=
-  new Date().toISOString();
-
-
- const {
-  data,
-  error
- }=
- await supabaseClient
- .from("profiles")
- .select(
-  "id,email,subscription_expires_at"
- )
- .eq(
-  "role",
-  "member"
- )
- .eq(
-  "subscription_active",
-  true
- )
- .not(
-  "subscription_expires_at",
-  "is",
-  null
- )
- .lt(
-  "subscription_expires_at",
-  now
- );
-
-
- if(error)
-  return;
-
-
- if(!data?.length)
-  return;
-
-
- for(const user of data){
-
-  await supabaseClient
-  .from("profiles")
-  .update({
-   subscription_active:false
-  })
-  .eq(
-   "id",
-   user.id
-  );
-
- }
-
+    await supabaseClient
+        .from("profiles")
+        .update({
+            subscription_active:false
+        })
+        .eq("subscription_active",true)
+        .lt("subscription_expires_at",now);
 }
 
+
+/* =========================
+   DASHBOARD
+========================= */
 
 async function loadDashboard(){
 
- if(!currentUser)
-  return;
+    const members =
+        await supabaseClient
+        .from("profiles")
+        .select("id",{count:"exact",head:true});
 
+    const deposits =
+        await supabaseClient
+        .from("deposits")
+        .select("id",{count:"exact",head:true});
 
- await expireSubscriptions();
+    const subscribers =
+        await supabaseClient
+        .from("profiles")
+        .select("id",{count:"exact",head:true})
+        .eq("subscription_active",true);
 
+    const signals =
+        await supabaseClient
+        .from("gold_signals")
+        .select("id",{count:"exact",head:true})
+        .eq("active",true);
 
- const {
-  data:members
- }=
- await supabaseClient
- .from("profiles")
- .select("*")
- .eq("role","member");
+    document.getElementById("statMembers").textContent =
+        members.count || 0;
 
+    document.getElementById("statDeposits").textContent =
+        deposits.count || 0;
 
- const {
-  data:deposits
- }=
- await supabaseClient
- .from("deposits")
- .select("*")
- .eq("status","pending");
+    document.getElementById("statSubscribers").textContent =
+        subscribers.count || 0;
 
-
- document.getElementById(
-  "totalMembers"
- ).textContent=
-  members?.length||0;
-
-
- document.getElementById(
-  "activeSubscribers"
- ).textContent=
-  members?.filter(
-   x=>
-    x.subscription_active===true &&
-    (
-     !x.subscription_expires_at ||
-     new Date(x.subscription_expires_at)>new Date()
-    )
-  ).length||0;
-
-
- document.getElementById(
-  "pendingDeposits"
- ).textContent=
-  deposits?.length||0;
-
+    document.getElementById("statSignals").textContent =
+        signals.count || 0;
 }
 
+
+/* =========================
+   MEMBERS
+========================= */
 
 async function loadMembers(){
 
- const {
-  data,
-  error
- }=
- await supabaseClient
- .from("profiles")
- .select("*")
- .eq("role","member")
- .order(
-  "created_at",
-  {ascending:false}
- );
+    const box =
+        document.getElementById("membersTable");
 
+    box.innerHTML =
+        '<div class="loading">Loading...</div>';
 
- const table=
- document.getElementById("membersTable");
+    const {data,error} =
+        await supabaseClient
+        .from("profiles")
+        .select("*")
+        .order("created_at",{ascending:false});
 
+    if(error){
+        box.innerHTML =
+            `<div class="notice">${escapeHtml(error.message)}</div>`;
+        return;
+    }
 
- if(error){
+    if(!data || !data.length){
+        box.innerHTML =
+            '<div class="empty">No members.</div>';
+        return;
+    }
 
-  table.innerHTML=
-   `<tr><td colspan="6">${
-    escapeHtml(error.message)
-   }</td></tr>`;
-
-  return;
- }
-
-
- table.innerHTML="";
-
-
- if(!data?.length){
-
-  table.innerHTML=
-   `<tr><td colspan="6">No members found.</td></tr>`;
-
-  return;
- }
-
-
- data.forEach(
-  user=>{
-
-   const expired=
-    user.subscription_expires_at &&
-    new Date(
-     user.subscription_expires_at
-    )<=new Date();
-
-
-   let status="INACTIVE";
-   let badge="inactive";
-
-
-   if(
-    user.subscription_active===true &&
-    !expired
-   ){
-
-    status="ACTIVE";
-    badge="approved";
-
-   }
-   else if(expired){
-
-    status="EXPIRED";
-    badge="expired";
-
-   }
-
-
-   let action="-";
-
-
-   if(status!=="ACTIVE"){
-
-    action=`
-     <button
-      class="danger"
-      type="button"
-      onclick="removeMember(
-       '${escapeAttr(user.id)}',
-       '${escapeAttr(user.email||"")}'
-      )">
-      REMOVE MEMBER
-     </button>
-    `;
-
-   }
-
-
-   table.innerHTML+=`
-
+    let html = `
+    <table>
+    <thead>
     <tr>
-
-     <td>${escapeHtml(user.email||"-")}</td>
-
-     <td>${escapeHtml(user.role||"-")}</td>
-
-     <td>
-      <span class="badge ${badge}">
-       ${status}
-      </span>
-     </td>
-
-     <td>${escapeHtml(user.subscription_plan||"-")}</td>
-
-     <td>${formatDate(user.created_at)}</td>
-
-     <td>
-      <div class="actions">
-       ${action}
-      </div>
-     </td>
-
+        <th>Email</th>
+        <th>Role</th>
+        <th>Subscription</th>
+        <th>Expires</th>
+        <th>Action</th>
     </tr>
+    </thead>
+    <tbody>`;
 
-   `;
+    data.forEach(user => {
 
-  }
- );
+        const active =
+            user.subscription_active === true;
 
+        html += `
+        <tr>
+            <td>${escapeHtml(user.email || "-")}</td>
+
+            <td>
+                <span class="badge">
+                    ${escapeHtml(user.role || "user")}
+                </span>
+            </td>
+
+            <td>
+                <span class="badge ${active ? "active" : ""}">
+                    ${active ? "ACTIVE" : "INACTIVE"}
+                </span>
+            </td>
+
+            <td>
+                ${formatDate(user.subscription_expires_at)}
+            </td>
+
+            <td>
+                <button class="btn danger"
+                    onclick="removeMember('${escapeAttr(user.id)}')">
+                    REMOVE
+                </button>
+            </td>
+        </tr>`;
+    });
+
+    html += "</tbody></table>";
+
+    box.innerHTML = html;
 }
 
 
-async function removeMember(
- userId,
- email
-){
+async function removeMember(id){
 
- if(!confirm(
-  "Remove this INACTIVE member?\n\nMember: "+
-  email
- ))
-  return;
+    if(!confirm("Remove this member?")) return;
 
+    const {error} =
+        await supabaseClient
+        .from("profiles")
+        .delete()
+        .eq("id",id);
 
- const {
-  data:user,
-  error:checkError
- }=
- await supabaseClient
- .from("profiles")
- .select(
-  "id,email,role,subscription_active"
- )
- .eq(
-  "id",
-  userId
- )
- .single();
+    if(error){
+        alert(error.message);
+        return;
+    }
 
-
- if(checkError){
-
-  alert(checkError.message);
-  return;
- }
-
-
- if(!user){
-
-  alert("Member not found.");
-  return;
- }
-
-
- if(user.subscription_active===true){
-
-  alert(
-   "This member is ACTIVE and cannot be removed."
-  );
-
-  return;
- }
-
-
- const {
-  data:deletedRows,
-  error:deleteError
- }=
- await supabaseClient
- .from("profiles")
- .delete()
- .eq("id",userId)
- .eq("role","member")
- .select("id,email");
-
-
- if(deleteError){
-
-  alert(
-   "REMOVE MEMBER FAILED:\n\n"+
-   deleteError.message
-  );
-
-  return;
- }
-
-
- if(!deletedRows?.length){
-
-  alert("The member was NOT removed.");
-  return;
- }
-
-
- alert(
-  "Member removed successfully:\n\n"+
-  email
- );
-
-
- await loadDashboard();
- await loadMembers();
- await loadSubscribers();
-
+    await loadMembers();
+    await loadDashboard();
 }
 
+
+/* =========================
+   DEPOSITS
+========================= */
 
 async function loadDeposits(){
 
- const {
-  data,
-  error
- }=
- await supabaseClient
- .from("deposits")
- .select("*")
- .order(
-  "created_at",
-  {ascending:false}
- );
+    const box =
+        document.getElementById("depositsTable");
 
+    box.innerHTML =
+        '<div class="loading">Loading...</div>';
 
- const table=
- document.getElementById("depositsTable");
+    const {data,error} =
+        await supabaseClient
+        .from("deposits")
+        .select("*")
+        .order("created_at",{ascending:false});
 
+    if(error){
+        box.innerHTML =
+            `<div class="notice">${escapeHtml(error.message)}</div>`;
+        return;
+    }
 
- if(error){
+    if(!data || !data.length){
+        box.innerHTML =
+            '<div class="empty">No deposits.</div>';
+        return;
+    }
 
-  table.innerHTML=
-   `<tr><td colspan="7">${
-    escapeHtml(error.message)
-   }</td></tr>`;
+    let html = `
+    <table>
+    <thead>
+    <tr>
+        <th>User</th>
+        <th>Amount</th>
+        <th>Plan</th>
+        <th>TX Hash</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>`;
 
-  return;
- }
+    data.forEach(d => {
 
+        const status =
+            String(d.status || "pending").toLowerCase();
 
- table.innerHTML="";
+        html += `
+        <tr>
+            <td>${escapeHtml(d.user_id || "-")}</td>
+            <td>${escapeHtml(d.amount || "-")}</td>
+            <td>${escapeHtml(d.plan || "-")}</td>
 
+            <td style="max-width:180px;word-break:break-all">
+                ${escapeHtml(d.transaction_hash || d.tx_hash || "-")}
+            </td>
 
- if(!data?.length){
+            <td>
+                <span class="badge ${status === "pending" ? "pending" : ""}">
+                    ${escapeHtml(status)}
+                </span>
+            </td>
 
-  table.innerHTML=
-   `<tr><td colspan="7">No deposits found.</td></tr>`;
+            <td>
+                ${
+                    status === "pending"
+                    ?
+                    `
+                    <button class="btn success"
+                        onclick="approveDeposit('${escapeAttr(d.id)}')">
+                        APPROVE
+                    </button>
 
-  return;
- }
+                    <button class="btn danger"
+                        onclick="rejectDeposit('${escapeAttr(d.id)}')">
+                        REJECT
+                    </button>
+                    `
+                    :
+                    "-"
+                }
+            </td>
+        </tr>`;
+    });
 
+    html += "</tbody></table>";
 
- for(const d of data){
-
-  let email="-";
-
-
-  const {
-   data:user
-  }=
-  await supabaseClient
-  .from("profiles")
-  .select("email")
-  .eq("id",d.user_id)
-  .single();
-
-
-  if(user)
-   email=user.email;
-
-
-  const status=
-   String(
-    d.status||"pending"
-   ).toLowerCase();
-
-
-  let badgeClass="pending";
-
-  if(status==="approved")
-   badgeClass="approved";
-
-  if(status==="rejected")
-   badgeClass="rejected";
-
-
-  table.innerHTML+=`
-
-   <tr>
-
-    <td>${escapeHtml(email)}</td>
-
-    <td>${escapeHtml(d.plan||"-")}</td>
-
-    <td>$${escapeHtml(d.amount||0)}</td>
-
-    <td>${escapeHtml(d.asset||"USDT")}</td>
-
-    <td>
-     <span class="small">
-      ${escapeHtml(d.tx_hash||"-")}
-     </span>
-    </td>
-
-    <td>
-     <span class="badge ${badgeClass}">
-      ${escapeHtml(status)}
-     </span>
-    </td>
-
-    <td>
-
-     ${
-      status==="pending"
-      ?
-      `
-       <div class="actions">
-
-        <button
-         class="approve"
-         type="button"
-         onclick="approveDeposit(
-          '${escapeAttr(d.id)}',
-          '${escapeAttr(d.user_id)}',
-          '${escapeAttr(d.plan)}',
-          '${escapeAttr(d.amount)}'
-         )">
-         Approve
-        </button>
-
-        <button
-         class="danger"
-         type="button"
-         onclick="rejectDeposit(
-          '${escapeAttr(d.id)}',
-          '${escapeAttr(d.user_id)}'
-         )">
-         Reject
-        </button>
-
-       </div>
-      `
-      :
-      "-"
-     }
-
-    </td>
-
-   </tr>
-
-  `;
-
- }
-
+    box.innerHTML = html;
 }
 
 
-async function approveDeposit(
- depositId,
- userId,
- plan,
- amount
-){
+/* =========================
+   APPROVE DEPOSIT
+========================= */
 
- if(!confirm(
-  "Approve this deposit and activate the subscription?"
- ))
-  return;
+async function approveDeposit(id){
 
+    const {data:deposit,error} =
+        await supabaseClient
+        .from("deposits")
+        .select("*")
+        .eq("id",id)
+        .single();
 
- const numericAmount=
-  Number(
-   String(amount||"")
-   .replace(/[^0-9.]/g,"")
-  );
+    if(error || !deposit){
+        alert(error?.message || "Deposit not found.");
+        return;
+    }
 
+    let months = 1;
 
- let months=1;
+    const plan =
+        String(deposit.plan || "").toLowerCase();
 
- let finalPlan="1 Month - $49";
+    if(
+        plan.includes("119") ||
+        plan.includes("3")
+    ){
+        months = 3;
+    }
 
+    const expires =
+        new Date();
 
- if(
-  numericAmount>=119 ||
-  String(plan||"")
-   .toLowerCase()
-   .includes("3 month") ||
-  String(plan||"").includes("119")
- ){
+    expires.setMonth(
+        expires.getMonth()+months
+    );
 
-  months=3;
-  finalPlan="3 Months - $119";
+    const {error:updateError} =
+        await supabaseClient
+        .from("deposits")
+        .update({
+            status:"approved"
+        })
+        .eq("id",id);
 
- }
+    if(updateError){
+        alert(updateError.message);
+        return;
+    }
 
+    const {error:profileError} =
+        await supabaseClient
+        .from("profiles")
+        .update({
+            subscription_active:true,
+            subscription_plan:
+                deposit.plan || (months === 3 ? "3 months" : "1 month"),
+            subscription_expires_at:
+                expires.toISOString()
+        })
+        .eq("id",deposit.user_id);
 
- const expires=
-  new Date();
+    if(profileError){
+        alert(profileError.message);
+        return;
+    }
 
+    await supabaseClient
+        .from("notifications")
+        .insert({
+            user_id:deposit.user_id,
+            title:"Subscription Activated",
+            message:
+                "Your AURIX AI subscription has been approved and activated.",
+            type:"subscription",
+            is_read:false
+        });
 
- expires.setMonth(
-  expires.getMonth()+months
- );
-
-
- const {
-  data:updatedProfile,
-  error:profileError
- }=
- await supabaseClient
- .from("profiles")
- .update({
-
-  subscription_active:true,
-
-  subscription_plan:finalPlan,
-
-  subscription_expires_at:
-   expires.toISOString()
-
- })
- .eq(
-  "id",
-  userId
- )
- .eq(
-  "role",
-  "member"
- )
- .select(
-  "id,email,subscription_active,subscription_plan,subscription_expires_at"
- )
- .single();
-
-
- if(profileError){
-
-  alert(
-   "MEMBER WAS NOT ACTIVATED.\n\n"+
-   profileError.message
-  );
-
-  return;
- }
-
-
- if(
-  !updatedProfile ||
-  updatedProfile.subscription_active!==true
- ){
-
-  alert(
-   "Profile update did not activate the subscription."
-  );
-
-  return;
- }
-
-
- const {
-  error:depositError
- }=
- await supabaseClient
- .from("deposits")
- .update({
-  status:"approved"
- })
- .eq(
-  "id",
-  depositId
- );
-
-
- if(depositError){
-
-  alert(
-   "Member is ACTIVE, but deposit status could not be updated:\n\n"+
-   depositError.message
-  );
-
-  return;
- }
-
-
- await supabaseClient
- .from("notifications")
- .insert({
-
-  user_id:userId,
-
-  title:"Subscription Activated",
-
-  message:
-   `Your ${finalPlan} subscription has been approved and activated.`,
-
-  type:"subscription",
-
-  is_read:false
-
- });
-
-
- alert(
-  "SUCCESS!\n\n"+
-  "Plan: "+finalPlan+
-  "\nStatus: ACTIVE"+
-  "\nExpires: "+expires.toLocaleString()
- );
-
-
- await loadDashboard();
- await loadDeposits();
- await loadSubscribers();
- await loadMembers();
-
+    await loadDeposits();
+    await loadSubscribers();
+    await loadDashboard();
 }
 
 
-async function rejectDeposit(
- depositId,
- userId
-){
+/* =========================
+   REJECT DEPOSIT
+========================= */
 
- if(!confirm(
-  "Reject this deposit?"
- ))
-  return;
+async function rejectDeposit(id){
 
+    const {data:deposit,error} =
+        await supabaseClient
+        .from("deposits")
+        .select("user_id")
+        .eq("id",id)
+        .single();
 
- const {
-  error
- }=
- await supabaseClient
- .from("deposits")
- .update({
-  status:"rejected"
- })
- .eq(
-  "id",
-  depositId
- );
+    if(error){
+        alert(error.message);
+        return;
+    }
 
+    const {error:updateError} =
+        await supabaseClient
+        .from("deposits")
+        .update({
+            status:"rejected"
+        })
+        .eq("id",id);
 
- if(error){
+    if(updateError){
+        alert(updateError.message);
+        return;
+    }
 
-  alert(error.message);
-  return;
- }
+    if(deposit?.user_id){
 
+        await supabaseClient
+        .from("notifications")
+        .insert({
+            user_id:deposit.user_id,
+            title:"Deposit Rejected",
+            message:
+                "Your deposit was rejected. Please contact AURIX AI support.",
+            type:"deposit",
+            is_read:false
+        });
+    }
 
- await supabaseClient
- .from("notifications")
- .insert({
-
-  user_id:userId,
-
-  title:"Deposit Rejected",
-
-  message:
-   "Your deposit was rejected. Please contact support.",
-
-  type:"deposit",
-
-  is_read:false
-
- });
-
-
- alert("Deposit rejected.");
-
- await loadDashboard();
- await loadDeposits();
-
+    await loadDeposits();
 }
 
+
+/* =========================
+   SUBSCRIBERS
+========================= */
 
 async function loadSubscribers(){
 
- await expireSubscriptions();
+    const box =
+        document.getElementById("subscribersTable");
 
+    box.innerHTML =
+        '<div class="loading">Loading...</div>';
 
- const {
-  data,
-  error
- }=
- await supabaseClient
- .from("profiles")
- .select("*")
- .eq("role","member")
- .order(
-  "subscription_expires_at",
-  {
-   ascending:false,
-   nullsFirst:false
-  }
- );
+    const {data,error} =
+        await supabaseClient
+        .from("profiles")
+        .select("*")
+        .eq("subscription_active",true)
+        .order("subscription_expires_at",{ascending:true});
 
+    if(error){
+        box.innerHTML =
+            `<div class="notice">${escapeHtml(error.message)}</div>`;
+        return;
+    }
 
- const table=
- document.getElementById("subscribersTable");
+    if(!data || !data.length){
+        box.innerHTML =
+            '<div class="empty">No active subscribers.</div>';
+        return;
+    }
 
-
- if(error){
-
-  table.innerHTML=
-   `<tr><td colspan="5">${
-    escapeHtml(error.message)
-   }</td></tr>`;
-
-  return;
- }
-
-
- table.innerHTML="";
-
-
- if(!data?.length){
-
-  table.innerHTML=
-   `<tr><td colspan="5">No members found.</td></tr>`;
-
-  return;
- }
-
-
- data.forEach(
-  user=>{
-
-   const active=
-    user.subscription_active===true;
-
-
-   const expired=
-    user.subscription_expires_at &&
-    new Date(
-     user.subscription_expires_at
-    )<=new Date();
-
-
-   let status="INACTIVE";
-   let badge="inactive";
-
-
-   if(active && !expired){
-
-    status="ACTIVE";
-    badge="approved";
-
-   }
-   else if(expired){
-
-    status="EXPIRED";
-    badge="expired";
-
-   }
-
-
-   let controls="";
-
-
-   if(active && !expired){
-
-    controls=`
-     <button
-      class="danger"
-      type="button"
-      onclick="disableSubscription(
-       '${escapeAttr(user.id)}'
-      )">
-      Disable
-     </button>
-    `;
-
-   }
-   else{
-
-    controls=`
-     <button
-      class="activate"
-      type="button"
-      onclick="activateSubscription(
-       '${escapeAttr(user.id)}'
-      )">
-      Activate
-     </button>
-
-     <button
-      class="danger"
-      type="button"
-      onclick="removeMember(
-       '${escapeAttr(user.id)}',
-       '${escapeAttr(user.email||"")}'
-      )">
-      REMOVE MEMBER
-     </button>
-    `;
-
-   }
-
-
-   table.innerHTML+=`
-
+    let html = `
+    <table>
+    <thead>
     <tr>
-
-     <td>${escapeHtml(user.email||"-")}</td>
-
-     <td>${escapeHtml(user.subscription_plan||"-")}</td>
-
-     <td>
-      <span class="badge ${badge}">
-       ${status}
-      </span>
-     </td>
-
-     <td>${formatDate(user.subscription_expires_at)}</td>
-
-     <td>
-      <div class="actions">
-       ${controls}
-      </div>
-     </td>
-
+        <th>Email</th>
+        <th>Plan</th>
+        <th>Expires</th>
+        <th>Action</th>
     </tr>
+    </thead>
+    <tbody>`;
 
-   `;
+    data.forEach(user => {
 
-  }
- );
+        html += `
+        <tr>
+            <td>${escapeHtml(user.email || "-")}</td>
+            <td>${escapeHtml(user.subscription_plan || "-")}</td>
+            <td>${formatDate(user.subscription_expires_at)}</td>
+            <td>
+                <button class="btn danger"
+                    onclick="disableSubscription('${escapeAttr(user.id)}')">
+                    DISABLE
+                </button>
+            </td>
+        </tr>`;
+    });
 
+    html += "</tbody></table>";
+
+    box.innerHTML = html;
 }
 
 
-async function disableSubscription(
- userId
-){
+async function disableSubscription(id){
 
- if(!confirm(
-  "Disable this user's subscription?"
- ))
-  return;
+    if(!confirm("Disable this subscription?")) return;
 
+    const {error} =
+        await supabaseClient
+        .from("profiles")
+        .update({
+            subscription_active:false
+        })
+        .eq("id",id);
 
- const {
-  error
- }=
- await supabaseClient
- .from("profiles")
- .update({
-  subscription_active:false
- })
- .eq(
-  "id",
-  userId
- );
+    if(error){
+        alert(error.message);
+        return;
+    }
 
+    await supabaseClient
+        .from("notifications")
+        .insert({
+            user_id:id,
+            title:"Subscription Disabled",
+            message:
+                "Your AURIX AI subscription has been disabled.",
+            type:"subscription",
+            is_read:false
+        });
 
- if(error){
-
-  alert(error.message);
-  return;
- }
-
-
- await supabaseClient
- .from("notifications")
- .insert({
-
-  user_id:userId,
-
-  title:"Subscription Disabled",
-
-  message:
-   "Your subscription has been disabled by the administrator.",
-
-  type:"subscription",
-
-  is_read:false
-
- });
-
-
- alert("Subscription disabled.");
-
- await loadDashboard();
- await loadSubscribers();
-
+    await loadSubscribers();
+    await loadDashboard();
 }
 
 
-async function activateSubscription(
- userId
-){
+async function activateSubscription(id){
 
- const months=
-  prompt(
-   "Enter subscription duration in months:",
-   "1"
-  );
+    const expires =
+        new Date();
 
+    expires.setMonth(
+        expires.getMonth()+1
+    );
 
- if(months===null)
-  return;
+    const {error} =
+        await supabaseClient
+        .from("profiles")
+        .update({
+            subscription_active:true,
+            subscription_expires_at:
+                expires.toISOString()
+        })
+        .eq("id",id);
 
+    if(error){
+        alert(error.message);
+        return;
+    }
 
- const duration=
-  parseInt(
-   months,
-   10
-  );
+    await supabaseClient
+        .from("notifications")
+        .insert({
+            user_id:id,
+            title:"Subscription Activated",
+            message:
+                "Your AURIX AI subscription has been activated.",
+            type:"subscription",
+            is_read:false
+        });
 
-
- if(
-  !duration||
-  duration<1
- ){
-
-  alert(
-   "Please enter a valid number of months."
-  );
-
-  return;
- }
-
-
- const expires=
-  new Date();
-
-
- expires.setMonth(
-  expires.getMonth()+duration
- );
-
-
- const finalPlan=
-  duration>=3
-  ? "3 Months - $119"
-  : "1 Month - $49";
-
-
- const {
-  error
- }=
- await supabaseClient
- .from("profiles")
- .update({
-
-  subscription_active:true,
-
-  subscription_plan:finalPlan,
-
-  subscription_expires_at:
-   expires.toISOString()
-
- })
- .eq(
-  "id",
-  userId
- );
-
-
- if(error){
-
-  alert(error.message);
-  return;
- }
-
-
- await supabaseClient
- .from("notifications")
- .insert({
-
-  user_id:userId,
-
-  title:"Subscription Activated",
-
-  message:
-   "Your subscription has been activated by the administrator.",
-
-  type:"subscription",
-
-  is_read:false
-
- });
-
-
- alert("Subscription activated.");
-
- await loadDashboard();
- await loadSubscribers();
-
+    await loadSubscribers();
+    await loadDashboard();
 }
 
 
-/* =====================================================
+/* =========================================================
    GOLD AI
-===================================================== */
+========================================================= */
 
 async function analyzeGold(){
 
- const button=
-  document.getElementById("analyzeGoldBtn");
+    const button =
+        document.getElementById("analyzeGoldBtn");
 
- const status=
-  document.getElementById("aiStatus");
+    const status =
+        document.getElementById("goldStatus");
 
- const preview=
-  document.getElementById("aiPreview");
+    const preview =
+        document.getElementById("aiPreview");
 
- const list=
-  document.getElementById("aiList");
+    const requestedTimeframe =
+        document.getElementById("goldTimeframe").value;
 
- const msg=
-  document.getElementById("signalMsg");
+    button.disabled = true;
+    button.textContent = "ANALYZING...";
 
+    status.classList.remove("hidden");
+    status.textContent =
+        "Fetching real XAU/USD market data and calculating indicators...";
 
- let requestedTimeframe=
-  document.getElementById("aiTimeframe").value;
+    preview.classList.add("hidden");
 
+    currentAIResult = null;
 
- if(
-  !ALLOWED_GOLD_TIMEFRAMES.includes(
-   requestedTimeframe
-  )
- ){
+    try{
 
-  requestedTimeframe="30m";
+        /*
+         IMPORTANT:
+         We use Supabase Functions.invoke().
+         This automatically sends the logged-in user's
+         authentication token to the Edge Function.
+        */
 
-  document.getElementById(
-   "aiTimeframe"
-  ).value="30m";
+        const {data,error} =
+            await supabaseClient.functions.invoke(
+                "smart-processor",
+                {
+                    body:{
+                        symbol:"XAU/USD",
+                        timeframe:requestedTimeframe,
+                        timeframes:[requestedTimeframe],
+                        max_signals:2
+                    }
+                }
+            );
 
- }
+        if(error){
+            throw new Error(error.message || "AI request failed.");
+        }
 
+        if(!data){
+            throw new Error("No response from AI processor.");
+        }
 
- button.disabled=true;
- button.classList.add("analyzing");
- button.textContent="🤖 ANALYZING GOLD...";
+        if(data.success === false){
+            throw new Error(
+                data.error || "Gold analysis failed."
+            );
+        }
 
+        currentAIResult = data;
 
- status.style.display="block";
+        renderAIResultList(data);
 
- status.textContent=
-  `Analyzing XAU/USD on ${requestedTimeframe}...`;
+        status.textContent =
+            "Analysis completed. Review the PREVIEW before publishing.";
 
+    }catch(error){
 
- preview.style.display="none";
- list.style.display="none";
+        console.error(error);
 
- msg.textContent="";
+        status.textContent =
+            "Analysis error: " +
+            (error.message || "Unknown error.");
 
- aiResults=[];
- selectedAIIndex=0;
- lastAIProcessorData={};
+    }finally{
 
-
- try{
-
-  const response=
-   await fetch(
-    SMART_PROCESSOR_URL,
-    {
-     method:"POST",
-
-     headers:{
-      "Content-Type":"application/json",
-      "apikey":SUPABASE_KEY
-     },
-
-     body:JSON.stringify({
-
-      timeframes:[
-       requestedTimeframe
-      ],
-
-      max_signals:2
-
-     })
-
+        button.disabled = false;
+        button.textContent = "ANALYZE GOLD";
     }
-   );
-
-
-  let data=null;
-
-
-  try{
-
-   data=await response.json();
-
-  }
-  catch(error){
-
-   throw new Error(
-    "Smart Processor returned an invalid response."
-   );
-
-  }
-
-
-  if(!response.ok){
-
-   throw new Error(
-    data?.error||
-    data?.message||
-    `Smart Processor returned HTTP ${response.status}`
-   );
-
-  }
-
-
-  if(data?.success===false){
-
-   throw new Error(
-    data.error||
-    "Gold analysis failed."
-   );
-
-  }
-
-
-  lastAIProcessorData=data;
-
-
-  const rawSignals=
-   Array.isArray(data.signals)
-   ? data.signals
-   : [];
-
-
-  aiResults=
-   rawSignals
-   .slice(0,2)
-   .map(
-    item=>({
-
-     ...item,
-
-     timeframe:
-      requestedTimeframe
-
-    })
-   );
-
-
-  if(!aiResults.length){
-
-   aiResults=[{
-
-    signal:"WAIT",
-
-    entry:data.price??"",
-
-    stop_loss:"",
-
-    take_profit:"",
-
-    timeframe:requestedTimeframe,
-
-    reason:
-     "No trade signal was returned by the analyzer."
-
-   }];
-
-  }
-
-
-  aiResults=
-   aiResults.slice(0,2);
-
-
-  renderAIResultList();
-
-
-  selectedAIIndex=0;
-
-
-  applyAIResult(
-   0,
-   lastAIProcessorData,
-   requestedTimeframe
-  );
-
-
-  list.style.display=
-   aiResults.length>1
-   ? "block"
-   : "none";
-
-
-  preview.style.display="block";
-
-
-  status.textContent=
-   `AI analysis completed for ${requestedTimeframe}. Review the PREVIEW before publishing.`;
-
-
-  msg.textContent=
-   "Analysis ready. Nothing has been published.";
-
- }
- catch(error){
-
-  console.error(
-   "AURIX GOLD AI ERROR:",
-   error
-  );
-
-
-  status.textContent=
-   "AI analysis failed.";
-
-
-  msg.textContent=
-   error.message||
-   "Could not analyze Gold.";
-
-
-  alert(
-   "AI GOLD ANALYSIS FAILED\n\n"+
-   (
-    error.message||
-    "Unknown error"
-   )
-  );
-
- }
- finally{
-
-  button.disabled=false;
-  button.classList.remove("analyzing");
-  button.textContent="🤖 ANALYZE GOLD";
-
- }
-
 }
 
 
-function renderAIResultList(){
+/* =========================
+   RENDER AI
+========================= */
 
- const box=
-  document.getElementById("aiListItems");
+function renderAIResultList(data){
 
+    const preview =
+        document.getElementById("aiPreview");
 
- box.innerHTML="";
+    const signal =
+        data.signals &&
+        data.signals.length
+        ? data.signals[0]
+        : null;
 
+    if(!signal){
 
- aiResults.forEach(
-  (item,index)=>{
+        preview.classList.remove("hidden");
 
-   const signal=
-    String(
-     item.signal||"WAIT"
-    ).toUpperCase();
+        document.getElementById("aiSignal").textContent =
+            "WAIT";
 
+        document.getElementById("aiSignal").className =
+            "signal-big signal-wait";
 
-   const timeframe=
-    normalizeTimeframe(
-     item.timeframe
-    );
+        document.getElementById("aiTimeframe").textContent =
+            data.timeframe || "-";
 
+        document.getElementById("aiPrice").textContent =
+            formatNumber(data.price);
 
-   const entry=
-    item.entry??"-";
+        document.getElementById("aiEntry").textContent = "-";
+        document.getElementById("aiSL").textContent = "-";
+        document.getElementById("aiTP").textContent = "-";
 
+        document.getElementById("aiTrend").textContent =
+            data.trend || "-";
 
-   const button=
-    document.createElement("button");
+        document.getElementById("aiMomentum").textContent =
+            data.momentum || "-";
 
+        document.getElementById("aiRSI").textContent =
+            formatNumber(data.technical?.rsi14);
 
-   button.type="button";
+        document.getElementById("aiEMA20").textContent =
+            formatNumber(data.technical?.ema20);
 
-   button.className=
-    "ai-option"+
-    (
-     index===selectedAIIndex
-     ? " selected"
-     : ""
-    );
+        document.getElementById("aiEMA50").textContent =
+            formatNumber(data.technical?.ema50);
 
+        document.getElementById("aiATR").textContent =
+            formatNumber(data.technical?.atr14);
 
-   button.innerHTML=`
+        document.getElementById("aiSupport").textContent =
+            formatNumber(data.technical?.support);
 
-    <strong>
-     ${escapeHtml(signal)}
-    </strong>
+        document.getElementById("aiResistance").textContent =
+            formatNumber(data.technical?.resistance);
 
-    <div class="ai-meta">
-     Timeframe:
-     ${escapeHtml(timeframe)}
-     &nbsp; | &nbsp;
-     Entry:
-     ${escapeHtml(entry)}
-    </div>
+        document.getElementById("aiReason").textContent =
+            "No clear trade setup.";
 
-   `;
+        return;
+    }
 
+    const direction =
+        String(signal.signal || "WAIT").toUpperCase();
 
-   button.onclick=()=>{
+    const signalElement =
+        document.getElementById("aiSignal");
 
-    selectedAIIndex=index;
+    signalElement.textContent =
+        direction;
 
-    renderAIResultList();
+    signalElement.className =
+        "signal-big " +
+        (
+            direction === "BUY"
+            ? "signal-buy"
+            : direction === "SELL"
+            ? "signal-sell"
+            : "signal-wait"
+        );
 
-    applyAIResult(
-     index,
-     lastAIProcessorData
-    );
+    document.getElementById("aiTimeframe").textContent =
+        signal.timeframe ||
+        data.timeframe ||
+        "-";
 
-   };
+    document.getElementById("aiPrice").textContent =
+        formatNumber(data.price);
 
+    document.getElementById("aiEntry").textContent =
+        formatNumber(signal.entry);
 
-   box.appendChild(button);
+    document.getElementById("aiSL").textContent =
+        formatNumber(signal.stop_loss);
 
-  }
- );
+    document.getElementById("aiTP").textContent =
+        formatNumber(signal.take_profit);
 
+    document.getElementById("aiTrend").textContent =
+        data.trend || "-";
+
+    document.getElementById("aiMomentum").textContent =
+        data.momentum || "-";
+
+    document.getElementById("aiRSI").textContent =
+        formatNumber(data.technical?.rsi14);
+
+    document.getElementById("aiEMA20").textContent =
+        formatNumber(data.technical?.ema20);
+
+    document.getElementById("aiEMA50").textContent =
+        formatNumber(data.technical?.ema50);
+
+    document.getElementById("aiATR").textContent =
+        formatNumber(data.technical?.atr14);
+
+    document.getElementById("aiSupport").textContent =
+        formatNumber(data.technical?.support);
+
+    document.getElementById("aiResistance").textContent =
+        formatNumber(data.technical?.resistance);
+
+    document.getElementById("aiReason").textContent =
+        signal.reason || "No reason provided.";
+
+    preview.classList.remove("hidden");
 }
 
 
-function applyAIResult(
- index,
- processorData,
- forcedTimeframe=null
-){
-
- const item=aiResults[index];
-
-
- if(!item)
-  return;
-
-
- lastAIProcessorData=
-  processorData||{};
-
-
- const signal=
-  String(
-   item.signal||"WAIT"
-  ).toUpperCase();
-
-
- const selectedTimeframe=
-  forcedTimeframe||
-  document.getElementById(
-   "aiTimeframe"
-  ).value;
-
-
- const timeframe=
-  normalizeTimeframe(
-   selectedTimeframe
-  );
-
-
- const entry=item.entry??"";
- const stopLoss=item.stop_loss??"";
- const takeProfit=item.take_profit??"";
-
- const reason=
-  item.reason||
-  item.message||
-  "No reason was returned by the analyzer.";
-
-
- const technical=
-  processorData.technical||{};
-
-
- const recommendation=
-  document.getElementById(
-   "aiRecommendation"
-  );
-
-
- recommendation.textContent=signal;
-
- recommendation.className=
-  "ai-field-value "+
-  (
-   signal==="BUY"
-   ? "signal-direction-buy"
-   : signal==="SELL"
-   ? "signal-direction-sell"
-   : "signal-direction-wait"
-  );
-
-
- document.getElementById(
-  "aiPreviewTimeframe"
- ).textContent=timeframe;
-
-
- document.getElementById(
-  "aiPreviewEntry"
- ).textContent=entry||"-";
-
-
- document.getElementById(
-  "aiPreviewSL"
- ).textContent=stopLoss||"-";
-
-
- document.getElementById(
-  "aiPreviewTP"
- ).textContent=takeProfit||"-";
-
-
- document.getElementById(
-  "aiPreviewPrice"
- ).textContent=
-  processorData.price??
-  entry??
-  "-";
-
-
- document.getElementById(
-  "aiPreviewTrend"
- ).textContent=
-  processorData.trend||"-";
-
-
- document.getElementById(
-  "aiPreviewMomentum"
- ).textContent=
-  processorData.momentum||"-";
-
-
- document.getElementById(
-  "aiRSI"
- ).textContent=
-  formatNumber(
-   technical.rsi14
-  );
-
-
- document.getElementById(
-  "aiEMA20"
- ).textContent=
-  formatNumber(
-   technical.ema20
-  );
-
-
- document.getElementById(
-  "aiEMA50"
- ).textContent=
-  formatNumber(
-   technical.ema50
-  );
-
-
- document.getElementById(
-  "aiATR"
- ).textContent=
-  formatNumber(
-   technical.atr14
-  );
-
-
- document.getElementById(
-  "aiSupport"
- ).textContent=
-  formatNumber(
-   technical.support
-  );
-
-
- document.getElementById(
-  "aiResistance"
- ).textContent=
-  formatNumber(
-   technical.resistance
-  );
-
-
- document.getElementById(
-  "aiReason"
- ).textContent=reason;
-
-
- document.getElementById(
-  "timeframe"
- ).value=timeframe;
-
-
- document.getElementById(
-  "signal"
- ).value=
-  ["BUY","SELL","WAIT"].includes(signal)
-  ? signal
-  : "WAIT";
-
-
- document.getElementById(
-  "entry"
- ).value=entry;
-
-
- document.getElementById(
-  "stopLoss"
- ).value=stopLoss;
-
-
- document.getElementById(
-  "takeProfit"
- ).value=takeProfit;
-
-
- document.getElementById(
-  "signalMessage"
- ).value=reason;
-
-
- document.getElementById(
-  "aiPreview"
- ).style.display="block";
-
+/* =========================
+   APPLY AI RESULT
+========================= */
+
+function applyAIResult(){
+
+    if(!currentAIResult){
+        alert("No AI analysis available.");
+        return;
+    }
+
+    const signal =
+        currentAIResult.signals &&
+        currentAIResult.signals.length
+        ? currentAIResult.signals[0]
+        : null;
+
+    if(!signal){
+        alert("No signal available.");
+        return;
+    }
+
+    document.getElementById("publishSignal").value =
+        String(signal.signal || "WAIT").toUpperCase();
+
+    document.getElementById("publishTimeframe").value =
+        normalizeTimeframe(
+            signal.timeframe ||
+            currentAIResult.timeframe
+        );
+
+    document.getElementById("publishEntry").value =
+        signal.entry ?? "";
+
+    document.getElementById("publishSL").value =
+        signal.stop_loss ?? "";
+
+    document.getElementById("publishTP").value =
+        signal.take_profit ?? "";
+
+    document.getElementById("publishMessage").value =
+        signal.reason || "";
+
+    document.getElementById("publishStatus").classList.remove("hidden");
+
+    document.getElementById("publishStatus").textContent =
+        "AI result loaded into Publish Signal. Review it before publishing.";
+
+    window.scrollTo({
+        top:
+            document.getElementById("publishStatus")
+            .getBoundingClientRect().top
+            + window.scrollY
+            - 100,
+        behavior:"smooth"
+    });
 }
 
+
+/* =========================
+   FORMAT NUMBER
+========================= */
 
 function formatNumber(value){
 
- if(
-  value===null||
-  value===undefined||
-  value===""
- )
-  return "-";
+    if(value === null || value === undefined || value === ""){
+        return "-";
+    }
 
+    const n =
+        Number(value);
 
- const number=Number(value);
+    if(!Number.isFinite(n)){
+        return "-";
+    }
 
-
- if(!Number.isFinite(number))
-  return String(value);
-
-
- return number.toFixed(2);
-
+    return n.toFixed(2);
 }
 
+
+/* =========================
+   NORMALIZE TIMEFRAME
+========================= */
 
 function normalizeTimeframe(value){
 
- const v=
-  String(value||"")
-  .toLowerCase()
-  .trim();
+    const v =
+        String(value || "").toLowerCase().trim();
 
+    if(v === "5min" || v === "5m"){
+        return "5m";
+    }
 
- if(
-  ALLOWED_GOLD_TIMEFRAMES.includes(v)
- )
-  return v;
+    if(v === "30min" || v === "30m"){
+        return "30m";
+    }
 
+    if(v === "1hour" || v === "1h"){
+        return "1h";
+    }
 
- const selected=
-  document.getElementById(
-   "aiTimeframe"
-  )?.value;
+    if(v === "1day" || v === "1d"){
+        return "1d";
+    }
 
-
- if(
-  ALLOWED_GOLD_TIMEFRAMES.includes(
-   selected
-  )
- )
-  return selected;
-
-
- return "30m";
-
+    return "5m";
 }
 
+
+/* =========================
+   DISCARD
+========================= */
 
 function discardAIAnalysis(){
 
- aiResults=[];
- selectedAIIndex=0;
- lastAIProcessorData={};
+    currentAIResult = null;
 
+    document
+        .getElementById("aiPreview")
+        .classList.add("hidden");
 
- document.getElementById(
-  "aiPreview"
- ).style.display="none";
-
-
- document.getElementById(
-  "aiStatus"
- ).style.display="none";
-
-
- document.getElementById(
-  "aiList"
- ).style.display="none";
-
-
- document.getElementById("entry").value="";
- document.getElementById("stopLoss").value="";
- document.getElementById("takeProfit").value="";
- document.getElementById("signalMessage").value="";
-
-
- document.getElementById(
-  "signalMsg"
- ).textContent=
-  "AI preview discarded.";
-
+    document
+        .getElementById("goldStatus")
+        .textContent =
+        "AI analysis discarded.";
 }
 
+
+/* =========================
+   USE MANUAL
+========================= */
 
 function useManualSignal(){
 
- const manualTimeframe=
-  document.getElementById(
-   "manualTimeframe"
-  ).value;
+    document.getElementById("publishSignal").value =
+        document.getElementById("manualSignal").value;
 
+    document.getElementById("publishTimeframe").value =
+        document.getElementById("manualTimeframe").value;
 
- document.getElementById(
-  "timeframe"
- ).value=
-  normalizeTimeframe(
-   manualTimeframe
-  );
+    document.getElementById("publishEntry").value =
+        document.getElementById("manualEntry").value;
 
+    document.getElementById("publishSL").value =
+        document.getElementById("manualSL").value;
 
- document.getElementById(
-  "signal"
- ).value=
-  document.getElementById(
-   "manualSignal"
-  ).value;
+    document.getElementById("publishTP").value =
+        document.getElementById("manualTP").value;
 
+    document.getElementById("publishMessage").value =
+        document.getElementById("manualMessage").value;
 
- document.getElementById(
-  "entry"
- ).value=
-  document.getElementById(
-   "manualEntry"
-  ).value.trim();
+    const status =
+        document.getElementById("publishStatus");
 
+    status.classList.remove("hidden");
 
- document.getElementById(
-  "stopLoss"
- ).value=
-  document.getElementById(
-   "manualStopLoss"
-  ).value.trim();
-
-
- document.getElementById(
-  "takeProfit"
- ).value=
-  document.getElementById(
-   "manualTakeProfit"
-  ).value.trim();
-
-
- document.getElementById(
-  "signalMessage"
- ).value=
-  document.getElementById(
-   "manualMessage"
-  ).value.trim();
-
-
- document.getElementById(
-  "aiPreview"
- ).style.display="block";
-
-
- document.getElementById(
-  "aiStatus"
- ).style.display="block";
-
-
- document.getElementById(
-  "aiStatus"
- ).textContent=
-  "Manual signal loaded. Review it before publishing.";
-
+    status.textContent =
+        "Manual signal loaded. Review it before publishing.";
 }
 
 
-/* =====================================================
-   PUBLISH
-===================================================== */
+/* =========================
+   PUBLISH SIGNAL
+========================= */
 
 async function publishSignal(){
 
- const timeframe=
-  normalizeTimeframe(
-   document.getElementById(
-    "timeframe"
-   ).value
-  );
-
-
- const signal=
-  String(
-   document.getElementById(
-    "signal"
-   ).value
-  ).toUpperCase();
-
-
- const entry=
-  document.getElementById(
-   "entry"
-  ).value.trim();
-
-
- const stopLoss=
-  document.getElementById(
-   "stopLoss"
-  ).value.trim();
-
-
- const takeProfit=
-  document.getElementById(
-   "takeProfit"
-  ).value.trim();
-
-
- const message=
-  document.getElementById(
-   "signalMessage"
-  ).value.trim();
-
-
- const msg=
-  document.getElementById(
-   "signalMsg"
-  );
-
-
- if(
-  !ALLOWED_GOLD_TIMEFRAMES.includes(
-   timeframe
-  )
- ){
-
-  msg.textContent=
-   "Invalid timeframe.";
-
-  return;
- }
-
-
- if(
-  signal!=="WAIT" &&
-  (
-   !entry||
-   !stopLoss||
-   !takeProfit
-  )
- ){
-
-  msg.textContent=
-   "Please enter Entry, Stop Loss and Take Profit.";
-
-  return;
- }
-
-
- if(signal==="WAIT"){
-
-  if(!confirm(
-   "The selected signal is WAIT.\n\nPublish anyway?"
-  ))
-   return;
-
- }
-
-
- if(!confirm(
-  "PUBLISH NEW GOLD SIGNAL?\n\n"+
-  "XAU/USD\n"+
-  "Signal: "+signal+
-  "\nTimeframe: "+timeframe+
-  "\nEntry: "+(entry||"-")+
-  "\nStop Loss: "+(stopLoss||"-")+
-  "\nTake Profit: "+(takeProfit||"-")+
-  "\n\n"+
-  "The current active signal will be replaced."
- ))
-  return;
-
-
- msg.textContent=
-  "Checking current signal...";
-
-
- const {
-  data:oldSignals,
-  error:findOldError
- }=
- await supabaseClient
- .from("gold_signals")
- .select("*")
- .eq("active",true);
-
-
- if(findOldError){
-
-  msg.textContent=
-   "Could not check current signal:\n\n"+
-   findOldError.message;
-
-  return;
- }
-
-
- if(oldSignals?.length){
-
-  msg.textContent=
-   "Removing previous active signal...";
-
-
-  const {
-   error:closeError
-  }=
-  await supabaseClient
-  .from("gold_signals")
-  .update({
-   active:false
-  })
-  .eq("active",true);
-
-
-  if(closeError){
-
-   msg.textContent=
-    "Could not replace previous signal:\n\n"+
-    closeError.message;
-
-   return;
-  }
-
- }
-
-
- const {
-  data:remainingActive,
-  error:verifyError
- }=
- await supabaseClient
- .from("gold_signals")
- .select("id")
- .eq("active",true);
-
-
- if(verifyError){
-
-  msg.textContent=
-   "Could not verify previous signal removal.";
-
-  return;
- }
-
-
- if(remainingActive?.length){
-
-  msg.textContent=
-   "A previous active signal still exists.";
-
-  return;
- }
-
-
- msg.textContent=
-  "Publishing new signal...";
-
-
- const {
-  data:newSignal,
-  error:createError
- }=
- await supabaseClient
- .from("gold_signals")
- .insert({
-
-  timeframe:timeframe,
-
-  signal:signal,
-
-  entry:entry||null,
-
-  stop_loss:stopLoss||null,
-
-  take_profit:takeProfit||null,
-
-  message:message||null,
-
-  active:true
-
- })
- .select()
- .single();
-
-
- if(createError){
-
-  if(oldSignals?.length){
-
-   for(
-    const oldSignal of oldSignals
-   ){
-
-    await supabaseClient
-    .from("gold_signals")
-    .update({
-     active:true
-    })
-    .eq(
-     "id",
-     oldSignal.id
-    );
-
-   }
-
-  }
-
-
-  msg.textContent=
-   "Could not publish signal. Previous active signal was restored.";
-
-
-  alert(
-   "PUBLISH FAILED.\n\n"+
-   createError.message
-  );
-
-
-  await showActiveSignal();
-
-  return;
- }
-
-
- const {
-  data:verifyNew,
-  error:verifyNewError
- }=
- await supabaseClient
- .from("gold_signals")
- .select("*")
- .eq("id",newSignal.id)
- .eq("active",true)
- .maybeSingle();
-
-
- if(
-  verifyNewError||
-  !verifyNew
- ){
-
-  await supabaseClient
-  .from("gold_signals")
-  .update({
-   active:false
-  })
-  .eq(
-   "id",
-   newSignal.id
-  );
-
-
-  if(oldSignals?.length){
-
-   for(
-    const oldSignal of oldSignals
-   ){
-
-    await supabaseClient
-    .from("gold_signals")
-    .update({
-     active:true
-    })
-    .eq(
-     "id",
-     oldSignal.id
-    );
-
-   }
-
-  }
-
-
-  msg.textContent=
-   "Signal could not be verified. Previous signal was restored.";
-
-  return;
- }
-
-
- msg.textContent=
-  "Loading active subscribers...";
-
-
- const now=
-  new Date().toISOString();
-
-
- const {
-  data:members,
-  error:membersError
- }=
- await supabaseClient
- .from("profiles")
- .select("id")
- .eq("role","member")
- .eq("subscription_active",true)
- .or(
-  `subscription_expires_at.is.null,subscription_expires_at.gt.${now}`
- );
-
-
- if(membersError){
-
-  msg.textContent=
-   "Signal published, but subscribers could not be loaded.";
-
-  alert(
-   "SIGNAL PUBLISHED.\n\n"+
-   membersError.message
-  );
-
-  await showActiveSignal();
-
-  return;
- }
-
-
- /*
- ====================================================
- IMPORTANT:
- THE NOTIFICATION NOW CONTAINS THE SAME GOLD
- INFORMATION THAT THE APPLICATION DISPLAYS.
- ====================================================
- */
-
- if(members?.length){
-
-  const notificationMessage=
-`XAU/USD
-
-SIGNAL: ${signal}
-TIMEFRAME: ${timeframe}
-ENTRY: ${entry||"-"}
-STOP LOSS: ${stopLoss||"-"}
-TAKE PROFIT: ${takeProfit||"-"}
-
-${message||""}
-
-Open AURIX AI to view the full Gold Market analysis.`;
-
-
-  const notifications=
-   members.map(
-    member=>({
-
-     user_id:member.id,
-
-     title:"New Gold Signal",
-
-     message:notificationMessage,
-
-     type:"signal",
-
-     is_read:false
-
-    })
-   );
-
-
-  const {
-   error:notificationError
-  }=
-  await supabaseClient
-  .from("notifications")
-  .insert(
-   notifications
-  );
-
-
-  if(notificationError){
-
-   msg.textContent=
-    "Signal published, but notifications could not be created.";
-
-   alert(
-    "SIGNAL PUBLISHED.\n\n"+
-    notificationError.message
-   );
-
-   await showActiveSignal();
-
-   return;
-  }
-
- }
-
-
- document.getElementById("entry").value="";
- document.getElementById("stopLoss").value="";
- document.getElementById("takeProfit").value="";
- document.getElementById("signalMessage").value="";
-
-
- document.getElementById(
-  "aiPreview"
- ).style.display="none";
-
-
- document.getElementById(
-  "aiStatus"
- ).style.display="none";
-
-
- document.getElementById(
-  "aiList"
- ).style.display="none";
-
-
- aiResults=[];
- selectedAIIndex=0;
- lastAIProcessorData={};
-
-
- msg.textContent=
-  "Signal published successfully.\n"+
-  `${members?.length||0} active subscriber(s) notified.`;
-
-
- alert(
-  "SIGNAL PUBLISHED SUCCESSFULLY\n\n"+
-  "Signal: "+signal+
-  "\nTimeframe: "+timeframe+
-  "\nSubscribers notified: "+
-  (members?.length||0)
- );
-
-
- await showActiveSignal();
-
+    const signal =
+        document.getElementById("publishSignal").value;
+
+    const timeframe =
+        document.getElementById("publishTimeframe").value;
+
+    const entry =
+        document.getElementById("publishEntry").value;
+
+    const sl =
+        document.getElementById("publishSL").value;
+
+    const tp =
+        document.getElementById("publishTP").value;
+
+    const message =
+        document.getElementById("publishMessage").value.trim();
+
+    const status =
+        document.getElementById("publishStatus");
+
+    status.classList.remove("hidden");
+    status.textContent = "Publishing...";
+
+    if(signal !== "WAIT" &&
+       (!entry || !sl || !tp)){
+
+        status.textContent =
+            "Entry, Stop Loss and Take Profit are required.";
+
+        return;
+    }
+
+    /*
+       Deactivate previous active signals first.
+    */
+
+    const {error:deactivateError} =
+        await supabaseClient
+        .from("gold_signals")
+        .update({
+            active:false
+        })
+        .eq("active",true);
+
+    if(deactivateError){
+        status.textContent =
+            deactivateError.message;
+        return;
+    }
+
+    const {data:inserted,error} =
+        await supabaseClient
+        .from("gold_signals")
+        .insert({
+            timeframe,
+            signal,
+            entry:entry ? Number(entry) : null,
+            stop_loss:sl ? Number(sl) : null,
+            take_profit:tp ? Number(tp) : null,
+            message,
+            active:true
+        })
+        .select()
+        .single();
+
+    if(error){
+        status.textContent =
+            error.message;
+        return;
+    }
+
+    /*
+       Notify only active subscribers.
+    */
+
+    const {
+        data:subscribers,
+        error:subscriberError
+    } =
+        await supabaseClient
+        .from("profiles")
+        .select("id")
+        .eq("subscription_active",true);
+
+    if(!subscriberError &&
+       subscribers &&
+       subscribers.length){
+
+        const title =
+            signal === "BUY"
+            ? "AURIX AI — BUY GOLD"
+            : signal === "SELL"
+            ? "AURIX AI — SELL GOLD"
+            : "AURIX AI — GOLD UPDATE";
+
+        const notificationMessage =
+            signal === "WAIT"
+            ? `XAU/USD — WAIT\nTimeframe: ${timeframe}\n${message}`
+            :
+            `XAU/USD — ${signal}\nTimeframe: ${timeframe}\nEntry: ${entry}\nStop Loss: ${sl}\nTake Profit: ${tp}\n${message}`;
+
+        const notifications =
+            subscribers.map(user => ({
+                user_id:user.id,
+                title,
+                message:notificationMessage,
+                type:"trade",
+                is_read:false
+            }));
+
+        await supabaseClient
+            .from("notifications")
+            .insert(notifications);
+    }
+
+    status.textContent =
+        "Signal published successfully and active subscribers were notified.";
+
+    await showActiveSignal();
+    await loadDashboard();
+
+    currentAIResult = null;
+
+    document
+        .getElementById("aiPreview")
+        .classList.add("hidden");
 }
 
 
-/* =====================================================
+/* =========================
    ACTIVE SIGNAL
-===================================================== */
-
-async function copyActiveSignal(){
-
- const msg=
-  document.getElementById(
-   "signalMsg"
-  );
-
-
- const {
-  data,
-  error
- }=
- await supabaseClient
- .from("gold_signals")
- .select("*")
- .eq("active",true)
- .order(
-  "created_at",
-  {ascending:false}
- )
- .limit(1);
-
-
- if(error){
-
-  msg.textContent=
-   "Could not load active signal.";
-
-  return;
- }
-
-
- if(!data?.length){
-
-  msg.textContent=
-   "No active gold signal.";
-
-  return;
- }
-
-
- const s=data[0];
-
-
- const copyText=
-`XAU/USD
-SIGNAL: ${s.signal}
-TIMEFRAME: ${normalizeTimeframe(s.timeframe)}
-ENTRY: ${s.entry||"-"}
-STOP LOSS: ${s.stop_loss||"-"}
-TAKE PROFIT: ${s.take_profit||"-"}${
- s.message
- ? `\nMESSAGE: ${s.message}`
- : ""
-}`;
-
-
- try{
-
-  await navigator.clipboard.writeText(
-   copyText
-  );
-
-
-  msg.textContent=
-   "Signal copied successfully.";
-
- }
- catch(error){
-
-  msg.textContent=
-   copyText;
-
- }
-
-}
-
-
-async function removeCurrentSignal(){
-
- const msg=
-  document.getElementById(
-   "signalMsg"
-  );
-
-
- const display=
-  document.getElementById(
-   "activeSignalDisplay"
-  );
-
-
- const {
-  data,
-  error
- }=
- await supabaseClient
- .from("gold_signals")
- .select("*")
- .eq("active",true)
- .order(
-  "created_at",
-  {ascending:false}
- )
- .limit(1);
-
-
- if(error){
-
-  msg.textContent=
-   "Could not find current signal.";
-
-  display.innerHTML="";
-
-  return;
- }
-
-
- if(!data?.length){
-
-  msg.textContent=
-   "There is no active signal.";
-
-  display.innerHTML="";
-
-  return;
- }
-
-
- const s=data[0];
-
-
- if(!confirm(
-  "REMOVE CURRENT SIGNAL?\n\n"+
-  "XAU/USD\n"+
-  "Signal: "+s.signal+
-  "\nTimeframe: "+normalizeTimeframe(s.timeframe)+
-  "\nEntry: "+(s.entry||"-")+
-  "\nStop Loss: "+(s.stop_loss||"-")+
-  "\nTake Profit: "+(s.take_profit||"-")
- ))
-  return;
-
-
- const {
-  data:deletedRows,
-  error:deleteError
- }=
- await supabaseClient
- .from("gold_signals")
- .delete()
- .eq(
-  "id",
-  s.id
- )
- .select("id");
-
-
- if(deleteError){
-
-  msg.textContent="REMOVE FAILED.";
-
-  alert(
-   deleteError.message
-  );
-
-  return;
- }
-
-
- if(!deletedRows?.length){
-
-  msg.textContent=
-   "Signal was NOT removed.";
-
-  return;
- }
-
-
- msg.textContent=
-  "Current signal removed successfully.";
-
- display.innerHTML="";
-
- await showActiveSignal();
-
-}
-
-
-async function deleteExpiredSignals(){
-
- const msg=
-  document.getElementById(
-   "signalMsg"
-  );
-
-
- if(!confirm(
-  "DELETE ALL EXPIRED SIGNALS?\n\n"+
-  "Only signals with active=false will be permanently deleted."
- ))
-  return;
-
-
- const {
-  data:expiredSignals,
-  error:findError
- }=
- await supabaseClient
- .from("gold_signals")
- .select("id")
- .eq("active",false);
-
-
- if(findError){
-
-  alert(findError.message);
-  return;
- }
-
-
- if(!expiredSignals?.length){
-
-  alert(
-   "There are no expired signals to delete."
-  );
-
-  return;
- }
-
-
- const {
-  data:deletedRows,
-  error:deleteError
- }=
- await supabaseClient
- .from("gold_signals")
- .delete()
- .eq("active",false)
- .select("id");
-
-
- if(deleteError){
-
-  alert(deleteError.message);
-  return;
- }
-
-
- const count=
-  deletedRows?.length||0;
-
-
- msg.textContent=
-  count+
-  " expired signal(s) deleted successfully.";
-
-
- await showActiveSignal();
-
-}
-
+========================= */
 
 async function showActiveSignal(){
 
- const msg=
-  document.getElementById(
-   "signalMsg"
-  );
+    const box =
+        document.getElementById("activeSignalBox");
 
+    if(!box) return;
 
- const display=
-  document.getElementById(
-   "activeSignalDisplay"
-  );
+    box.innerHTML =
+        '<div class="loading">Loading...</div>';
 
+    const {data,error} =
+        await supabaseClient
+        .from("gold_signals")
+        .select("*")
+        .eq("active",true)
+        .order("created_at",{ascending:false})
+        .limit(1)
+        .maybeSingle();
 
- const {
-  data,
-  error
- }=
- await supabaseClient
- .from("gold_signals")
- .select("*")
- .eq("active",true)
- .order(
-  "created_at",
-  {ascending:false}
- )
- .limit(1);
+    if(error){
 
+        box.innerHTML =
+            `<div class="notice">${escapeHtml(error.message)}</div>`;
 
- if(error){
+        return;
+    }
 
-  msg.textContent=
-   "Could not check active signal.";
+    if(!data){
 
-  display.innerHTML="";
+        box.innerHTML =
+            '<div class="empty">No active signal.</div>';
 
-  return;
- }
+        return;
+    }
 
+    const signal =
+        String(data.signal || "WAIT").toUpperCase();
 
- if(!data?.length){
+    const signalClass =
+        signal === "BUY"
+        ? "signal-buy"
+        : signal === "SELL"
+        ? "signal-sell"
+        : "signal-wait";
 
-  msg.textContent=
-   "No active gold signal.";
+    box.innerHTML = `
+        <div class="analysis-box">
 
-  display.innerHTML="";
+            <div class="signal-big ${signalClass}">
+                ${escapeHtml(signal)}
+            </div>
 
-  return;
- }
+            <div class="metric-grid">
 
+                <div class="metric">
+                    <small>Timeframe</small>
+                    <strong>${escapeHtml(data.timeframe || "-")}</strong>
+                </div>
 
- const s=data[0];
+                <div class="metric">
+                    <small>Entry</small>
+                    <strong>${formatNumber(data.entry)}</strong>
+                </div>
 
+                <div class="metric">
+                    <small>Stop Loss</small>
+                    <strong>${formatNumber(data.stop_loss)}</strong>
+                </div>
 
- msg.textContent=
-  "Active signal loaded.";
+                <div class="metric">
+                    <small>Take Profit</small>
+                    <strong>${formatNumber(data.take_profit)}</strong>
+                </div>
 
+            </div>
 
- const signal=
-  String(s.signal||"WAIT").toUpperCase();
+            <div class="reason">
+                ${escapeHtml(data.message || "")}
+            </div>
 
+            <div class="notice">
+                Published:
+                ${formatDate(data.created_at)}
+            </div>
 
- const signalClass=
-  signal==="BUY"
-  ? "signal-direction-buy"
-  : signal==="SELL"
-  ? "signal-direction-sell"
-  : "signal-direction-wait";
+            <div class="actions">
 
+                <button class="btn dark"
+                    onclick="copyActiveSignal()">
+                    COPY
+                </button>
 
- display.innerHTML=`
+                <button class="btn danger"
+                    onclick="removeCurrentSignal('${escapeAttr(data.id)}')">
+                    REMOVE
+                </button>
 
-  <div class="active-signal-card">
+            </div>
 
-   <div class="active-signal-title">
-    CURRENT ACTIVE GOLD SIGNAL
-   </div>
-
-   <div>
-    <strong>Market:</strong>
-    XAU/USD
-   </div>
-
-   <div>
-    <strong>Signal:</strong>
-    <span class="${signalClass}">
-     ${escapeHtml(signal)}
-    </span>
-   </div>
-
-   <div>
-    <strong>Timeframe:</strong>
-    ${escapeHtml(
-     normalizeTimeframe(s.timeframe)
-    )}
-   </div>
-
-   <div>
-    <strong>Entry:</strong>
-    ${escapeHtml(s.entry||"-")}
-   </div>
-
-   <div>
-    <strong>Stop Loss:</strong>
-    ${escapeHtml(s.stop_loss||"-")}
-   </div>
-
-   <div>
-    <strong>Take Profit:</strong>
-    ${escapeHtml(s.take_profit||"-")}
-   </div>
-
-   ${
-    s.message
-    ?
-    `
-     <div style="margin-top:8px">
-      <strong>Reason:</strong>
-      ${escapeHtml(s.message)}
-     </div>
-    `
-    :
-    ""
-   }
-
-   <div class="signal-status">
-    STATUS:
-    <span class="gold">ACTIVE</span>
-   </div>
-
-  </div>
-
- `;
-
+        </div>
+    `;
 }
 
 
-/* =====================================================
+/* =========================
+   COPY ACTIVE SIGNAL
+========================= */
+
+async function copyActiveSignal(){
+
+    const {data,error} =
+        await supabaseClient
+        .from("gold_signals")
+        .select("*")
+        .eq("active",true)
+        .order("created_at",{ascending:false})
+        .limit(1)
+        .maybeSingle();
+
+    if(error || !data){
+        alert("No active signal.");
+        return;
+    }
+
+    const text =
+`AURIX AI — XAU/USD
+
+Signal: ${data.signal}
+Timeframe: ${data.timeframe}
+Entry: ${data.entry ?? "-"}
+Stop Loss: ${data.stop_loss ?? "-"}
+Take Profit: ${data.take_profit ?? "-"}
+
+${data.message || ""}`;
+
+    try{
+
+        await navigator.clipboard.writeText(text);
+
+        alert("Signal copied.");
+
+    }catch(e){
+
+        alert(text);
+    }
+}
+
+
+/* =========================
+   REMOVE CURRENT SIGNAL
+========================= */
+
+async function removeCurrentSignal(id){
+
+    if(!confirm("Remove this active signal?")) return;
+
+    const {error} =
+        await supabaseClient
+        .from("gold_signals")
+        .update({
+            active:false
+        })
+        .eq("id",id);
+
+    if(error){
+        alert(error.message);
+        return;
+    }
+
+    await showActiveSignal();
+    await loadDashboard();
+}
+
+
+/* =========================
+   DELETE EXPIRED SIGNALS
+========================= */
+
+async function deleteExpiredSignals(){
+
+    const {error} =
+        await supabaseClient
+        .from("gold_signals")
+        .delete()
+        .eq("active",false);
+
+    if(error){
+        alert(error.message);
+        return;
+    }
+
+    await showActiveSignal();
+}
+
+
+/* =========================
    NOTIFICATIONS
-   NO NUMBERS / NO BADGES
-===================================================== */
+========================= */
 
 async function loadNotifications(){
 
- if(!currentUser)
-  return;
+    const box =
+        document.getElementById("notificationsList");
 
+    box.innerHTML =
+        '<div class="loading">Loading...</div>';
 
- const {
-  data,
-  error
- }=
- await supabaseClient
- .from("notifications")
- .select("*")
- .eq(
-  "user_id",
-  currentUser.id
- )
- .order(
-  "created_at",
-  {ascending:false}
- );
+    const {data,error} =
+        await supabaseClient
+        .from("notifications")
+        .select("*")
+        .order("created_at",{ascending:false})
+        .limit(100);
 
+    if(error){
 
- const box=
-  document.getElementById(
-   "notificationsList"
-  );
+        box.innerHTML =
+            `<div class="notice">${escapeHtml(error.message)}</div>`;
 
+        return;
+    }
 
- if(error){
+    if(!data || !data.length){
 
-  box.innerHTML=
-   `<div class="card">${
-    escapeHtml(error.message)
-   }</div>`;
+        box.innerHTML =
+            '<div class="empty">No notifications.</div>';
 
-  return;
- }
+        return;
+    }
 
+    box.innerHTML =
+        data.map(n => `
 
- box.innerHTML="";
+        <div class="notification">
 
+            <div class="notification-title">
+                ${escapeHtml(n.title || "Notification")}
+            </div>
 
- if(!data?.length){
+            <div class="notification-message">
+                ${escapeHtml(n.message || "")}
+            </div>
 
-  box.innerHTML=
-   `<div class="card">
-    No notifications.
-   </div>`;
+            <div class="notification-date">
+                ${formatDate(n.created_at)}
+            </div>
 
-  return;
- }
+            <button class="btn danger"
+                onclick="deleteNotification('${escapeAttr(n.id)}')">
+                DELETE
+            </button>
 
+        </div>
 
- data.forEach(
-  n=>{
-
-   box.innerHTML+=`
-
-    <div class="card notification ${
-     n.is_read ? "" : "unread"
-    }">
-
-     <strong class="gold">
-      ${escapeHtml(
-       n.title||"Notification"
-      )}
-     </strong>
-
-     <div style="margin-top:8px;white-space:pre-line">
-      ${escapeHtml(
-       n.message||""
-      )}
-     </div>
-
-     <div
-      class="small"
-      style="margin-top:8px">
-      ${formatDate(n.created_at)}
-     </div>
-
-    </div>
-
-   `;
-
-  }
- );
-
+        `).join("");
 }
 
 
-/*
- Admin notification section is informational only.
- No numeric badge or notification counter is displayed.
-*/
+/* =========================
+   DELETE NOTIFICATION
+========================= */
 
-async function subscribeToAdminNotifications(){
+async function deleteNotification(id){
 
- if(!currentUser)
-  return;
+    const {error} =
+        await supabaseClient
+        .from("notifications")
+        .delete()
+        .eq("id",id);
 
+    if(error){
+        alert(error.message);
+        return;
+    }
 
- if(adminNotificationChannel){
-
-  await supabaseClient.removeChannel(
-   adminNotificationChannel
-  );
-
- }
-
-
- adminNotificationChannel=
-  supabaseClient
-  .channel(
-   "admin-notifications-"+
-   currentUser.id
-  )
-  .on(
-   "postgres_changes",
-   {
-    event:"INSERT",
-    schema:"public",
-    table:"notifications",
-    filter:
-     `user_id=eq.${currentUser.id}`
-   },
-   payload=>{
-
-    console.log(
-     "ADMIN NOTIFICATION:",
-     payload
-    );
-
-    loadNotifications();
-
-   }
-  )
-  .subscribe();
-
+    await loadNotifications();
 }
 
 
-function formatDate(date){
+/* =========================
+   DELETE ALL NOTIFICATIONS
+========================= */
 
- if(!date)
-  return "-";
+async function deleteAllNotifications(){
+
+    if(!confirm("Delete all notifications?")) return;
+
+    const {error} =
+        await supabaseClient
+        .from("notifications")
+        .delete()
+        .neq("id","00000000-0000-0000-0000-000000000000");
+
+    if(error){
+        alert(error.message);
+        return;
+    }
+
+    await loadNotifications();
+}
 
 
- const parsed=
-  new Date(date);
+/* =========================
+   REALTIME ADMIN NOTIFICATIONS
+========================= */
+
+function subscribeToAdminNotifications(){
+
+    supabaseClient
+        .channel("aurix-admin-notifications")
+        .on(
+            "postgres_changes",
+            {
+                event:"INSERT",
+                schema:"public",
+                table:"notifications"
+            },
+            () => {
+                loadNotifications();
+            }
+        )
+        .subscribe();
+}
 
 
- if(Number.isNaN(
-  parsed.getTime()
- ))
-  return "-";
+/* =========================
+   HELPERS
+========================= */
 
+function formatDate(value){
 
- return parsed.toLocaleString();
+    if(!value) return "-";
 
+    try{
+
+        return new Date(value)
+            .toLocaleString();
+
+    }catch(e){
+
+        return "-";
+    }
 }
 
 
 function escapeHtml(value){
 
- return String(
-  value??""
- )
- .replace(/&/g,"&amp;")
- .replace(/</g,"&lt;")
- .replace(/>/g,"&gt;")
- .replace(/"/g,"&quot;")
- .replace(/'/g,"&#039;");
-
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 }
 
 
 function escapeAttr(value){
 
- return String(
-  value??""
- )
- .replace(/\\/g,"\\\\")
- .replace(/'/g,"\\'")
- .replace(/"/g,"&quot;")
- .replace(/</g,"&lt;")
- .replace(/>/g,"&gt;");
-
+    return String(value ?? "")
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'")
+        .replace(/"/g,"&quot;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;");
 }
 
+
+/* =========================
+   RESTORE SESSION
+========================= */
 
 async function restoreSession(){
 
- if(!supabaseClient){
+    const {
+        data:{session}
+    } =
+        await supabaseClient.auth.getSession();
 
-  showLoginMessage(
-   "Supabase library/client could not be initialized.",
-   "error"
-  );
+    if(session){
 
-  return;
- }
+        await checkAdmin();
 
+    }else{
 
- try{
-
-  const {
-   data,
-   error
-  }=
-  await supabaseClient
-  .auth
-  .getSession();
-
-
-  if(error){
-
-   showLoginMessage(
-    "Session error:\n\n"+
-    error.message,
-    "error"
-   );
-
-   return;
-  }
-
-
-  if(data?.session){
-
-   currentUser=
-    data.session.user;
-
-
-   const ok=
-    await checkAdmin();
-
-
-   if(!ok)
-    currentUser=null;
-
-  }
-
- }
- catch(error){
-
-  console.error(
-   "SESSION ERROR:",
-   error
-  );
-
-
-  showLoginMessage(
-   "SESSION ERROR:\n\n"+
-   (
-    error?.message||
-    String(error)
-   ),
-   "error"
-  );
-
- }
-
+        showLogin();
+    }
 }
 
 
-document.addEventListener(
- "keydown",
- function(event){
+window.login = login;
+window.logout = logout;
+window.showTab = showTab;
 
-  if(
-   event.key==="Enter" &&
-   document.getElementById("login")
-    ?.style.display!=="none"
-  ){
+window.loadMembers = loadMembers;
+window.removeMember = removeMember;
 
-   const active=
-    document.activeElement;
+window.loadDeposits = loadDeposits;
+window.approveDeposit = approveDeposit;
+window.rejectDeposit = rejectDeposit;
 
+window.loadSubscribers = loadSubscribers;
+window.disableSubscription = disableSubscription;
+window.activateSubscription = activateSubscription;
 
-   if(
-    active?.id==="email"||
-    active?.id==="password"
-   ){
+window.analyzeGold = analyzeGold;
+window.applyAIResult = applyAIResult;
+window.discardAIAnalysis = discardAIAnalysis;
+window.useManualSignal = useManualSignal;
 
-    login();
+window.publishSignal = publishSignal;
+window.showActiveSignal = showActiveSignal;
+window.copyActiveSignal = copyActiveSignal;
+window.removeCurrentSignal = removeCurrentSignal;
+window.deleteExpiredSignals = deleteExpiredSignals;
 
-   }
-
-  }
-
- });
-
-
-window.login=login;
-window.logout=logout;
-window.showTab=showTab;
-
-window.removeMember=removeMember;
-
-window.approveDeposit=approveDeposit;
-window.rejectDeposit=rejectDeposit;
-
-window.disableSubscription=
- disableSubscription;
-
-window.activateSubscription=
- activateSubscription;
-
-window.analyzeGold=analyzeGold;
-
-window.publishSignal=
- publishSignal;
-
-window.discardAIAnalysis=
- discardAIAnalysis;
-
-window.useManualSignal=
- useManualSignal;
-
-window.copyActiveSignal=
- copyActiveSignal;
-
-window.removeCurrentSignal=
- removeCurrentSignal;
-
-window.deleteExpiredSignals=
- deleteExpiredSignals;
-
-window.showActiveSignal=
- showActiveSignal;
+window.loadNotifications = loadNotifications;
+window.deleteNotification = deleteNotification;
+window.deleteAllNotifications = deleteAllNotifications;
 
 
-if(
- typeof window.supabase!=="undefined"
-){
-
- restoreSession();
-
-}
-else{
-
- showLoginMessage(
-  "Supabase library is not available. Refresh the page.",
-  "error"
- );
-
-}
+restoreSession();
 
 </script>
 
